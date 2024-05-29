@@ -41,8 +41,8 @@ function HeroPost({
   date,
   author,
 }: Pick<
-  Exclude<HeroQueryResult, null>,
-  "title" | "coverImage" | "date" | "excerpt" | "author" | "slug"
+  Exclude<HeroQueryResult, null>, // Exclude null
+  "title" | "coverImage" | "date" | "excerpt" | "author" | "slug" // Pick the fields we need
 >) {
   return (
     <article>
