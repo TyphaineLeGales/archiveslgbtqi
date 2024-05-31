@@ -19,6 +19,7 @@ import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+import Header from "./components/header";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await sanityFetch<SettingsQueryResult>({
@@ -93,6 +94,7 @@ export default function RootLayout({
       <body>
         <section className="min-h-screen">
           {draftMode().isEnabled && <AlertBanner />}
+          <Header />
           <main>{children}</main>
           <Suspense>
             <Footer />
