@@ -692,7 +692,30 @@ export type PostQueryResult = {
     } | null;
   } | null;
 } | null;
-// Source: ./app/(front)/components/header.tsx
+// Variable: PAGES_QUERY
+// Query: *[_type == "pages" && slug.current == $slug][0]
+export type PAGES_QUERYResult = {
+  _id: string;
+  _type: "pages";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+} | null;
+// Source: ./app/(front)/posts/[slug]/page.tsx
+// Variable: postSlugs
+// Query: *[_type == "post"]{slug}
+export type PostSlugsResult = Array<{
+  slug: Slug | null;
+}>;
+// Source: ./app/(front)/[slug]/page.tsx
+// Variable: PAGESSLUGS_QUERY
+// Query: *[_type == "pages"]{slug}
+export type PAGESSLUGS_QUERYResult = Array<{
+  slug: Slug | null;
+}>;
+// Source: ./app/(front)/components/header/header.tsx
 // Variable: HEADER_QUERY
 // Query: *[_type == "header"] { "imageUrl": logo.asset->url, "url": links[]->{    title,    "slug": slug.current    }  }
 export type HEADER_QUERYResult = Array<{
@@ -701,10 +724,4 @@ export type HEADER_QUERYResult = Array<{
     title: string | null;
     slug: string | null;
   }> | null;
-}>;
-// Source: ./app/(front)/posts/[slug]/page.tsx
-// Variable: postSlugs
-// Query: *[_type == "post"]{slug}
-export type PostSlugsResult = Array<{
-  slug: Slug | null;
 }>;
