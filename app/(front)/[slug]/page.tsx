@@ -1,6 +1,6 @@
-import { PAGES_QUERYResult, PAGESSLUGS_QUERYResult } from "@/sanity.types";
+import { PagesQueryResult, PagesSlugsQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { PAGES_QUERY } from "@/sanity/lib/queries";
+import { pagesQuery } from "@/sanity/lib/queries";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -9,11 +9,11 @@ type Props = {
   params: { slug: string };
 };
 
-const PAGESSLUGS_QUERY = groq`*[_type == "pages"]{slug}`;
+const pagesSlugsQuery = groq`*[_type == "pages"]{slug}`;
 
 export async function generateStaticParams() {
-  const params = await sanityFetch<PAGESSLUGS_QUERYResult>({
-    query: PAGESSLUGS_QUERY,
+  const params = await sanityFetch<PagesSlugsQueryResult>({
+    query: pagesSlugsQuery,
     perspective: "published",
     stega: false,
   });
@@ -22,8 +22,8 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: Props) {
   const [pages] = await Promise.all([
-    sanityFetch<PAGES_QUERYResult>({
-      query: PAGES_QUERY,
+    sanityFetch<PagesQueryResult>({
+      query: pagesQuery,
       params,
     }),
   ]);

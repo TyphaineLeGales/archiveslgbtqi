@@ -692,9 +692,9 @@ export type PostQueryResult = {
     } | null;
   } | null;
 } | null;
-// Variable: PAGES_QUERY
+// Variable: pagesQuery
 // Query: *[_type == "pages" && slug.current == $slug][0]
-export type PAGES_QUERYResult = {
+export type PagesQueryResult = {
   _id: string;
   _type: "pages";
   _createdAt: string;
@@ -703,16 +703,10 @@ export type PAGES_QUERYResult = {
   title?: string;
   slug?: Slug;
 } | null;
-// Source: ./app/(front)/posts/[slug]/page.tsx
-// Variable: postSlugs
-// Query: *[_type == "post"]{slug}
-export type PostSlugsResult = Array<{
-  slug: Slug | null;
-}>;
 // Source: ./app/(front)/[slug]/page.tsx
-// Variable: PAGESSLUGS_QUERY
+// Variable: pagesSlugsQuery
 // Query: *[_type == "pages"]{slug}
-export type PAGESSLUGS_QUERYResult = Array<{
+export type PagesSlugsQueryResult = Array<{
   slug: Slug | null;
 }>;
 // Source: ./app/(front)/components/header/header.tsx
@@ -724,4 +718,10 @@ export type HEADER_QUERYResult = Array<{
     title: string | null;
     slug: string | null;
   }> | null;
+}>;
+// Source: ./app/(front)/posts/[slug]/page.tsx
+// Variable: postSlugs
+// Query: *[_type == "post"]{slug}
+export type PostSlugsResult = Array<{
+  slug: Slug | null;
 }>;

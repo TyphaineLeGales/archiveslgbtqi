@@ -27,4 +27,4 @@ export const postQuery = groq`*[_type == "post" && slug.current == $slug] [0] {
   ${postFields}
 }`;
 
-export const PAGES_QUERY = groq`*[_type == "pages" && slug.current == $slug][0]`;
+export const pagesQuery = groq`*[_type == "pages" && slug.current == $slug][0]`;
