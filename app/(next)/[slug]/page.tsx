@@ -1,4 +1,4 @@
-import { PagesContentQueryResult, PagesQueryResult } from "@/sanity.types";
+import { PagesContentQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { pagesContentQuery } from "@/sanity/lib/queries";
 import { groq } from "next-sanity";
