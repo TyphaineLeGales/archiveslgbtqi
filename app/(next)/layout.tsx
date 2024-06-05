@@ -65,7 +65,7 @@ async function Footer() {
   const footer = data?.footer || [];
 
   return (
-    <footer className="bg-accent-1 border-accent-2 border-t">
+    <footer className="bg-accent-1">
       <div className="container mx-auto px-5">
         {footer.length > 0 ? (
           <PortableText
