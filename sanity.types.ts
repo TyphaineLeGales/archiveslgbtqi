@@ -68,16 +68,6 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Pages = {
-  _id: string;
-  _type: "pages";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-};
-
 export type Post = {
   _id: string;
   _type: "post";
@@ -147,12 +137,6 @@ export type Author = {
   };
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type Footer = {
   _id: string;
   _type: "footer";
@@ -209,6 +193,52 @@ export type Footer = {
     metadataBase?: string;
     _type: "image";
   };
+};
+
+export type Homepage = {
+  _id: string;
+  _type: "homepage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  hero?: {
+    heading?: string;
+    description?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    ctatext?: string;
+    cta?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "pages";
+    };
+  };
+};
+
+export type Pages = {
+  _id: string;
+  _type: "pages";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
 };
 
 export type Header = {
@@ -703,13 +733,30 @@ export type PagesQueryResult = {
   title?: string;
   slug?: Slug;
 } | null;
-// Source: ./app/(front)/[slug]/page.tsx
+// Variable: homepageQuery
+// Query: *[_type == "homepage"][0] {  hero {    heading,    description,    ctatext,    "imageUrl": logo.asset->url,    "url": cta->slug,  }}
+export type HomepageQueryResult = {
+  hero: {
+    heading: string | null;
+    description: string | null;
+    ctatext: string | null;
+    imageUrl: null;
+    url: Slug | null;
+  } | null;
+} | null;
+// Source: ./app/(next)/[slug]/page.tsx
 // Variable: pagesSlugsQuery
 // Query: *[_type == "pages"]{slug}
 export type PagesSlugsQueryResult = Array<{
   slug: Slug | null;
 }>;
-// Source: ./app/(front)/components/header/header.tsx
+// Source: ./app/(next)/posts/[slug]/page.tsx
+// Variable: postSlugs
+// Query: *[_type == "post"]{slug}
+export type PostSlugsResult = Array<{
+  slug: Slug | null;
+}>;
+// Source: ./app/(next)/components/header/header.tsx
 // Variable: HEADER_QUERY
 // Query: *[_type == "header"] { "imageUrl": logo.asset->url, "url": links[]->{    title,    "slug": slug.current    }  }
 export type HEADER_QUERYResult = Array<{
@@ -718,10 +765,4 @@ export type HEADER_QUERYResult = Array<{
     title: string | null;
     slug: string | null;
   }> | null;
-}>;
-// Source: ./app/(front)/posts/[slug]/page.tsx
-// Variable: postSlugs
-// Query: *[_type == "post"]{slug}
-export type PostSlugsResult = Array<{
-  slug: Slug | null;
 }>;

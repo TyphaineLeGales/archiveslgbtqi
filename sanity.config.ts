@@ -23,6 +23,7 @@ import { resolveHref } from "@/sanity/lib/utils";
 import header from "@/sanity/schemas/singletons/header";
 import footer from "@/sanity/schemas/singletons/footer";
 import pages from "@/sanity/schemas/documents/pages";
+import homepage from "./sanity/schemas/singletons/homepage";
 
 const homeLocation = {
   title: "Home",
@@ -38,6 +39,7 @@ export default defineConfig({
       // Singletons
       settings,
       header,
+      homepage,
       footer,
       // Documents
       post,
@@ -79,7 +81,9 @@ export default defineConfig({
       },
       previewUrl: { previewMode: { enable: "/api/draft" } },
     }),
-    structureTool({ structure: pageStructure([settings, header, footer]) }),
+    structureTool({
+      structure: pageStructure([settings, header, homepage, footer]),
+    }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([settings.name]),
     // Add an image asset source for Unsplash

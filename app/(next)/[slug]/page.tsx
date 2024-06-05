@@ -32,10 +32,8 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  console.log(pages);
-
   return (
-    <div className="container mx-auto px-5">
+    <div className="container mx-auto px-5 min-h-screen">
       <h1>{pages?.title}</h1>
     </div>
   );

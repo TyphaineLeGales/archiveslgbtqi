@@ -28,3 +28,13 @@ export const postQuery = groq`*[_type == "post" && slug.current == $slug] [0] {
 }`;
 
 export const pagesQuery = groq`*[_type == "pages" && slug.current == $slug][0]`;
+
+export const homepageQuery = groq`*[_type == "homepage"][0] {
+  hero {
+    heading,
+    description,
+    ctatext,
+    "imageUrl": image.asset->url,
+    "url": cta->slug,
+  }
+}`;
