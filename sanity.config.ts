@@ -26,7 +26,7 @@ import pages from "@/sanity/schemas/documents/pages";
 import homepage from "./sanity/schemas/singletons/homepage";
 import { structure } from "./sanity/plugins/structure";
 import sections from "./sanity/schemas/documents/sections";
-import custom from "./sanity/schemas/blocks/custom";
+import customText from "./sanity/schemas/blocks/customText";
 import customFile from "./sanity/schemas/blocks/customFile";
 
 const homeLocation = {
@@ -51,7 +51,7 @@ export default defineConfig({
       pages,
       sections,
       // Blocks
-      custom,
+      customText,
       customFile,
     ],
   },

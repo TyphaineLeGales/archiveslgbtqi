@@ -47,62 +47,13 @@ export type Geopoint = {
 };
 
 export type CustomFile = {
-  _id: string;
   _type: "customFile";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  poster?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    caption?: string;
-    attribution?: string;
-    _type: "image";
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
   };
-};
-
-export type Custom = {
-  _id: string;
-  _type: "custom";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-};
-
-export type Sections = {
-  _id: string;
-  _type: "sections";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  content?: Array<
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-        };
-        _type: "file";
-        _key: string;
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "custom";
-      }
-  >;
 };
 
 export type SanityFileAsset = {
@@ -125,6 +76,26 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
+};
+
+export type CustomText = string;
+
+export type Sections = {
+  _id: string;
+  _type: "sections";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  content?: Array<
+    | ({
+        _key: string;
+      } & CustomFile)
+    | ({
+        _key: string;
+      } & CustomText)
+  >;
 };
 
 export type Post = {

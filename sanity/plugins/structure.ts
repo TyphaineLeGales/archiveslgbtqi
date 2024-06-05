@@ -15,7 +15,7 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "header" &&
           item.getId() !== "footer" &&
           item.getId() !== "pages" &&
-          item.getId() !== "custom" &&
+          item.getId() !== "customText" &&
           item.getId() !== "customFile",
       ),
       S.divider(),

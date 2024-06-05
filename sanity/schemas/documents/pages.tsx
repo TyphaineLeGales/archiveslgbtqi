@@ -44,7 +44,7 @@ export default defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "sections" }] }],
+      of: [{ type: "reference", weak: true, to: [{ type: "sections" }] }],
     }),
   ],
   preview: {

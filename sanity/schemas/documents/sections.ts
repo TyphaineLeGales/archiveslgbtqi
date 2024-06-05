@@ -44,7 +44,7 @@ export default defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "file" }, { type: "custom" }],
+      of: [{ type: "customFile" }, { type: "customText" }],
     }),
   ],
   preview: {

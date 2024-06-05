@@ -2,7 +2,7 @@ import { UserIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "custom",
+  name: "customText",
   title: "Custom Text",
   icon: UserIcon,
   type: "document",
@@ -11,6 +11,12 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "content",
+      title: "Content",
+      type: "text",
       validation: (rule) => rule.required(),
     }),
   ],
