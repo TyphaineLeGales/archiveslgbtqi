@@ -87,8 +87,6 @@ export default async function Page() {
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
   ]);
 
-  console.log(homePage);
-
   return (
     <div className="min-h-screen">
       {homePage && <Hero hero={homePage} />}

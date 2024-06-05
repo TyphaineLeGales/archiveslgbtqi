@@ -24,6 +24,10 @@ import header from "@/sanity/schemas/singletons/header";
 import footer from "@/sanity/schemas/singletons/footer";
 import pages from "@/sanity/schemas/documents/pages";
 import homepage from "./sanity/schemas/singletons/homepage";
+import { structure } from "./sanity/plugins/structure";
+import sections from "./sanity/schemas/documents/sections";
+import custom from "./sanity/schemas/blocks/custom";
+import customFile from "./sanity/schemas/blocks/customFile";
 
 const homeLocation = {
   title: "Home",
@@ -45,6 +49,10 @@ export default defineConfig({
       post,
       author,
       pages,
+      sections,
+      // Blocks
+      custom,
+      customFile,
     ],
   },
   plugins: [
@@ -81,8 +89,11 @@ export default defineConfig({
       },
       previewUrl: { previewMode: { enable: "/api/draft" } },
     }),
+    // structureTool({
+    //   structure: pageStructure([settings, header, homepage, footer]),
+    // }),
     structureTool({
-      structure: pageStructure([settings, header, homepage, footer]),
+      structure,
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([settings.name]),
@@ -90,7 +101,7 @@ export default defineConfig({
     unsplashImageAsset(),
     // Sets up AI Assist with preset prompts
     // https://www.sanity.io/docs/ai-assist
-    assistWithPresets(),
+    // assistWithPresets(),
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     process.env.NODE_ENV === "development" &&

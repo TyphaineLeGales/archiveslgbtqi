@@ -17,8 +17,8 @@ import authorType from "./author";
  */
 
 export default defineType({
-  name: "pages",
-  title: "Pages",
+  name: "sections",
+  title: "Sections",
   icon: DocumentTextIcon,
   type: "document",
   fields: [
@@ -44,7 +44,7 @@ export default defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "sections" }] }],
+      of: [{ type: "file" }, { type: "custom" }],
     }),
   ],
   preview: {

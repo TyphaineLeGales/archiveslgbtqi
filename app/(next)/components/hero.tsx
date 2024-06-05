@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default function Hero({ hero }: Props) {
-  console.log("Comp:", hero?.hero);
   return (
     <div className="relative mt-[1rem] flex h-[calc(90vh-1rem)] flex-col justify-between p-[2rem]">
       <p className="w-1/3 text-left text-[1.5rem] font-semibold leading-[1.5rem] tracking-tighter">
