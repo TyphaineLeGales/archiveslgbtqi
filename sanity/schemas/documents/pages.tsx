@@ -5,7 +5,7 @@ import { defineField, defineType } from "sanity";
 import authorType from "./author";
 
 /**
- * This file is the schema definition for a post.
+ * This file is the schema definition for a pages.
  *
  * Here you'll be able to edit the different fields that appear when you 
  * create or edit a post in the studio.
