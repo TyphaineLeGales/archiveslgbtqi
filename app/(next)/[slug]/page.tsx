@@ -11,10 +11,6 @@ type Props = {
 
 export default async function Page({ params }: Props) {
   const [content] = await Promise.all([
-    // sanityFetch<PagesQueryResult>({
-    //   query: pagesQuery,
-    //   params,
-    // }),
     sanityFetch<PagesContentQueryResult>({
       query: pagesContentQuery,
       params,
