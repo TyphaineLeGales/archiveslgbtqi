@@ -29,6 +29,7 @@ import sections from "./sanity/schemas/documents/sections";
 import customText from "./sanity/schemas/blocks/customText";
 import customFile from "./sanity/schemas/blocks/customFile";
 import customImage from "./sanity/schemas/blocks/customImage";
+import customExternalLink from "./sanity/schemas/blocks/customExternalLink";
 
 const homeLocation = {
   title: "Home",
@@ -55,6 +56,7 @@ export default defineConfig({
       customText,
       customFile,
       customImage,
+      customExternalLink,
     ],
   },
   plugins: [

@@ -46,6 +46,15 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type CustomExternalLink = {
+  _id: string;
+  _type: "customExternalLink";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  url?: string;
+};
+
 export type CustomImage = {
   _id: string;
   _type: "customImage";
@@ -123,6 +132,13 @@ export type Sections = {
         _weak?: boolean;
         _key: string;
         [internalGroqTypeReferenceTo]?: "customImage";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "customExternalLink";
       }
   >;
 };
@@ -690,7 +706,7 @@ export type PostQueryResult = {
   } | null;
 } | null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $slug] [0] {  _id,  title,  slug,  "sections": content[]->{      _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    "imageUrl": image.asset->url,  }  },}
+// Query: *[_type == "pages" && slug.current == $slug] [0] {  _id,  title,  slug,  "sections": content[]->{      _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    "imageUrl": image.asset->url,    "url": url,  }  },}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -705,6 +721,7 @@ export type PagesContentQueryResult = {
       _type: "reference";
       title: null;
       imageUrl: null;
+      url: null;
     }> | null;
   }> | null;
 } | null;

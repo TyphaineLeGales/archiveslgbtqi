@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { PagesContentQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { pagesContentQuery } from "@/sanity/lib/queries";
@@ -30,13 +29,31 @@ export default async function Page({ params }: Props) {
       {content?.sections?.map((section) => (
         <div key={section._id}>
           <h2>{section.title}</h2>
+
+          {/*  customImage block type */}
+
           {section?.content?.map((block) => (
-            <div key={block._ref}>
+            <div key={block.title}>
               {block._type.includes("customImage") && (
-                <CustomImage
-                  imageUrl={block.imageUrl || ""}
-                  title={block.title || ""}
-                />
+                <>
+                  <CustomImage
+                    imageUrl={block.imageUrl || ""}
+                    title={block.title || ""}
+                  />
+                  <span>{block.url}</span>
+                </>
+              )}
+            </div>
+          ))}
+
+          {/*  customExternalLink block type */}
+
+          {section?.content?.map((block) => (
+            <div key={block.title}>
+              {block._type.includes("customExternalLink") && (
+                <>
+                  <a href={block.url || ""}>{block.url}</a>
+                </>
               )}
             </div>
           ))}

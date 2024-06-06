@@ -2,8 +2,8 @@
 import React from "react";
 
 type Props = {
-  imageUrl: string;
   title: string;
+  imageUrl: string;
 };
 
 export default function CustomImage({ imageUrl, title }: Props) {

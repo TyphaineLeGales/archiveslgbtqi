@@ -23,6 +23,7 @@ const sectionsFields = /* groq */ `
     _type,
     title,
     "imageUrl": image.asset->url,
+    "url": url,
   }
 `;
 

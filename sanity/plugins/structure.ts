@@ -17,7 +17,8 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "pages" &&
           item.getId() !== "customText" &&
           item.getId() !== "customFile" &&
-          item.getId() !== "customImage",
+          item.getId() !== "customImage" &&
+          item.getId() !== "customExternalLink",
       ),
       S.divider(),
       S.documentListItem().id("header").schemaType("header"),
