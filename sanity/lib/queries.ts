@@ -13,6 +13,19 @@ const postFields = /* groq */ `
   "author": author->{"name": coalesce(name, "Anonymous"), picture},
 `;
 
+const sectionsFields = /* groq */ `
+  _id,
+  _type,
+  title,
+  slug,
+  "content": content[]{
+    _ref,
+    _type,
+    title,
+    "imageUrl": image.asset->url,
+  }
+`;
+
 export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
   content,
   ${postFields}
@@ -31,7 +44,9 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $slu
   _id,
   title,
   slug,
-  "contentBlock": content[]->{title}
+  "sections": content[]->{
+    ${sectionsFields}
+  },
 }`;
 
 export const homepageQuery = groq`*[_type == "homepage"][0] {

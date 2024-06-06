@@ -46,14 +46,85 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type CustomFile = {
-  _type: "customFile";
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+export type CustomImage = {
+  _id: string;
+  _type: "customImage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
   };
+};
+
+export type CustomFile = {
+  _id: string;
+  _type: "customFile";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  file?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "file";
+  };
+};
+
+export type CustomText = {
+  _id: string;
+  _type: "customText";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  content?: string;
+};
+
+export type Sections = {
+  _id: string;
+  _type: "sections";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  content?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "customFile";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "customText";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "customImage";
+      }
+  >;
 };
 
 export type SanityFileAsset = {
@@ -76,26 +147,6 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
-};
-
-export type CustomText = string;
-
-export type Sections = {
-  _id: string;
-  _type: "sections";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  content?: Array<
-    | ({
-        _key: string;
-      } & CustomFile)
-    | ({
-        _key: string;
-      } & CustomText)
-  >;
 };
 
 export type Post = {
@@ -639,13 +690,22 @@ export type PostQueryResult = {
   } | null;
 } | null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $slug] [0] {  _id,  title,  slug,  "contentBlock": content[]->{title}}
+// Query: *[_type == "pages" && slug.current == $slug] [0] {  _id,  title,  slug,  "sections": content[]->{      _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    "imageUrl": image.asset->url,  }  },}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
   slug: Slug | null;
-  contentBlock: Array<{
+  sections: Array<{
+    _id: string;
+    _type: "sections";
     title: string | null;
+    slug: Slug | null;
+    content: Array<{
+      _ref: string;
+      _type: "reference";
+      title: null;
+      imageUrl: null;
+    }> | null;
   }> | null;
 } | null;
 // Variable: homepageQuery
