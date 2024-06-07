@@ -1,4 +1,4 @@
-import { CogIcon } from "@sanity/icons";
+import { DoubleChevronUpIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 import * as demo from "@/sanity/lib/demo";
@@ -7,7 +7,7 @@ export default defineType({
   name: "header",
   title: "Header",
   type: "document",
-  icon: CogIcon,
+  icon: DoubleChevronUpIcon,
   fields: [
     defineField({
       name: "logo",

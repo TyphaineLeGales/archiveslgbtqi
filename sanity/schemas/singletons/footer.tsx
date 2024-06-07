@@ -1,4 +1,4 @@
-import { CogIcon } from "@sanity/icons";
+import { DoubleChevronDownIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 import * as demo from "@/sanity/lib/demo";
@@ -7,7 +7,7 @@ export default defineType({
   name: "footer",
   title: "Footer",
   type: "document",
-  icon: CogIcon,
+  icon: DoubleChevronDownIcon,
   fields: [
     defineField({
       name: "title",

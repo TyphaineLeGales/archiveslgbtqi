@@ -43,13 +43,10 @@ export default defineConfig({
   schema: {
     types: [
       // Singletons
-      settings,
       header,
       homepage,
       footer,
       // Documents
-      post,
-      author,
       pages,
       sections,
       // Blocks

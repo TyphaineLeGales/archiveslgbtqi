@@ -5,7 +5,10 @@ export const structure = (S: StructureBuilder) =>
     .title("Content")
     .items([
       // Make a singleton of the document with ID header”
+      S.documentListItem().id("header").schemaType("header"),
       S.documentListItem().id("homepage").schemaType("homepage"),
+      S.documentListItem().id("footer").schemaType("footer"),
+      S.divider(),
       ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
       S.divider(),
       // Add the rest of the document types, but filter out the siteSettings type defined above
@@ -20,8 +23,6 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "customImage" &&
           item.getId() !== "customExternalLink",
       ),
-      S.divider(),
-      S.documentListItem().id("header").schemaType("header"),
-      S.documentListItem().id("footer").schemaType("footer"),
+
       //hidden document types
     ]);

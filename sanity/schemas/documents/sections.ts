@@ -1,4 +1,4 @@
-import { DocumentTextIcon } from "@sanity/icons";
+import { BlockElementIcon } from "@sanity/icons";
 import { format, parseISO } from "date-fns";
 import { defineField, defineType } from "sanity";
 
@@ -19,7 +19,7 @@ import authorType from "./author";
 export default defineType({
   name: "sections",
   title: "Sections",
-  icon: DocumentTextIcon,
+  icon: BlockElementIcon,
   type: "document",
   fields: [
     defineField({
