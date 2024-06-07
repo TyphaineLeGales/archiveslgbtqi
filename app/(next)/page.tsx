@@ -1,11 +1,6 @@
 import Link from "next/link";
-import { Suspense } from "react";
-
-import Avatar from "./avatar";
 import CoverImage from "./cover-image";
 import DateComponent from "./date";
-import MoreStories from "./more-stories";
-import Onboarding from "./onboarding";
 import PortableText from "./portable-text";
 
 import {
@@ -71,7 +66,6 @@ function HeroPost({
               {excerpt}
             </p>
           )}
-          {author && <Avatar name={author.name} picture={author.picture} />}
         </div>
       </div>
     </article>
