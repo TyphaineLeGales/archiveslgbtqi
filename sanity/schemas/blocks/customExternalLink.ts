@@ -8,6 +8,13 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "title",
+      title: "Title",
+      type: "string",
+      description: "Name of the link.",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "url",
       title: "URL",
       type: "url",

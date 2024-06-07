@@ -23,6 +23,5 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "customImage" &&
           item.getId() !== "customExternalLink",
       ),
-
       //hidden document types
     ]);

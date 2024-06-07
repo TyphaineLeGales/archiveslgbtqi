@@ -3,7 +3,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "customImage",
-  title: "Custom Image",
+  title: "Image",
   icon: ImageIcon,
   type: "document",
   fields: [
@@ -11,6 +11,7 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
+      description: "Use as alt text.",
       validation: (rule) => rule.required(),
     }),
     defineField({

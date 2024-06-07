@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import NavigationBar from "./navivation-bar";
+import NavigationBar from "./navigation-bar";
 import { PagesContentQueryResult } from "@/sanity.types";
 import Sections from "./sections";
 
@@ -20,12 +20,12 @@ export default function Pages({ content }: Props) {
       ?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  console.log("content from pages", content);
+
   return (
-    <div>
-      <div className="flex">
-        <NavigationBar content={content} onSectionClick={scrollToSection} />
-        <Sections content={content} sectionRefs={sectionRefs} />
-      </div>
+    <div className="flex">
+      <NavigationBar content={content} onSectionClick={scrollToSection} />
+      <Sections content={content} sectionRefs={sectionRefs} />
     </div>
   );
 }

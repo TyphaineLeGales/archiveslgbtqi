@@ -1,14 +1,22 @@
 "use client";
 import React from "react";
-import type { HEADER_QUERYResult } from "@/sanity.types";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type NavLinkProps = {
   link: { title: string | null; slug: string | null };
 };
 
 export default function NavLink({ link }: NavLinkProps) {
-  const router = useRouter();
-  return <Link href={link.slug || ""}>{link.title || ""}</Link>;
+  const pathname = usePathname();
+  return (
+    <Link
+      href={link.slug || ""}
+      className={
+        pathname === `/${link.slug}` ? "underline underline-offset-4" : ""
+      }
+    >
+      {link.title || ""}
+    </Link>
+  );
 }

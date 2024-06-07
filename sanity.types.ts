@@ -46,12 +46,44 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Users = {
+  _id: string;
+  _type: "users";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  email?: string;
+};
+
+export type CustomForm = {
+  _id: string;
+  _type: "customForm";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  name?: string;
+  email?: string;
+  message?: string;
+  file?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "file";
+  };
+};
+
 export type CustomExternalLink = {
   _id: string;
   _type: "customExternalLink";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  title?: string;
   url?: string;
 };
 
@@ -99,7 +131,6 @@ export type CustomText = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
   content?: string;
 };
 
@@ -139,6 +170,13 @@ export type Sections = {
         _weak?: boolean;
         _key: string;
         [internalGroqTypeReferenceTo]?: "customExternalLink";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "customForm";
       }
   >;
 };
@@ -440,7 +478,3 @@ export type HEADER_QUERYResult = Array<{
     slug: string | null;
   }> | null;
 }>;
-// Source: ./app/(next)/posts/[slug]/page.tsx
-// Variable: postSlugs
-// Query: *[_type == "post"]{slug}
-export type PostSlugsResult = Array<never>;

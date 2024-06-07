@@ -22,13 +22,13 @@ export default async function Header() {
   });
 
   return (
-    <div className="w-full flex justify-between p-[1rem] h-[10vh]">
+    <div className="flex w-full justify-between p-[1rem]">
       <div>
         <Link href="/">
           <img
             src={headerContents[0].imageUrl || ""}
             alt="logo"
-            className="w-[65px] h-auto"
+            className="h-auto w-[65px]"
           />
         </Link>
       </div>

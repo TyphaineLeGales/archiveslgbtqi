@@ -18,14 +18,21 @@ export default function Sections({ content, sectionRefs }: Props) {
     }
   });
 
+  console.log("content from sections", content);
+
   return (
     <div className="ml-[20%] flex flex-col">
       {content?.sections?.map((section) => (
         <div
           key={section._id}
           ref={sectionRefs.current.get(section._id)}
-          className="h-auto border-b-[10px] border-black pb-[10rem]"
+          className="pb-[10rem]"
         >
+          {section.title ? (
+            <h1 className="pb-[2rem] text-[3rem] font-bold leading-[2.5rem] tracking-tighter">
+              {section.title}
+            </h1>
+          ) : null}
           {/*  Text Content block type */}
 
           {section?.content?.map((block) => (
@@ -58,9 +65,9 @@ export default function Sections({ content, sectionRefs }: Props) {
           {section?.content?.map((block) => (
             <div key={block.title}>
               {block._type.includes("customExternalLink") && (
-                <>
-                  <a href={block.url || ""}>{block.url}</a>
-                </>
+                <a href={block.url || ""} target="_blank" rel="noreferrer">
+                  {block.title}
+                </a>
               )}
             </div>
           ))}
