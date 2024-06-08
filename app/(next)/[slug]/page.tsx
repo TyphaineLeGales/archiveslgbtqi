@@ -24,7 +24,7 @@ export default async function Page({ params }: Props) {
   if (!content?._id) {
     return notFound();
   }
-  console.log("content", content);
+  // console.log("content", content);
 
   return (
     <div className="container mx-auto min-h-screen px-5">

@@ -2,6 +2,7 @@
 import { PagesContentQueryResult } from "@/sanity.types";
 import React, { useRef } from "react";
 import CustomImage from "./custom-image";
+// import FormSubmission from "./form-submission";
 
 type Props = {
   sectionRefs: React.MutableRefObject<
@@ -18,7 +19,10 @@ export default function Sections({ content, sectionRefs }: Props) {
     }
   });
 
-  console.log("content from sections", content);
+  async function send() {
+    "use server";
+    console.log("submitting form");
+  }
 
   return (
     <div className="ml-[20%] flex flex-col">
@@ -73,6 +77,7 @@ export default function Sections({ content, sectionRefs }: Props) {
           ))}
         </div>
       ))}
+      {/* <FormSubmission /> */}
     </div>
   );
 }

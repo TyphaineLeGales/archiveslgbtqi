@@ -9,7 +9,6 @@ type Props = {
 };
 
 export default function NavigationBar({ content, onSectionClick }: Props) {
-  console.log("content from navigation bar", content);
   return (
     <div className="fixed flex w-[10%] flex-col items-start">
       {content?.sections?.map((section) => (

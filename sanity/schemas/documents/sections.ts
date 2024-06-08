@@ -49,6 +49,7 @@ export default defineType({
         { type: "customText" },
         { type: "customImage" },
         { type: "customExternalLink" },
+        { type: "customForm" },
       ],
     }),
   ],

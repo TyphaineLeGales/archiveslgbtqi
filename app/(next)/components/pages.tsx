@@ -20,8 +20,6 @@ export default function Pages({ content }: Props) {
       ?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  console.log("content from pages", content);
-
   return (
     <div className="flex">
       <NavigationBar content={content} onSectionClick={scrollToSection} />

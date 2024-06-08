@@ -19,7 +19,6 @@ export default async function Page({ params }: Props) {
   if (!section?._id) {
     return notFound();
   }
-  console.log("section", section);
   return (
     <div>
       <h1>{section?.title}</h1>

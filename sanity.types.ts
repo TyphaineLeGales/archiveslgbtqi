@@ -46,35 +46,16 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Users = {
-  _id: string;
-  _type: "users";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  email?: string;
-};
-
 export type CustomForm = {
   _id: string;
   _type: "customForm";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
   name?: string;
   email?: string;
   message?: string;
-  file?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-    };
-    _type: "file";
-  };
+  file?: string;
 };
 
 export type CustomExternalLink = {
