@@ -13,6 +13,8 @@
     "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.6.0",
+    "@react-email/components": "0.0.19",
     "@sanity/assist": "^3.0.4",
     "@sanity/icons": "^2.11.8",
     "@sanity/image-url": "^1.0.2",
@@ -31,14 +33,17 @@
     "postcss": "^8.4.38",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-email": "2.1.4",
     "react-hook-form": "^7.51.5",
     "resend": "^3.2.0",
     "sanity": "^3.42.1",
     "sanity-plugin-asset-source-unsplash": "^3.0.1",
     "server-only": "^0.0.1",
+    "sonner": "^1.5.0",
     "styled-components": "^6.1.11",
     "tailwindcss": "^3.4.3",
-    "typescript": "5.4.5"
+    "typescript": "5.4.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/nodemailer": "^6.4.15",
