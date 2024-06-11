@@ -28,7 +28,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <div className="container mx-auto min-h-screen px-5">
-      <h1 className="pb-[5rem]">{content?.title}</h1>
+      {/* <h1 className="pb-[5rem]">{content?.title}</h1> */}
       {content?._id && <Pages content={content} />}
     </div>
   );

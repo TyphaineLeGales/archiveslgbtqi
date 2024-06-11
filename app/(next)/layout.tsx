@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import AlertBanner from "./alert-banner";
 
 import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,7 +29,8 @@ export default function RootLayout({
           {draftMode().isEnabled && <AlertBanner />}
           <Header />
           <main>{children}</main>
-          <Suspense></Suspense>
+          <Footer />
+          {/* <Suspense></Suspense> */}
         </section>
         {draftMode().isEnabled && <VisualEditing />}
         <SpeedInsights />

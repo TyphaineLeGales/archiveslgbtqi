@@ -2,23 +2,17 @@
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { groq } from "next-sanity";
 import React from "react";
-import type { HEADER_QUERYResult } from "@/sanity.types";
+
 import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/utils";
 import Link from "next/link";
 import NavLink from "./navlink";
-
-const HEADER_QUERY = groq`*[_type == "header"] {
- "imageUrl": logo.asset->url,
- "url": links[]->{
-    title,
-    "slug": slug.current
-    }
-  }`;
+import { headerQuery } from "@/sanity/lib/queries";
+import { HeaderQueryResult } from "@/sanity.types";
 
 export default async function Header() {
-  const headerContents = await sanityFetch<HEADER_QUERYResult>({
-    query: HEADER_QUERY,
+  const headerContents = await sanityFetch<HeaderQueryResult>({
+    query: headerQuery,
   });
 
   return (

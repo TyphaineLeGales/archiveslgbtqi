@@ -10,7 +10,7 @@ type Props = {
 
 export default function NavigationBar({ content, onSectionClick }: Props) {
   return (
-    <div className="fixed flex w-[10%] flex-col items-start">
+    <div className="fixed flex w-[10%] flex-col items-start pt-[2rem]">
       {content?.sections?.map((section) => (
         <button
           key={section._id}

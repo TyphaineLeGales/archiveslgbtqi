@@ -6,7 +6,7 @@ export async function GET() {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
+      from: "Acme <contact@tamisitee-experiment.com>",
       to: ["thibaut.randria@gmail.com"],
       subject: "Hello world",
       react: EmailTemplate({ firstName: "John" }),

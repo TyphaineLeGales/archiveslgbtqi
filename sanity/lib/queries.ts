@@ -28,6 +28,18 @@ const sectionsFields = /* groq */ `
   }
 `;
 
+export const headerQuery = groq`*[_type == "header"] {
+  "imageUrl": logo.asset->url,
+  "url": links[]->{
+     title,
+     "slug": slug.current
+  }
+}`;
+
+export const footerQuery = groq`*[_type == "footer"][0] {
+  title,
+}`;
+
 export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
   content,
   ${postFields}

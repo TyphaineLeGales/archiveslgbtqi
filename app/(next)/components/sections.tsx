@@ -31,6 +31,7 @@ export default function Sections({ content, sectionRefs }: Props) {
               {section.title}
             </h1>
           ) : null}
+
           {/*  Text Content block type */}
 
           {section?.content?.map((block) => (
@@ -42,6 +43,7 @@ export default function Sections({ content, sectionRefs }: Props) {
               )}
             </div>
           ))}
+
           {/*  customImage block type */}
 
           {section?.content?.map((block) => (
@@ -61,9 +63,14 @@ export default function Sections({ content, sectionRefs }: Props) {
           {/*  customExternalLink block type */}
 
           {section?.content?.map((block) => (
-            <div key={block.title}>
+            <div key={block.title} className="flex">
               {block._type.includes("customExternalLink") && (
-                <a href={block.url || ""} target="_blank" rel="noreferrer">
+                <a
+                  href={block.url || ""}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="-"
+                >
                   {block.title}
                 </a>
               )}
