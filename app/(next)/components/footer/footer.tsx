@@ -8,7 +8,6 @@ export default async function Footer() {
     query: footerQuery,
   });
 
-  console.log("footerContents", footerContents);
   return (
     <div className="flex w-full items-center justify-center p-[1rem]">
       <div>

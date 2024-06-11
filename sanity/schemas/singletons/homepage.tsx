@@ -1,7 +1,5 @@
-import { CogIcon, HomeIcon } from "@sanity/icons";
+import { HomeIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
-
-import * as demo from "@/sanity/lib/demo";
 
 export default defineType({
   name: "homepage",
@@ -39,6 +37,17 @@ export default defineType({
           title: "Call to Action",
           type: "reference",
           to: [{ type: "pages" }],
+        }),
+      ],
+    }),
+    defineField({
+      name: "modules",
+      title: "Modules",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{ type: "sections" }],
         }),
       ],
     }),

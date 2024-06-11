@@ -46,18 +46,6 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type CustomForm = {
-  _id: string;
-  _type: "customForm";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  email?: string;
-  message?: string;
-  file?: string;
-};
-
 export type CustomExternalLink = {
   _id: string;
   _type: "customExternalLink";
@@ -152,13 +140,6 @@ export type Sections = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "customExternalLink";
       }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "customForm";
-      }
   >;
 };
 
@@ -221,6 +202,13 @@ export type Homepage = {
       [internalGroqTypeReferenceTo]?: "pages";
     };
   };
+  modules?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "sections";
+  }>;
 };
 
 export type Pages = {
@@ -390,21 +378,23 @@ export type PagesContentQueryResult = {
   }> | null;
 } | null;
 // Variable: sectionQuery
-// Query: *[_type == "sections" && slug.current == $slug] [0] {  _id,  title,  slug,  "content": content[]{    _ref,    _type,    title,    "imageUrl": image.asset->url,    "url": url,  }}
+// Query: *[_type == "sections" && slug.current == $slug] [0] {  _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    content,    "imageUrl": image.asset->url,    "url": url,  }}
 export type SectionQueryResult = {
   _id: string;
+  _type: "sections";
   title: string | null;
   slug: Slug | null;
   content: Array<{
     _ref: string;
     _type: "reference";
     title: null;
+    content: null;
     imageUrl: null;
     url: null;
   }> | null;
 } | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  hero {    heading,    description,    ctatext,    "imageUrl": image.asset->url,    "url": cta->slug,  }}
+// Query: *[_type == "homepage"][0] {  hero {    heading,    description,    ctatext,    "imageUrl": image.asset->url,    "url": cta->slug,  },    "modules": modules[]->{      _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    content,    "imageUrl": image.asset->url,    "url": url,  }  }}
 export type HomepageQueryResult = {
   hero: {
     heading: string | null;
@@ -413,4 +403,18 @@ export type HomepageQueryResult = {
     imageUrl: string | null;
     url: Slug | null;
   } | null;
+  modules: Array<{
+    _id: string;
+    _type: "sections";
+    title: string | null;
+    slug: Slug | null;
+    content: Array<{
+      _ref: string;
+      _type: "reference";
+      title: null;
+      content: null;
+      imageUrl: null;
+      url: null;
+    }> | null;
+  }> | null;
 } | null;

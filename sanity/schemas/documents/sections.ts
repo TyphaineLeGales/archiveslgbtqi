@@ -1,6 +1,6 @@
 import { BlockElementIcon } from "@sanity/icons";
 import { format, parseISO } from "date-fns";
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, ReferenceInput } from "sanity";
 
 import authorType from "./author";
 
@@ -49,24 +49,14 @@ export default defineType({
         { type: "customText" },
         { type: "customImage" },
         { type: "customExternalLink" },
-        { type: "customForm" },
       ],
     }),
+    defineField({
+      name: "reference",
+      title: "Reference",
+      type: "reference",
+      to: [{ type: "pages" }],
+      readOnly: true,
+    }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      author: "author.name",
-      date: "date",
-      media: "coverImage",
-    },
-    prepare({ title, media, author, date }) {
-      const subtitles = [
-        author && `by ${author}`,
-        date && `on ${format(parseISO(date), "LLL d, yyyy")}`,
-      ].filter(Boolean);
-
-      return { title, media, subtitle: subtitles.join(" ") };
-    },
-  },
 });

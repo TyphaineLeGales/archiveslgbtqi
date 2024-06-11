@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import NavigationBar from "./navigation-bar";
-import { PagesContentQueryResult } from "@/sanity.types";
+import { PagesContentQueryResult, SectionQueryResult } from "@/sanity.types";
 import Sections from "./sections";
 
 type Props = {
@@ -14,7 +14,6 @@ export default function Pages({ content }: Props) {
   );
 
   const scrollToSection = (_id: string) => {
-    console.log("scrollToSection", _id);
     sectionRefs.current
       .get(_id)
       ?.current?.scrollIntoView({ behavior: "smooth" });

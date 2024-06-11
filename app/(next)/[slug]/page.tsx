@@ -1,6 +1,6 @@
-import { PagesContentQueryResult } from "@/sanity.types";
+import { PagesContentQueryResult, SectionQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { pagesContentQuery } from "@/sanity/lib/queries";
+import { pagesContentQuery, sectionQuery } from "@/sanity/lib/queries";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import React, { useRef } from "react";

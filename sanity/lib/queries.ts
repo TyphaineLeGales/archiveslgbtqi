@@ -63,14 +63,16 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $slu
   },
 }`;
 
-export const sectionQuery = groq`*[_type == "sections" && slug.current == $slug] [0] {
+export const sectionQuery = groq`*[_type == "sections"] [0] {
   _id,
+  _type,
   title,
   slug,
   "content": content[]{
     _ref,
     _type,
     title,
+    content,
     "imageUrl": image.asset->url,
     "url": url,
   }
@@ -83,5 +85,8 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
     ctatext,
     "imageUrl": image.asset->url,
     "url": cta->slug,
+  },
+    "modules": modules[]->{
+    ${sectionsFields}
   }
 }`;
