@@ -59,14 +59,7 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
   title,
   slug,
   "sections": content[]->{
-    _id,
-    _ref,
-    _type,
-    title,
-    slug,
-    content,
-    "imageUrl": image.asset->url,
-    "url": url,
+    ${sectionsFields}
   },
 }`;
 

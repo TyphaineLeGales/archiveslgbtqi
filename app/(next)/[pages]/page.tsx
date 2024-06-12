@@ -1,13 +1,9 @@
-import { PagesContentQueryResult, SectionQueryResult } from "@/sanity.types";
+import { PagesContentQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { pagesContentQuery, sectionQuery } from "@/sanity/lib/queries";
-import { groq } from "next-sanity";
+import { pagesContentQuery } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
-import React, { useRef } from "react";
+import React from "react";
 import CustomImage from "../components/custom-image";
-import Sections from "../components/sections";
-import NavigationBar from "../components/navigation-bar";
-import Pages from "../components/pages";
 
 type Props = {
   params: { pages: string };
@@ -24,16 +20,56 @@ export default async function Page({ params }: Props) {
   if (!content?._id) {
     return notFound();
   }
-  console.log("content", content.sections?.[0]);
+  console.log("content from Parent:", content);
 
   return (
     <div className="container mx-auto min-h-screen px-5">
-      <h1 className="pb-[5rem]">{content?.title}</h1>
-      {/* {content?._id && <Sections content={content} />} */}
-      {/* {content.sections?.map((section) => (
-        <div key={section._id}>{section.title}</div>
-      ))} */}
-      {content.sections?.[0] && <div>{content.sections?.[0].title}</div>}
+      {content.sections?.map((section) => (
+        <div key={section.title} className="ml-[20%] flex flex-col">
+          <h1 className="pb-[2rem] text-[3rem] font-bold uppercase leading-[2.5rem] tracking-tighter">
+            {section.title}
+          </h1>
+          {section.content?.map((block) => (
+            <div key={block.title}>
+              {/*  Text Content block type */}
+              <div>
+                {block._type.includes("customText") && (
+                  <>
+                    <p>{block.content}</p>
+                  </>
+                )}
+              </div>
+
+              {/*  customImage block type */}
+              <div>
+                {block._type.includes("customImage") && (
+                  <>
+                    <CustomImage
+                      imageUrl={block.imageUrl || ""}
+                      title={block.title || ""}
+                    />
+                    <span>{block.url}</span>
+                  </>
+                )}
+              </div>
+
+              {/*  customExternalLink block type */}
+              <div className="flex">
+                {block._type.includes("customExternalLink") && (
+                  <a
+                    href={block.url || ""}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="-"
+                  >
+                    {block.title}
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }

@@ -363,53 +363,28 @@ export type MoreStoriesQueryResult = Array<never>;
 // Query: *[_type == "post" && slug.current == $slug] [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type PostQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages] [0] {  _id,  title,  slug,  "sections": content[]->{    _id,    _ref,    _type,    title,    slug,    content,    "imageUrl": image.asset->url,    "url": url,  },}
+// Query: *[_type == "pages" && slug.current == $pages] [0] {  _id,  title,  slug,  "sections": content[]->{      _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    content,    "imageUrl": image.asset->url,    "url": url,  }  },}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
   slug: Slug | null;
   sections: Array<{
     _id: string;
-    _ref: null;
     _type: "sections";
     title: string | null;
     slug: Slug | null;
-    content: Array<
-      | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          _key: string;
-          [internalGroqTypeReferenceTo]?: "customExternalLink";
-        }
-      | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          _key: string;
-          [internalGroqTypeReferenceTo]?: "customFile";
-        }
-      | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          _key: string;
-          [internalGroqTypeReferenceTo]?: "customImage";
-        }
-      | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          _key: string;
-          [internalGroqTypeReferenceTo]?: "customText";
-        }
-    > | null;
-    imageUrl: null;
-    url: null;
+    content: Array<{
+      _ref: string;
+      _type: "reference";
+      title: null;
+      content: null;
+      imageUrl: null;
+      url: null;
+    }> | null;
   }> | null;
 } | null;
 // Variable: sectionQuery
-// Query: *[_type == "sections"] [0] {  _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    content,    "imageUrl": image.asset->url,    "url": url,  }}
+// Query: *[_type == "sections" && slug.current == $section] [0] {  _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    content,    "imageUrl": image.asset->url,    "url": url,  }}
 export type SectionQueryResult = {
   _id: string;
   _type: "sections";
