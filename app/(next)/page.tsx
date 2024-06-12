@@ -6,12 +6,8 @@ import Hero from "./components/hero";
 import Link from "next/link";
 
 export default async function Page() {
-  const [homePage, pages] = await Promise.all([
+  const [homePage] = await Promise.all([
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
-    sanityFetch<PagesContentQueryResult>({
-      query: pagesContentQuery,
-      params: { slug: "home" },
-    }),
   ]);
 
   console.log("Home Page: ", homePage);

@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import CustomImage from "./custom-image";
 
 type Props = {
-  sectionRefs: React.MutableRefObject<
+  sectionRefs?: React.MutableRefObject<
     Map<string, React.RefObject<HTMLDivElement>>
   >;
   content: PagesContentQueryResult;
@@ -12,18 +12,18 @@ type Props = {
 
 export default function Sections({ content, sectionRefs }: Props) {
   // Assign ref for each section
-  content?.sections?.forEach((section) => {
-    if (!sectionRefs.current.has(section._id)) {
-      sectionRefs.current.set(section._id, React.createRef());
-    }
-  });
+  // content?.sections?.forEach((section) => {
+  //   if (!sectionRefs.current.has(section._id)) {
+  //     sectionRefs.current.set(section._id, React.createRef());
+  //   }
+  // });
 
   return (
     <div className="ml-[20%] flex flex-col">
       {content?.sections?.map((section) => (
         <div
           key={section._id}
-          ref={sectionRefs.current.get(section._id)}
+          // ref={sectionRefs.current.get(section._id)}
           className="pb-[10rem]"
         >
           {section.title ? (

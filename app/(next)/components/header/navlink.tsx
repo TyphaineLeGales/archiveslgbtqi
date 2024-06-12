@@ -11,7 +11,7 @@ export default function NavLink({ link }: NavLinkProps) {
   const pathname = usePathname();
   return (
     <Link
-      href={link.slug || ""}
+      href={`/${link.slug || ""}`}
       className={
         pathname === `/${link.slug}` ? "underline underline-offset-4" : ""
       }

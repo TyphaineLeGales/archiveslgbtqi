@@ -54,16 +54,23 @@ export const postQuery = groq`*[_type == "post" && slug.current == $slug] [0] {
   ${postFields}
 }`;
 
-export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $slug] [0] {
+export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages] [0] {
   _id,
   title,
   slug,
   "sections": content[]->{
-    ${sectionsFields}
+    _id,
+    _ref,
+    _type,
+    title,
+    slug,
+    content,
+    "imageUrl": image.asset->url,
+    "url": url,
   },
 }`;
 
-export const sectionQuery = groq`*[_type == "sections"] [0] {
+export const sectionQuery = groq`*[_type == "sections" && slug.current == $section] [0] {
   _id,
   _type,
   title,
