@@ -7,7 +7,7 @@ type NavLinkProps = {
   link: { title: string | null; slug: string | null };
 };
 
-export default function NavLink({ link }: NavLinkProps) {
+export default function DesktopNavLink({ link }: NavLinkProps) {
   const pathname = usePathname();
   return (
     <Link

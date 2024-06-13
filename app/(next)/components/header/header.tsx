@@ -6,9 +6,11 @@ import React from "react";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/utils";
 import Link from "next/link";
-import NavLink from "./navlink";
 import { headerQuery } from "@/sanity/lib/queries";
 import { HeaderQueryResult } from "@/sanity.types";
+import DesktopNavLink from "./navlink-desktop";
+import MobileNavLink from "./header-mobile";
+import MobileHeader from "./header-mobile";
 
 export default async function Header() {
   const headerContents = await sanityFetch<HeaderQueryResult>({
@@ -16,19 +18,19 @@ export default async function Header() {
   });
 
   return (
-    <div className="flex w-full justify-between p-[1rem]">
-      <div>
-        <Link href="/">
-          <img
-            src={headerContents[0].imageUrl || ""}
-            alt="logo"
-            className="h-auto w-[65px]"
-          />
-        </Link>
-      </div>
-      <nav className="flex items-center gap-[3rem]">
+    <div className="relative flex w-full justify-between p-[1rem]">
+      <Link href="/">
+        <img
+          src={headerContents[0].imageUrl || ""}
+          alt="logo"
+          className="h-auto w-[65px]"
+        />
+      </Link>
+
+      <MobileHeader headerContents={headerContents} />
+      <nav className="hidden items-center gap-[3rem] lg:flex">
         {headerContents[0].url?.map((link) => (
-          <NavLink key={link.slug} link={link} />
+          <DesktopNavLink key={link.slug} link={link} />
         ))}
       </nav>
     </div>
