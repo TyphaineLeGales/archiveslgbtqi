@@ -19,7 +19,7 @@ export default function Hero({ hero, content }: Props) {
         {hero?.hero?.heading}
       </h1>
       <div className="flex justify-end">
-        <a
+        {/* <a
           // href={hero?.hero?.url?.current || ""}
           // href={`/${hero?.hero?.url?.current} || /${content?.slug?.current}/${hero?.hero?.url?.current}`}
           href={
@@ -29,7 +29,7 @@ export default function Hero({ hero, content }: Props) {
           className="flex items-center justify-center border-[1px] border-black px-[2rem] py-[.5rem] text-[1rem] font-semibold uppercase tracking-tighter transition-all duration-300 ease-in-out hover:bg-black hover:text-white"
         >
           {hero?.hero?.ctatext}
-        </a>
+        </a> */}
       </div>
       <img
         src={hero?.hero?.imageUrl || "https://via.placeholder.com/1920x1080"}
