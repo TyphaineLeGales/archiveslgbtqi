@@ -1,6 +1,6 @@
 "use client";
 
-import { PagesContentQueryResult, SectionQueryResult } from "@/sanity.types";
+import { PagesContentQueryResult } from "@/sanity.types";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useRef } from "react";

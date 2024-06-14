@@ -103,52 +103,6 @@ export type CustomText = {
   content?: string;
 };
 
-export type Sections = {
-  _id: string;
-  _type: "sections";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  content?: Array<
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "customFile";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "customText";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "customImage";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "customExternalLink";
-      }
-  >;
-  reference?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "pages";
-  };
-};
-
 export type Pages = {
   _id: string;
   _type: "pages";
@@ -256,21 +210,13 @@ export type Homepage = {
     ctatext?: string;
   };
   cta?: {
-    sections?: Array<
-      | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "pages";
-        }
-      | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sections";
-        }
-    >;
-    pages_or_section?: "pages" | "sections";
+    sections?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "pages";
+    }>;
   };
 };
 
@@ -416,24 +362,8 @@ export type PagesContentQueryResult = {
     url: null;
   }> | null;
 } | null;
-// Variable: sectionQuery
-// Query: *[_type == "sections" && slug.current == $section] [0] {  _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    content,    "imageUrl": image.asset->url,    "url": url,  }}
-export type SectionQueryResult = {
-  _id: string;
-  _type: "sections";
-  title: string | null;
-  slug: Slug | null;
-  content: Array<{
-    _ref: string;
-    _type: "reference";
-    title: null;
-    content: null;
-    imageUrl: null;
-    url: null;
-  }> | null;
-} | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"] [0] {  hero {    heading,    description,    ctatext,    "imageUrl": image.asset->url,    "url": cta->slug,  },  cta {    sections[]->{        _id,  _type,  title,  slug,  "content": content[]{    _ref,    _type,    title,    content,    "imageUrl": image.asset->url,    "url": url,  }    },    pages_or_section,  },}
+// Query: *[_type == "homepage"] [0] {  hero {    heading,    description,    ctatext,    "imageUrl": image.asset->url,    "url": cta->slug,  },}
 export type HomepageQueryResult = {
   hero: {
     heading: string | null;
@@ -441,38 +371,5 @@ export type HomepageQueryResult = {
     ctatext: string | null;
     imageUrl: string | null;
     url: null;
-  } | null;
-  cta: {
-    sections: Array<
-      | {
-          _id: string;
-          _type: "pages";
-          title: string | null;
-          slug: Slug | null;
-          content: Array<{
-            _ref: string;
-            _type: "reference";
-            title: null;
-            content: null;
-            imageUrl: null;
-            url: null;
-          }> | null;
-        }
-      | {
-          _id: string;
-          _type: "sections";
-          title: string | null;
-          slug: Slug | null;
-          content: Array<{
-            _ref: string;
-            _type: "reference";
-            title: null;
-            content: null;
-            imageUrl: null;
-            url: null;
-          }> | null;
-        }
-    > | null;
-    pages_or_section: "pages" | "sections" | null;
   } | null;
 } | null;
