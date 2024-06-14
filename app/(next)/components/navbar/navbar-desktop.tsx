@@ -6,21 +6,23 @@ import { useParams } from "next/navigation";
 import React, { useRef } from "react";
 
 type Props = {
-  onSectionClick?: (sectionId: string) => void;
   content: PagesContentQueryResult;
 };
 
 export default function DesktopNavigationBar({ content }: Props) {
+  const { pages } = useParams();
   return (
-    <div className="fixed hidden w-[10%] flex-col items-start whitespace-nowrap pt-[2rem] lg:flex">
-      {content?.sections?.map((section) => (
-        <a
-          key={section._id}
-          href={`/${content.slug?.current}/${section.slug?.current || ""}`}
-          // className={`whitespace-nowrap ${section === 0 ? "underline" : ""}`}
+    <div className="fixed hidden w-[15%] flex-col items-start whitespace-nowrap pt-[2rem] lg:flex">
+      {content?.navigation?.map((navItem) => (
+        <Link
+          key={navItem._id}
+          href={navItem.slug?.current || ""}
+          className={`text-[1rem] ${
+            pages === navItem.slug?.current ? "underline" : ""
+          }`}
         >
-          {section.title}
-        </a>
+          {navItem.title}
+        </Link>
       ))}
     </div>
   );

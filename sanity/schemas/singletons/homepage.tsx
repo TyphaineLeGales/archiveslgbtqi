@@ -32,22 +32,23 @@ export default defineType({
           title: "Call to Action Text",
           type: "string",
         }),
-        defineField({
-          name: "cta",
-          title: "Call to Action",
-          type: "reference",
-          to: [{ type: "pages" }],
-        }),
       ],
     }),
     defineField({
-      name: "modules",
-      title: "Modules",
-      type: "array",
-      of: [
-        defineArrayMember({
-          type: "reference",
-          to: [{ type: "sections" }],
+      name: "cta",
+      title: "CTA",
+      type: "object",
+      fields: [
+        defineField({
+          name: "sections",
+          title: "Sections",
+          type: "array",
+          of: [
+            defineArrayMember({
+              type: "reference",
+              to: [{ type: "pages" }],
+            }),
+          ],
         }),
       ],
     }),

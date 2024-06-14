@@ -13,6 +13,7 @@ type Props = {
 export default function MobileNavigationBar({ content }: Props) {
   const navbarRef = useRef<HTMLDivElement>(null);
   const [menu, setMenu] = React.useState(false);
+  const { pages } = useParams();
 
   const handleMenu = () => {
     setMenu(!menu);
@@ -21,15 +22,16 @@ export default function MobileNavigationBar({ content }: Props) {
   return (
     <div className="fixed inset-x-0 bottom-[1rem] flex flex-col bg-blue-200 lg:hidden">
       <nav ref={navbarRef} className="hidden h-auto py-[2rem]">
-        {content?.sections?.map((section) => (
-          <a
-            key={section._id}
-            href={`/${content.slug?.current}/${section.slug?.current || ""}`}
-            onClick={handleMenu}
-            className="flex flex-col items-center justify-center py-[1rem]"
+        {content?.navigation?.map((navItem) => (
+          <Link
+            key={navItem._id}
+            href={navItem.slug?.current || ""}
+            className={`flex flex-col items-center justify-center gap-[1rem] py-[1rem] text-[1rem] ${
+              pages === navItem.slug?.current ? "underline" : ""
+            }`}
           >
-            {section.title}
-          </a>
+            {navItem.title}
+          </Link>
         ))}
       </nav>
       <button onClick={handleMenu}>{menu ? "Close" : "Menu"}</button>

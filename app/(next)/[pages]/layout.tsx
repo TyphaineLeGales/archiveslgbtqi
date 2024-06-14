@@ -24,14 +24,12 @@ export default async function Layout({ children, params }: Props) {
     return notFound();
   }
   return (
-    <div className="">
-      <h1>{content.title}</h1>
+    <>
       <nav>
-        {/* <NavigationBar content={content} /> */}
         <MobileNavigationBar content={content} />
         <DesktopNavigationBar content={content} />
       </nav>
-      {children}
-    </div>
+      <div className="ml-[calc(15%+.5rem)]">{children}</div>
+    </>
   );
 }

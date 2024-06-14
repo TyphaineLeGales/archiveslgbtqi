@@ -20,95 +20,40 @@ export default async function Page({ params }: Props) {
   if (!content?._id) {
     return notFound();
   }
-  console.log("content from Parent:", content);
+  console.log("Pages Content:", content);
 
   return (
     <div className="container mx-auto min-h-screen px-5">
-      {/* {content.sections?.map((section) => (
-        <div key={section.title} className="ml-[20%] flex flex-col">
-          <h1 className="pb-[2rem] text-[3rem] font-bold uppercase leading-[2.5rem] tracking-tighter">
-            {section.title}
-          </h1>
-          {section.content?.map((block) => (
-            <div key={block.title}>
-              <div>
-                {block._type.includes("customText") && (
-                  <>
-                    <p>{block.content}</p>
-                  </>
-                )}
-              </div>
-
-              <div>
-                {block._type.includes("customImage") && (
-                  <>
-                    <CustomImage
-                      imageUrl={block.imageUrl || ""}
-                      title={block.title || ""}
-                    />
-                    <span>{block.url}</span>
-                  </>
-                )}
-              </div>
-
-              <div className="flex">
-                {block._type.includes("customExternalLink") && (
-                  <a
-                    href={block.url || ""}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="-"
-                  >
-                    {block.title}
-                  </a>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      ))} */}
-      {/* display only the first content from content.sections */}
-      <div className="ml-[20%] flex flex-col">
-        <h1 className="pb-[2rem] text-[3rem] font-bold uppercase leading-[2.5rem] tracking-tighter">
-          {content.sections && content.sections[0]?.title}
-        </h1>
-        {content.sections &&
-          content.sections[0]?.content?.map((block) => (
-            <div key={block.title}>
-              <div>
-                {block._type.includes("customText") && (
-                  <>
-                    <p>{block.content}</p>
-                  </>
-                )}
-              </div>
-
-              <div>
-                {block._type.includes("customImage") && (
-                  <>
-                    <CustomImage
-                      imageUrl={block.imageUrl || ""}
-                      title={block.title || ""}
-                    />
-                    <span>{block.url}</span>
-                  </>
-                )}
-              </div>
-
-              <div className="flex">
-                {block._type.includes("customExternalLink") && (
-                  <a
-                    href={block.url || ""}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="-"
-                  >
-                    {block.title}
-                  </a>
-                )}
-              </div>
-            </div>
-          ))}
+      <h1 className="text-4xl font-bold">{content.title}</h1>
+      <div className="">
+        {content.content?.map((item) => {
+          if (item._type.includes("customText")) {
+            return <p key={item._ref}>{item.content}</p>;
+          }
+          if (item._type.includes("customImage")) {
+            return (
+              <CustomImage
+                key={item._ref}
+                imageUrl={item.imageUrl || ""}
+                title={item.title || ""}
+              />
+            );
+          }
+          if (item._type.includes("customExternalLink")) {
+            return (
+              <a
+                key={item._ref}
+                href={item.url || ""}
+                target="_blank"
+                rel="noreferrer"
+                className="-"
+              >
+                {item.title}
+              </a>
+            );
+          }
+          return null;
+        })}
       </div>
     </div>
   );

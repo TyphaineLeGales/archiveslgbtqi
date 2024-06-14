@@ -13,21 +13,6 @@ const postFields = /* groq */ `
   "author": author->{"name": coalesce(name, "Anonymous"), picture},
 `;
 
-const sectionsFields = /* groq */ `
-  _id,
-  _type,
-  title,
-  slug,
-  "content": content[]{
-    _ref,
-    _type,
-    title,
-    content,
-    "imageUrl": image.asset->url,
-    "url": url,
-  }
-`;
-
 export const headerQuery = groq`*[_type == "header"] {
   "imageUrl": logo.asset->url,
   "url": links[]->{
@@ -58,16 +43,11 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
   _id,
   title,
   slug,
-  "sections": content[]->{
-    ${sectionsFields}
+  "navigation": navigation[]->{
+    _id,
+    title,
+    slug
   },
-}`;
-
-export const sectionQuery = groq`*[_type == "sections" && slug.current == $section] [0] {
-  _id,
-  _type,
-  title,
-  slug,
   "content": content[]{
     _ref,
     _type,
@@ -78,7 +58,7 @@ export const sectionQuery = groq`*[_type == "sections" && slug.current == $secti
   }
 }`;
 
-export const homepageQuery = groq`*[_type == "homepage"][0] {
+export const homepageQuery = groq`*[_type == "homepage"] [0] {
   hero {
     heading,
     description,
@@ -86,7 +66,4 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
     "imageUrl": image.asset->url,
     "url": cta->slug,
   },
-    "modules": modules[]->{
-    ${sectionsFields}
-  }
 }`;

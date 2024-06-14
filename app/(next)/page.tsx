@@ -1,4 +1,4 @@
-import { HomepageQueryResult, PagesContentQueryResult } from "@/sanity.types";
+import { HomepageQueryResult } from "@/sanity.types";
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { homepageQuery, pagesContentQuery } from "@/sanity/lib/queries";
@@ -16,15 +16,6 @@ export default async function Page() {
       {homePage && (
         <>
           <Hero hero={homePage} />
-          <div>
-            {homePage.modules?.map((module) => (
-              <div key={module._id}>
-                {/* <Link href={`${pages?.slug?.current}/${module.slug?.current}`}>
-                  {module.title}
-                </Link> */}
-              </div>
-            ))}
-          </div>
         </>
       )}
     </div>

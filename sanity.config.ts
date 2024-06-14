@@ -25,7 +25,6 @@ import footer from "@/sanity/schemas/singletons/footer";
 import pages from "@/sanity/schemas/documents/pages";
 import homepage from "./sanity/schemas/singletons/homepage";
 import { structure } from "./sanity/plugins/structure";
-import sections from "./sanity/schemas/documents/sections";
 import customText from "./sanity/schemas/blocks/customText";
 import customFile from "./sanity/schemas/blocks/customFile";
 import customImage from "./sanity/schemas/blocks/customImage";
@@ -48,7 +47,6 @@ export default defineConfig({
       footer,
       // Documents
       pages,
-      sections,
       // Blocks
       customText,
       customFile,

@@ -1,8 +1,5 @@
 import { DocumentTextIcon } from "@sanity/icons";
-import { format, parseISO } from "date-fns";
 import { defineField, defineType } from "sanity";
-
-import authorType from "./author";
 
 /**
  * This file is the schema definition for a pages.
@@ -41,26 +38,21 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "navigation",
+      title: "Navigation",
+      type: "array",
+      of: [{ type: "reference", weak: true, to: [{ type: "pages" }] }],
+    }),
+    defineField({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "reference", weak: true, to: [{ type: "sections" }] }],
+      of: [
+        { type: "customFile" },
+        { type: "customText" },
+        { type: "customImage" },
+        { type: "customExternalLink" },
+      ],
     }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      author: "author.name",
-      date: "date",
-      media: "coverImage",
-    },
-    prepare({ title, media, author, date }) {
-      const subtitles = [
-        author && `by ${author}`,
-        date && `on ${format(parseISO(date), "LLL d, yyyy")}`,
-      ].filter(Boolean);
-
-      return { title, media, subtitle: subtitles.join(" ") };
-    },
-  },
 });
