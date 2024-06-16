@@ -41,12 +41,14 @@ export default async function Page({ params }: Props) {
                       title={item.title || ""}
                     />
                   );
-                case "link":
+                case "link": {
+                  const link = item;
                   return (
-                    <Link href={item.internal?.slug || ""}>{item.label}</Link>
+                    <Link href={`${link.internal?.slug || link.external}`}>
+                      {link.label}
+                    </Link>
                   );
-                case "link":
-                  return <Link href={item.external || ""}>{item.label}</Link>;
+                }
                 default:
                   return null;
               }
