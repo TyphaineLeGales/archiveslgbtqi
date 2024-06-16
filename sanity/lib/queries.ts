@@ -13,6 +13,17 @@ const postFields = /* groq */ `
   "author": author->{"name": coalesce(name, "Anonymous"), picture},
 `;
 
+export const moreStoriesQuery = groq`*[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+  ${postFields}
+}`;
+
+export const postQuery = groq`*[_type == "post" && slug.current == $slug] [0] {
+  content,
+  ${postFields}
+}`;
+
+/** My Query **/
+
 export const headerQuery = groq`*[_type == "header"] {
   "imageUrl": logo.asset->url,
   "url": links[]->{
@@ -30,15 +41,6 @@ export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | orde
   ${postFields}
 }`;
 
-export const moreStoriesQuery = groq`*[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
-  ${postFields}
-}`;
-
-export const postQuery = groq`*[_type == "post" && slug.current == $slug] [0] {
-  content,
-  ${postFields}
-}`;
-
 export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages] [0] {
   _id,
   title,
@@ -46,15 +48,24 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
   "navigation": navigation[]->{
     _id,
     title,
-    slug
+    slug,
   },
   "content": content[]{
+    _id,
     _ref,
     _type,
     title,
-    content,
+    text[],
+    label,
     "imageUrl": image.asset->url,
-    "url": url,
+    url,
+    external,
+    "internal": internal->{
+      _id,
+      _type,
+      title,
+      "slug": slug.current,
+    },
   }
 }`;
 

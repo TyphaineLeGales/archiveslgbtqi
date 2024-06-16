@@ -52,7 +52,18 @@ export default defineType({
         { type: "customText" },
         { type: "customImage" },
         { type: "customExternalLink" },
+        { type: "link" },
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      slug: "slug.current",
+    },
+    prepare: ({ title, slug }) => ({
+      title,
+      subtitle: slug && (slug === "index" ? "/" : `/${slug}`),
+    }),
+  },
 });

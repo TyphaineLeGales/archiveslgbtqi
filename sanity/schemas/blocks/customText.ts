@@ -8,9 +8,10 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
-      name: "content",
-      title: "Content",
-      type: "text",
+      name: "text",
+      title: "Text",
+      type: "array",
+      of: [{ type: "block" }],
       validation: (rule) => rule.required(),
     }),
   ],

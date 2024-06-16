@@ -3,7 +3,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "customFile",
-  title: "Custom File",
+  title: "File",
   icon: UserIcon,
   type: "document",
   fields: [

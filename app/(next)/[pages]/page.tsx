@@ -4,6 +4,8 @@ import { pagesContentQuery } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import React from "react";
 import CustomImage from "../components/custom-image";
+import Link from "next/link";
+import CustomPortableText from "../portable-text";
 
 type Props = {
   params: { pages: string };
@@ -20,40 +22,37 @@ export default async function Page({ params }: Props) {
   if (!content?._id) {
     return notFound();
   }
-  console.log("Pages Content:", content);
+  console.log("Pages Content:", content.content);
 
   return (
     <div className="container mx-auto min-h-screen px-5">
       <h1 className="text-4xl font-bold">{content.title}</h1>
-      <div className="">
-        {content.content?.map((item) => {
-          if (item._type.includes("customText")) {
-            return <p key={item._ref}>{item.content}</p>;
-          }
-          if (item._type.includes("customImage")) {
-            return (
-              <CustomImage
-                key={item._ref}
-                imageUrl={item.imageUrl || ""}
-                title={item.title || ""}
-              />
-            );
-          }
-          if (item._type.includes("customExternalLink")) {
-            return (
-              <a
-                key={item._ref}
-                href={item.url || ""}
-                target="_blank"
-                rel="noreferrer"
-                className="-"
-              >
-                {item.title}
-              </a>
-            );
-          }
-          return null;
-        })}
+      <div>
+        {content.content?.map((item, index) => (
+          <div key={`content-item-${index}`}>
+            {(() => {
+              switch (item._type as string) {
+                case "customText":
+                  return <CustomPortableText value={item?.text!} />;
+                case "customImage":
+                  return (
+                    <CustomImage
+                      imageUrl={item.imageUrl || ""}
+                      title={item.title || ""}
+                    />
+                  );
+                case "link":
+                  return (
+                    <Link href={item.internal?.slug || ""}>{item.label}</Link>
+                  );
+                case "link":
+                  return <Link href={item.external || ""}>{item.label}</Link>;
+                default:
+                  return null;
+              }
+            })()}
+          </div>
+        ))}
       </div>
     </div>
   );

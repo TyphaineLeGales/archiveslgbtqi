@@ -21,7 +21,8 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "customText" &&
           item.getId() !== "customFile" &&
           item.getId() !== "customImage" &&
-          item.getId() !== "customExternalLink",
+          item.getId() !== "customExternalLink" &&
+          item.getId() !== "link",
       ),
       //hidden document types
     ]);

@@ -46,6 +46,19 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Link = {
+  _type: "link";
+  label?: string;
+  type?: "internal" | "external";
+  internal?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "pages";
+  };
+  external?: string;
+};
+
 export type CustomExternalLink = {
   _id: string;
   _type: "customExternalLink";
@@ -100,7 +113,24 @@ export type CustomText = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  content?: string;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
 };
 
 export type Pages = {
@@ -147,6 +177,9 @@ export type Pages = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "customExternalLink";
       }
+    | ({
+        _key: string;
+      } & Link)
   >;
 };
 
@@ -319,6 +352,12 @@ export declare const internalGroqTypeReferenceTo: unique symbol;
 // Variable: settingsQuery
 // Query: *[_type == "settings"][0]
 export type SettingsQueryResult = null;
+// Variable: moreStoriesQuery
+// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
+export type MoreStoriesQueryResult = Array<never>;
+// Variable: postQuery
+// Query: *[_type == "post" && slug.current == $slug] [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
+export type PostQueryResult = null;
 // Variable: headerQuery
 // Query: *[_type == "header"] {  "imageUrl": logo.asset->url,  "url": links[]->{     title,     "slug": slug.current  }}
 export type HeaderQueryResult = Array<{
@@ -336,14 +375,8 @@ export type FooterQueryResult = {
 // Variable: heroQuery
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
-// Variable: moreStoriesQuery
-// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
-export type MoreStoriesQueryResult = Array<never>;
-// Variable: postQuery
-// Query: *[_type == "post" && slug.current == $slug] [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
-export type PostQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages] [0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug  },  "content": content[]{    _ref,    _type,    title,    content,    "imageUrl": image.asset->url,    "url": url,  }}
+// Query: *[_type == "pages" && slug.current == $pages] [0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _id,    _ref,    _type,    title,    text[],    label,    "imageUrl": image.asset->url,    url,    external,    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -353,14 +386,37 @@ export type PagesContentQueryResult = {
     title: string | null;
     slug: Slug | null;
   }> | null;
-  content: Array<{
-    _ref: string;
-    _type: "reference";
-    title: null;
-    content: null;
-    imageUrl: null;
-    url: null;
-  }> | null;
+  content: Array<
+    | {
+        _id: null;
+        _ref: null;
+        _type: "link";
+        title: null;
+        text: null;
+        label: string | null;
+        imageUrl: null;
+        url: null;
+        external: string | null;
+        internal: {
+          _id: string;
+          _type: "pages";
+          title: string | null;
+          slug: string | null;
+        } | null;
+      }
+    | {
+        _id: null;
+        _ref: string;
+        _type: "reference";
+        title: null;
+        text: null;
+        label: null;
+        imageUrl: null;
+        url: null;
+        external: null;
+        internal: null;
+      }
+  > | null;
 } | null;
 // Variable: homepageQuery
 // Query: *[_type == "homepage"] [0] {  hero {    heading,    description,    ctatext,    "imageUrl": image.asset->url,    "url": cta->slug,  },}
