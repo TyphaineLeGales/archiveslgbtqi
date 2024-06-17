@@ -107,9 +107,9 @@ export type CustomFile = {
   };
 };
 
-export type CustomText = {
+export type Richtext = {
   _id: string;
-  _type: "customText";
+  _type: "richtext";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -161,7 +161,7 @@ export type Pages = {
         _type: "reference";
         _weak?: boolean;
         _key: string;
-        [internalGroqTypeReferenceTo]?: "customText";
+        [internalGroqTypeReferenceTo]?: "richtext";
       }
     | {
         _ref: string;

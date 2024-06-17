@@ -18,9 +18,9 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "header" &&
           item.getId() !== "footer" &&
           item.getId() !== "pages" &&
-          item.getId() !== "customText" &&
-          item.getId() !== "customFile" &&
-          item.getId() !== "customImage" &&
+          item.getId() !== "richtext" &&
+          item.getId() !== "document-file" &&
+          item.getId() !== "single-image" &&
           item.getId() !== "customExternalLink" &&
           item.getId() !== "link",
       ),

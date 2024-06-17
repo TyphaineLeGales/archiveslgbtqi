@@ -2,8 +2,8 @@ import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "customText",
-  title: "Text",
+  name: "richtext",
+  title: "Rich Text",
   icon: TextIcon,
   type: "document",
   fields: [

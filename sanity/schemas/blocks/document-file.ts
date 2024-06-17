@@ -1,23 +1,22 @@
-import { LinkIcon } from "@sanity/icons";
+import { UserIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "customExternalLink",
-  title: "External Link",
-  icon: LinkIcon,
+  name: "document-file",
+  title: "File",
+  icon: UserIcon,
   type: "document",
   fields: [
     defineField({
       name: "title",
       title: "Title",
       type: "string",
-      description: "Name of the link.",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "url",
-      title: "URL",
-      type: "url",
+      name: "file",
+      title: "File",
+      type: "file",
       validation: (rule) => rule.required(),
     }),
   ],

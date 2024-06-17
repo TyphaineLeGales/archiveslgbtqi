@@ -32,9 +32,9 @@ export default async function Page({ params }: Props) {
           <div key={`content-item-${index}`}>
             {(() => {
               switch (item._type as string) {
-                case "customText":
+                case "richtext":
                   return <CustomPortableText value={item?.text!} />;
-                case "customImage":
+                case "single-image":
                   return (
                     <CustomImage
                       imageUrl={item.imageUrl || ""}

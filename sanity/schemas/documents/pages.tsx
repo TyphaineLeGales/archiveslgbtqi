@@ -48,10 +48,9 @@ export default defineType({
       title: "Content",
       type: "array",
       of: [
-        { type: "customFile" },
-        { type: "customText" },
-        { type: "customImage" },
-        { type: "customExternalLink" },
+        { type: "document-file" },
+        { type: "richtext" },
+        { type: "single-image" },
         { type: "link" },
       ],
     }),

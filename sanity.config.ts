@@ -25,10 +25,9 @@ import footer from "@/sanity/schemas/singletons/footer";
 import pages from "@/sanity/schemas/documents/pages";
 import homepage from "./sanity/schemas/singletons/homepage";
 import { structure } from "./sanity/plugins/structure";
-import customText from "./sanity/schemas/blocks/customText";
-import customFile from "./sanity/schemas/blocks/customFile";
-import customImage from "./sanity/schemas/blocks/customImage";
-import customExternalLink from "./sanity/schemas/blocks/customExternalLink";
+import richtext from "./sanity/schemas/blocks/richtext";
+import documentFile from "./sanity/schemas/blocks/document-file";
+import singleImage from "./sanity/schemas/blocks/single-image";
 import link from "./sanity/schemas/blocks/link";
 
 const homeLocation = {
@@ -49,10 +48,9 @@ export default defineConfig({
       // Documents
       pages,
       // Blocks
-      customText,
-      customFile,
-      customImage,
-      customExternalLink,
+      richtext,
+      documentFile,
+      singleImage,
       link,
     ],
   },

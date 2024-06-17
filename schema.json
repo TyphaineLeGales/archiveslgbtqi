@@ -514,7 +514,7 @@
     }
   },
   {
-    "name": "customText",
+    "name": "richtext",
     "type": "document",
     "attributes": {
       "_id": {
@@ -527,7 +527,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "customText"
+          "value": "richtext"
         }
       },
       "_createdAt": {
@@ -891,7 +891,7 @@
                     "optional": true
                   }
                 },
-                "dereferencesTo": "customText",
+                "dereferencesTo": "richtext",
                 "rest": {
                   "type": "object",
                   "attributes": {
