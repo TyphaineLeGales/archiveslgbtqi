@@ -267,7 +267,7 @@
     }
   },
   {
-    "name": "customExternalLink",
+    "name": "single-image",
     "type": "document",
     "attributes": {
       "_id": {
@@ -280,58 +280,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "customExternalLink"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "title": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "url": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      }
-    }
-  },
-  {
-    "name": "customImage",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "customImage"
+          "value": "single-image"
         }
       },
       "_createdAt": {
@@ -424,7 +373,7 @@
     }
   },
   {
-    "name": "customFile",
+    "name": "document-file",
     "type": "document",
     "attributes": {
       "_id": {
@@ -437,7 +386,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "customFile"
+          "value": "document-file"
         }
       },
       "_createdAt": {
@@ -854,7 +803,7 @@
                     "optional": true
                   }
                 },
-                "dereferencesTo": "customFile",
+                "dereferencesTo": "document-file",
                 "rest": {
                   "type": "object",
                   "attributes": {
@@ -928,44 +877,7 @@
                     "optional": true
                   }
                 },
-                "dereferencesTo": "customImage",
-                "rest": {
-                  "type": "object",
-                  "attributes": {
-                    "_key": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "attributes": {
-                  "_ref": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  },
-                  "_type": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string",
-                      "value": "reference"
-                    }
-                  },
-                  "_weak": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "boolean"
-                    },
-                    "optional": true
-                  }
-                },
-                "dereferencesTo": "customExternalLink",
+                "dereferencesTo": "single-image",
                 "rest": {
                   "type": "object",
                   "attributes": {

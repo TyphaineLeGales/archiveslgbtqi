@@ -59,19 +59,9 @@ export type Link = {
   external?: string;
 };
 
-export type CustomExternalLink = {
+export type SingleImage = {
   _id: string;
-  _type: "customExternalLink";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  url?: string;
-};
-
-export type CustomImage = {
-  _id: string;
-  _type: "customImage";
+  _type: "single-image";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -89,9 +79,9 @@ export type CustomImage = {
   };
 };
 
-export type CustomFile = {
+export type DocumentFile = {
   _id: string;
-  _type: "customFile";
+  _type: "document-file";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -154,7 +144,7 @@ export type Pages = {
         _type: "reference";
         _weak?: boolean;
         _key: string;
-        [internalGroqTypeReferenceTo]?: "customFile";
+        [internalGroqTypeReferenceTo]?: "document-file";
       }
     | {
         _ref: string;
@@ -168,14 +158,7 @@ export type Pages = {
         _type: "reference";
         _weak?: boolean;
         _key: string;
-        [internalGroqTypeReferenceTo]?: "customImage";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "customExternalLink";
+        [internalGroqTypeReferenceTo]?: "single-image";
       }
     | ({
         _key: string;
@@ -376,7 +359,7 @@ export type FooterQueryResult = {
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages] [0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _id,    _ref,    _type,    title,    text[],    label,    "imageUrl": image.asset->url,    url,    external,    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _id,    _ref,    _type,    title,    richtext[],    label,    "imageUrl": image.asset->url,    url,    external,    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -392,7 +375,7 @@ export type PagesContentQueryResult = {
         _ref: null;
         _type: "link";
         title: null;
-        text: null;
+        richtext: null;
         label: string | null;
         imageUrl: null;
         url: null;
@@ -409,7 +392,7 @@ export type PagesContentQueryResult = {
         _ref: string;
         _type: "reference";
         title: null;
-        text: null;
+        richtext: null;
         label: null;
         imageUrl: null;
         url: null;

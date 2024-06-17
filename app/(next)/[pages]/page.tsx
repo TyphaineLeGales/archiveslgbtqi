@@ -33,7 +33,7 @@ export default async function Page({ params }: Props) {
             {(() => {
               switch (item._type as string) {
                 case "richtext":
-                  return <CustomPortableText value={item?.text!} />;
+                  return <CustomPortableText value={item?.richtext!} />;
                 case "single-image":
                   return (
                     <CustomImage

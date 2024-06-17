@@ -41,7 +41,7 @@ export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | orde
   ${postFields}
 }`;
 
-export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages] [0] {
+export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages][0] {
   _id,
   title,
   slug,
@@ -55,7 +55,7 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
     _ref,
     _type,
     title,
-    text[],
+    richtext[],
     label,
     "imageUrl": image.asset->url,
     url,
