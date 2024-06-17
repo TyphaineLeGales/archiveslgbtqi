@@ -359,7 +359,7 @@ export type FooterQueryResult = {
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _id,    _ref,    _type,    title,    richtext[],    label,    "imageUrl": image.asset->url,    url,    external,    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _id,    _ref,    _type,    title,    "richtext": text[],    label,    "imageUrl": image.asset->url,    url,    external,    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;

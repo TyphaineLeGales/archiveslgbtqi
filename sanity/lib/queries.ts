@@ -55,7 +55,7 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
     _ref,
     _type,
     title,
-    richtext[],
+    "richtext": text[],
     label,
     "imageUrl": image.asset->url,
     url,
