@@ -5,13 +5,21 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Lenis from "lenis";
+import { useScroll, motion } from "framer-motion";
+import { SplitText } from "./SplitText";
 
 type Props = {
   heroes: HomepageQueryResult;
 };
 
+const AnimatedText = {
+  hidden: { y: "100%" },
+  visible: { y: 0 },
+};
+
 const HeroList = ({ heroes }: Props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -33,8 +41,9 @@ const HeroList = ({ heroes }: Props) => {
       className="no-scrollbar relative mb-[5vh] h-auto max-h-[100vh] overflow-y-scroll"
     >
       {heroes.heroes?.map((hero, index) => (
-        <div
+        <Link
           key={`hero-${index}`}
+          href={hero.cta?.ctaLink?.slug || ""}
           className="sticky top-0 max-h-[100vh] bg-white"
         >
           {hero.image && (
@@ -49,21 +58,56 @@ const HeroList = ({ heroes }: Props) => {
                 height="1080"
               />
               <div className="absolute inset-0 flex items-center justify-center px-[10rem]">
-                <div className="mb-[5vh] space-y-[1rem] text-center text-white mix-blend-difference">
-                  <h1 className="text-[5rem] font-bold uppercase leading-[4.5rem] tracking-tighter">
-                    {hero.title}
-                  </h1>
-                  <p className="text-[3rem] font-medium uppercase leading-[2.5rem] tracking-tighter">
-                    {hero.paragraph}
-                  </p>
+                <div className="mb-[10vh] space-y-[2rem] text-center text-white mix-blend-difference">
+                  <div>
+                    <h1 className="sr-only">{hero.title}</h1>
+                    <motion.h1
+                      initial="hidden"
+                      whileInView="visible"
+                      transition={{
+                        linear: [0.6, 0.01, 0.05, 0.95],
+                        delay: 0.15,
+                        staggerChildren: 0.1,
+                      }}
+                      aria-hidden
+                      className="overflow-hidden text-[5rem] font-bold uppercase leading-[4.5rem] tracking-tighter"
+                    >
+                      {hero.title?.split("").map((char) => (
+                        <motion.div
+                          key={hero.title?.indexOf(char)}
+                          variants={AnimatedText}
+                          className="inline-block"
+                        >
+                          {char}
+                        </motion.div>
+                      ))}
+                    </motion.h1>
+                  </div>
+                  <div>
+                    <p className="sr-only">{hero.paragraph}</p>
+                    <SplitText
+                      initial={{ y: "100%" }}
+                      whileInView="visible"
+                      variants={{
+                        visible: (i: number) => ({
+                          y: 0,
+                          transition: {
+                            delay: i * 0.08,
+                            ease: [0.6, 0.01, -0.05, 0.9],
+                          },
+                        }),
+                      }}
+                      aria-hidden
+                      className="text-[1.5rem] font-medium uppercase leading-[1.5rem] tracking-tighter"
+                    >
+                      {hero.paragraph}
+                    </SplitText>
+                  </div>
                 </div>
               </div>
             </div>
           )}
-          {hero.cta && (
-            <Link href={hero.cta.ctaLink?.slug || ""}>{hero.cta.ctaLabel}</Link>
-          )}
-        </div>
+        </Link>
       ))}
     </div>
   );
