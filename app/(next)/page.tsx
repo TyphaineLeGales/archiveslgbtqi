@@ -6,6 +6,8 @@ import Hero from "./components/hero";
 import Link from "next/link";
 import homepage from "@/sanity/schemas/singletons/homepage";
 import Image from "next/image";
+import { useEffect } from "react";
+import Lenis from "lenis";
 
 export default async function Page() {
   const [homePage] = await Promise.all([
@@ -14,7 +16,7 @@ export default async function Page() {
 
   console.log("Heroes: ", homePage?.heroes);
   return (
-    <div className="relative flex min-h-screen flex-col overscroll-contain pb-[100vh]">
+    <div className="relative min-h-screen pb-[100vh]">
       <Hero heroes={homePage} />
       <div>
         Ut ipsum enim officia cupidatat aliquip deserunt officia duis

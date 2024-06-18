@@ -401,7 +401,6 @@ export type PagesContentQueryResult = {
 // Variable: homepageQuery
 // Query: *[_type == "homepage"][0] {  "heroes": heroes[]{    title,    paragraph,    "image": image{      "imageUrl": image.asset->url,      alt,    },    "cta": cta{      ctaLabel,      "ctaLink": ctaLink->{        _id,        _type,        title,        "slug": slug.current,      },    },  },}
 export type HomepageQueryResult = {
-  length: number;
   heroes: Array<{
     title: string | null;
     paragraph: string | null;
