@@ -11,7 +11,7 @@ type Props = {
 };
 
 const HeroList = ({ heroes }: Props) => {
-  if (!heroes || heroes.length === 0) {
+  if (!heroes) {
     return <h1>No Heroes Found</h1>;
   }
 
