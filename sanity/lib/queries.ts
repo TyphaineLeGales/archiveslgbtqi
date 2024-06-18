@@ -51,15 +51,20 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
     slug,
   },
   "content": content[]{
-    _id,
-    _ref,
     _type,
-    title,
+
+    // richtext
     "richtext": text[],
-    label,
+
+    // single-image
+    "imageTitle": title,
     "imageUrl": image.asset->url,
-    url,
+
+    // link
+    "linkLabel": label,
+    // external
     external,
+    // internal
     "internal": internal->{
       _id,
       _type,
@@ -69,12 +74,22 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
   }
 }`;
 
-export const homepageQuery = groq`*[_type == "homepage"] [0] {
-  hero {
-    heading,
-    description,
-    ctatext,
-    "imageUrl": image.asset->url,
-    "url": cta->slug,
+export const homepageQuery = groq`*[_type == "homepage"][0] {
+  "heroes": heroes[]{
+    title,
+    paragraph,
+    "image": image{
+      "imageUrl": image.asset->url,
+      alt,
+    },
+    "cta": cta{
+      ctaLabel,
+      "ctaLink": ctaLink->{
+        _id,
+        _type,
+        title,
+        "slug": slug.current,
+      },
+    },
   },
 }`;

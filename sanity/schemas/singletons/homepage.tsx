@@ -6,51 +6,72 @@ export default defineType({
   title: "Home Page",
   type: "document",
   icon: HomeIcon,
+  groups: [
+    {
+      title: "Hero",
+      name: "hero",
+    },
+  ],
   fields: [
     defineField({
-      type: "object",
-      name: "hero",
-      title: "Hero",
-      fields: [
-        defineField({
-          name: "heading",
-          title: "Header",
-          type: "string",
-        }),
-        defineField({
-          name: "description",
-          title: "Description",
-          type: "text",
-        }),
-        defineField({
-          name: "image",
-          title: "Image",
-          type: "image",
-        }),
-        defineField({
-          name: "ctatext",
-          title: "Call to Action Text",
-          type: "string",
-        }),
-      ],
-    }),
-    defineField({
-      name: "cta",
-      title: "CTA",
-      type: "object",
-      fields: [
-        defineField({
-          name: "sections",
-          title: "Sections",
-          type: "array",
-          of: [
-            defineArrayMember({
-              type: "reference",
-              to: [{ type: "pages" }],
+      name: "heroes",
+      title: "Heroes",
+      type: "array",
+      group: "hero",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "string",
+            }),
+            defineField({
+              name: "paragraph",
+              title: "Paragraph",
+              type: "text",
+            }),
+            defineField({
+              name: "image",
+              title: "Image",
+              type: "object",
+              fields: [
+                defineField({
+                  name: "image",
+                  title: "Image",
+                  type: "image",
+                }),
+                defineField({
+                  name: "alt",
+                  title: "Alt Text",
+                  type: "string",
+                }),
+              ],
+            }),
+            defineField({
+              name: "cta",
+              title: "Call to Action",
+              type: "object",
+              fields: [
+                defineField({
+                  name: "ctaLabel",
+                  title: "CTA Label",
+                  type: "string",
+                }),
+                defineField({
+                  name: "ctaLink",
+                  title: "CTA Link",
+                  type: "reference",
+                  to: [{ type: "pages" }],
+                }),
+              ],
             }),
           ],
         }),
       ],
+      validation: (Rule) =>
+        Rule.max(3).warning("You can only have up to 3 heroes."),
     }),
   ],
   preview: {

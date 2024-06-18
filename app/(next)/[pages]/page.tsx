@@ -38,14 +38,14 @@ export default async function Page({ params }: Props) {
                   return (
                     <CustomImage
                       imageUrl={item.imageUrl || ""}
-                      title={item.title || ""}
+                      title={item.imageTitle || ""}
                     />
                   );
                 case "link": {
                   const link = item;
                   return (
                     <Link href={`${link.internal?.slug || link.external}`}>
-                      {link.label}
+                      {link.linkLabel}
                     </Link>
                   );
                 }

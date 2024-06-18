@@ -123,6 +123,51 @@ export type Richtext = {
   }>;
 };
 
+export type Footer = {
+  _id: string;
+  _type: "footer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+};
+
+export type Homepage = {
+  _id: string;
+  _type: "homepage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heroes?: Array<{
+    title?: string;
+    paragraph?: string;
+    image?: {
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      alt?: string;
+    };
+    cta?: {
+      ctaLabel?: string;
+      ctaLink?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "pages";
+      };
+    };
+    _key: string;
+  }>;
+};
+
 export type Pages = {
   _id: string;
   _type: "pages";
@@ -192,48 +237,6 @@ export type Slug = {
   _type: "slug";
   current?: string;
   source?: string;
-};
-
-export type Footer = {
-  _id: string;
-  _type: "footer";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-};
-
-export type Homepage = {
-  _id: string;
-  _type: "homepage";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  hero?: {
-    heading?: string;
-    description?: string;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-    ctatext?: string;
-  };
-  cta?: {
-    sections?: Array<{
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: "pages";
-    }>;
-  };
 };
 
 export type Header = {
@@ -359,7 +362,7 @@ export type FooterQueryResult = {
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _id,    _ref,    _type,    title,    "richtext": text[],    label,    "imageUrl": image.asset->url,    url,    external,    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -371,14 +374,11 @@ export type PagesContentQueryResult = {
   }> | null;
   content: Array<
     | {
-        _id: null;
-        _ref: null;
         _type: "link";
-        title: null;
         richtext: null;
-        label: string | null;
+        imageTitle: null;
         imageUrl: null;
-        url: null;
+        linkLabel: string | null;
         external: string | null;
         internal: {
           _id: string;
@@ -388,27 +388,35 @@ export type PagesContentQueryResult = {
         } | null;
       }
     | {
-        _id: null;
-        _ref: string;
         _type: "reference";
-        title: null;
         richtext: null;
-        label: null;
+        imageTitle: null;
         imageUrl: null;
-        url: null;
+        linkLabel: null;
         external: null;
         internal: null;
       }
   > | null;
 } | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"] [0] {  hero {    heading,    description,    ctatext,    "imageUrl": image.asset->url,    "url": cta->slug,  },}
+// Query: *[_type == "homepage"][0] {  "heroes": heroes[]{    title,    paragraph,    "image": image{      "imageUrl": image.asset->url,      alt,    },    "cta": cta{      ctaLabel,      "ctaLink": ctaLink->{        _id,        _type,        title,        "slug": slug.current,      },    },  },}
 export type HomepageQueryResult = {
-  hero: {
-    heading: string | null;
-    description: string | null;
-    ctatext: string | null;
-    imageUrl: string | null;
-    url: null;
-  } | null;
+  length: number;
+  heroes: Array<{
+    title: string | null;
+    paragraph: string | null;
+    image: {
+      imageUrl: string | null;
+      alt: string | null;
+    } | null;
+    cta: {
+      ctaLabel: string | null;
+      ctaLink: {
+        _id: string;
+        _type: "pages";
+        title: string | null;
+        slug: string | null;
+      } | null;
+    } | null;
+  }> | null;
 } | null;
