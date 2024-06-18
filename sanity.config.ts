@@ -29,6 +29,7 @@ import richtext from "./sanity/schemas/blocks/richtext";
 import documentFile from "./sanity/schemas/blocks/document-file";
 import singleImage from "./sanity/schemas/blocks/single-image";
 import link from "./sanity/schemas/blocks/link";
+import events from "./sanity/schemas/documents/events";
 
 const homeLocation = {
   title: "Home",
@@ -47,6 +48,7 @@ export default defineConfig({
       footer,
       // Documents
       pages,
+      events,
       // Blocks
       richtext,
       documentFile,

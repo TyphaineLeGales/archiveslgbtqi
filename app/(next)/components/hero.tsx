@@ -1,4 +1,6 @@
 "use client";
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
 import { HomepageQueryResult, PagesContentQueryResult } from "@/sanity.types";
 import { heroQuery } from "@/sanity/lib/queries";
 import React, { useEffect } from "react";
@@ -18,8 +20,6 @@ const AnimatedText = {
 };
 
 const HeroList = ({ heroes }: Props) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -86,13 +86,13 @@ const HeroList = ({ heroes }: Props) => {
                   <div>
                     <p className="sr-only">{hero.paragraph}</p>
                     <SplitText
-                      initial={{ y: "100%" }}
+                      initial={{ y: "102%" }}
                       whileInView="visible"
                       variants={{
                         visible: (i: number) => ({
                           y: 0,
                           transition: {
-                            delay: i * 0.08,
+                            delay: i * 0.05,
                             ease: [0.6, 0.01, -0.05, 0.9],
                           },
                         }),

@@ -93,3 +93,16 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
     },
   },
 }`;
+
+export const eventsQuery = groq`*[_type == "events"] {
+  _id,
+  eventTitle,
+  slug,
+  eventDate,
+  eventDescription,
+  eventLocation,
+  "image": eventImage{
+      "imageUrl": image.asset->url,
+      alt,
+    },
+}`;

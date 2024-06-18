@@ -8,6 +8,9 @@ export default {
       fontFamily: {
         sans: ["var(--font-inter)"],
       },
+      transitionTimingFunction: {
+        tamisitée: "cubic-bezier(0.6, 0.01, 0.05, 0.95)",
+      },
     },
   },
   future: {

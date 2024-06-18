@@ -123,6 +123,33 @@ export type Richtext = {
   }>;
 };
 
+export type Events = {
+  _id: string;
+  _type: "events";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  eventTitle?: string;
+  slug?: Slug;
+  eventDate?: string;
+  eventDescription?: string;
+  eventLocation?: string;
+  eventImage?: {
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    alt?: string;
+  };
+};
+
 export type Footer = {
   _id: string;
   _type: "footer";
@@ -419,3 +446,17 @@ export type HomepageQueryResult = {
     } | null;
   }> | null;
 } | null;
+// Variable: eventsQuery
+// Query: *[_type == "events"] {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
+export type EventsQueryResult = Array<{
+  _id: string;
+  eventTitle: string | null;
+  slug: Slug | null;
+  eventDate: string | null;
+  eventDescription: string | null;
+  eventLocation: string | null;
+  image: {
+    imageUrl: string | null;
+    alt: string | null;
+  } | null;
+}>;
