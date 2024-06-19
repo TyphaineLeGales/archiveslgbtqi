@@ -17,8 +17,8 @@ export default function SingleEvent({ params, event }: Event) {
       <motion.div
         initial={{ translateY: "-50vh" }}
         animate={{ translateY: "-100vh" }}
-        transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
-        className="fixed inset-0 bg-green-200"
+        transition={{ duration: 1.5, ease: [0.6, 0.01, 0.05, 0.95] }}
+        className="fixed inset-0 bg-neutral-700"
       />
       <div className="flex justify-between px-[1rem]">
         <h1 className="eventTitle">{event?.eventTitle}</h1>

@@ -44,6 +44,7 @@ export default function EventsDesktop({ event }: EventProps) {
         <>
           <motion.div
             initial={{ translateY: "100vh" }}
+            transition={{ duration: 1.5, ease: [0.6, 0.01, 0.05, 0.95] }}
             exit={{
               translateY: "-50vh",
               transition: {
@@ -52,8 +53,7 @@ export default function EventsDesktop({ event }: EventProps) {
                 ease: [0.6, 0.01, 0.05, 0.95],
               },
             }}
-            transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
-            className="fixed inset-0 z-50 bg-green-200"
+            className="fixed inset-0 z-50 bg-neutral-700"
           />
           <motion.div className="hidden min-h-[85dvh] flex-col justify-end lg:flex">
             {event?.map((eventItem, index) => (
@@ -61,6 +61,7 @@ export default function EventsDesktop({ event }: EventProps) {
                 key={`event-${index}`}
                 initial={{ height: "4rem" }}
                 whileHover={{ height: "20vh" }}
+                transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
                 exit={
                   hoveredIndex === index
                     ? {
@@ -72,7 +73,6 @@ export default function EventsDesktop({ event }: EventProps) {
                       }
                     : undefined
                 }
-                transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
                 className="group relative flex h-[4rem] items-start overflow-hidden border-b-[1px] border-black bg-white"
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
