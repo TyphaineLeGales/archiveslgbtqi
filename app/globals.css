@@ -29,4 +29,8 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .eventTitle {
+    @apply text-[5rem] font-semibold uppercase leading-[5rem] tracking-tighter;
+  }
 }

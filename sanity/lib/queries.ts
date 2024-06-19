@@ -106,3 +106,16 @@ export const eventsQuery = groq`*[_type == "events"] | order(eventDate.eventStar
       alt,
     },
 }`;
+
+export const eventQuery = groq`*[_type == "events" && slug.current == $event] [0]{
+  _id,
+  eventTitle,
+  slug,
+  eventDate,
+  eventDescription,
+  eventLocation,
+  "image": eventImage{
+      "imageUrl": image.asset->url,
+      alt,
+    },
+}`;

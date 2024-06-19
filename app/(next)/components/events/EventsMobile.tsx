@@ -12,7 +12,7 @@ type EventProps = {
   event: EventsQueryResult;
 };
 
-export default function EventMobile({ event }: EventProps) {
+export default function EventsMobile({ event }: EventProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleClick = (index: number) => {
