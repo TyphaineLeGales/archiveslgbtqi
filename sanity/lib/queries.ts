@@ -94,7 +94,7 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
   },
 }`;
 
-export const eventsQuery = groq`*[_type == "events"] | order(eventDate desc) {
+export const eventsQuery = groq`*[_type == "events"] | order(eventDate.eventStartDate desc) {
   _id,
   eventTitle,
   slug,

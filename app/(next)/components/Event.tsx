@@ -38,7 +38,6 @@ export default function Event({ event }: EventProps) {
   return (
     <div className="flex flex-col">
       {event?.map((eventItem, index) => (
-        // add exitBeforeEnter to AnimatePresence
         <Link
           href={`/agenda/${eventItem.slug?.current}`}
           key={`event-${index}`}
@@ -52,7 +51,6 @@ export default function Event({ event }: EventProps) {
                 style={{
                   top: mousePosition.y,
                   left: mousePosition.x,
-                  // translateX: "-50%",
                   translateY: "0",
                 }}
                 initial={{ height: "0vh" }}
