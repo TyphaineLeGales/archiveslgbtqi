@@ -451,7 +451,7 @@ export type HomepageQueryResult = {
   }> | null;
 } | null;
 // Variable: eventsQuery
-// Query: *[_type == "events"] {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
+// Query: *[_type == "events"] | order(eventDate.eventStartDate desc) {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type EventsQueryResult = Array<{
   _id: string;
   eventTitle: string | null;

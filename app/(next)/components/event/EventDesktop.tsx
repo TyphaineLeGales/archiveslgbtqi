@@ -3,7 +3,7 @@
 import { EventsQueryResult } from "@/sanity.types";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import DateFormat from "./DateFormat";
+import DateFormat from "../DateFormat";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
@@ -12,7 +12,7 @@ type EventProps = {
   event: EventsQueryResult;
 };
 
-export default function Event({ event }: EventProps) {
+export default function EventDesktop({ event }: EventProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -36,17 +36,20 @@ export default function Event({ event }: EventProps) {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div
+      onMouseEnter={handleMouseLeave}
+      className="hidden min-h-[85dvh] flex-col justify-end lg:flex"
+    >
       {event?.map((eventItem, index) => (
         <Link
           href={`/agenda/${eventItem.slug?.current}`}
           key={`event-${index}`}
-          className="group relative flex h-[3rem] items-start overflow-hidden border-b-[1px] border-black transition-all duration-500 ease-tamisitée hover:h-[50vh]"
+          className="group relative flex h-[4rem] items-start overflow-hidden border-b-[1px] border-black transition-all duration-[.8s] ease-tamisitée hover:h-[20vh]"
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
         >
-          {hoveredIndex === index && (
-            <AnimatePresence>
+          <AnimatePresence>
+            {hoveredIndex === index && (
               <motion.div
                 style={{
                   top: mousePosition.y,
@@ -71,13 +74,18 @@ export default function Event({ event }: EventProps) {
                   className="h-full w-full origin-bottom object-cover"
                 />
               </motion.div>
-            </AnimatePresence>
-          )}
+            )}
+          </AnimatePresence>
           <div className="relative flex h-auto w-full flex-col px-[1rem]">
             <div className="flex items-center justify-between">
-              <h2 className="text-[2rem] font-semibold uppercase">
-                {eventItem.eventTitle}
-              </h2>
+              <div className="flex h-[5rem] flex-col overflow-hidden">
+                <h2 className="text-[5rem] font-semibold uppercase leading-[5rem] tracking-tighter transition-transform delay-200 duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
+                  {eventItem.eventTitle}
+                </h2>
+                <h2 className="text-[5rem] font-semibold uppercase leading-[5rem] tracking-tighter transition-transform delay-200 duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
+                  {eventItem.eventTitle}
+                </h2>
+              </div>
               <div className="rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
                 <DateFormat
                   dateString={eventItem.eventDate?.eventStartDate || ""}
