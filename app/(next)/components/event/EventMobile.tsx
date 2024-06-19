@@ -24,14 +24,14 @@ export default function EventMobile({ event }: EventProps) {
       {event?.map((eventItem, index) => (
         <motion.div
           key={`event-${index}`}
-          initial={{ height: "4vh" }}
-          animate={{ height: expandedIndex === index ? "60vh" : "4vh" }}
+          initial={{ height: "3.25rem" }}
+          animate={{ height: expandedIndex === index ? "40rem" : "3.25rem" }}
           transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
-          className="group relative flex h-auto items-start overflow-hidden border-b-[1px] border-black"
+          className="no-scrollbar group relative flex h-auto items-start overflow-hidden overflow-y-auto border-b-[1px] border-black pb-[2rem]"
           onClick={() => handleClick(index)}
         >
           <div className="relative flex w-full flex-col justify-start gap-[1rem]">
-            <h2 className="border-b-[1px] border-black px-[1rem] text-[3rem] font-semibold uppercase leading-[5rem] tracking-tighter">
+            <h2 className="border-b-[1px] border-black px-[1rem] text-[2.5rem] font-semibold uppercase leading-[5rem] tracking-tighter">
               {eventItem.eventTitle}
             </h2>
             <div className="px-[1rem]">
@@ -61,7 +61,7 @@ export default function EventMobile({ event }: EventProps) {
                   >
                     <Link
                       href={`/agenda/${eventItem.slug?.current}`}
-                      className="absolute right-0 top-[1.25rem] flex w-1/2 justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black py-[.35rem] pr-[1rem]"
+                      className="absolute right-0 top-[1.25rem] flex w-[calc(50%-1rem)] justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black py-[.20rem] pr-[1rem]"
                     >
                       <NorthEastArrow className="aspect-square h-[2rem] w-[2rem] pt-1" />
                     </Link>
