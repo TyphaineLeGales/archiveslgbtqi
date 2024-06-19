@@ -20,12 +20,15 @@ export default function EventMobile({ event }: EventProps) {
   };
 
   return (
-    <div className="flex min-h-[85dvh] flex-col justify-end lg:hidden">
+    <div className="no-scrollbar flex min-h-[85dvh] flex-col justify-end overflow-y-scroll lg:hidden">
       {event?.map((eventItem, index) => (
         <motion.div
           key={`event-${index}`}
           initial={{ height: "3.25rem" }}
-          animate={{ height: expandedIndex === index ? "40rem" : "3.25rem" }}
+          animate={{
+            height: expandedIndex === index ? "40rem" : "3.25rem",
+            overflow: "hidden",
+          }}
           transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
           className="no-scrollbar group relative flex h-auto items-start overflow-hidden overflow-y-auto border-b-[1px] border-black pb-[2rem]"
           onClick={() => handleClick(index)}
@@ -39,9 +42,9 @@ export default function EventMobile({ event }: EventProps) {
                 <DateFormat
                   dateString={eventItem.eventDate?.eventStartDate || ""}
                 />
+                <span className="mx-[0.5rem]">→</span>
                 {eventItem.eventDate?.addEndDate && (
                   <div>
-                    <span className="mx-[0.5rem]">-</span>
                     <DateFormat
                       dateString={eventItem.eventDate?.eventEndDate || ""}
                     />
