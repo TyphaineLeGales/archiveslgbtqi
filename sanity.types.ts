@@ -131,8 +131,12 @@ export type Events = {
   _rev: string;
   eventTitle?: string;
   slug?: Slug;
-  eventDate?: string;
   eventDescription?: string;
+  eventDate?: {
+    eventStartDate?: string;
+    addEndDate?: boolean;
+    eventEndDate?: string;
+  };
   eventLocation?: string;
   eventImage?: {
     image?: {
@@ -452,7 +456,11 @@ export type EventsQueryResult = Array<{
   _id: string;
   eventTitle: string | null;
   slug: Slug | null;
-  eventDate: string | null;
+  eventDate: {
+    eventStartDate?: string;
+    addEndDate?: boolean;
+    eventEndDate?: string;
+  } | null;
   eventDescription: string | null;
   eventLocation: string | null;
   image: {

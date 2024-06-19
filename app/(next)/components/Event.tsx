@@ -80,10 +80,19 @@ export default function Event({ event }: EventProps) {
               <h2 className="text-[2rem] font-semibold uppercase">
                 {eventItem.eventTitle}
               </h2>
-              <DateFormat
-                dateString={eventItem.eventDate || ""}
-                className="text-[1rem] italic"
-              />
+              <div className="rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
+                <DateFormat
+                  dateString={eventItem.eventDate?.eventStartDate || ""}
+                />
+                {eventItem.eventDate?.addEndDate && (
+                  <>
+                    <span className="mx-[0.5rem]">-</span>
+                    <DateFormat
+                      dateString={eventItem.eventDate?.eventEndDate || ""}
+                    />
+                  </>
+                )}
+              </div>
             </div>
             <p className="absolute bottom-0 left-0 translate-y-[100%] transition-all duration-500 ease-tamisitée group-hover:translate-y-[100%]">
               {eventItem.eventDescription}

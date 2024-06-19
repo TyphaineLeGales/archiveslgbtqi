@@ -1,6 +1,5 @@
-// create a component to format this kind of date 2024-06-27T15:15:00.000Z
-
 import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 
 export default function DateFormat({
   dateString,
@@ -12,7 +11,8 @@ export default function DateFormat({
   const date = new Date(dateString);
   return (
     <time dateTime={dateString} className={className}>
-      {format(date, "LLLL d, yyyy")} - {format(date, "h:mm a")}
+      {format(date, "d MMMM yyyy", { locale: fr })}&nbsp;à&nbsp;
+      {format(date, "HH:mm", { locale: fr })}
     </time>
   );
 }

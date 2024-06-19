@@ -112,8 +112,9 @@ export default defineType({
       media: "eventImage.image",
       startDate: "eventDate.eventStartDate",
       endDate: "eventDate.eventEndDate",
+      addEndDate: "eventDate.addEndDate",
     },
-    prepare({ title, media, startDate, endDate }) {
+    prepare({ title, media, startDate, endDate, addEndDate }) {
       const formattedStartDate = new Date(startDate).toLocaleDateString(
         "en-US",
         {
@@ -124,14 +125,12 @@ export default defineType({
       );
 
       let formattedEndDate = null;
-      if (endDate) {
+      if (addEndDate && endDate) {
         formattedEndDate = new Date(endDate).toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
           day: "numeric",
         });
-      } else {
-        formattedEndDate = null;
       }
 
       return {
