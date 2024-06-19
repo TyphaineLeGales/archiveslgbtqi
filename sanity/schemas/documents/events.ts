@@ -38,16 +38,44 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "eventDate",
-      title: "Event Date",
-      type: "datetime",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: "eventDescription",
       title: "Event Description",
       type: "text",
       validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: "eventDate",
+      title: "Date",
+      type: "object",
+      fields: [
+        defineField({
+          name: "eventStartDate",
+          title: "Start at",
+          type: "datetime",
+          options: {
+            dateFormat: "DD-MM-YYYY",
+            timeStep: 15,
+          },
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: "addEndDate",
+          title: "Add end date.",
+          type: "boolean",
+          description: "Add an end date if the end is not on the same day.",
+        }),
+        defineField({
+          name: "eventEndDate",
+          title: "End at",
+          type: "datetime",
+          options: {
+            dateFormat: "DD-MM-YYYY",
+            timeStep: 15,
+          },
+          hidden: ({ parent }) => !parent.addEndDate,
+        }),
+      ],
     }),
     defineField({
       name: "eventLocation",
@@ -81,7 +109,38 @@ export default defineType({
   preview: {
     select: {
       title: "eventTitle",
-      slug: "slug.current",
+      media: "eventImage.image",
+      startDate: "eventDate.eventStartDate",
+      endDate: "eventDate.eventEndDate",
+    },
+    prepare({ title, media, startDate, endDate }) {
+      const formattedStartDate = new Date(startDate).toLocaleDateString(
+        "en-US",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        },
+      );
+
+      let formattedEndDate = null;
+      if (endDate) {
+        formattedEndDate = new Date(endDate).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      } else {
+        formattedEndDate = null;
+      }
+
+      return {
+        title,
+        media,
+        subtitle: formattedEndDate
+          ? `${formattedStartDate} - ${formattedEndDate}`
+          : formattedStartDate,
+      };
     },
   },
 });

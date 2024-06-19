@@ -6,6 +6,7 @@ import Image from "next/image";
 import DateFormat from "./DateFormat";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
 
 type EventProps = {
   event: EventsQueryResult;
@@ -37,37 +38,42 @@ export default function Event({ event }: EventProps) {
   return (
     <div className="flex flex-col">
       {event?.map((eventItem, index) => (
+        // add exitBeforeEnter to AnimatePresence
         <Link
           href={`/agenda/${eventItem.slug?.current}`}
           key={`event-${index}`}
-          className="ease-tamisitée group relative flex h-[3rem] items-start overflow-hidden border-b-[1px] border-black transition-all duration-500 hover:h-[50vh]"
+          className="group relative flex h-[3rem] items-start overflow-hidden border-b-[1px] border-black transition-all duration-500 ease-tamisitée hover:h-[50vh]"
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
         >
           {hoveredIndex === index && (
-            <motion.div
-              style={{
-                top: mousePosition.y,
-                left: mousePosition.x,
-                // translateX: "-50%",
-                translateY: "0",
-              }}
-              initial={{ height: "0vh" }}
-              animate={{ height: "20vh" }}
-              transition={{ duration: 0.5, ease: [0.6, 0.01, 0.05, 0.95] }}
-              className="pointer-events-none fixed z-50"
-            >
-              <Image
-                src={
-                  eventItem.image?.imageUrl ||
-                  "https://via.placeholder.com/1000x1000"
-                }
-                alt={eventItem.image?.alt || "Event image"}
-                width={1000}
-                height={1000}
-                className="h-full w-full origin-bottom object-cover"
-              />
-            </motion.div>
+            <AnimatePresence>
+              <motion.div
+                style={{
+                  top: mousePosition.y,
+                  left: mousePosition.x,
+                  // translateX: "-50%",
+                  translateY: "0",
+                }}
+                initial={{ height: "0vh" }}
+                animate={{ height: "20vh" }}
+                exit={{ height: "0vh" }}
+                transition={{ duration: 0.5, ease: [0.6, 0.01, 0.05, 0.95] }}
+                className="pointer-events-none fixed z-50"
+              >
+                <Image
+                  src={
+                    eventItem.image?.imageUrl ||
+                    "https://via.placeholder.com/1000x1000"
+                  }
+                  alt={eventItem.image?.alt || "Event image"}
+                  width={250}
+                  height={250}
+                  loading="eager"
+                  className="h-full w-full origin-bottom object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
           )}
           <div className="relative flex h-auto w-full flex-col px-[1rem]">
             <div className="flex items-center justify-between">
@@ -79,7 +85,7 @@ export default function Event({ event }: EventProps) {
                 className="text-[1rem] italic"
               />
             </div>
-            <p className="ease-tamisitée absolute bottom-0 left-0 translate-y-[100%] transition-all duration-500 group-hover:translate-y-[100%]">
+            <p className="absolute bottom-0 left-0 translate-y-[100%] transition-all duration-500 ease-tamisitée group-hover:translate-y-[100%]">
               {eventItem.eventDescription}
             </p>
           </div>
