@@ -71,7 +71,14 @@ export default function EventsDesktop({ event }: EventProps) {
                           ease: [0.6, 0.01, 0.05, 0.95],
                         },
                       }
-                    : undefined
+                    : {
+                        height: 0,
+                        borderBottom: "0",
+                        transition: {
+                          duration: 1.25,
+                          ease: [0.6, 0.01, 0.05, 0.95],
+                        },
+                      }
                 }
                 className="group relative flex h-[4rem] items-start overflow-hidden border-b-[1px] border-black bg-white"
                 onMouseEnter={() => handleMouseEnter(index)}
