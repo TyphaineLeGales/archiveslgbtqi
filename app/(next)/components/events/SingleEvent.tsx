@@ -16,10 +16,10 @@ export default function SingleEvent({ params, event }: Event) {
   return (
     <motion.div>
       <motion.div
-        initial={{ translateY: "-50%" }}
+        initial={{ translateY: "0%" }}
         animate={{ translateY: "-100%" }}
         transition={{
-          duration: 1.5,
+          duration: 1,
           ease: [0.6, 0.01, 0.05, 0.95],
         }}
         className="fixed inset-0 z-50 bg-neutral-700"
