@@ -13,7 +13,6 @@ export default async function Page() {
     }),
   ]);
 
-  console.log("Events:", events);
   return (
     <div className="min-h-[85dvh] py-[1rem]">
       {/* <h1 className="whitespace-nowrap px-[1rem] pb-[2rem] text-[3rem] font-semibold uppercase leading-[2.5rem] tracking-tighter">

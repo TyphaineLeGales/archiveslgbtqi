@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Marquee from "../ui/Marquee";
 
 type EventProps = {
   event: EventsQueryResult;
@@ -43,10 +44,10 @@ export default function EventsDesktop({ event }: EventProps) {
       {!isClicked && (
         <>
           <motion.div
-            initial={{ translateY: "100vh" }}
+            initial={{ translateY: "100%" }}
             transition={{ duration: 1.5, ease: [0.6, 0.01, 0.05, 0.95] }}
             exit={{
-              translateY: "-50vh",
+              translateY: "-50%",
               transition: {
                 duration: 1.5,
                 delay: 0.25,
@@ -60,7 +61,6 @@ export default function EventsDesktop({ event }: EventProps) {
               <motion.button
                 key={`event-${index}`}
                 initial={{ height: "3.5rem" }}
-                // whileHover={{ height: "7rem" }}
                 whileHover={
                   hoveredIndex === index
                     ? { height: "7rem" }
@@ -106,7 +106,6 @@ export default function EventsDesktop({ event }: EventProps) {
                     style={{
                       top: mousePosition.y,
                       left: mousePosition.x,
-                      translateY: "0",
                     }}
                     initial={{ height: 0 }}
                     animate={{ height: "10rem" }}
@@ -133,15 +132,25 @@ export default function EventsDesktop({ event }: EventProps) {
 
                 <div className="relative flex h-auto w-full flex-col px-[1rem]">
                   <div className="flex items-center justify-between">
-                    <div className="flex h-[5.5rem] flex-col overflow-hidden">
-                      <h2 className="eventTitle transition-transform delay-200 duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
-                        {eventItem.eventTitle}
-                      </h2>
-                      <h2 className="eventTitle transition-transform delay-200 duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
-                        {eventItem.eventTitle}
-                      </h2>
-                    </div>
-                    <div className="rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
+                    {eventItem.eventTitle?.length! > 15 ? (
+                      <div className="flex h-[5.5rem] flex-col overflow-hidden rounded-r-full">
+                        <Marquee
+                          text={eventItem.eventTitle!}
+                          className="eventTitle group-hover:animate-marquee whitespace-nowrap transition-transform delay-200 duration-500 ease-tamisitée"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-[5.5rem] flex-col overflow-hidden">
+                        <h2 className="eventTitle transition-transform delay-200 duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
+                          {eventItem.eventTitle}
+                        </h2>
+                        <h2 className="eventTitle transition-transform delay-200 duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
+                          {eventItem.eventTitle}
+                        </h2>
+                      </div>
+                    )}
+
+                    <div className="whitespace-nowrap rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
                       <DateFormat
                         dateString={eventItem.eventDate?.eventStartDate || ""}
                       />
