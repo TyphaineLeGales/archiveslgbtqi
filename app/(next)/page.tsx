@@ -14,7 +14,6 @@ export default async function Page() {
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
   ]);
 
-  console.log("Heroes: ", homePage?.heroes);
   return (
     <div className="relative min-h-screen pb-[100vh]">
       <Hero heroes={homePage} />

@@ -32,8 +32,8 @@ export default function ContactForm() {
     }
 
     // toast error
-    console.log(result?.error);
-    toast.error("Something went wrong!");
+    // console.log(result?.error);
+    // toast.error("Something went wrong!");
   };
 
   return (

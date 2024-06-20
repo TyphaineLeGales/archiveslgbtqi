@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import DateFormat from "../DateFormat";
 import { EventQueryResult } from "@/sanity.types";
+import Image from "next/image";
 
 type Event = {
   params: {
@@ -15,18 +16,18 @@ export default function SingleEvent({ params, event }: Event) {
   return (
     <motion.div>
       <motion.div
-        initial={{ translateY: "-50vh" }}
-        animate={{ translateY: "-100vh" }}
+        initial={{ translateY: "-50%" }}
+        animate={{ translateY: "-100%" }}
         transition={{
           duration: 1.5,
           ease: [0.6, 0.01, 0.05, 0.95],
         }}
         className="fixed inset-0 z-50 bg-neutral-700"
       />
-      <div className="">
-        <div className="flex justify-between border-b-[1px] border-black px-[1rem]">
-          <h1 className="eventTitle w-2/3 truncate">{event?.eventTitle}</h1>
-          <div className="h-fit w-1/3 rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
+      <div className="flex flex-col gap-[1rem]">
+        <div className="flex flex-col justify-between gap-[1rem] border-b-[1px] border-black px-[1rem]">
+          <h1 className="eventTitle">{event?.eventTitle}</h1>
+          <div className="mb-[1rem] flex h-fit w-fit rounded-full border-[1px] border-black px-[1rem] py-[.5rem] text-[.75rem]">
             <DateFormat dateString={event?.eventDate?.eventStartDate || ""} />
             {event?.eventDate?.addEndDate && (
               <div>
@@ -36,7 +37,26 @@ export default function SingleEvent({ params, event }: Event) {
             )}
           </div>
         </div>
-        <p>{event?.eventDescription}</p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 1,
+            ease: [0.6, 0.01, 0.05, 0.95],
+          }}
+          className="flex gap-[1rem] overflow-hidden px-[1rem]"
+        >
+          <p>{event?.eventDescription}</p>
+          <Image
+            src={
+              event?.image?.imageUrl || "https://via.placeholder.com/1000x1000"
+            }
+            alt={event?.image?.alt || "Event image"}
+            width={1000}
+            height={1000}
+            loading="eager"
+          />
+        </motion.div>
       </div>
     </motion.div>
   );
