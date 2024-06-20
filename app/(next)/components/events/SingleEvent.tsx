@@ -39,7 +39,6 @@ export default function SingleEvent({ params, event }: Event) {
           <span className="eventLocation">{event?.eventLocation}</span>
           <p>{event?.eventDescription}</p>
         </div>
-        {/* <div className="flex flex-col items-start justify-between gap-[1rem] overflow-hidden px-[1rem]"> */}
         <Image
           src={
             event?.image?.imageUrl || "https://via.placeholder.com/1000x1000"
@@ -48,9 +47,8 @@ export default function SingleEvent({ params, event }: Event) {
           width={1000}
           height={1000}
           loading="eager"
-          className="h-auto min-w-full"
+          className="h-auto min-w-full px-[1rem]"
         />
-        {/* </div> */}
       </div>
     </motion.div>
   );
