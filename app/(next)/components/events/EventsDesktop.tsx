@@ -48,14 +48,6 @@ export default function EventsDesktop({ event }: EventProps) {
             initial={{ translateY: "100%" }}
             animate={{ translateY: 0 }}
             transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
-            exit={{
-              translateY: "-50%",
-              transition: {
-                duration: 1.5,
-                delay: 0.25,
-                ease: [0.6, 0.01, 0.05, 0.95],
-              },
-            }}
             className="fixed inset-0 z-50 bg-neutral-700"
           />
         )}
