@@ -49,7 +49,7 @@ export default function EventsDesktop({ event }: EventProps) {
               translateY: "-50vh",
               transition: {
                 duration: 1.5,
-                delay: 0.5,
+                delay: 0.25,
                 ease: [0.6, 0.01, 0.05, 0.95],
               },
             }}
@@ -59,8 +59,19 @@ export default function EventsDesktop({ event }: EventProps) {
             {event?.map((eventItem, index) => (
               <motion.button
                 key={`event-${index}`}
-                initial={{ height: "4rem" }}
-                whileHover={{ height: "20vh" }}
+                initial={{ height: "3.5rem" }}
+                // whileHover={{ height: "7rem" }}
+                whileHover={
+                  hoveredIndex === index
+                    ? { height: "7rem" }
+                    : {
+                        height: "2rem",
+                        transition: {
+                          duration: 1.5,
+                          ease: [0.6, 0.01, 0.05, 0.95],
+                        },
+                      }
+                }
                 transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
                 exit={
                   hoveredIndex === index
@@ -80,7 +91,7 @@ export default function EventsDesktop({ event }: EventProps) {
                         },
                       }
                 }
-                className="group relative flex h-[4rem] items-start overflow-hidden border-b-[1px] border-black bg-white"
+                className="group relative flex items-start overflow-hidden border-b-[1px] border-black bg-white"
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
                 onClick={() => {
@@ -97,9 +108,9 @@ export default function EventsDesktop({ event }: EventProps) {
                       left: mousePosition.x,
                       translateY: "0",
                     }}
-                    initial={{ height: "0vh" }}
-                    animate={{ height: "20vh" }}
-                    exit={{ height: "0vh" }}
+                    initial={{ height: 0 }}
+                    animate={{ height: "10rem" }}
+                    exit={{ height: 0 }}
                     transition={{
                       duration: 1,
                       ease: [0.6, 0.01, 0.05, 0.95],
@@ -122,7 +133,7 @@ export default function EventsDesktop({ event }: EventProps) {
 
                 <div className="relative flex h-auto w-full flex-col px-[1rem]">
                   <div className="flex items-center justify-between">
-                    <div className="flex h-[5rem] flex-col overflow-hidden">
+                    <div className="flex h-[5.5rem] flex-col overflow-hidden">
                       <h2 className="eventTitle transition-transform delay-200 duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
                         {eventItem.eventTitle}
                       </h2>
