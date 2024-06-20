@@ -31,6 +31,6 @@
   }
 
   .eventTitle {
-    @apply text-start text-[5rem] font-semibold uppercase leading-[5rem] tracking-tighter;
+    @apply text-start text-[3rem] font-semibold uppercase leading-[3rem] tracking-tighter lg:text-[5rem] lg:leading-[5rem];
   }
 }

@@ -14,7 +14,7 @@ export default function NorthEastArrow({ className }: NorthEastArrowProps) {
       fill="none"
       className={className}
     >
-      <path d="M246 10L48 208M79 10H246V177" stroke="black" stroke-width="18" />
+      <path d="M246 10L48 208M79 10H246V177" stroke="black" strokeWidth="18" />
     </svg>
   );
 }

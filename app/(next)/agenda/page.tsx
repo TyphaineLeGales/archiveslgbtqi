@@ -14,10 +14,7 @@ export default async function Page() {
   ]);
 
   return (
-    <div className="min-h-[85dvh] py-[1rem]">
-      {/* <h1 className="whitespace-nowrap px-[1rem] pb-[2rem] text-[3rem] font-semibold uppercase leading-[2.5rem] tracking-tighter">
-        L&apos;agenda
-      </h1> */}
+    <div className="min-h-[100dvh] py-[1rem]">
       <Event events={events} />
     </div>
   );
