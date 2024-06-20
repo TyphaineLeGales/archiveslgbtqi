@@ -31,10 +31,6 @@ export default function EventsMobile({ event }: EventProps) {
     }
   };
 
-  console.log("isClickedIndex", isClickedIndex);
-  console.log("isClicked", isClicked);
-  console.log("isLinkClicked", isLinkClicked);
-
   return (
     <AnimatePresence>
       <>
@@ -50,11 +46,11 @@ export default function EventsMobile({ event }: EventProps) {
           {event?.map((eventItem, index) => (
             <motion.div
               key={`event-${index}`}
-              initial={{ height: "2.5rem" }}
+              initial={{ height: "3.5rem" }}
               animate={
                 isClicked && isClickedIndex === index
                   ? { height: "10rem" }
-                  : { height: "2.5rem" }
+                  : { height: "3.5rem" }
               }
               transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
               onClick={() => handleClicked(index)}
@@ -67,7 +63,7 @@ export default function EventsMobile({ event }: EventProps) {
                       text={eventItem.eventTitle!}
                       className={clsx(
                         isClicked && isClickedIndex === index
-                          ? "w-[calc(75%+1rem)] animate-marquee rounded-r-full"
+                          ? "w-[calc(50%+1rem)] animate-marquee rounded-r-full"
                           : "",
                         "eventTitle whitespace-nowrap px-[1rem] pt-[.5rem]",
                       )}
@@ -84,6 +80,7 @@ export default function EventsMobile({ event }: EventProps) {
                         ? { translateX: 0 }
                         : { translateX: "100%" }
                     }
+                    transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
                     exit={{
                       translateX: "100%",
                       transition: {
@@ -91,7 +88,6 @@ export default function EventsMobile({ event }: EventProps) {
                         ease: [0.6, 0.01, 0.05, 0.95],
                       },
                     }}
-                    transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
                     className="overflow-hidden"
                   >
                     <button
@@ -100,9 +96,9 @@ export default function EventsMobile({ event }: EventProps) {
                         setIsLinkClicked(true);
                         setTimeout(() => {
                           router.push(`/agenda/${eventItem.slug?.current}`);
-                        }, 500);
+                        }, 1000);
                       }}
-                      className="flex justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black bg-white py-[.30rem] pl-[5rem] pr-[1rem]"
+                      className="flex w-auto justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black bg-white py-[.30rem] pl-[5rem] pr-[1rem]"
                     >
                       <NorthEastArrow className="aspect-square h-[2rem] w-[2rem] pt-1" />
                     </button>
@@ -112,11 +108,13 @@ export default function EventsMobile({ event }: EventProps) {
                   <DateFormat
                     dateString={eventItem.eventDate?.eventStartDate || ""}
                   />
-                  <span className="mx-[0.5rem]">→</span>
                   {eventItem.eventDate?.addEndDate && (
-                    <DateFormat
-                      dateString={eventItem.eventDate?.eventEndDate || ""}
-                    />
+                    <div className="flex w-1/2 items-center justify-between">
+                      <span className="mx-[0.5rem]">→</span>
+                      <DateFormat
+                        dateString={eventItem.eventDate?.eventEndDate || ""}
+                      />
+                    </div>
                   )}
                 </div>
               </div>

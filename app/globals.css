@@ -31,6 +31,14 @@
   }
 
   .eventTitle {
-    @apply text-start text-[3rem] font-semibold uppercase leading-[3rem] tracking-tighter lg:text-[5rem] lg:leading-[5rem];
+    @apply text-start text-[4rem] font-semibold uppercase leading-[4rem] tracking-tighter lg:text-[5rem] lg:leading-[5rem];
+  }
+
+  .eventDate {
+    @apply text-start text-[1rem] font-semibold uppercase leading-[1rem] tracking-tighter lg:text-[1.5rem] lg:leading-[1.5rem];
+  }
+
+  .eventLocation {
+    @apply text-start text-[1.5rem] font-semibold leading-[1.5rem] tracking-tighter lg:text-[2rem] lg:leading-[2rem];
   }
 }
