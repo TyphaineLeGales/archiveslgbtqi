@@ -7,104 +7,130 @@ import DateFormat from "../DateFormat";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { NorthEastArrow } from "../ui/icon";
+import { useRouter } from "next/navigation";
+import Marquee from "../ui/Marquee";
+import clsx from "clsx";
 
 type EventProps = {
   event: EventsQueryResult;
 };
 
 export default function EventsMobile({ event }: EventProps) {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const router = useRouter();
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [isClickedIndex, setIsClickedIndex] = useState<number | null>(null);
+  const [isLinkClicked, setIsLinkClicked] = useState<boolean>(false);
 
-  const handleClick = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const handleClicked = (index: number) => {
+    if (isClickedIndex === index) {
+      setIsClickedIndex(null);
+      setIsClicked(false);
+    } else {
+      setIsClickedIndex(index);
+      setIsClicked(true);
+    }
   };
 
+  console.log("isClickedIndex", isClickedIndex);
+  console.log("isClicked", isClicked);
+  console.log("isLinkClicked", isLinkClicked);
+
   return (
-    <div className="no-scrollbar flex min-h-[85dvh] flex-col justify-end overflow-y-scroll lg:hidden">
-      {event?.map((eventItem, index) => (
-        <motion.div
-          key={`event-${index}`}
-          initial={{ height: "3.25rem" }}
-          animate={{
-            height: expandedIndex === index ? "40rem" : "3.25rem",
-            overflow: "hidden",
-          }}
-          transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
-          className="no-scrollbar group relative flex h-auto items-start overflow-hidden overflow-y-auto border-b-[1px] border-black pb-[2rem]"
-          onClick={() => handleClick(index)}
-        >
-          <div className="relative flex w-full flex-col justify-start gap-[1rem]">
-            <h2 className="border-b-[1px] border-black px-[1rem] text-[2.5rem] font-semibold uppercase leading-[5rem] tracking-tighter">
-              {eventItem.eventTitle}
-            </h2>
-            <div className="px-[1rem]">
-              <div className="flex justify-between rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
-                <DateFormat
-                  dateString={eventItem.eventDate?.eventStartDate || ""}
-                />
-                <span className="mx-[0.5rem]">→</span>
-                {eventItem.eventDate?.addEndDate && (
-                  <div>
+    <AnimatePresence>
+      <>
+        {isLinkClicked && (
+          <motion.div
+            initial={{ translateY: "100%" }}
+            animate={{ translateY: "-50%" }}
+            transition={{ duration: 1.5, ease: [0.6, 0.01, 0.05, 0.95] }}
+            exit={{
+              translateY: "-50%",
+              transition: {
+                duration: 1.5,
+                delay: 0.25,
+                ease: [0.6, 0.01, 0.05, 0.95],
+              },
+            }}
+            className="fixed inset-0 z-50 bg-neutral-700"
+          />
+        )}
+        <div className="no-scrollbar flex min-h-[85dvh] flex-col justify-end lg:hidden">
+          {event?.map((eventItem, index) => (
+            <motion.div
+              key={`event-${index}`}
+              initial={{ height: "2.5rem" }}
+              animate={
+                isClickedIndex === index
+                  ? { height: "10rem" }
+                  : { height: "2.5rem" }
+              }
+              transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
+              onClick={() => handleClicked(index)}
+              className="group relative flex h-auto cursor-pointer items-start overflow-hidden border-b-[1px] border-black pb-[2rem]"
+            >
+              <div className="relative flex w-full flex-col justify-start gap-[1rem]">
+                <div className="flex items-center justify-between">
+                  {eventItem.eventTitle?.length! > 15 ? (
+                    <Marquee
+                      text={eventItem.eventTitle!}
+                      className={clsx(
+                        isClicked && isClickedIndex === index
+                          ? "w-[calc(75%+1rem)] animate-marquee rounded-r-full"
+                          : "",
+                        "eventTitle whitespace-nowrap px-[1rem] pt-[.5rem]",
+                      )}
+                    />
+                  ) : (
+                    <h2 className="eventTitle px-[1rem] pt-[.5rem]">
+                      {eventItem.eventTitle}
+                    </h2>
+                  )}
+                  <motion.div
+                    initial={{ translateX: "100%" }}
+                    animate={
+                      isClicked && isClickedIndex === index
+                        ? { translateX: 0 }
+                        : { translateX: "100%" }
+                    }
+                    exit={{
+                      translateX: "100%",
+                      transition: {
+                        duration: 1,
+                        ease: [0.6, 0.01, 0.05, 0.95],
+                      },
+                    }}
+                    transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
+                    className="overflow-hidden"
+                  >
+                    <button
+                      onClick={() => {
+                        setIsLinkClicked(true);
+                        setTimeout(() => {
+                          router.push(`/agenda/${eventItem.slug?.current}`);
+                        }, 1500);
+                      }}
+                      className="flex justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black bg-white py-[.30rem] pl-[5rem] pr-[1rem]"
+                    >
+                      <NorthEastArrow className="aspect-square h-[2rem] w-[2rem] pt-1" />
+                    </button>
+                  </motion.div>
+                </div>
+                <div className="mx-[1rem] flex justify-between rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
+                  <DateFormat
+                    dateString={eventItem.eventDate?.eventStartDate || ""}
+                  />
+                  <span className="mx-[0.5rem]">→</span>
+                  {eventItem.eventDate?.addEndDate && (
                     <DateFormat
                       dateString={eventItem.eventDate?.eventEndDate || ""}
                     />
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
-            <AnimatePresence>
-              {expandedIndex === index && (
-                <>
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <Link
-                      href={`/agenda/${eventItem.slug?.current}`}
-                      className="absolute right-0 top-[1.25rem] flex w-[calc(50%-1rem)] justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black py-[.20rem] pr-[1rem]"
-                    >
-                      <NorthEastArrow className="aspect-square h-[2rem] w-[2rem] pt-1" />
-                    </Link>
-                  </motion.div>
-                  <div className="px-[1rem]">
-                    <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      {eventItem.eventDescription}
-                    </motion.p>
-                    <motion.div
-                      key={`image-${index}`}
-                      initial={{ opacity: 0, y: "-100%" }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-full"
-                    >
-                      <Image
-                        src={
-                          eventItem.image?.imageUrl ||
-                          "https://via.placeholder.com/1000x1000"
-                        }
-                        alt={eventItem.image?.alt || "Event image"}
-                        width={500}
-                        height={500}
-                        loading="eager"
-                      />
-                    </motion.div>
-                  </div>
-                </>
-              )}
-            </AnimatePresence>
-          </div>
-        </motion.div>
-      ))}
-    </div>
+            </motion.div>
+          ))}
+        </div>
+      </>
+    </AnimatePresence>
   );
 }
