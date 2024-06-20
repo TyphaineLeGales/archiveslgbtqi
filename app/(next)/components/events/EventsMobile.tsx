@@ -41,16 +41,8 @@ export default function EventsMobile({ event }: EventProps) {
         {isLinkClicked && (
           <motion.div
             initial={{ translateY: "100%" }}
-            animate={{ translateY: "-50%" }}
-            transition={{ duration: 1.5, ease: [0.6, 0.01, 0.05, 0.95] }}
-            exit={{
-              translateY: "-50%",
-              transition: {
-                duration: 1.5,
-                delay: 0.25,
-                ease: [0.6, 0.01, 0.05, 0.95],
-              },
-            }}
+            animate={{ translateY: 0 }}
+            transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
             className="fixed inset-0 z-50 bg-neutral-700"
           />
         )}
@@ -60,7 +52,7 @@ export default function EventsMobile({ event }: EventProps) {
               key={`event-${index}`}
               initial={{ height: "2.5rem" }}
               animate={
-                isClickedIndex === index
+                isClicked && isClickedIndex === index
                   ? { height: "10rem" }
                   : { height: "2.5rem" }
               }
@@ -103,11 +95,12 @@ export default function EventsMobile({ event }: EventProps) {
                     className="overflow-hidden"
                   >
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
                         setIsLinkClicked(true);
                         setTimeout(() => {
                           router.push(`/agenda/${eventItem.slug?.current}`);
-                        }, 1500);
+                        }, 500);
                       }}
                       className="flex justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black bg-white py-[.30rem] pl-[5rem] pr-[1rem]"
                     >

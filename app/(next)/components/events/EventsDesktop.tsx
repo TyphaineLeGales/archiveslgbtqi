@@ -15,10 +15,11 @@ type EventProps = {
 };
 
 export default function EventsDesktop({ event }: EventProps) {
+  const router = useRouter();
+
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isClicked, setIsClicked] = useState<boolean>(false);
-  const router = useRouter();
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
@@ -45,8 +46,8 @@ export default function EventsDesktop({ event }: EventProps) {
         {isClicked && (
           <motion.div
             initial={{ translateY: "100%" }}
-            animate={{ translateY: "-50%" }}
-            transition={{ duration: 1.5, ease: [0.6, 0.01, 0.05, 0.95] }}
+            animate={{ translateY: 0 }}
+            transition={{ duration: 1, ease: [0.6, 0.01, 0.05, 0.95] }}
             exit={{
               translateY: "-50%",
               transition: {
@@ -59,7 +60,6 @@ export default function EventsDesktop({ event }: EventProps) {
           />
         )}
         <motion.div className="hidden min-h-[85dvh] flex-col justify-end lg:flex">
-          {/* {isClicked && ()} */}
           {event?.map((eventItem, index) => (
             <motion.button
               key={`event-${index}`}
@@ -68,7 +68,7 @@ export default function EventsDesktop({ event }: EventProps) {
                 hoveredIndex === index
                   ? { height: "7rem" }
                   : {
-                      height: "2rem",
+                      height: "3.5rem",
                       transition: {
                         duration: 1,
                         ease: [0.6, 0.01, 0.05, 0.95],
@@ -101,7 +101,7 @@ export default function EventsDesktop({ event }: EventProps) {
                 setIsClicked(true);
                 setTimeout(() => {
                   router.push(`/agenda/${eventItem.slug?.current}`);
-                }, 1500);
+                }, 1000);
               }}
             >
               {hoveredIndex === index && (
