@@ -144,9 +144,9 @@ export default function EventsDesktop({ event }: EventProps) {
                       )}
                     </div>
                   </div>
-                  <p className="absolute bottom-0 left-0 translate-y-[100%] transition-all duration-500 ease-tamisitée group-hover:translate-y-[100%]">
+                  {/* <p className="absolute bottom-0 left-0 translate-y-[100%] transition-all duration-500 ease-tamisitée group-hover:translate-y-[100%]">
                     {eventItem.eventDescription}
-                  </p>
+                  </p> */}
                 </div>
               </motion.button>
             ))}
