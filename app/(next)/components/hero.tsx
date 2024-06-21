@@ -40,7 +40,7 @@ const HeroList = ({ heroes }: Props) => {
       data-lenis-prevent
       className="no-scrollbar relative mb-[5vh] h-auto max-h-[100vh] overflow-y-scroll"
     >
-      {heroes.heroes?.map((hero, index) => (
+      {heroes?.hero?.map((hero, index) => (
         <Link
           key={`hero-${index}`}
           href={hero.cta?.ctaLink?.slug || ""}
@@ -72,9 +72,9 @@ const HeroList = ({ heroes }: Props) => {
                       aria-hidden
                       className="overflow-hidden text-[5rem] font-bold uppercase leading-[4.5rem] tracking-tighter"
                     >
-                      {hero.title?.split("").map((char) => (
+                      {hero.title?.split("").map((char, i) => (
                         <motion.div
-                          key={hero.title?.indexOf(char)}
+                          key={i}
                           variants={AnimatedText}
                           className="inline-block"
                         >

@@ -2,6 +2,8 @@ import { groq } from "next-sanity";
 
 export const settingsQuery = groq`*[_type == "settings"][0]`;
 
+// Type
+
 const postFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),
@@ -11,6 +13,41 @@ const postFields = /* groq */ `
   coverImage,
   "date": coalesce(date, _updatedAt),
   "author": author->{"name": coalesce(name, "Anonymous"), picture},
+`;
+
+export const heroFields = /* groq */ `
+  ...,
+  _id,
+  _key,
+  "image": image{
+    "imageUrl": image.asset->url,
+    alt,
+  },
+  cta {
+    ctaLabel,
+    ctaLink->{
+      "slug": slug.current
+    }
+  },
+`;
+
+export const multiBlocksFields = /* groq */ `
+  ...,
+  _id,
+  _key,
+  "image": image{
+    "imageUrl": image.asset->url,
+    alt,
+  },
+  cta {
+    ctaLabel,
+    ctaLink->{
+      "slug": slug.current
+    }
+  },
+  reference->{
+    ...,
+  },
 `;
 
 export const moreStoriesQuery = groq`*[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
@@ -75,23 +112,13 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
 }`;
 
 export const homepageQuery = groq`*[_type == "homepage"][0] {
-  "heroes": heroes[]{
-    title,
-    paragraph,
-    "image": image{
-      "imageUrl": image.asset->url,
-      alt,
-    },
-    "cta": cta{
-      ctaLabel,
-      "ctaLink": ctaLink->{
-        _id,
-        _type,
-        title,
-        "slug": slug.current,
-      },
-    },
+  ...,
+  "hero": hero.hero[]{
+    ${heroFields}
   },
+  "multiBlock": multiBlock{
+    ${multiBlocksFields}
+  }
 }`;
 
 export const eventsQuery = groq`*[_type == "events"] | order(eventDate.eventStartDate desc) {
@@ -119,3 +146,5 @@ export const eventQuery = groq`*[_type == "events" && slug.current == $event] [0
       alt,
     },
 }`;
+
+export const lesArchivesVivantesQuery = groq`*[_type == "lesArchivesVivantes"][0]`;

@@ -6,7 +6,8 @@ export function SplitText({ children, ...rest }: any) {
   return words.map((word: string | number, i: number) => {
     return (
       <div
-        key={children + i}
+        // key={children + i}
+        key={i}
         style={{ display: "inline-block", overflow: "hidden" }}
       >
         <motion.div

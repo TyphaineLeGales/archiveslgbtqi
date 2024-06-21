@@ -22,7 +22,10 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "document-file" &&
           item.getId() !== "single-image" &&
           item.getId() !== "customExternalLink" &&
-          item.getId() !== "link",
+          item.getId() !== "link" &&
+          item.getId() !== "lesArchivesVivantes",
       ),
-      //hidden document types
+      S.documentListItem()
+        .id("lesArchivesVivantes")
+        .schemaType("lesArchivesVivantes"),
     ]);
