@@ -15,6 +15,14 @@ export default defineType({
       title: "Multi Block",
       name: "Multi-Block",
     },
+    {
+      title: "Vidéo",
+      name: "video",
+    },
+    {
+      title: "Outro",
+      name: "outro",
+    },
   ],
   fields: [
     // Hero
@@ -222,6 +230,52 @@ export default defineType({
               type: "string",
             }),
           ],
+        }),
+      ],
+    }),
+    // Vidéo
+    defineField({
+      name: "video",
+      title: "Vidéo",
+      type: "object",
+      group: "video",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
+        defineField({
+          name: "videoTitle",
+          title: "Title",
+          type: "string",
+        }),
+        defineField({
+          name: "videoLink",
+          title: "Video Link",
+          type: "url",
+        }),
+      ],
+    }),
+    // Outro
+    defineField({
+      name: "outro",
+      title: "Outro",
+      type: "object",
+      group: "outro",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
+        defineField({
+          name: "outroTitle",
+          title: "Outro Title",
+          type: "string",
+        }),
+        defineField({
+          name: "outroText",
+          title: "Outro Text",
+          type: "richtext",
         }),
       ],
     }),
