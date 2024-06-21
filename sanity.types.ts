@@ -536,8 +536,26 @@ export type HomepageQueryResult = {
     } | null;
   } | null;
 } | null;
+// Variable: eventsQuery
+// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate > now()] | order(eventDate.eventStartDate asc) {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
+export type EventsQueryResult = Array<{
+  _id: string;
+  eventTitle: string | null;
+  slug: Slug | null;
+  eventDate: {
+    eventStartDate?: string;
+    addEndDate?: boolean;
+    eventEndDate?: string;
+  } | null;
+  eventDescription: string | null;
+  eventLocation: string | null;
+  image: {
+    imageUrl: string | null;
+    alt: string | null;
+  } | null;
+}>;
 // Variable: eventQuery
-// Query: *[_type == "events" && slug.current == $event] [0]{  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
+// Query: *[_type == "events" && slug.current == $event][0]{  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type EventQueryResult = {
   _id: string;
   eventTitle: string | null;
