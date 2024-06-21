@@ -38,7 +38,7 @@ const HeroList = ({ heroes }: Props) => {
   return (
     <div
       data-lenis-prevent
-      className="no-scrollbar relative mb-[5vh] h-auto max-h-[100vh] overflow-y-scroll"
+      className="no-scrollbar relative h-auto max-h-[100vh] overflow-y-scroll"
     >
       {heroes?.hero?.map((hero, index) => (
         <Link

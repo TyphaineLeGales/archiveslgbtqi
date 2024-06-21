@@ -476,7 +476,7 @@ export type PagesContentQueryResult = {
   > | null;
 } | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      "slug": slug.current    }  },  },  "multiBlocks": multiBlock.multiBlock[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      "slug": slug.current    }  },  // eventsBlock array of reference of events  eventsBlock[]->{    _id,    eventTitle,    slug,    eventDate,    eventDescription,    eventLocation,    "image": eventImage{        "imageUrl": image.asset->url,        alt,      },  },  }}
+// Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      "slug": slug.current    }  },  },  "multiBlock": multiBlock {    leBlogBlock {      title,      "linkToBlog": linkToBlog->_ref,      blogLabel    },    lesArchivesVivantesBlock {      title,      vimeo {        vimeoTitle,        linkToVimeo      },      podcast {        linkToPodcast,        podcastTitle      }    },    eventsBlock {      "events": events[]->{        _id,        eventTitle,        slug,        eventDate,        eventDescription,        eventLocation,        "image": eventImage{          "imageUrl": image.asset->url,          alt,        }      }    }  }}
 export type HomepageQueryResult = {
   _id: string;
   _type: "homepage";
@@ -499,58 +499,43 @@ export type HomepageQueryResult = {
     _id: null;
     _key: string;
   }> | null;
-  multiBlock?: {
-    eventsBlock?: {
-      events?: Array<{
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "events";
-      }>;
-    };
-    lesArchivesVivantesBlock?: {
-      title?: string;
-      podcast?: {
-        podcastTitle?: string;
-        linkToPodcast?: string;
-      };
-      vimeo?: {
-        vimeoTitle?: string;
-        linkToVimeo?: string;
-      };
-    };
-    leBlogBlock?: {
-      title?: string;
-      linkToBlog?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "pages";
-      };
-      blogLabel?: string;
-    };
-  };
-  multiBlocks: null;
+  multiBlock: {
+    leBlogBlock: {
+      title: string | null;
+      linkToBlog: null;
+      blogLabel: string | null;
+    } | null;
+    lesArchivesVivantesBlock: {
+      title: string | null;
+      vimeo: {
+        vimeoTitle: string | null;
+        linkToVimeo: string | null;
+      } | null;
+      podcast: {
+        linkToPodcast: string | null;
+        podcastTitle: string | null;
+      } | null;
+    } | null;
+    eventsBlock: {
+      events: Array<{
+        _id: string;
+        eventTitle: string | null;
+        slug: Slug | null;
+        eventDate: {
+          eventStartDate?: string;
+          addEndDate?: boolean;
+          eventEndDate?: string;
+        } | null;
+        eventDescription: string | null;
+        eventLocation: string | null;
+        image: {
+          imageUrl: string | null;
+          alt: string | null;
+        } | null;
+      }> | null;
+    } | null;
+  } | null;
 } | null;
-// Variable: eventsQuery
-// Query: *[_type == "events"] | order(eventDate.eventStartDate desc) {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
-export type EventsQueryResult = Array<{
-  _id: string;
-  eventTitle: string | null;
-  slug: Slug | null;
-  eventDate: {
-    eventStartDate?: string;
-    addEndDate?: boolean;
-    eventEndDate?: string;
-  } | null;
-  eventDescription: string | null;
-  eventLocation: string | null;
-  image: {
-    imageUrl: string | null;
-    alt: string | null;
-  } | null;
-}>;
 // Variable: eventQuery
 // Query: *[_type == "events" && slug.current == $event] [0]{  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type EventQueryResult = {
