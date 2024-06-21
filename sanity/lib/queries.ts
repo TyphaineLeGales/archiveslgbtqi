@@ -117,7 +117,6 @@ export const homepageQuery = groq`
   "hero": hero.hero[]{
     ${heroFields}
   },
-
   "multiBlock": multiBlock {
     leBlogBlock {
       title,
@@ -148,8 +147,16 @@ export const homepageQuery = groq`
           alt,
         }
       }
-    }
-  }
+    },
+  },
+  video {
+    videoTitle,
+    videoLink,
+  },
+  outro {
+    outroTitle,
+    outroText,
+  },
 }`;
 
 export const eventsQuery = groq`*[_type == "events" ] | order(eventDate.eventStartDate desc) {

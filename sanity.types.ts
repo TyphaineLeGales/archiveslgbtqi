@@ -243,6 +243,25 @@ export type Homepage = {
       blogLabel?: string;
     };
   };
+  video?: {
+    videoTitle?: string;
+    videoLink?: string;
+  };
+  outro?: {
+    outroTitle?: string;
+    outroText?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "richtext";
+    };
+  };
+};
+
+export type Document = {
+  _type: "reference";
+  _ref: string;
+  _weak?: boolean;
 };
 
 export type Pages = {
@@ -476,7 +495,7 @@ export type PagesContentQueryResult = {
   > | null;
 } | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      "slug": slug.current    }  },  },  "multiBlock": multiBlock {    leBlogBlock {      title,      "linkToBlog": linkToBlog->_ref,      blogLabel    },    lesArchivesVivantesBlock {      title,      vimeo {        vimeoTitle,        linkToVimeo      },      podcast {        linkToPodcast,        podcastTitle      }    },    eventsBlock {      "events": events[]->{        _id,        eventTitle,        slug,        eventDate,        eventDescription,        eventLocation,        "image": eventImage{          "imageUrl": image.asset->url,          alt,        }      }    }  }}
+// Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      "slug": slug.current    }  },  },  "multiBlock": multiBlock {    leBlogBlock {      title,      "linkToBlog": linkToBlog->_ref,      blogLabel    },    lesArchivesVivantesBlock {      title,      vimeo {        vimeoTitle,        linkToVimeo      },      podcast {        linkToPodcast,        podcastTitle      }    },    eventsBlock {      "events": events[]->{        _id,        eventTitle,        slug,        eventDate,        eventDescription,        eventLocation,        "image": eventImage{          "imageUrl": image.asset->url,          alt,        }      }    },  },  video {    videoTitle,    videoLink,  },  outro {    outroTitle,    outroText,  },}
 export type HomepageQueryResult = {
   _id: string;
   _type: "homepage";
@@ -535,9 +554,22 @@ export type HomepageQueryResult = {
       }> | null;
     } | null;
   } | null;
+  video: {
+    videoTitle: string | null;
+    videoLink: string | null;
+  } | null;
+  outro: {
+    outroTitle: string | null;
+    outroText: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "richtext";
+    } | null;
+  } | null;
 } | null;
 // Variable: eventsQuery
-// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate > now()] | order(eventDate.eventStartDate asc) {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
+// Query: *[_type == "events" ] | order(eventDate.eventStartDate desc) {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
 export type EventsQueryResult = Array<{
   _id: string;
   eventTitle: string | null;
