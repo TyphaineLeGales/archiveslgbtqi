@@ -154,6 +154,18 @@ export type Events = {
   };
 };
 
+export type LesArchivesVivantes = {
+  _id: string;
+  _type: "lesArchivesVivantes";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  linkToVimeo?: string;
+  linkToPodcast?: string;
+};
+
 export type Footer = {
   _id: string;
   _type: "footer";
@@ -169,34 +181,68 @@ export type Homepage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  heroes?: Array<{
-    title?: string;
-    paragraph?: string;
-    image?: {
+  hero?: {
+    hero?: Array<{
+      title?: string;
+      paragraph?: string;
       image?: {
-        asset?: {
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+        alt?: string;
+      };
+      cta?: {
+        ctaLabel?: string;
+        ctaLink?: {
           _ref: string;
           _type: "reference";
           _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          [internalGroqTypeReferenceTo]?: "pages";
         };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
       };
-      alt?: string;
+      _key: string;
+    }>;
+  };
+  multiBlock?: {
+    eventsBlock?: {
+      events?: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "events";
+      }>;
     };
-    cta?: {
-      ctaLabel?: string;
-      ctaLink?: {
+    lesArchivesVivantesBlock?: {
+      title?: string;
+      podcast?: {
+        podcastTitle?: string;
+        linkToPodcast?: string;
+      };
+      vimeo?: {
+        vimeoTitle?: string;
+        linkToVimeo?: string;
+      };
+    };
+    leBlogBlock?: {
+      title?: string;
+      linkToBlog?: {
         _ref: string;
         _type: "reference";
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "pages";
       };
+      blogLabel?: string;
     };
-    _key: string;
-  }>;
+  };
 };
 
 export type Pages = {
@@ -430,11 +476,16 @@ export type PagesContentQueryResult = {
   > | null;
 } | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  "heroes": heroes[]{    title,    paragraph,    "image": image{      "imageUrl": image.asset->url,      alt,    },    "cta": cta{      ctaLabel,      "ctaLink": ctaLink->{        _id,        _type,        title,        "slug": slug.current,      },    },  },}
+// Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      "slug": slug.current    }  },  },  "multiBlocks": multiBlock.multiBlock[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      "slug": slug.current    }  },  // eventsBlock array of reference of events  eventsBlock[]->{    _id,    eventTitle,    slug,    eventDate,    eventDescription,    eventLocation,    "image": eventImage{        "imageUrl": image.asset->url,        alt,      },  },  }}
 export type HomepageQueryResult = {
-  heroes: Array<{
-    title: string | null;
-    paragraph: string | null;
+  _id: string;
+  _type: "homepage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  hero: Array<{
+    title?: string;
+    paragraph?: string;
     image: {
       imageUrl: string | null;
       alt: string | null;
@@ -442,13 +493,45 @@ export type HomepageQueryResult = {
     cta: {
       ctaLabel: string | null;
       ctaLink: {
-        _id: string;
-        _type: "pages";
-        title: string | null;
         slug: string | null;
       } | null;
     } | null;
+    _id: null;
+    _key: string;
   }> | null;
+  multiBlock?: {
+    eventsBlock?: {
+      events?: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "events";
+      }>;
+    };
+    lesArchivesVivantesBlock?: {
+      title?: string;
+      podcast?: {
+        podcastTitle?: string;
+        linkToPodcast?: string;
+      };
+      vimeo?: {
+        vimeoTitle?: string;
+        linkToVimeo?: string;
+      };
+    };
+    leBlogBlock?: {
+      title?: string;
+      linkToBlog?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "pages";
+      };
+      blogLabel?: string;
+    };
+  };
+  multiBlocks: null;
 } | null;
 // Variable: eventsQuery
 // Query: *[_type == "events"] | order(eventDate.eventStartDate desc) {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
@@ -485,4 +568,17 @@ export type EventQueryResult = {
     imageUrl: string | null;
     alt: string | null;
   } | null;
+} | null;
+// Variable: lesArchivesVivantesQuery
+// Query: *[_type == "lesArchivesVivantes"][0]
+export type LesArchivesVivantesQueryResult = {
+  _id: string;
+  _type: "lesArchivesVivantes";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  linkToVimeo?: string;
+  linkToPodcast?: string;
 } | null;

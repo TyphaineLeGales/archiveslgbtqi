@@ -1,18 +1,15 @@
 import { HomepageQueryResult } from "@/sanity.types";
-import * as demo from "@/sanity/lib/demo";
+
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { homepageQuery, pagesContentQuery } from "@/sanity/lib/queries";
+import { homepageQuery } from "@/sanity/lib/queries";
 import Hero from "./components/hero";
-import Link from "next/link";
-import homepage from "@/sanity/schemas/singletons/homepage";
-import Image from "next/image";
-import { useEffect } from "react";
-import Lenis from "lenis";
 
 export default async function Page() {
   const [homePage] = await Promise.all([
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
   ]);
+
+  console.log("Homepage: ", homePage);
 
   return (
     <div className="relative min-h-screen pb-[100vh]">

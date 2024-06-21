@@ -14,22 +14,26 @@ import {
 import { structureTool } from "sanity/structure";
 
 import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
-import { pageStructure, singletonPlugin } from "@/sanity/plugins/settings";
-import { assistWithPresets } from "@/sanity/plugins/assist";
-import author from "@/sanity/schemas/documents/author";
-import post from "@/sanity/schemas/documents/post";
+import { singletonPlugin } from "@/sanity/plugins/settings";
 import settings from "@/sanity/schemas/singletons/settings";
 import { resolveHref } from "@/sanity/lib/utils";
-import header from "@/sanity/schemas/singletons/header";
-import footer from "@/sanity/schemas/singletons/footer";
-import pages from "@/sanity/schemas/documents/pages";
-import homepage from "./sanity/schemas/singletons/homepage";
 import { structure } from "./sanity/plugins/structure";
+
+// Singletons
+import header from "@/sanity/schemas/singletons/header";
+import homepage from "./sanity/schemas/singletons/homepage";
+import footer from "@/sanity/schemas/singletons/footer";
+import lesArchivesVivantes from "./sanity/schemas/singletons/les-archives-vivantes";
+
+// Documents
+import pages from "@/sanity/schemas/documents/pages";
+import events from "./sanity/schemas/documents/events";
+
+// Blocks
 import richtext from "./sanity/schemas/blocks/richtext";
 import documentFile from "./sanity/schemas/blocks/document-file";
 import singleImage from "./sanity/schemas/blocks/single-image";
 import link from "./sanity/schemas/blocks/link";
-import events from "./sanity/schemas/documents/events";
 
 const homeLocation = {
   title: "Home",
@@ -46,6 +50,7 @@ export default defineConfig({
       header,
       homepage,
       footer,
+      lesArchivesVivantes,
       // Documents
       pages,
       events,

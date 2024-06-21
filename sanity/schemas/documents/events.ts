@@ -1,9 +1,11 @@
 import { defineField, defineType } from "sanity";
+import { AsteriskIcon } from "@sanity/icons";
 
 export default defineType({
   name: "events",
   title: "Events",
   type: "document",
+  icon: AsteriskIcon,
   fields: [
     defineField({
       name: "eventTitle",
