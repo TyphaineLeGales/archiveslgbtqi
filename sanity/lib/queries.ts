@@ -111,17 +111,48 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
   }
 }`;
 
-export const homepageQuery = groq`*[_type == "homepage"][0] {
+export const homepageQuery = groq`
+*[_type == "homepage"][0] {
   ...,
   "hero": hero.hero[]{
     ${heroFields}
   },
-  "multiBlock": multiBlock{
-    ${multiBlocksFields}
+
+  "multiBlock": multiBlock {
+    leBlogBlock {
+      title,
+      "linkToBlog": linkToBlog->_ref,
+      blogLabel
+    },
+    lesArchivesVivantesBlock {
+      title,
+      vimeo {
+        vimeoTitle,
+        linkToVimeo
+      },
+      podcast {
+        linkToPodcast,
+        podcastTitle
+      }
+    },
+    eventsBlock {
+      "events": events[]->{
+        _id,
+        eventTitle,
+        slug,
+        eventDate,
+        eventDescription,
+        eventLocation,
+        "image": eventImage{
+          "imageUrl": image.asset->url,
+          alt,
+        }
+      }
+    }
   }
 }`;
 
-export const eventsQuery = groq`*[_type == "events"] | order(eventDate.eventStartDate desc) {
+export const eventsQuery = groq`*[_type == "events" ] | order(eventDate.eventStartDate desc) {
   _id,
   eventTitle,
   slug,
@@ -129,12 +160,12 @@ export const eventsQuery = groq`*[_type == "events"] | order(eventDate.eventStar
   eventDescription,
   eventLocation,
   "image": eventImage{
-      "imageUrl": image.asset->url,
-      alt,
-    },
+    "imageUrl": image.asset->url,
+    alt,
+  },
 }`;
 
-export const eventQuery = groq`*[_type == "events" && slug.current == $event] [0]{
+export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]{
   _id,
   eventTitle,
   slug,
