@@ -1,8 +1,8 @@
 import { groq } from "next-sanity";
 
 export const settingsQuery = groq`*[_type == "settings"][0] {
-  ...,
- "globalSettings": {
+  "globalSettings": {
+    "siteTitle": globalSettings.siteTitle,
     "ogImage": globalSettings.ogImage.asset->url,
     "altText": globalSettings.ogImage.alt
   },
@@ -19,6 +19,25 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
       "externalLinkDetails": {
         "title": externalLink.title,
         "url": externalLink.url
+      }
+    }
+  },
+  "footer": {
+    "moduleGroups": footer.moduleGroups[] {
+      ...,
+      "modules": modules[] {
+        type,
+        "internalDetails": internalLink-> {
+          _id,
+          _type,
+          title,
+          "slug": slug.current
+        },
+        "externalDetails": {
+          "title": externalLink.title,
+          "url": externalLink.url
+        },
+        "text": text
       }
     }
   }

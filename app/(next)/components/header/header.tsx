@@ -1,23 +1,19 @@
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { groq } from "next-sanity";
 import React from "react";
 
 import Image from "next/image";
-import { urlForImage } from "@/sanity/lib/utils";
 import Link from "next/link";
-import { headerQuery, settingsQuery } from "@/sanity/lib/queries";
 
-import DesktopNavLink from "./navlink-desktop";
-import MobileNavLink from "./header-mobile";
-import MobileHeader from "./header-mobile";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { settingsQuery } from "@/sanity/lib/queries";
 import { SettingsQueryResult } from "@/sanity.types";
+
+import HeaderDesktop from "./HeaderDesktop";
+import HeaderMobile from "./HeaderMobile";
 
 export default async function Header() {
   const settings = await sanityFetch<SettingsQueryResult>({
     query: settingsQuery,
   });
-
-  console.log("Settings:", settings);
 
   return (
     <div className="relative flex items-center justify-between p-[1rem]">
@@ -27,11 +23,11 @@ export default async function Header() {
           alt="logo"
           width={65}
           height={65}
-          className="h-auto w-[65px]"
+          className="h-auto max-h-[5rem] w-full"
         />
       </Link>
-      <DesktopNavLink settings={settings} />
-      <MobileHeader settings={settings} />
+      <HeaderDesktop settings={settings} />
+      <HeaderMobile settings={settings} />
     </div>
   );
 }

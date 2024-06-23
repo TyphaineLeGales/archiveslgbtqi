@@ -315,6 +315,7 @@ export type Settings = {
   _updatedAt: string;
   _rev: string;
   globalSettings?: {
+    siteTitle?: string;
     ogImage?: {
       asset?: {
         _ref: string;
@@ -508,14 +509,10 @@ export type SanityImageMetadata = {
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {  ..., "globalSettings": {    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      type,      "internalLinkDetails": internalLink-> {        _id,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        "title": externalLink.title,        "url": externalLink.url      }    }  }}
+// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      type,      "internalLinkDetails": internalLink-> {        _id,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    "moduleGroups": footer.moduleGroups[] {      ...,      "modules": modules[] {        type,        "internalDetails": internalLink-> {          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
 export type SettingsQueryResult = {
-  _id: string;
-  _type: "settings";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
   globalSettings: {
+    siteTitle: null;
     ogImage: string | null;
     altText: string | null;
   };
@@ -535,26 +532,24 @@ export type SettingsQueryResult = {
       };
     }> | null;
   };
-  footer?: {
-    moduleGroups?: Array<{
+  footer: {
+    moduleGroups: Array<{
       groupName?: string;
-      modules?: Array<{
-        type?: "external" | "internal" | "text";
-        internalLink?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "pages";
+      modules: Array<{
+        type: "external" | "internal" | "text" | null;
+        internalDetails: {
+          _id: string;
+          _type: "pages";
+          title: string | null;
+          slug: string | null;
+        } | null;
+        externalDetails: {
+          title: string | null;
+          url: string | null;
         };
-        externalLink?: {
-          title?: string;
-          url?: string;
-        };
-        text?: string;
-        _key: string;
-      }>;
-      _key: string;
-    }>;
+        text: string | null;
+      }> | null;
+    }> | null;
   };
 } | null;
 // Variable: moreStoriesQuery

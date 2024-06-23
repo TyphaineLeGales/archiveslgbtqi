@@ -8,7 +8,7 @@ type NavLinkProps = {
   settings: SettingsQueryResult;
 };
 
-export default function DesktopNavLink({ settings }: NavLinkProps) {
+export default function HeaderDesktop({ settings }: NavLinkProps) {
   return (
     <nav className="hidden gap-[1rem] lg:flex">
       {settings?.header.links &&

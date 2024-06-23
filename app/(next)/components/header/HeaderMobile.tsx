@@ -8,7 +8,7 @@ type NavLinkProps = {
   settings: SettingsQueryResult;
 };
 
-export default function MobileHeader({ settings }: NavLinkProps) {
+export default function HeaderMobile({ settings }: NavLinkProps) {
   const menuRef = React.useRef<HTMLDivElement>(null);
   const [menu, setMenu] = React.useState(false);
 
