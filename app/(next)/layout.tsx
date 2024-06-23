@@ -30,7 +30,6 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
-          {/* <Suspense></Suspense> */}
         </section>
         {draftMode().isEnabled && <VisualEditing />}
         <SpeedInsights />

@@ -27,8 +27,9 @@ export default function MultiBlock({ multiBlocks }: Props) {
               <Image
                 src={event.image?.imageUrl || ""}
                 alt={event.image?.alt || ""}
-                width={100}
-                height={100}
+                width="100"
+                height="100"
+                className="h-auto w-full"
               />
             </div>
           ))}

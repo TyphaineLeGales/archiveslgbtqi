@@ -1,16 +1,14 @@
 "use client";
-import { HeaderQueryResult } from "@/sanity.types";
+import { HeaderQueryResult, SettingsQueryResult } from "@/sanity.types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
 type NavLinkProps = {
-  headerContents: HeaderQueryResult;
+  settings: SettingsQueryResult;
 };
 
-export default function MobileHeader({ headerContents }: NavLinkProps) {
-  const pathname = usePathname();
-
+export default function MobileHeader({ settings }: NavLinkProps) {
   const menuRef = React.useRef<HTMLDivElement>(null);
   const [menu, setMenu] = React.useState(false);
 
@@ -24,7 +22,7 @@ export default function MobileHeader({ headerContents }: NavLinkProps) {
         [menu]
       </button>
 
-      <nav
+      <div
         ref={menuRef}
         className="fixed inset-0 z-50 hidden flex-col gap-[1rem] bg-white p-[1rem] lg:hidden"
       >
@@ -34,18 +32,33 @@ export default function MobileHeader({ headerContents }: NavLinkProps) {
         >
           [close]
         </button>
-        {headerContents[0].url?.map((link) => (
-          <div key={link.slug} className="flex flex-col">
-            <Link
-              href={`/${link.slug || ""}`}
-              onClick={handleMenu}
-              className="flex flex-col"
-            >
-              {link.title || ""}
-            </Link>
-          </div>
-        ))}
-      </nav>
+        <nav className="flex flex-col gap-[1rem] p-[1rem]">
+          {settings?.header.links &&
+            settings.header.links.map((link, index) => {
+              if (link.type === "internal") {
+                return (
+                  <Link
+                    key={`link-${index}`}
+                    href={`/${link.internalLinkDetails?.slug || ""}`}
+                  >
+                    {link.internalLinkDetails?.title || ""}
+                  </Link>
+                );
+              } else {
+                return (
+                  <a
+                    key={`link-${index}`}
+                    href={link.externalLinkDetails.url || ""}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link.externalLinkDetails.title}
+                  </a>
+                );
+              }
+            })}
+        </nav>
+      </div>
     </div>
   );
 }

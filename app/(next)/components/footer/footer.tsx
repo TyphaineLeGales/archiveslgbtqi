@@ -9,6 +9,7 @@ export default async function Footer() {
   });
 
   return (
+    // TODO: Implement Footer
     <div className="flex w-full items-center justify-center p-[1rem]">
       <div>
         <h1>{footerContents?.title}</h1>

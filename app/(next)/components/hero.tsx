@@ -53,9 +53,9 @@ const HeroList = ({ heroes }: Props) => {
                   hero.image.imageUrl || "https://via.placeholder.com/1920x1080"
                 }
                 alt={hero.image.alt || ""}
-                className="max-h-[100dvh] min-h-[100dvh] min-w-full object-cover"
-                width="1920"
-                height="1080"
+                className="h-full max-h-[100dvh] min-h-[100dvh] w-full min-w-full object-cover"
+                width={1920}
+                height={1080}
               />
               <div className="absolute inset-0 flex items-center justify-center px-[10rem]">
                 <div className="mb-[10vh] space-y-[2rem] text-center text-white mix-blend-difference">

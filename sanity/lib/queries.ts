@@ -1,6 +1,28 @@
 import { groq } from "next-sanity";
 
-export const settingsQuery = groq`*[_type == "settings"][0]`;
+export const settingsQuery = groq`*[_type == "settings"][0] {
+  ...,
+ "globalSettings": {
+    "ogImage": globalSettings.ogImage.asset->url,
+    "altText": globalSettings.ogImage.alt
+  },
+  "header": {
+    "logo": header.logo.asset->url,
+    "links": header.headerLinks[] {
+      type,
+      "internalLinkDetails": internalLink-> {
+        _id,
+        _type,
+        title,
+        "slug": slug.current
+      },
+      "externalLinkDetails": {
+        "title": externalLink.title,
+        "url": externalLink.url
+      }
+    }
+  }
+}`;
 
 // Type
 
