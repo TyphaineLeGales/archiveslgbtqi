@@ -275,7 +275,8 @@ export default defineType({
         defineField({
           name: "outroText",
           title: "Outro Text",
-          type: "richtext",
+          type: "array",
+          of: [{ type: "block" }],
         }),
       ],
     }),

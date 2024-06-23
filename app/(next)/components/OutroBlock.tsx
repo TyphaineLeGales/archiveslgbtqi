@@ -12,9 +12,7 @@ export default function OutroBlock({ outro }: Props) {
     <div>
       <h1>OutroBlock</h1>
       <div className="min-h-full">
-        {/* <PortableText value={outro?.outro?.outroText} /> */}
-        {/* TODO: Implement PortableText */}
-        {/* <CustomPortableText value={outro?.outro?.outroText!} /> */}
+        <CustomPortableText value={outro?.outro?.outroText! as any} />
       </div>
     </div>
   );

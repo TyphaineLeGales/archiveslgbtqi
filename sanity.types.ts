@@ -249,19 +249,25 @@ export type Homepage = {
   };
   outro?: {
     outroTitle?: string;
-    outroText?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "richtext";
-    };
+    outroText?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
   };
-};
-
-export type Document = {
-  _type: "reference";
-  _ref: string;
-  _weak?: boolean;
 };
 
 export type Pages = {
@@ -560,12 +566,24 @@ export type HomepageQueryResult = {
   } | null;
   outro: {
     outroTitle: string | null;
-    outroText: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "richtext";
-    } | null;
+    outroText: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
   } | null;
 } | null;
 // Variable: eventsQuery
