@@ -65,14 +65,15 @@ const HeroList = ({ heroes }: Props) => {
                       initial="hidden"
                       whileInView="visible"
                       transition={{
-                        linear: [0.6, 0.01, 0.05, 0.95],
+                        ease: [0.6, 0.01, 0.05, 0.95],
                         delay: 0.15,
                         staggerChildren: 0.1,
+                        duration: 0.1,
                       }}
                       aria-hidden
                       className="overflow-hidden text-[5rem] font-bold uppercase leading-[4.5rem] tracking-tighter"
                     >
-                      {hero.title?.split("").map((char, i) => (
+                      {hero.title?.split(" ").map((char, i) => (
                         <motion.div
                           key={i}
                           variants={AnimatedText}
@@ -92,7 +93,7 @@ const HeroList = ({ heroes }: Props) => {
                         visible: (i: number) => ({
                           y: 0,
                           transition: {
-                            delay: i * 0.05,
+                            delay: i * 0.01,
                             ease: [0.6, 0.01, -0.05, 0.9],
                           },
                         }),

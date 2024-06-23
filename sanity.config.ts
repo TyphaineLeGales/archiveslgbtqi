@@ -47,6 +47,7 @@ export default defineConfig({
   schema: {
     types: [
       // Singletons
+      settings,
       header,
       homepage,
       footer,

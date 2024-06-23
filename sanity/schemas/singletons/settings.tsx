@@ -1,120 +1,428 @@
-import { CogIcon } from "@sanity/icons";
-import { defineArrayMember, defineField, defineType } from "sanity";
+// import { CogIcon } from "@sanity/icons";
+// import { defineField, defineType } from "sanity";
 
-import * as demo from "@/sanity/lib/demo";
+// import * as demo from "@/sanity/lib/demo";
+
+// export default defineType({
+//   name: "settings",
+//   title: "Settings",
+//   type: "document",
+//   icon: CogIcon,
+//   groups: [
+//     {
+//       title: "🔧 Global Settings",
+//       name: "globalSettings",
+//     },
+//     {
+//       title: "Header",
+//       name: "header",
+//     },
+//     {
+//       title: "Footer",
+//       name: "footer",
+//     },
+//   ],
+//   fields: [
+//     defineField({
+//       name: "globalSettings",
+//       title: "🔧 Global Settings",
+//       type: "object",
+//       group: "globalSettings",
+//       options: {
+//         collapsible: true,
+//         collapsed: true,
+//       },
+//       fields: [
+//         defineField({
+//           name: "ogImage",
+//           title: "Open Graph Image",
+//           type: "image",
+//           description: "Displayed on social cards and search engine results.",
+//           options: {
+//             hotspot: true,
+//             aiAssist: {
+//               imageDescriptionField: "alt",
+//             },
+//           },
+//           fields: [
+//             defineField({
+//               name: "alt",
+//               description: "Important for accessibility and SEO.",
+//               title: "Alternative text",
+//               type: "string",
+//               validation: (rule) => {
+//                 return rule.custom((alt, context) => {
+//                   if ((context.document?.ogImage as any)?.asset?._ref && !alt) {
+//                     return "Required";
+//                   }
+//                   return true;
+//                 });
+//               },
+//             }),
+//           ],
+//         }),
+//       ],
+//     }),
+//     defineField({
+//       name: "header",
+//       title: "Header",
+//       type: "object",
+//       group: "header",
+//       options: {
+//         collapsible: true,
+//         collapsed: true,
+//       },
+//       fields: [
+//         defineField({
+//           name: "logo",
+//           description: "This is the logo of your website.",
+//           title: "Logo",
+//           type: "image",
+//         }),
+//         defineField({
+//           name: "headerLinks",
+//           description: "This all the links for your header.",
+//           title: "Header Links",
+//           type: "array",
+//           of: [
+//             {
+//               type: "object",
+//               title: "Link",
+//               fields: [
+//                 defineField({
+//                   name: "type",
+//                   title: "Type of Link",
+//                   type: "string",
+//                   options: {
+//                     list: [
+//                       { title: "Internal", value: "internal" },
+//                       { title: "External", value: "external" },
+//                     ],
+//                   },
+//                 }),
+//                 defineField({
+//                   name: "internalLink",
+//                   title: "Internal Link",
+//                   type: "reference",
+//                   to: [{ type: "pages" }],
+//                   hidden: ({ parent }) => parent?.type !== "internal",
+//                 }),
+//                 defineField({
+//                   name: "externalLink",
+//                   title: "External Link",
+//                   type: "object",
+//                   fields: [
+//                     defineField({
+//                       name: "title",
+//                       title: "Title",
+//                       type: "string",
+//                     }),
+//                     defineField({
+//                       name: "url",
+//                       title: "URL",
+//                       type: "url",
+//                     }),
+//                   ],
+//                   hidden: ({ parent }) => parent?.type !== "external",
+//                 }),
+//               ],
+//               preview: {
+//                 select: {
+//                   title: "internalLink.title",
+//                   slug: "internalLink.slug.current",
+//                   type: "type",
+//                   externalTitle: "externalLink.title",
+//                   externalUrl: "externalLink.url",
+//                 },
+//                 prepare(selection) {
+//                   const { title, slug, type, externalTitle, externalUrl } =
+//                     selection;
+//                   if (type === "internal") {
+//                     return {
+//                       title: title || "No title selected",
+//                       subtitle: `Internal Link - /${slug}`,
+//                     };
+//                   } else {
+//                     return {
+//                       title: externalTitle || "No URL title",
+//                       subtitle: externalUrl
+//                         ? `External Link - URL: ${externalUrl}`
+//                         : "No URL",
+//                     };
+//                   }
+//                 },
+//               },
+//             },
+//           ],
+//         }),
+//       ],
+//     }),
+//     defineField({
+//       name: "footer",
+//       title: "Footer",
+//       type: "object",
+//       group: "footer",
+//       options: {
+//         collapsible: true,
+//         collapsed: true,
+//       },
+//       fields: [
+//         defineField({
+//           name: "footerLinks",
+//           description: "This all the links for your footer.",
+//           title: "Footer Links",
+//           type: "array",
+//           of: [
+//             {
+//               type: "object",
+//               title: "Link",
+//               fields: [
+//                 defineField({
+//                   name: "type",
+//                   title: "Type of Link",
+//                   type: "string",
+//                   options: {
+//                     list: [
+//                       { title: "Internal", value: "internal" },
+//                       { title: "External", value: "external" },
+//                     ],
+//                   },
+//                 }),
+//                 defineField({
+//                   name: "internalLink",
+//                   title: "Internal Link",
+//                   type: "reference",
+//                   to: [{ type: "pages" }],
+//                   hidden: ({ parent }) => parent?.type !== "internal",
+//                 }),
+//                 defineField({
+//                   name: "externalLink",
+//                   title: "External Link",
+//                   type: "object",
+//                   fields: [
+//                     defineField({
+//                       name: "title",
+//                       title: "Title",
+//                       type: "string",
+//                     }),
+//                     defineField({
+//                       name: "url",
+//                       title: "URL",
+//                       type: "url",
+//                     }),
+//                   ],
+//                   hidden: ({ parent }) => parent?.type !== "external",
+//                 }),
+//               ],
+//               preview: {
+//                 select: {
+//                   title: "internalLink.title",
+//                   slug: "internalLink.slug.current",
+//                   type: "type",
+//                   externalTitle: "externalLink.title",
+//                   externalUrl: "externalLink.url",
+//                 },
+//                 prepare(selection) {
+//                   const { title, slug, type, externalTitle, externalUrl } =
+//                     selection;
+//                   if (type === "internal") {
+//                     return {
+//                       title: title || "No title selected",
+//                       subtitle: `Internal Link - /${slug}`,
+//                     };
+//                   } else {
+//                     return {
+//                       title: externalTitle || "No URL title",
+//                       subtitle: externalUrl
+//                         ? `External Link - URL: ${externalUrl}`
+//                         : "No URL",
+//                     };
+//                   }
+//                 },
+//               },
+//             },
+//           ],
+//         }),
+//       ],
+//     }),
+//   ],
+//   preview: {
+//     prepare() {
+//       return {
+//         title: "Settings",
+//         description: "Header, Footer, and other global settings.",
+//       };
+//     },
+//   },
+// });
+
+import { CogIcon } from "@sanity/icons";
+import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "settings",
   title: "Settings",
   type: "document",
   icon: CogIcon,
+  groups: [
+    {
+      title: "🔧 Global Settings",
+      name: "globalSettings",
+    },
+    {
+      title: "Header",
+      name: "header",
+    },
+    {
+      title: "Footer",
+      name: "footer",
+    },
+  ],
   fields: [
     defineField({
-      name: "title",
-      description: "This field is the title of your blog.",
-      title: "Title",
-      type: "string",
-      initialValue: demo.title,
-      validation: (rule) => rule.required(),
+      name: "globalSettings",
+      title: "🔧 Global Settings",
+      type: "object",
+      group: "globalSettings",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
+        defineField({
+          name: "ogImage",
+          title: "Open Graph Image",
+          type: "image",
+          description: "Displayed on social cards and search engine results.",
+          fields: [
+            defineField({
+              name: "alt",
+              description: "Important for accessibility and SEO.",
+              title: "Alternative text",
+              type: "string",
+              validation: (rule) => {
+                return rule.custom((alt, context) => {
+                  if ((context.document?.ogImage as any)?.asset?._ref && !alt) {
+                    return "Required";
+                  }
+                  return true;
+                });
+              },
+            }),
+          ],
+        }),
+      ],
     }),
     defineField({
-      name: "description",
-      description:
-        "Used both for the <meta> description tag for SEO, and the blog subheader.",
-      title: "Description",
-      type: "array",
-      initialValue: demo.description,
-      of: [
-        defineArrayMember({
-          type: "block",
-          options: {},
-          styles: [],
-          lists: [],
-          marks: {
-            decorators: [],
-            annotations: [
-              defineField({
-                type: "object",
-                name: "link",
-                fields: [
-                  {
-                    type: "string",
-                    name: "href",
-                    title: "URL",
-                    validation: (rule) => rule.required(),
+      name: "header",
+      title: "Header",
+      type: "object",
+      group: "header",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
+        defineField({
+          name: "logo",
+          description: "This is the logo of your website.",
+          title: "Logo",
+          type: "image",
+        }),
+        defineField({
+          name: "headerLinks",
+          description: "This all the links for your header.",
+          title: "Header Links",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              title: "Link",
+              fields: [
+                defineField({
+                  name: "type",
+                  title: "Type of Link",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "Internal", value: "internal" },
+                      { title: "External", value: "external" },
+                    ],
                   },
-                ],
-              }),
-            ],
-          },
+                }),
+                defineField({
+                  name: "internalLink",
+                  title: "Internal Link",
+                  type: "reference",
+                  to: [{ type: "pages" }],
+                  hidden: ({ parent }) => parent?.type !== "internal",
+                }),
+                defineField({
+                  name: "externalLink",
+                  title: "External Link",
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "title",
+                      title: "Title",
+                      type: "string",
+                    }),
+                    defineField({
+                      name: "url",
+                      title: "URL",
+                      type: "url",
+                    }),
+                  ],
+                  hidden: ({ parent }) => parent?.type !== "external",
+                }),
+              ],
+              preview: {
+                select: {
+                  title: "internalLink.title",
+                  slug: "internalLink.slug.current",
+                  type: "type",
+                  externalTitle: "externalLink.title",
+                  externalUrl: "externalLink.url",
+                },
+                prepare(selection) {
+                  const { title, slug, type, externalTitle, externalUrl } =
+                    selection;
+                  if (type === "internal") {
+                    return {
+                      title: title || "No title selected",
+                      subtitle: `Internal Link - /${slug}`,
+                    };
+                  } else {
+                    return {
+                      title: externalTitle || "No URL title",
+                      subtitle: externalUrl
+                        ? `External Link - URL: ${externalUrl}`
+                        : "No URL",
+                    };
+                  }
+                },
+              },
+            },
+          ],
         }),
       ],
     }),
     defineField({
       name: "footer",
-      description:
-        "This is a block of text that will be displayed at the bottom of the page.",
-      title: "Footer Info",
-      type: "array",
-      of: [
-        defineArrayMember({
-          type: "block",
-          marks: {
-            annotations: [
-              {
-                name: "link",
-                type: "object",
-                title: "Link",
-                fields: [
-                  {
-                    name: "href",
-                    type: "url",
-                    title: "Url",
-                  },
-                ],
-              },
-            ],
-          },
-        }),
-      ],
-    }),
-    defineField({
-      name: "ogImage",
-      title: "Open Graph Image",
-      type: "image",
-      description: "Displayed on social cards and search engine results.",
+      title: "Footer",
+      type: "object",
+      group: "footer",
       options: {
-        hotspot: true,
-        aiAssist: {
-          imageDescriptionField: "alt",
-        },
+        collapsible: true,
+        collapsed: true,
       },
       fields: [
         defineField({
-          name: "alt",
-          description: "Important for accessibility and SEO.",
-          title: "Alternative text",
-          type: "string",
-          validation: (rule) => {
-            return rule.custom((alt, context) => {
-              if ((context.document?.ogImage as any)?.asset?._ref && !alt) {
-                return "Required";
-              }
-              return true;
-            });
-          },
-        }),
-        defineField({
-          name: "metadataBase",
-          type: "url",
-          description: (
-            <a
-              href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase"
-              rel="noreferrer noopener"
-            >
-              More information
-            </a>
-          ),
+          name: "moduleGroups",
+          title: "Module Groups",
+          type: "array",
+          description: "Manage groups of module for the footer.",
+          of: [moduleGroupstructure()], // Assume moduleGroupstructure returns the defined object structure for link groups
         }),
       ],
     }),
@@ -123,7 +431,109 @@ export default defineType({
     prepare() {
       return {
         title: "Settings",
+        description: "Header, Footer, and other global settings.",
       };
     },
   },
 });
+
+function moduleGroupstructure() {
+  return {
+    type: "object",
+    title: "Module Group",
+    fields: [
+      defineField({
+        name: "groupName",
+        title: "Group Name",
+        type: "string",
+      }),
+      defineField({
+        name: "modules",
+        title: "Modules",
+        type: "array",
+        of: [
+          {
+            type: "object",
+            title: "Link",
+            fields: [
+              defineField({
+                name: "type",
+                title: "Type of Module",
+                type: "string",
+                options: {
+                  list: [
+                    { title: "Internal", value: "internal" },
+                    { title: "External", value: "external" },
+                    { title: "Text", value: "text" },
+                  ],
+                },
+              }),
+              defineField({
+                name: "internalLink",
+                title: "Internal Link",
+                type: "reference",
+                to: [{ type: "pages" }],
+                hidden: ({ parent }) => parent?.type !== "internal",
+              }),
+              defineField({
+                name: "externalLink",
+                title: "External Link",
+                type: "object",
+                fields: [
+                  defineField({
+                    name: "title",
+                    title: "Title",
+                    type: "string",
+                  }),
+                  defineField({
+                    name: "url",
+                    title: "URL",
+                    type: "url",
+                  }),
+                ],
+                hidden: ({ parent }) => parent?.type !== "external",
+              }),
+              defineField({
+                name: "text",
+                title: "Text",
+                type: "string",
+                hidden: ({ parent }) => parent?.type !== "text",
+              }),
+            ],
+            preview: {
+              select: {
+                title: "internalLink.title",
+                slug: "internalLink.slug.current",
+                text: "text",
+                type: "type",
+                externalTitle: "externalLink.title",
+                externalUrl: "externalLink.url",
+              },
+              prepare(selection) {
+                const { title, slug, text, type, externalTitle, externalUrl } =
+                  selection;
+                if (type === "internal") {
+                  return {
+                    title: title || "No title selected",
+                    subtitle: `Internal Link - /${slug}`,
+                  };
+                } else if (type === "text") {
+                  return {
+                    title: text || "No text",
+                  };
+                } else {
+                  return {
+                    title: externalTitle || "No URL title",
+                    subtitle: externalUrl
+                      ? `External Link - URL: ${externalUrl}`
+                      : "No URL",
+                  };
+                }
+              },
+            },
+          },
+        ],
+      }),
+    ],
+  };
+}

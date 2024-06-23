@@ -6,6 +6,7 @@ export const structure = (S: StructureBuilder) =>
     .items([
       // Make a singleton of the document with ID header”
       S.documentListItem().id("header").schemaType("header"),
+      S.documentListItem().id("settings").schemaType("settings"),
       S.documentListItem().id("homepage").schemaType("homepage"),
       S.documentListItem().id("footer").schemaType("footer"),
       S.divider(),
@@ -15,6 +16,7 @@ export const structure = (S: StructureBuilder) =>
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId() !== "homepage" &&
+          item.getId() !== "settings" &&
           item.getId() !== "header" &&
           item.getId() !== "footer" &&
           item.getId() !== "pages" &&
