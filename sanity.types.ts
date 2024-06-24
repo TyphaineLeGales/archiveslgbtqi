@@ -509,10 +509,10 @@ export type SanityImageMetadata = {
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      type,      "internalLinkDetails": internalLink-> {        _id,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    "moduleGroups": footer.moduleGroups[] {      ...,      "modules": modules[] {        type,        "internalDetails": internalLink-> {          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
+// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      type,      "internalLinkDetails": internalLink-> {        _id,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    "moduleGroups": footer.moduleGroups[] {      ...,      "modules": modules[] {        type,        "internalDetails": internalLink-> {          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
 export type SettingsQueryResult = {
   globalSettings: {
-    siteTitle: null;
+    siteTitle: string | null;
     ogImage: string | null;
     altText: string | null;
   };

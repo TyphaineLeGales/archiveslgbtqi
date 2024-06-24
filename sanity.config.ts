@@ -20,9 +20,7 @@ import { resolveHref } from "@/sanity/lib/utils";
 import { structure } from "./sanity/plugins/structure";
 
 // Singletons
-import header from "@/sanity/schemas/singletons/header";
 import homepage from "./sanity/schemas/singletons/homepage";
-import footer from "@/sanity/schemas/singletons/footer";
 import lesArchivesVivantes from "./sanity/schemas/singletons/les-archives-vivantes";
 
 // Documents
@@ -48,9 +46,7 @@ export default defineConfig({
     types: [
       // Singletons
       settings,
-      header,
       homepage,
-      footer,
       lesArchivesVivantes,
       // Documents
       pages,
