@@ -1,23 +1,20 @@
-import {
-  EventQueryResult,
-  EventsQueryResult,
-  PagesContentQueryResult,
-} from "@/sanity.types";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import {
-  eventQuery,
-  eventsQuery,
-  pagesContentQuery,
-} from "@/sanity/lib/queries";
-import { notFound } from "next/navigation";
 import React from "react";
-import CustomImage from "../components/custom-image";
-import Link from "next/link";
-import CustomPortableText from "../portable-text";
-import MultiImages from "../components/ui/MultiImages";
-import { ca } from "date-fns/locale";
+
+import { EventsQueryResult, PagesContentQueryResult } from "@/sanity.types";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { eventsQuery, pagesContentQuery } from "@/sanity/lib/queries";
+
+import { notFound } from "next/navigation";
+
 import ContactForm from "../components/contact-form";
-import EventsModules from "../components/modules/EventsModules";
+
+import {
+  EventsModule,
+  LinksModule,
+  SingleImageModule,
+  MultiImagesModule,
+  RichTextModule,
+} from "../components/modules";
 
 type Props = {
   params: {
@@ -50,37 +47,27 @@ export default async function Page({ params }: Props) {
             {(() => {
               switch (item._type as string) {
                 case "richtext":
-                  return (
-                    <div className="py-[1rem]">
-                      <CustomPortableText value={item?.richtext!} />
-                    </div>
-                  );
+                  return <RichTextModule item={item} />;
+
                 case "single-image":
                   return (
-                    <CustomImage
+                    <SingleImageModule
                       imageUrl={item.imageUrl || ""}
-                      title={item.imageTitle || ""}
+                      imageTitle={item.imageTitle || ""}
                     />
                   );
+
                 case "multi-images":
-                  return <MultiImages item={item as any} />;
-                case "link": {
-                  const link = item;
-                  return (
-                    <div className="py-[1rem]">
-                      <Link
-                        href={`${link.internal?.slug || link.external}`}
-                        className="underline"
-                      >
-                        {link.linkLabel}
-                      </Link>
-                    </div>
-                  );
-                }
+                  return <MultiImagesModule item={item as any} />;
+
+                case "link":
+                  return <LinksModule item={item as any} />;
+
                 case "contact-form":
                   return <ContactForm />;
+
                 case "lastEvent":
-                  return <EventsModules events={events} />;
+                  return <EventsModule events={events} />;
                 default:
                   return null;
               }
