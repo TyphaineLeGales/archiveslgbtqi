@@ -30,6 +30,10 @@
     display: none;
   }
 
+  .heroTitle {
+    @apply overflow-hidden text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter lg:text-[5rem] lg:leading-[4.5rem] lg:tracking-tighter;
+  }
+
   .eventTitle {
     @apply text-start text-[4rem] font-semibold uppercase leading-[4rem] tracking-tighter lg:text-[5rem] lg:leading-[5rem];
   }

@@ -9,11 +9,11 @@ type Props = {
 
 export default function OutroBlock({ outro }: Props) {
   return (
-    <div>
-      <h1>OutroBlock</h1>
-      <div className="min-h-full">
-        <CustomPortableText value={outro?.outro?.outroText! as any} />
-      </div>
+    <div className="flex items-center justify-center py-[5rem]">
+      <CustomPortableText
+        value={outro?.outro?.outroText! as any}
+        className="w-[50%] text-[1rem] leading-[1.5rem] tracking-tight"
+      />
     </div>
   );
 }

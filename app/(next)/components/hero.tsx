@@ -57,7 +57,7 @@ const HeroList = ({ heroes }: Props) => {
                 width={1920}
                 height={1080}
               />
-              <div className="absolute inset-0 flex items-center justify-center px-[10rem]">
+              <div className="absolute inset-0 flex items-center justify-center px-[2.5rem] lg:px-[10rem]">
                 <div className="mb-[10vh] space-y-[2rem] text-center text-white mix-blend-difference">
                   <div>
                     <h1 className="sr-only">{hero.title}</h1>
@@ -71,17 +71,10 @@ const HeroList = ({ heroes }: Props) => {
                         duration: 0.1,
                       }}
                       aria-hidden
-                      className="overflow-hidden text-[5rem] font-bold uppercase leading-[4.5rem] tracking-tighter"
                     >
-                      {hero.title?.split(" ").map((char, i) => (
-                        <motion.div
-                          key={i}
-                          variants={AnimatedText}
-                          className="inline-block"
-                        >
-                          {char}
-                        </motion.div>
-                      ))}
+                      <SplitText variants={AnimatedText} className="heroTitle">
+                        {hero.title}
+                      </SplitText>
                     </motion.h1>
                   </div>
                   <div>

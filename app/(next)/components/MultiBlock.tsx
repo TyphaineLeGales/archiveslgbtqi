@@ -9,42 +9,43 @@ type Props = {
 
 export default function MultiBlock({ multiBlocks }: Props) {
   return (
-    <div className="flex min-h-[50vh] divide-x-[1px] divide-black bg-white px-[1rem]">
+    <div className="flex min-h-[25rem] divide-x-[1px] divide-black px-[1rem] py-[1rem]">
       {/* Agenda */}
       <div className="w-1/3">
-        <Link href="/agenda" className="bg-white">
+        <Link href="/agenda" className="text-[1.5rem] font-bold uppercase">
           L&apos;agenda
         </Link>
-        <div>
+        <div className="flex flex-col gap-[1rem] pt-[2rem]">
           {multiBlocks?.multiBlock?.eventsBlock?.events?.map((event, index) => (
-            <div key={`event-${index}`}>
-              <Link
-                href={`/agenda/${event.slug?.current || ""}`}
-                className="bg-white"
-              >
-                {event.eventTitle}
-              </Link>
+            <Link
+              key={`event-${index}`}
+              href={`/agenda/${event.slug?.current || ""}`}
+              className="flex w-fit flex-col gap-[.5rem]"
+            >
+              <span>{event.eventTitle}</span>
               <Image
                 src={event.image?.imageUrl || ""}
                 alt={event.image?.alt || ""}
                 width="100"
                 height="100"
-                className="h-auto w-full"
+                className="h-auto max-h-[5rem] w-auto"
               />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
+
       {/* Les Archives Vivantes */}
-      <div className="w-1/3">
-        <h1 className="whitespace-nowrap">Les Archives Vivantes</h1>
-        <div className="flex flex-col">
+      <div className="w-1/3 pl-[1rem]">
+        <h1 className="whitespace-nowrap text-[1.5rem] font-bold uppercase">
+          Les Archives Vivantes
+        </h1>
+        <div className="flex flex-col pt-[2rem]">
           <Link
             href={
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.vimeo
                 ?.linkToVimeo || ""
             }
-            className="bg-white"
           >
             {
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.vimeo
@@ -56,7 +57,6 @@ export default function MultiBlock({ multiBlocks }: Props) {
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.podcast
                 ?.linkToPodcast || ""
             }
-            className="bg-white"
           >
             {
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.podcast
@@ -65,10 +65,13 @@ export default function MultiBlock({ multiBlocks }: Props) {
           </Link>
         </div>
       </div>
+
       {/* Le Blog */}
-      <div className="w-1/3">
-        <h1>Le Blog</h1>
-        <Link href="/blog" className="bg-white">
+      <div className="w-1/3 pl-[1rem]">
+        <h1 className="whitespace-nowrap text-[1.5rem] font-bold uppercase">
+          Le Blog
+        </h1>
+        <Link href="/blog" className="flex flex-col pt-[2rem]">
           {multiBlocks?.multiBlock?.leBlogBlock?.blogLabel}
         </Link>
       </div>

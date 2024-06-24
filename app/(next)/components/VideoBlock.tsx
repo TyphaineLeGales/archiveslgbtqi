@@ -8,7 +8,6 @@ type Props = {
 export default function VideoBlock({ video }: Props) {
   return (
     <div className="min-h-full">
-      <h1>VideoBlock</h1>
       {video?.video?.videoLink && (
         <div className="relative h-[56.25vw] max-h-[100vh]">
           <iframe

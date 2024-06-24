@@ -26,8 +26,10 @@ export default async function Header() {
           className="h-auto max-h-[5rem] w-full"
         />
       </Link>
-      <HeaderDesktop settings={settings} />
-      <HeaderMobile settings={settings} />
+      <div>
+        <HeaderDesktop settings={settings} />
+        <HeaderMobile settings={settings} />
+      </div>
     </div>
   );
 }

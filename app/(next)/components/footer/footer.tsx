@@ -11,7 +11,7 @@ export default async function Footer() {
   });
 
   return (
-    <div className="relative flex min-h-[10rem] w-full justify-center p-[1rem]">
+    <div className="relative flex min-h-[10rem] w-full justify-center bg-slate-100 p-[1rem]">
       {settings?.footer?.moduleGroups?.map && (
         <div className="grid h-fit w-auto grid-cols-3 items-start gap-[5rem]">
           {settings.footer.moduleGroups.map((moduleGroup) => (
@@ -47,7 +47,7 @@ export default async function Footer() {
           ))}
         </div>
       )}
-      <span className="absolute bottom-[1rem] right-[1rem] text-[.8rem]">
+      <span className="absolute bottom-[1rem] right-[1rem] text-[.7rem] uppercase leading-[1rem] tracking-tighter">
         &copy; {new Date().getFullYear()} {settings?.globalSettings.siteTitle}
       </span>
     </div>
