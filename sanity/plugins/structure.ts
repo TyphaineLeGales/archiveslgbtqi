@@ -19,9 +19,12 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "richtext" &&
           item.getId() !== "document-file" &&
           item.getId() !== "single-image" &&
+          item.getId() !== "multi-images" &&
           item.getId() !== "customExternalLink" &&
           item.getId() !== "link" &&
-          item.getId() !== "lesArchivesVivantes",
+          item.getId() !== "lesArchivesVivantes" &&
+          item.getId() !== "contact-form" &&
+          item.getId() !== "lastEvent",
       ),
       S.documentListItem()
         .id("lesArchivesVivantes")

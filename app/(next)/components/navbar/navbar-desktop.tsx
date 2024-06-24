@@ -12,16 +12,22 @@ type Props = {
 export default function DesktopNavigationBar({ content }: Props) {
   const { pages } = useParams();
   return (
-    <div className="fixed hidden w-[15%] flex-col items-start whitespace-nowrap pt-[2rem] lg:flex">
+    <div className="fixed hidden w-[25%] flex-col items-start gap-[1rem] whitespace-nowrap px-[1rem] pt-[2rem] lg:flex">
       {content?.navigation?.map((navItem) => (
         <Link
           key={navItem._id}
           href={navItem.slug?.current || ""}
-          className={`text-[1rem] ${
-            pages === navItem.slug?.current ? "underline" : ""
-          }`}
+          className={` ${
+            pages === navItem.slug?.current ? "font-bold" : ""
+          } sideBarTitle group relative flex h-[1.3rem] flex-col overflow-hidden pr-[.1rem]`}
         >
-          {navItem.title}
+          <span className="duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
+            {navItem.title}
+          </span>
+          <span className="duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
+            {navItem.title}
+          </span>
+          <div className="absolute bottom-0 left-0 h-[1px] w-full translate-x-[-100%] bg-black transition-transform delay-300 duration-[.7s] ease-tamisitée group-hover:translate-x-0" />
         </Link>
       ))}
     </div>

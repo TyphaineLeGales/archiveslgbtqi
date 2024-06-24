@@ -1,22 +1,25 @@
+import { Container, Heading, Hr, Text } from "@react-email/components";
+
 interface ContactFormEmailProps {
   name: string;
   email: string;
+  title: string;
   message: string;
+  attachment?: string;
 }
 
 const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
   name,
   email,
+  title,
   message,
 }) => (
-  <div>
-    <h1>Contact form submission</h1>
-    <p>
-      From <strong>{name}</strong> at {email}
-    </p>
-    <h2>Message:</h2>
-    <p>{message}</p>
-  </div>
+  <Container>
+    <Heading as="h3">Nom: {name}</Heading>
+    <Heading as="h3">Adresse email: {email}</Heading>
+    <Hr />
+    <Text>{message}</Text>
+  </Container>
 );
 
 export default ContactFormEmail;

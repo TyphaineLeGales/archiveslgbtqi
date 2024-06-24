@@ -29,7 +29,7 @@ export default async function Layout({ children, params }: Props) {
         <MobileNavigationBar content={content} />
         <DesktopNavigationBar content={content} />
       </nav>
-      <div className="ml-[calc(15%+.5rem)]">{children}</div>
+      <div className="lg:ml-[calc(25%+.5rem)]">{children}</div>
     </>
   );
 }

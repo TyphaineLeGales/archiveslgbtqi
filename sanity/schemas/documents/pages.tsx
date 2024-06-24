@@ -1,4 +1,4 @@
-import { DocumentTextIcon } from "@sanity/icons";
+import { DocumentIcon, FolderIcon, icons } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 /**
@@ -16,7 +16,7 @@ import { defineField, defineType } from "sanity";
 export default defineType({
   name: "pages",
   title: "Pages",
-  icon: DocumentTextIcon,
+  icon: FolderIcon,
   type: "document",
   fields: [
     defineField({
@@ -51,7 +51,10 @@ export default defineType({
         { type: "document-file" },
         { type: "richtext" },
         { type: "single-image" },
+        { type: "multi-images" },
         { type: "link" },
+        { type: "contact-form" },
+        { type: "lastEvent" },
       ],
     }),
   ],

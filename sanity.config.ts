@@ -31,8 +31,11 @@ import events from "./sanity/schemas/documents/events";
 import richtext from "./sanity/schemas/blocks/richtext";
 import documentFile from "./sanity/schemas/blocks/document-file";
 import singleImage from "./sanity/schemas/blocks/single-image";
+import multiImages from "./sanity/schemas/blocks/multi-images";
 import link from "./sanity/schemas/blocks/link";
 import blogs from "./sanity/schemas/documents/blogs";
+import contactForm from "./sanity/schemas/blocks/contact-form";
+import lastEvent from "./sanity/schemas/blocks/last-event";
 
 const homeLocation = {
   title: "Home",
@@ -57,7 +60,10 @@ export default defineConfig({
       richtext,
       documentFile,
       singleImage,
+      multiImages,
       link,
+      contactForm,
+      lastEvent,
     ],
   },
   plugins: [

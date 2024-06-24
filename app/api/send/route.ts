@@ -6,10 +6,15 @@ export async function GET() {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "Acme <contact@tamisitee-experiment.com>",
+      from: "<contact@tamisitee-experiment.com>",
       to: ["thibaut.randria@gmail.com"],
       subject: "Hello world",
       react: EmailTemplate({ firstName: "John" }),
+      attachments: [
+        {
+          filename: "logo.png",
+        },
+      ],
     });
 
     if (error) {

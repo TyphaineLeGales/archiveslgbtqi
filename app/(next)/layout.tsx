@@ -10,6 +10,7 @@ import AlertBanner from "./alert-banner";
 
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
+import Providers from "./components/ui/providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,7 +29,9 @@ export default function RootLayout({
         <section className="min-h-screen">
           {draftMode().isEnabled && <AlertBanner />}
           <Header />
-          <main>{children}</main>
+          <main className="py-[5rem]">
+            <Providers>{children}</Providers>
+          </main>
           <Footer />
         </section>
         {draftMode().isEnabled && <VisualEditing />}

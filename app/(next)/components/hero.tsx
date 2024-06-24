@@ -43,6 +43,7 @@ const HeroList = ({ heroes }: Props) => {
       {heroes?.hero?.map((hero, index) => (
         <Link
           key={`hero-${index}`}
+          // key={hero._id}
           href={hero.cta?.ctaLink?.slug || ""}
           className="sticky top-0 max-h-[100vh] bg-white"
         >

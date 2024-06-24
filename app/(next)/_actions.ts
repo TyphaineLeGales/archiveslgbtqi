@@ -27,14 +27,15 @@ export async function sendEmail(data: ContactFormInputs) {
   const result = ContactFormSchema.safeParse(data);
 
   if (result.success) {
-    const { name, email, message } = result.data;
+    const { name, email, title, message } = result.data;
+
     try {
       const data = await resend.emails.send({
         from: "Salut <contact@tamisitee-experiment.com>",
         to: ["thibaut.randria@gmail.com"],
-        subject: "Contact form submission",
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-        react: ContactFormEmail({ name, email, message }),
+        subject: `Proposition d'archive: ${title}`,
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message} `,
+        react: ContactFormEmail({ name, email, message, title }),
       });
       return { success: true, data };
     } catch (error) {

@@ -1,7 +1,6 @@
 "use client";
-import { HeaderQueryResult, SettingsQueryResult } from "@/sanity.types";
+import { SettingsQueryResult } from "@/sanity.types";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React from "react";
 
 type NavLinkProps = {

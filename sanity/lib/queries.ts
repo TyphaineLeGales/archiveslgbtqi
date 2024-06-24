@@ -91,6 +91,19 @@ export const multiBlocksFields = /* groq */ `
   },
 `;
 
+export const eventFields = /* groq */ `
+  _id,
+  eventTitle,
+  slug,
+  eventDate,
+  eventDescription,
+  eventLocation,
+  "image": eventImage{
+      "imageUrl": image.asset->url,
+      alt,
+    },
+`;
+
 export const moreStoriesQuery = groq`*[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
   ${postFields}
 }`;
@@ -138,6 +151,12 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
     "imageTitle": title,
     "imageUrl": image.asset->url,
 
+    // multi-images
+    "multiImages": images[] {
+      "imageUrl": image.asset->url,
+      alt,
+    },
+
     // link
     "linkLabel": label,
     // external
@@ -149,6 +168,11 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
       title,
       "slug": slug.current,
     },
+
+    // lastEvent
+    "isDisplayed": event.isDisplayed,
+    "eventTitle": event.title,
+    "ctaToEvents": event.ctaToEvents,
   }
 }`;
 

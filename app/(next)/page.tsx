@@ -14,7 +14,7 @@ export default async function Page() {
   // console.log("Homepage: ", homePage);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-hidden">
       <Hero heroes={homePage} />
       <MultiBlock multiBlocks={homePage} />
       <VideoBlock video={homePage} />

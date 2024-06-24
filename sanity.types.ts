@@ -46,6 +46,26 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type LastEvent = {
+  _id: string;
+  _type: "lastEvent";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  event?: {
+    isDisplayed?: boolean;
+    title?: string;
+    ctaToEvents?: string;
+  };
+};
+
+export type ContactForm = {
+  _type: "contact-form";
+  title?: string;
+  description?: string;
+  recipient?: string;
+};
+
 export type Link = {
   _type: "link";
   label?: string;
@@ -57,6 +77,30 @@ export type Link = {
     [internalGroqTypeReferenceTo]?: "pages";
   };
   external?: string;
+};
+
+export type MultiImages = {
+  _id: string;
+  _type: "multi-images";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  images?: Array<{
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    alt?: string;
+    _key: string;
+  }>;
 };
 
 export type SingleImage = {
@@ -412,9 +456,26 @@ export type Pages = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "single-image";
       }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "multi-images";
+      }
     | ({
         _key: string;
       } & Link)
+    | ({
+        _key: string;
+      } & ContactForm)
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "lastEvent";
+      }
   >;
 };
 
@@ -564,7 +625,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "eventTitle": event.title,    "ctaToEvents": event.ctaToEvents,  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -576,10 +637,24 @@ export type PagesContentQueryResult = {
   }> | null;
   content: Array<
     | {
+        _type: "contact-form";
+        richtext: null;
+        imageTitle: string | null;
+        imageUrl: null;
+        multiImages: null;
+        linkLabel: null;
+        external: null;
+        internal: null;
+        isDisplayed: null;
+        eventTitle: null;
+        ctaToEvents: null;
+      }
+    | {
         _type: "link";
         richtext: null;
         imageTitle: null;
         imageUrl: null;
+        multiImages: null;
         linkLabel: string | null;
         external: string | null;
         internal: {
@@ -588,15 +663,22 @@ export type PagesContentQueryResult = {
           title: string | null;
           slug: string | null;
         } | null;
+        isDisplayed: null;
+        eventTitle: null;
+        ctaToEvents: null;
       }
     | {
         _type: "reference";
         richtext: null;
         imageTitle: null;
         imageUrl: null;
+        multiImages: null;
         linkLabel: null;
         external: null;
         internal: null;
+        isDisplayed: null;
+        eventTitle: null;
+        ctaToEvents: null;
       }
   > | null;
 } | null;

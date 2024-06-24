@@ -18,8 +18,14 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
               <Link
                 key={`link-${index}`}
                 href={`/${link.internalLinkDetails?.slug || ""}`}
+                className="headerItem group relative flex h-[1rem] w-fit flex-col overflow-hidden"
               >
-                {link.internalLinkDetails?.title || ""}
+                <span className="transition-transform duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
+                  {link.internalLinkDetails?.title || ""}
+                </span>
+                <span className="transition-transform duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
+                  {link.internalLinkDetails?.title || ""}
+                </span>
               </Link>
             );
           } else {

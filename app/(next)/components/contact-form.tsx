@@ -25,15 +25,15 @@ export default function ContactForm() {
     const result = await sendEmail(data);
 
     if (result?.success) {
-      console.log({ data: result.data });
+      console.log({ data: result.data?.data });
       toast.success("Email sent!");
       reset();
       return;
     }
 
     // toast error
-    // console.log(result?.error);
-    // toast.error("Something went wrong!");
+    console.log(result?.error);
+    toast.error("Something went wrong!");
   };
 
   return (
@@ -41,44 +41,43 @@ export default function ContactForm() {
       onSubmit={handleSubmit(processForm)}
       className="mx-auto flex flex-1 flex-col gap-4 text-gray-600 sm:w-1/2 lg:w-1/3"
     >
-      <div>
-        <input
-          placeholder="name"
-          className="w-full rounded-lg"
-          {...register("name")}
-        />
-        {errors.name?.message && (
-          <p className="ml-1 mt-1 text-sm text-red-400">
-            {errors.name.message}
-          </p>
-        )}
-      </div>
+      <input
+        placeholder="name"
+        className="w-full rounded-lg"
+        {...register("name")}
+      />
+      {errors.name?.message && (
+        <p className="ml-1 mt-1 text-sm text-red-400">{errors.name.message}</p>
+      )}
 
-      <div>
-        <input
-          placeholder="email"
-          className="w-full rounded-lg"
-          {...register("email")}
-        />
-        {errors.email?.message && (
-          <p className="ml-1 mt-1 text-sm text-red-400">
-            {errors.email.message}
-          </p>
-        )}
-      </div>
+      <input
+        placeholder="email"
+        className="w-full rounded-lg"
+        {...register("email")}
+      />
+      {errors.email?.message && (
+        <p className="ml-1 mt-1 text-sm text-red-400">{errors.email.message}</p>
+      )}
 
-      <div>
-        <textarea
-          rows={5}
-          cols={5}
-          placeholder="message"
-          className="w-full rounded-lg"
-          {...register("message")}
-        />
-        {errors.message?.message && (
-          <p className="ml-1 text-sm text-red-400">{errors.message.message}</p>
-        )}
-      </div>
+      <input
+        placeholder="Titre de votre archive"
+        className="w-full rounded-lg"
+        {...register("title")}
+      />
+      {errors.title?.message && (
+        <p className="ml-1 mt-1 text-sm text-red-400">{errors.title.message}</p>
+      )}
+
+      <textarea
+        rows={5}
+        cols={5}
+        placeholder="message"
+        className="w-full rounded-lg"
+        {...register("message")}
+      />
+      {errors.message?.message && (
+        <p className="ml-1 text-sm text-red-400">{errors.message.message}</p>
+      )}
 
       <button
         disabled={isSubmitting}

@@ -30,8 +30,16 @@
     display: none;
   }
 
+  .headerItem {
+    @apply text-[1.5rem] font-semibold uppercase leading-[1.5rem] tracking-tighter lg:text-[1rem] lg:leading-[1rem];
+  }
+
   .heroTitle {
     @apply overflow-hidden text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter lg:text-[5rem] lg:leading-[4.5rem] lg:tracking-tighter;
+  }
+
+  .sideBarTitle {
+    @apply text-start text-[1rem] leading-[1.3rem] tracking-tighter;
   }
 
   .eventTitle {

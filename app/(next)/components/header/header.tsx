@@ -16,14 +16,14 @@ export default async function Header() {
   });
 
   return (
-    <div className="relative flex items-center justify-between p-[1rem]">
+    <div className="fixed top-0 z-40 flex h-[5rem] w-full items-center justify-between bg-white bg-opacity-50 p-[1rem] backdrop-blur-md">
       <Link href="/">
         <Image
           src={settings?.header?.logo || "https://via.placeholder.com/100x100"}
           alt="logo"
           width={65}
           height={65}
-          className="h-auto max-h-[5rem] w-full"
+          className="h-[3rem] w-full object-center"
         />
       </Link>
       <div>
