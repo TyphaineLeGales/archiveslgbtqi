@@ -7,7 +7,7 @@ type Props = {
   };
 };
 
-export default function MultiImages({ item }: Props) {
+export default function MultiImagesModule({ item }: Props) {
   return (
     <div className="grid grid-flow-row gap-[.5rem] lg:grid-flow-col">
       {item.multiImages?.map(

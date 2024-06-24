@@ -5,13 +5,13 @@ type Props = {
   events: EventsQueryResult;
 };
 
-export default function EventsModules({ events }: Props) {
+export default function EventsModule({ events }: Props) {
   return (
     <div>
       <h1>Events</h1>
       <ul>
         {events.map((event) => (
-          <li key={event._id}>
+          <li key={event.eventTitle}>
             <h2>{event.eventTitle}</h2>
             <p>{event.eventDescription}</p>
             <p>{event.eventDate?.eventStartDate}</p>
