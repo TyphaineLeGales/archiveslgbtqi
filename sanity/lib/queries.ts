@@ -226,4 +226,26 @@ export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]
     },
 }`;
 
+export const blogsQuery = groq`*[_type == "blogs" ] | order(eventDate.eventStartDate desc) {
+  _id,
+  blogTitle,
+  slug,
+  blogContentText,
+  "blogImages": blogImages[] {
+    "imageUrl": image.asset->url,
+    alt,
+  },
+}`;
+
+export const blogQuery = groq`*[_type == "blogs" && slug.current == $blog][0]{
+  _id,
+  blogTitle,
+  slug,
+  blogContentText,
+  "blogImages": blogImages[] {
+    "imageUrl": image.asset->url,
+    alt,
+  },
+}`;
+
 export const lesArchivesVivantesQuery = groq`*[_type == "lesArchivesVivantes"][0]`;

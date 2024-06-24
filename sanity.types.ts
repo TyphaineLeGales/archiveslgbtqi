@@ -166,15 +166,6 @@ export type LesArchivesVivantes = {
   linkToPodcast?: string;
 };
 
-export type Footer = {
-  _id: string;
-  _type: "footer";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-};
-
 export type Homepage = {
   _id: string;
   _type: "homepage";
@@ -238,7 +229,7 @@ export type Homepage = {
         _ref: string;
         _type: "reference";
         _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "pages";
+        [internalGroqTypeReferenceTo]?: "blogs";
       };
       blogLabel?: string;
     };
@@ -270,42 +261,47 @@ export type Homepage = {
   };
 };
 
-export type Header = {
+export type Blogs = {
   _id: string;
-  _type: "header";
+  _type: "blogs";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  links?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  blogTitle?: string;
+  slug?: Slug;
+  blogContentText?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
     _key: string;
-    [internalGroqTypeReferenceTo]?: "pages";
   }>;
-  ogImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  blogImages?: Array<{
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
     };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
     alt?: string;
-    _type: "image";
-  };
+    _key: string;
+  }>;
 };
 
 export type Settings = {
@@ -560,18 +556,10 @@ export type MoreStoriesQueryResult = Array<never>;
 export type PostQueryResult = null;
 // Variable: headerQuery
 // Query: *[_type == "header"] {  "imageUrl": logo.asset->url,  "url": links[]->{     title,     "slug": slug.current  }}
-export type HeaderQueryResult = Array<{
-  imageUrl: string | null;
-  url: Array<{
-    title: string | null;
-    slug: string | null;
-  }> | null;
-}>;
+export type HeaderQueryResult = Array<never>;
 // Variable: footerQuery
 // Query: *[_type == "footer"][0] {  title,}
-export type FooterQueryResult = {
-  title: string | null;
-} | null;
+export type FooterQueryResult = null;
 // Variable: heroQuery
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
@@ -733,6 +721,64 @@ export type EventQueryResult = {
     imageUrl: string | null;
     alt: string | null;
   } | null;
+} | null;
+// Variable: blogsQuery
+// Query: *[_type == "blogs" ] | order(eventDate.eventStartDate desc) {  _id,  blogTitle,  slug,  blogContentText,  "blogImages": blogImages[] {    "imageUrl": image.asset->url,    alt,  },}
+export type BlogsQueryResult = Array<{
+  _id: string;
+  blogTitle: string | null;
+  slug: Slug | null;
+  blogContentText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  blogImages: Array<{
+    imageUrl: string | null;
+    alt: string | null;
+  }> | null;
+}>;
+// Variable: blogQuery
+// Query: *[_type == "blogs" && slug.current == $blog][0]{  _id,  blogTitle,  slug,  blogContentText,  "blogImages": blogImages[] {    "imageUrl": image.asset->url,    alt,  },}
+export type BlogQueryResult = {
+  _id: string;
+  blogTitle: string | null;
+  slug: Slug | null;
+  blogContentText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  blogImages: Array<{
+    imageUrl: string | null;
+    alt: string | null;
+  }> | null;
 } | null;
 // Variable: lesArchivesVivantesQuery
 // Query: *[_type == "lesArchivesVivantes"][0]

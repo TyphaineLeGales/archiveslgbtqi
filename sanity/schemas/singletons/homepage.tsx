@@ -222,7 +222,7 @@ export default defineType({
               name: "linkToBlog",
               title: "Link to Blog",
               type: "reference",
-              to: [{ type: "pages" }],
+              to: [{ type: "blogs" }],
             }),
             defineField({
               name: "blogLabel",

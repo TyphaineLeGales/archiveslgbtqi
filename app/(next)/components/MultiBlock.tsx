@@ -68,10 +68,7 @@ export default function MultiBlock({ multiBlocks }: Props) {
       {/* Le Blog */}
       <div className="w-1/3">
         <h1>Le Blog</h1>
-        <Link
-          href={multiBlocks?.multiBlock?.leBlogBlock?.linkToBlog || ""}
-          className="bg-white"
-        >
+        <Link href="/blog" className="bg-white">
           {multiBlocks?.multiBlock?.leBlogBlock?.blogLabel}
         </Link>
       </div>
