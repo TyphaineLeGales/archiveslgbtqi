@@ -1,5 +1,5 @@
 import React from "react";
-import CustomImage from "../custom-image";
+import Image from "next/image";
 
 type SingleImageProps = {
   imageUrl: string;
@@ -10,5 +10,5 @@ export default function SingleImage({
   imageUrl,
   imageTitle,
 }: SingleImageProps) {
-  return <CustomImage imageUrl={imageUrl} title={imageTitle} />;
+  return <Image src={imageUrl} alt={imageTitle} width="1920" height="1080" />;
 }

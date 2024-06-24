@@ -24,7 +24,8 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "link" &&
           item.getId() !== "lesArchivesVivantes" &&
           item.getId() !== "contact-form" &&
-          item.getId() !== "lastEvent",
+          item.getId() !== "lastEvent" &&
+          item.getId() !== "creationArchives",
       ),
       S.documentListItem()
         .id("lesArchivesVivantes")

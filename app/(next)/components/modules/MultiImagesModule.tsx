@@ -1,5 +1,5 @@
 import React from "react";
-import CustomImage from "../custom-image";
+import Image from "next/image";
 
 type Props = {
   item: {
@@ -12,10 +12,12 @@ export default function MultiImagesModule({ item }: Props) {
     <div className="grid grid-flow-row gap-[.5rem] lg:grid-flow-col">
       {item.multiImages?.map(
         (image: { imageUrl: string; alt: string }, index: any) => (
-          <CustomImage
-            key={`multi-image-${index}`}
-            imageUrl={image.imageUrl}
-            title={image.alt}
+          <Image
+            key={index}
+            src={image.imageUrl}
+            alt={image.alt}
+            width="960"
+            height="540"
           />
         ),
       )}

@@ -1,8 +1,16 @@
 import React from "react";
 
-import { EventsQueryResult, PagesContentQueryResult } from "@/sanity.types";
+import {
+  EventsQueryResult,
+  LastEventQueryResult,
+  PagesContentQueryResult,
+} from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { eventsQuery, pagesContentQuery } from "@/sanity/lib/queries";
+import {
+  eventsQuery,
+  lastEventQuery,
+  pagesContentQuery,
+} from "@/sanity/lib/queries";
 
 import { notFound } from "next/navigation";
 
@@ -14,7 +22,10 @@ import {
   SingleImageModule,
   MultiImagesModule,
   RichTextModule,
+  CreationArchivesModule,
 } from "../components/modules";
+import { ca } from "date-fns/locale";
+import CustomPortableText from "../portable-text";
 
 type Props = {
   params: {
@@ -23,7 +34,7 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const [content, events] = await Promise.all([
+  const [content, events, lastEvent] = await Promise.all([
     sanityFetch<PagesContentQueryResult>({
       query: pagesContentQuery,
       params,
@@ -31,12 +42,15 @@ export default async function Page({ params }: Props) {
     sanityFetch<EventsQueryResult>({
       query: eventsQuery,
     }),
+    sanityFetch<LastEventQueryResult>({
+      query: lastEventQuery,
+    }),
   ]);
 
   if (!content?._id) {
     return notFound();
   }
-  // console.log("Pages Content:", content.content);
+  console.log("Pages Content:", content.content);
 
   return (
     <div className="flex min-h-screen w-full flex-col gap-[1rem] px-[1rem] lg:pr-[1rem]">
@@ -67,7 +81,21 @@ export default async function Page({ params }: Props) {
                   return <ContactForm />;
 
                 case "lastEvent":
-                  return <EventsModule events={events} />;
+                  return (
+                    <EventsModule
+                      title={item.lastEventLabel || ""}
+                      link={item.goToAllEvents || ""}
+                      events={lastEvent}
+                    />
+                  );
+                case "creationArchives":
+                  return (
+                    <CreationArchivesModule
+                      intro={item.intro || []}
+                      archive={item.archive || []}
+                    />
+                  );
+
                 default:
                   return null;
               }

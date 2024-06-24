@@ -36,6 +36,7 @@ import link from "./sanity/schemas/blocks/link";
 import blogs from "./sanity/schemas/documents/blogs";
 import contactForm from "./sanity/schemas/blocks/contact-form";
 import lastEvent from "./sanity/schemas/blocks/last-event";
+import creationArchives from "./sanity/schemas/blocks/creation-archives";
 
 const homeLocation = {
   title: "Home",
@@ -64,6 +65,7 @@ export default defineConfig({
       link,
       contactForm,
       lastEvent,
+      creationArchives,
     ],
   },
   plugins: [

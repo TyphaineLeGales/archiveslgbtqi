@@ -93,6 +93,13 @@ export default defineType({
       ],
     }),
   ],
+  orderings: [
+    {
+      title: "Event Date",
+      name: "eventDate",
+      by: [{ field: "eventDate.eventStartDate", direction: "desc" }],
+    },
+  ],
   preview: {
     select: {
       title: "eventTitle",

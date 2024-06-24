@@ -55,6 +55,7 @@ export default defineType({
         { type: "link" },
         { type: "contact-form" },
         { type: "lastEvent" },
+        { type: "creationArchives" },
       ],
     }),
   ],

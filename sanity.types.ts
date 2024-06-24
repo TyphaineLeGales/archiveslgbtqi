@@ -46,6 +46,55 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type CreationArchives = {
+  _id: string;
+  _type: "creationArchives";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  archive?: Array<{
+    title?: string;
+    description?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    status?: string;
+    _key: string;
+  }>;
+};
+
 export type LastEvent = {
   _id: string;
   _type: "lastEvent";
@@ -55,6 +104,13 @@ export type LastEvent = {
   event?: {
     isDisplayed?: boolean;
     title?: string;
+    events?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "events";
+    }>;
     ctaToEvents?: string;
   };
 };
@@ -476,6 +532,13 @@ export type Pages = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "lastEvent";
       }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "creationArchives";
+      }
   >;
 };
 
@@ -625,7 +688,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "eventTitle": event.title,    "ctaToEvents": event.ctaToEvents,  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "intro": intro[],    "archive": archive[] {      ...,      title,      description[],      status,    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -646,8 +709,10 @@ export type PagesContentQueryResult = {
         external: null;
         internal: null;
         isDisplayed: null;
-        eventTitle: null;
-        ctaToEvents: null;
+        lastEventLabel: null;
+        goToAllEvents: null;
+        intro: null;
+        archive: null;
       }
     | {
         _type: "link";
@@ -664,8 +729,10 @@ export type PagesContentQueryResult = {
           slug: string | null;
         } | null;
         isDisplayed: null;
-        eventTitle: null;
-        ctaToEvents: null;
+        lastEventLabel: null;
+        goToAllEvents: null;
+        intro: null;
+        archive: null;
       }
     | {
         _type: "reference";
@@ -677,8 +744,10 @@ export type PagesContentQueryResult = {
         external: null;
         internal: null;
         isDisplayed: null;
-        eventTitle: null;
-        ctaToEvents: null;
+        lastEventLabel: null;
+        goToAllEvents: null;
+        intro: null;
+        archive: null;
       }
   > | null;
 } | null;
@@ -804,6 +873,24 @@ export type EventQueryResult = {
     alt: string | null;
   } | null;
 } | null;
+// Variable: lastEventQuery
+// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
+export type LastEventQueryResult = Array<{
+  _id: string;
+  eventTitle: string | null;
+  slug: Slug | null;
+  eventDate: {
+    eventStartDate?: string;
+    addEndDate?: boolean;
+    eventEndDate?: string;
+  } | null;
+  eventDescription: string | null;
+  eventLocation: string | null;
+  image: {
+    imageUrl: string | null;
+    alt: string | null;
+  } | null;
+}>;
 // Variable: blogsQuery
 // Query: *[_type == "blogs" ] | order(eventDate.eventStartDate desc) {  _id,  blogTitle,  slug,  blogContentText,  "blogImages": blogImages[] {    "imageUrl": image.asset->url,    alt,  },}
 export type BlogsQueryResult = Array<{

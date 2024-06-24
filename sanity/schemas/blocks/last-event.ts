@@ -25,6 +25,42 @@ export default defineType({
           hidden: ({ parent }) => !parent?.isDisplayed,
         }),
         defineField({
+          name: "events",
+          title: "Events",
+          type: "array",
+          initialValue: [
+            {
+              _type: "reference",
+              _ref: "",
+            },
+          ],
+          readOnly: true,
+          hidden: ({ parent }) => !parent?.isDisplayed,
+          of: [
+            {
+              type: "reference",
+              initialValue: () => ({
+                _type: "reference",
+                _ref: "",
+              }),
+              readOnly: true,
+              preview: {
+                select: {
+                  title: "eventTitle",
+                  subtitle: "eventLocation",
+                  media: "eventImage.image",
+                },
+              },
+              options: {
+                filter:
+                  "_type == 'events' && defined(eventDate) && eventDate.eventStartDate > now()",
+              },
+              description: "List of upcoming events.",
+              to: [{ type: "events" }],
+            },
+          ],
+        }),
+        defineField({
           name: "ctaToEvents",
           title: "CTA to Events",
           type: "string",

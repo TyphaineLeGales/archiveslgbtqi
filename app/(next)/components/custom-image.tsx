@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
+import Image from "next/image";
 
 type Props = {
   title: string;
@@ -7,9 +7,5 @@ type Props = {
 };
 
 export default function CustomImage({ imageUrl, title }: Props) {
-  return (
-    <div>
-      <img src={imageUrl} alt={title} width="100%" height="auto" />
-    </div>
-  );
+  return <Image src={imageUrl} alt={title} width="960" height="540" />;
 }

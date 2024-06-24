@@ -171,8 +171,17 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
 
     // lastEvent
     "isDisplayed": event.isDisplayed,
-    "eventTitle": event.title,
-    "ctaToEvents": event.ctaToEvents,
+    "lastEventLabel": event.title,
+    "goToAllEvents": event.ctaToEvents,
+
+    // creationArchives
+    "intro": intro[],
+    "archive": archive[] {
+      ...,
+      title,
+      description[],
+      status,
+    },
   }
 }`;
 
@@ -248,6 +257,19 @@ export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]
       "imageUrl": image.asset->url,
       alt,
     },
+}`;
+
+export const lastEventQuery = groq`*[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {
+  _id,
+  eventTitle,
+  slug,
+  eventDate,
+  eventDescription,
+  eventLocation,
+  "image": eventImage{
+    "imageUrl": image.asset->url,
+    alt,
+  },
 }`;
 
 export const blogsQuery = groq`*[_type == "blogs" ] | order(eventDate.eventStartDate desc) {

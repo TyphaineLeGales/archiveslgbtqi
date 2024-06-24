@@ -1,25 +1,41 @@
-import { EventQueryResult, EventsQueryResult } from "@/sanity.types";
+import { LastEventQueryResult } from "@/sanity.types";
 import React from "react";
+import DateComponent from "../date";
+import DateFormat from "../DateFormat";
+import Link from "next/link";
 
 type Props = {
-  events: EventsQueryResult;
+  events: LastEventQueryResult;
+  title: string;
+  link: string;
 };
 
-export default function EventsModule({ events }: Props) {
+export default function EventsModule({ events, title, link }: Props) {
   return (
-    <div>
-      <h1>Events</h1>
-      <ul>
-        {events.map((event) => (
-          <li key={event.eventTitle}>
+    <ul className="flex flex-col gap-[1rem]">
+      <h1>{title}</h1>
+      {events.map((event) => (
+        <li key={event.eventTitle}>
+          <Link href={`/agenda/${event.slug?.current}`}>
             <h2>{event.eventTitle}</h2>
-            <p>{event.eventDescription}</p>
-            <p>{event.eventDate?.eventStartDate}</p>
+            <div className="inline-block">
+              <DateFormat dateString={event.eventDate?.eventStartDate || ""} />
+              {event.eventDate?.eventEndDate && (
+                <>
+                  <span>&nbsp;-&nbsp;</span>
+                  <DateComponent
+                    dateString={event.eventDate?.eventEndDate || ""}
+                  />
+                </>
+              )}
+            </div>
             <p>{event.eventLocation}</p>
-            {/* <img src={event.image.imageUrl} alt={event.image.alt} /> */}
-          </li>
-        ))}
-      </ul>
-    </div>
+          </Link>
+        </li>
+      ))}
+      <Link href="/agenda" className="underline">
+        {link}
+      </Link>
+    </ul>
   );
 }
