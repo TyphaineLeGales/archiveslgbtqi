@@ -38,6 +38,10 @@
     @apply text-[1.5rem] font-semibold uppercase leading-[1.5rem] tracking-tighter;
   }
 
+  .navBarMobileItem {
+    @apply text-[1rem] font-semibold uppercase leading-[1rem] tracking-tighter;
+  }
+
   .heroTitle {
     @apply overflow-hidden text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter lg:text-[5rem] lg:leading-[4.5rem] lg:tracking-tighter;
   }

@@ -92,7 +92,7 @@ export default function HeaderMobile({ settings }: NavLinkProps) {
                         href={link.externalLinkDetails.url || ""}
                         target="_blank"
                         rel="noreferrer"
-                        className="headerMobileItem"
+                        className="headerMobileItem h-[1.5rem] overflow-hidden"
                       >
                         <motion.div variants={headerItemVariants}>
                           {link.externalLinkDetails.title}
