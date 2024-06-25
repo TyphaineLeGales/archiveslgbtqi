@@ -1,6 +1,6 @@
 "use client";
 import { SettingsQueryResult } from "@/sanity.types";
-import Link from "next/link";
+
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { tr } from "date-fns/locale";
@@ -19,6 +19,11 @@ const headerVariants = {
     translateX: 0,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
+    transition: {
+      ease: [0.6, 0.01, 0.05, 0.95],
+      duration: 0.7,
+      staggerChildren: 0.2,
+    },
   },
 };
 
@@ -60,22 +65,6 @@ export default function HeaderMobile({ settings }: NavLinkProps) {
               borderBottomLeftRadius: "100%",
               transition: { duration: 0.5, ease: [0.6, 0.01, 0.05, 0.95] },
             }}
-            transition={{
-              translateX: {
-                duration: 0.5,
-                ease: [0.6, 0.01, 0.05, 0.95],
-              },
-              borderTopLeftRadius: {
-                duration: 0.7,
-                delay: 0.01,
-                ease: [0.6, 0.01, 0.05, 0.95],
-              },
-              borderBottomLeftRadius: {
-                duration: 0.7,
-                delay: 0.01,
-                ease: [0.6, 0.01, 0.05, 0.95],
-              },
-            }}
             ref={menuRef}
             className="absolute left-0 top-0 z-50 mt-[5rem] h-screen w-full flex-col gap-[1rem] overflow-hidden bg-white p-[1rem] lg:hidden"
           >
@@ -88,7 +77,7 @@ export default function HeaderMobile({ settings }: NavLinkProps) {
                         key={link.internalLinkDetails?._id || ""}
                         onClick={handleMenu}
                         href={`/${link.internalLinkDetails?.slug || ""}`}
-                        className="headerMobileItem h-[1.3rem] overflow-hidden"
+                        className="headerMobileItem h-[1.5rem] overflow-hidden"
                       >
                         <motion.div variants={headerItemVariants}>
                           {link.internalLinkDetails?.title || ""}
