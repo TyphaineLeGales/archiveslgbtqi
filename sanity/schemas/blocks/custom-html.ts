@@ -23,10 +23,41 @@ export default defineType({
         languageAlternatives: [{ title: "HTML", value: "html" }],
       },
     }),
+    defineField({
+      name: "isAddFiles",
+      title: "Add Files?",
+      type: "boolean",
+      description: "Add files. (e.g. transcription files)",
+    }),
+    defineField({
+      name: "fileGroup",
+      title: "File Group",
+      type: "array",
+      hidden: ({ parent }) => !parent?.isAddFiles,
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "files",
+              title: "Files",
+              type: "array",
+              of: [{ type: "file" }],
+            }),
+          ],
+        },
+      ],
+    }),
   ],
   preview: {
     select: {
-      title: "codeTitle",
+      title: "fileGroup.title",
       code: "html.code",
     },
     prepare: ({ code }) => ({

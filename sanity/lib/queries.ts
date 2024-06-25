@@ -191,6 +191,13 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
     // custom-html
     "customHtml": html,
     "codeTitle": codeTitle,
+    "isAddFiles": isAddFiles,
+    "fileGroup": fileGroup[] {
+      title,
+      files[] {
+        asset->,
+      },
+    },
   }
 }`;
 

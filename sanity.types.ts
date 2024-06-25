@@ -50,6 +50,21 @@ export type CustomHtml = {
   _type: "custom-html";
   codeTitle?: string;
   html?: Code;
+  isAddFiles?: boolean;
+  fileGroup?: Array<{
+    title?: string;
+    files?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+      };
+      _type: "file";
+      _key: string;
+    }>;
+    _key: string;
+  }>;
 };
 
 export type CreationArchives = {
@@ -752,7 +767,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // richtextTitle    "richtextTitleText": text[],    "richTextTitle": title,    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "intro": intro[],    "archive": archive[] {      ...,      title,      description[],      status,    },    // custom-html    "customHtml": html,    "codeTitle": codeTitle,  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // richtextTitle    "richtextTitleText": text[],    "richTextTitle": title,    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "intro": intro[],    "archive": archive[] {      ...,      title,      description[],      status,    },    // custom-html    "customHtml": html,    "codeTitle": codeTitle,    "isAddFiles": isAddFiles,    "fileGroup": fileGroup[] {      title,      files[] {        asset-> {          url,          originalFilename,        },      },    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -781,6 +796,8 @@ export type PagesContentQueryResult = {
         archive: null;
         customHtml: null;
         codeTitle: null;
+        isAddFiles: null;
+        fileGroup: null;
       }
     | {
         _type: "custom-html";
@@ -800,6 +817,16 @@ export type PagesContentQueryResult = {
         archive: null;
         customHtml: Code | null;
         codeTitle: string | null;
+        isAddFiles: boolean | null;
+        fileGroup: Array<{
+          title: string | null;
+          files: Array<{
+            asset: {
+              url: string | null;
+              originalFilename: string | null;
+            } | null;
+          }> | null;
+        }> | null;
       }
     | {
         _type: "link";
@@ -824,6 +851,8 @@ export type PagesContentQueryResult = {
         archive: null;
         customHtml: null;
         codeTitle: null;
+        isAddFiles: null;
+        fileGroup: null;
       }
     | {
         _type: "reference";
@@ -843,6 +872,8 @@ export type PagesContentQueryResult = {
         archive: null;
         customHtml: null;
         codeTitle: null;
+        isAddFiles: null;
+        fileGroup: null;
       }
   > | null;
 } | null;
