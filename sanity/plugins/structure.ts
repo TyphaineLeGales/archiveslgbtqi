@@ -28,7 +28,11 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "lastEvent" &&
           item.getId() !== "creationArchives" &&
           item.getId() !== "custom-html" &&
-          item.getId() !== "creative-module",
+          item.getId() !== "creative-module" &&
+          item.getId() !== "creativeCtas" &&
+          item.getId() !== "creativeIcon" &&
+          item.getId() !== "creativeImage" &&
+          item.getId() !== "creativeRichtext",
       ),
       S.documentListItem()
         .id("lesArchivesVivantes")

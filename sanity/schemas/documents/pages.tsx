@@ -58,7 +58,6 @@ export default defineType({
         { type: "lastEvent" },
         { type: "creationArchives" },
         { type: "custom-html" },
-        { type: "creative-module" },
       ],
     }),
   ],

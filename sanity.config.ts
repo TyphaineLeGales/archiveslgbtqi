@@ -40,7 +40,6 @@ import lastEvent from "./sanity/schemas/blocks/last-event";
 import creationArchives from "./sanity/schemas/blocks/creation-archives";
 import richtextAndTitle from "./sanity/schemas/blocks/richtext-title";
 import customHtml from "./sanity/schemas/blocks/custom-html";
-import creativeModule from "./sanity/schemas/blocks/creative";
 
 const homeLocation = {
   title: "Home",
@@ -72,7 +71,6 @@ export default defineConfig({
       lastEvent,
       creationArchives,
       customHtml,
-      creativeModule,
     ],
   },
   plugins: [
