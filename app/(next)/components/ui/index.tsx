@@ -1,3 +1,5 @@
+"use client";
+
 export { default as BannerAlert } from "./BannerAlert";
 export { default as FormSubmission } from "./FormSubmission";
 export { default as MyCustomPortableText } from "./MyCustomPortableText";
@@ -9,3 +11,4 @@ export { default as MultiBlocks } from "./MultiBlocks";
 export { default as Outro } from "./Outro";
 export { default as Video } from "./Video";
 export { default as TextSplitting } from "./TextSplitting";
+export { default as Providers } from "./Providers";

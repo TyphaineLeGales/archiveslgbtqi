@@ -1,7 +1,6 @@
 import { HomepageQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { homepageQuery } from "@/sanity/lib/queries";
-
 import { HeroSection, MultiBlocks, Outro, Video } from "./components/ui";
 
 export default async function Page() {

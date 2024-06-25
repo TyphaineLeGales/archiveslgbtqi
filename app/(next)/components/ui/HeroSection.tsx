@@ -53,7 +53,6 @@ export default function HeroSection({ heroes }: Props) {
                   ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
                   : "#"
           }
-          passHref
           className="sticky top-0 max-h-[100vh] bg-white"
         >
           {hero.image && (
