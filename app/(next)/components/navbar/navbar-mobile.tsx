@@ -1,13 +1,10 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-
 import { PagesContentQueryResult } from "@/sanity.types";
-
 import { useScrollDirection } from "../../utils/useScrollDirection";
 
 type Props = {
@@ -30,7 +27,6 @@ const navbarVariants = {
         ease: [0.6, 0.01, 0.05, 0.95],
         duration: 0.5,
       },
-
       borderTopLeftRadius: {
         ease: [0.6, 0.01, 0.05, 0.95],
         duration: 0.5,
@@ -49,15 +45,6 @@ const navbarVariants = {
   },
 };
 
-const navbarItemVariants = {
-  hidden: {
-    translateY: "100%",
-  },
-  visible: {
-    translateY: 0,
-  },
-};
-
 export default function MobileNavigationBar({ content }: Props) {
   const navbarRef = useRef<HTMLDivElement>(null);
   const [menu, setMenu] = useState(false);
@@ -69,11 +56,6 @@ export default function MobileNavigationBar({ content }: Props) {
     controls.start({ y: visible ? 0 : 100, opacity: visible ? 1 : 0 });
   }, [visible, controls]);
 
-  const handleMenu = useCallback(() => {
-    setMenu((prevMenu) => !prevMenu);
-    navbarRef.current?.classList.toggle("hidden");
-  }, []);
-
   return (
     <div className="block lg:hidden">
       <AnimatePresence>
@@ -83,8 +65,13 @@ export default function MobileNavigationBar({ content }: Props) {
             opacity: 1,
           }}
           animate={controls}
-          onClick={handleMenu}
-          className="absolute inset-x-0 bottom-[1rem] z-30 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] border-black bg-white text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
+          onClick={() => {
+            setMenu((prevMenu) => !prevMenu);
+            navbarRef.current?.classList.toggle("hidden");
+            // add the scroll to the body when the menu is open
+            document.body.style.overflow = menu ? "auto" : "hidden";
+          }}
+          className="fixed inset-x-0 bottom-[1rem] z-30 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] border-black bg-white text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
         >
           {menu ? "Close" : "Menu"}
         </motion.button>
@@ -105,7 +92,11 @@ export default function MobileNavigationBar({ content }: Props) {
                 duration: 0.5,
               }}
               className="absolute inset-0 z-10 origin-bottom bg-white/50 bg-opacity-50 backdrop-blur-md"
-              onClick={handleMenu}
+              onClick={() => {
+                setMenu(false);
+                navbarRef.current?.classList.add("hidden");
+                // remove the scroll to the body when the menu is open
+              }}
             />
             <motion.div
               initial="hidden"
@@ -127,7 +118,7 @@ export default function MobileNavigationBar({ content }: Props) {
                     }`}
                   >
                     <motion.div
-                      variants={navbarItemVariants}
+                      variants={navbarVariants}
                       className="navBarMobileItem"
                     >
                       {navItem.title}
