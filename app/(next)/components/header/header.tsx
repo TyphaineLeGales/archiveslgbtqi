@@ -17,13 +17,13 @@ export default async function Header() {
 
   return (
     <div className="fixed top-0 z-40 flex h-[5rem] w-full items-center justify-between bg-white bg-opacity-50 p-[1rem] backdrop-blur-md">
-      <Link href="/">
+      <Link href="/" className="relative aspect-square h-[3rem] w-[3rem]">
         <Image
           src={settings?.header?.logo || "https://via.placeholder.com/100x100"}
           alt="logo"
           width={65}
           height={65}
-          className="aspect-square h-[3rem] w-[3rem]"
+          className="absolute inset-0"
         />
       </Link>
       <div>
