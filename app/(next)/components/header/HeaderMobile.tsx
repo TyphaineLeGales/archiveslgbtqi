@@ -15,7 +15,11 @@ const headerVariants = {
     borderTopLeftRadius: "100%",
     borderBottomLeftRadius: "100%",
   },
-  visible: { translateX: 0, borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
+  visible: {
+    translateX: 0,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
 };
 
 const headerItemVariants = {
@@ -51,10 +55,20 @@ export default function HeaderMobile({ settings }: NavLinkProps) {
               transition: { duration: 0.5, ease: [0.6, 0.01, 0.05, 0.95] },
             }}
             transition={{
-              duration: 0.5,
-              ease: [0.6, 0.01, 0.05, 0.95],
-              delayChildren: 0.5,
-              staggerChildren: 0.05,
+              translateX: {
+                duration: 0.5,
+                ease: [0.6, 0.01, 0.05, 0.95],
+              },
+              borderTopLeftRadius: {
+                duration: 0.7,
+                delay: 0.01,
+                ease: [0.6, 0.01, 0.05, 0.95],
+              },
+              borderBottomLeftRadius: {
+                duration: 0.7,
+                delay: 0.01,
+                ease: [0.6, 0.01, 0.05, 0.95],
+              },
             }}
             ref={menuRef}
             className="absolute left-0 top-0 z-30 mt-[5rem] h-screen w-full flex-col gap-[1rem] overflow-hidden bg-white p-[1rem] lg:hidden"
