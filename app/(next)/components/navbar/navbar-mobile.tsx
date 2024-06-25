@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 
 import { PagesContentQueryResult } from "@/sanity.types";
 
@@ -16,21 +16,55 @@ type Props = {
 export default function MobileNavigationBar({ content }: Props) {
   const navbarRef = useRef<HTMLDivElement>(null);
   const [menu, setMenu] = React.useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [visible, setVisible] = useState(true);
+
   const { pages } = useParams();
+  const controls = useAnimation();
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY) {
+      setVisible(false); // Scrolling down
+    } else {
+      setVisible(true); // Scrolling up
+    }
+    setLastScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    if (visible) {
+      controls.start({ y: 0, opacity: 1 });
+    } else {
+      controls.start({ y: 100, opacity: 0 });
+    }
+  }, [visible, controls]);
 
   const handleMenu = () => {
     setMenu(!menu);
     navbarRef.current?.classList.toggle("hidden");
   };
+
   return (
     <div className="block lg:hidden">
       <AnimatePresence>
-        <button
+        <motion.button
+          initial={{
+            y: 0,
+            opacity: 1,
+          }}
+          animate={controls}
           onClick={handleMenu}
           className="fixed inset-x-0 bottom-[1rem] z-40 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] border-black bg-white text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
         >
           {menu ? "Close" : "Menu"}
-        </button>
+        </motion.button>
         {menu && (
           <>
             <motion.div
