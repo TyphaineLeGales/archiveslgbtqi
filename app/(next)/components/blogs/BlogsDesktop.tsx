@@ -3,7 +3,7 @@
 import { BlogsQueryResult, EventsQueryResult } from "@/sanity.types";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import DateFormat from "../DateFormat";
+import DateFormat from "../ui/DateAndHour";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";

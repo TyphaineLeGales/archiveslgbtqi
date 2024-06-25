@@ -14,8 +14,6 @@ import {
 
 import { notFound } from "next/navigation";
 
-import ContactForm from "../components/contact-form";
-
 import {
   EventsModule,
   LinksModule,
@@ -25,6 +23,8 @@ import {
   CreationArchivesModule,
   RichTextAndTitleModule,
 } from "../components/modules";
+
+import { ContactForm } from "../components/ui";
 
 type Props = {
   params: {

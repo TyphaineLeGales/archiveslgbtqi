@@ -1,6 +1,8 @@
 import React from "react";
-import CustomPortableText from "../../portable-text";
+
 import { PortableTextBlock } from "next-sanity";
+
+import { CustomPortableText } from "../ui";
 
 type CreationArchivesModuleProps = {
   intro: PortableTextBlock[];

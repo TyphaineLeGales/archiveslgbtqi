@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export function SplitText({ children, ...rest }: any) {
+export default function SplitText({ children, ...rest }: any) {
   let words = children.split(" ");
   return words.map((word: string | number, i: number) => {
     return (

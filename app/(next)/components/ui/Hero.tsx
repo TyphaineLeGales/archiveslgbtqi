@@ -1,13 +1,15 @@
 "use client";
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-import { HomepageQueryResult, PagesContentQueryResult } from "@/sanity.types";
 import React, { useEffect } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import Lenis from "lenis";
+
 import { motion } from "framer-motion";
-import { SplitText } from "./SplitText";
+import Lenis from "lenis";
+
+import { HomepageQueryResult } from "@/sanity.types";
+import SplitText from "./SplitText";
 
 type Props = {
   heroes: HomepageQueryResult;
@@ -18,7 +20,7 @@ const AnimatedText = {
   visible: { y: 0 },
 };
 
-const HeroList = ({ heroes }: Props) => {
+export default function Hero({ heroes }: Props) {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -113,6 +115,4 @@ const HeroList = ({ heroes }: Props) => {
       ))}
     </div>
   );
-};
-
-export default HeroList;
+}

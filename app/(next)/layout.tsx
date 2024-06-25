@@ -6,11 +6,9 @@ import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
 
-import AlertBanner from "./alert-banner";
-
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
-import Providers from "./components/ui/providers";
+import { AlertBanner, Providers } from "./components/ui";
 
 const inter = Inter({
   variable: "--font-inter",

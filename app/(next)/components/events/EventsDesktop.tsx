@@ -1,14 +1,15 @@
 "use client";
 
-import { EventsQueryResult } from "@/sanity.types";
 import React, { useState, useEffect } from "react";
+
 import Image from "next/image";
-import DateFormat from "../DateFormat";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import Marquee from "../ui/Marquee";
+
+import { EventsQueryResult } from "@/sanity.types";
+
+import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { DateAndHour, Marquee } from "../ui";
 
 type EventProps = {
   event: EventsQueryResult;
@@ -146,13 +147,13 @@ export default function EventsDesktop({ event }: EventProps) {
                   )}
 
                   <div className="whitespace-nowrap rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
-                    <DateFormat
+                    <DateAndHour
                       dateString={eventItem.eventDate?.eventStartDate || ""}
                     />
                     {eventItem.eventDate?.addEndDate && (
                       <>
                         <span className="mx-[0.5rem]">-</span>
-                        <DateFormat
+                        <DateAndHour
                           dateString={eventItem.eventDate?.eventEndDate || ""}
                         />
                       </>

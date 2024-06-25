@@ -1,10 +1,13 @@
 "use client";
 import React from "react";
+
+import Image from "next/image";
+
+import { BlogQueryResult } from "@/sanity.types";
+
 import { motion } from "framer-motion";
 
-import { BlogQueryResult, EventQueryResult } from "@/sanity.types";
-import Image from "next/image";
-import CustomPortableText from "../../portable-text";
+import { CustomPortableText } from "../ui";
 
 type Blogs = {
   params: {

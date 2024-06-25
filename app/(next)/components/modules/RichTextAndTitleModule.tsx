@@ -1,5 +1,5 @@
 import React from "react";
-import CustomPortableText from "../../portable-text";
+import { CustomPortableText } from "../ui";
 
 type Props = {
   item: {

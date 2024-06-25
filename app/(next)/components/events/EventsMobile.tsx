@@ -1,15 +1,15 @@
 "use client";
 
-import { EventsQueryResult } from "@/sanity.types";
 import React, { useState } from "react";
-import Image from "next/image";
-import DateFormat from "../DateFormat";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { NorthEastArrow } from "../ui/icon";
+
 import { useRouter } from "next/navigation";
-import Marquee from "../ui/Marquee";
+import { EventsQueryResult } from "@/sanity.types";
+
+import { motion, AnimatePresence } from "framer-motion";
+
 import clsx from "clsx";
+import { DateAndHour, Marquee } from "../ui";
+import { NorthEastArrow } from "../ui/icon";
 
 type EventProps = {
   event: EventsQueryResult;
@@ -105,13 +105,13 @@ export default function EventsMobile({ event }: EventProps) {
                   </motion.div>
                 </div>
                 <div className="mx-[1rem] flex justify-between rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
-                  <DateFormat
+                  <DateAndHour
                     dateString={eventItem.eventDate?.eventStartDate || ""}
                   />
                   {eventItem.eventDate?.addEndDate && (
                     <div className="flex w-1/2 items-center justify-between">
                       <span className="mx-[0.5rem]">→</span>
-                      <DateFormat
+                      <DateAndHour
                         dateString={eventItem.eventDate?.eventEndDate || ""}
                       />
                     </div>

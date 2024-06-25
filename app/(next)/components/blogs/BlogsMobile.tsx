@@ -3,7 +3,7 @@
 import { BlogsQueryResult, EventsQueryResult } from "@/sanity.types";
 import React, { useState } from "react";
 import Image from "next/image";
-import DateFormat from "../DateFormat";
+import DateFormat from "../ui/DateAndHour";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { NorthEastArrow } from "../ui/icon";

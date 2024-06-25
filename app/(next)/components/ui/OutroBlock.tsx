@@ -1,7 +1,7 @@
-import { HomepageQueryResult } from "@/sanity.types";
 import React from "react";
-import CustomPortableText from "../portable-text";
-import { PortableText } from "next-sanity";
+
+import { HomepageQueryResult } from "@/sanity.types";
+import CustomPortableText from "./CustomPortableText";
 
 type Props = {
   outro: HomepageQueryResult;

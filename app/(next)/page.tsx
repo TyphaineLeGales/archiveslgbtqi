@@ -1,10 +1,8 @@
 import { HomepageQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { homepageQuery } from "@/sanity/lib/queries";
-import Hero from "./components/hero";
-import MultiBlock from "./components/MultiBlock";
-import VideoBlock from "./components/VideoBlock";
-import OutroBlock from "./components/OutroBlock";
+
+import { Hero, MultiBlock, OutroBlock, VideoBlock } from "./components/ui";
 
 export default async function Page() {
   const [homePage] = await Promise.all([
