@@ -31,7 +31,7 @@
   }
 
   .headerItem {
-    @apply text-[1.5rem] font-semibold uppercase leading-[1.5rem] tracking-tighter lg:text-[1rem] lg:leading-[1rem];
+    @apply text-[1.5rem] uppercase leading-[1.5rem] tracking-tighter lg:text-[.8rem] lg:leading-[.8rem];
   }
 
   .headerMobileItem {

@@ -9,6 +9,7 @@ import { SettingsQueryResult } from "@/sanity.types";
 
 import HeaderDesktop from "./HeaderDesktop";
 import HeaderMobile from "./HeaderMobile";
+import { useRouter } from "next/navigation";
 
 export default async function Header() {
   const settings = await sanityFetch<SettingsQueryResult>({

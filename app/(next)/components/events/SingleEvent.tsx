@@ -20,7 +20,7 @@ export default function SingleEvent({ params, event }: Event) {
   return (
     <motion.div>
       <motion.div
-        initial={{ translateY: "0loca%" }}
+        initial={{ translateY: 0 }}
         animate={{ translateY: "-100%" }}
         transition={{
           duration: 1,

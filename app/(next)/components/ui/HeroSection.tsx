@@ -39,7 +39,7 @@ export default function HeroSection({ heroes }: Props) {
   return (
     <div
       data-lenis-prevent
-      className="no-scrollbar relative h-auto max-h-[100vh] overflow-y-scroll"
+      className="no-scrollbar relative h-[calc(100rem-5rem)] max-h-[100vh] overflow-y-scroll"
     >
       {heroes?.hero?.map((hero) => (
         <Link

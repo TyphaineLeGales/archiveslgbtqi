@@ -8,7 +8,6 @@ import { Suspense } from "react";
 
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
-// import { AlertBanner } from "./components/ui";
 
 import { BannerAlert, ToastProviders } from "./components/ui";
 
@@ -27,7 +26,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} bg-white text-black`}>
       <body>
         <section className="min-h-screen">
-          {draftMode().isEnabled && <div>hello</div>}
+          {draftMode().isEnabled && <BannerAlert />}
           <Header />
           <main className="py-[5rem]">
             <ToastProviders>{children}</ToastProviders>
