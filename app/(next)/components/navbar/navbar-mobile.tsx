@@ -26,7 +26,7 @@ export default function MobileNavigationBar({ content }: Props) {
     <AnimatePresence>
       <button
         onClick={handleMenu}
-        className="fixed inset-x-0 bottom-[1rem] z-40 mx-auto aspect-square h-[5rem] w-[5rem] rounded-full border-[.5px] border-black bg-white shadow-md"
+        className="fixed inset-x-0 bottom-[1rem] z-40 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] border-black bg-white text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
       >
         {menu ? "Close" : "Menu"}
       </button>
@@ -80,7 +80,7 @@ export default function MobileNavigationBar({ content }: Props) {
                 duration: 0.5,
               },
             }}
-            className="fixed inset-x-0 bottom-[1rem] z-20 mx-auto mb-[2.5rem] flex w-[calc(100%-1rem)] origin-bottom flex-col rounded-b-[5%] border-[.5px] border-black bg-white pb-[3rem] lg:hidden"
+            className="fixed inset-x-0 bottom-[1rem] z-20 mx-auto mb-[1.25rem] flex w-[50%] origin-bottom flex-col rounded-b-[5%] border-[.5px] border-black bg-white pb-[1rem] lg:hidden"
           >
             <nav ref={navbarRef} className="h-auto py-[2rem]">
               {content?.navigation?.map((navItem) => (
