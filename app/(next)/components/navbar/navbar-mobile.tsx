@@ -67,8 +67,6 @@ export default function MobileNavigationBar({ content }: Props) {
           animate={controls}
           onClick={() => {
             setMenu((prevMenu) => !prevMenu);
-            navbarRef.current?.classList.toggle("hidden");
-            // add the scroll to the body when the menu is open
             document.body.style.overflow = menu ? "auto" : "hidden";
           }}
           className="fixed inset-x-0 bottom-[1rem] z-30 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] border-black bg-white text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
@@ -94,8 +92,6 @@ export default function MobileNavigationBar({ content }: Props) {
               className="absolute inset-0 z-10 origin-bottom bg-white/50 bg-opacity-50 backdrop-blur-md"
               onClick={() => {
                 setMenu(false);
-                navbarRef.current?.classList.add("hidden");
-                // remove the scroll to the body when the menu is open
               }}
             />
             <motion.div
@@ -113,6 +109,10 @@ export default function MobileNavigationBar({ content }: Props) {
                   <Link
                     key={navItem._id}
                     href={navItem.slug?.current || ""}
+                    onClick={() => {
+                      setMenu((prevMenu) => !prevMenu);
+                      document.body.style.overflow = "auto";
+                    }}
                     className={`h-[1rem] overflow-hidden ${
                       pages === navItem.slug?.current ? "underline" : ""
                     }`}
