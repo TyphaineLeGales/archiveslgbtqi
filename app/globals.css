@@ -34,6 +34,10 @@
     @apply text-[1.5rem] font-semibold uppercase leading-[1.5rem] tracking-tighter lg:text-[1rem] lg:leading-[1rem];
   }
 
+  .headerMobileItem {
+    @apply text-[1.5rem] font-semibold uppercase leading-[1.5rem] tracking-tighter;
+  }
+
   .heroTitle {
     @apply overflow-hidden text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter lg:text-[5rem] lg:leading-[4.5rem] lg:tracking-tighter;
   }

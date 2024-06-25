@@ -49,7 +49,7 @@ export default async function Page({ params }: Props) {
   if (!content?._id) {
     return notFound();
   }
-  console.log("Pages Content:", content.content);
+  // console.log("Pages Content:", content.content);
 
   return (
     <div className="flex min-h-screen w-full flex-col gap-[1rem] px-[1rem] lg:pr-[1rem]">

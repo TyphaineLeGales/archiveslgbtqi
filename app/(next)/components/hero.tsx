@@ -39,9 +39,9 @@ const HeroList = ({ heroes }: Props) => {
       data-lenis-prevent
       className="no-scrollbar relative h-auto max-h-[100vh] overflow-y-scroll"
     >
-      {heroes?.hero?.map((hero, index) => (
+      {heroes?.hero?.map((hero) => (
         <Link
-          key={`hero-${index}`}
+          key={hero.title!}
           href={
             hero.cta?.ctaLink?._type === "pages"
               ? `/${hero.cta?.ctaLink?.slug || ""}`

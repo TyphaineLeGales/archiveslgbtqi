@@ -9,13 +9,13 @@ type Props = {
 
 export default function MultiBlock({ multiBlocks }: Props) {
   return (
-    <div className="flex min-h-[25rem] divide-x-[1px] divide-black px-[1rem] py-[1rem]">
+    <div className="flex min-h-[25rem] flex-col divide-y-[1px] divide-black px-[1rem] py-[1rem] lg:flex-row lg:divide-x-[1px] lg:divide-y-0">
       {/* Agenda */}
-      <div className="w-1/3">
+      <div className="py-[1rem] lg:w-1/3 lg:py-0">
         <Link href="/agenda" className="text-[1.5rem] font-bold uppercase">
           L&apos;agenda
         </Link>
-        <div className="flex flex-col gap-[1rem] pt-[2rem]">
+        <div className="flex flex-col gap-[1rem] lg:pt-[2rem]">
           {multiBlocks?.multiBlock?.eventsBlock?.events?.map((event, index) => (
             <Link
               key={`event-${index}`}
@@ -36,11 +36,11 @@ export default function MultiBlock({ multiBlocks }: Props) {
       </div>
 
       {/* Les Archives Vivantes */}
-      <div className="w-1/3 pl-[1rem]">
+      <div className="py-[1rem] lg:w-1/3 lg:py-0 lg:pl-[1rem]">
         <h1 className="whitespace-nowrap text-[1.5rem] font-bold uppercase">
           Les Archives Vivantes
         </h1>
-        <div className="flex flex-col pt-[2rem]">
+        <div className="flex flex-col lg:pt-[2rem]">
           <Link
             href={
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.vimeo
@@ -67,7 +67,7 @@ export default function MultiBlock({ multiBlocks }: Props) {
       </div>
 
       {/* Le Blog */}
-      <div className="w-1/3 pl-[1rem]">
+      <div className="py-[1rem] lg:w-1/3 lg:py-0 lg:pl-[1rem]">
         <Link
           href="/blog"
           className="whitespace-nowrap text-[1.5rem] font-bold uppercase"

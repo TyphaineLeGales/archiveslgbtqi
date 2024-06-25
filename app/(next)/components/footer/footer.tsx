@@ -11,9 +11,9 @@ export default async function Footer() {
   });
 
   return (
-    <div className="relative flex min-h-[10rem] w-full justify-start bg-slate-100 p-[1rem] lg:pl-[calc(25%+.5rem)]">
+    <div className="relative flex min-h-[10rem] w-full flex-col justify-start bg-slate-100 p-[1rem] text-end lg:flex-row lg:pl-[calc(25%+.5rem)] lg:text-start">
       {settings?.footer?.moduleGroups?.map && (
-        <div className="grid h-fit w-auto grid-cols-3 items-start gap-[5rem]">
+        <div className="grid h-fit w-auto grid-rows-3 items-start gap-[2rem] lg:grid-cols-3 lg:gap-[5rem]">
           {settings.footer.moduleGroups.map((moduleGroup) => (
             <div
               key={moduleGroup.groupName}
@@ -22,7 +22,7 @@ export default async function Footer() {
               <h1 className="h-fit text-[.8rem] uppercase leading-[1rem] tracking-tighter">
                 {moduleGroup.groupName}
               </h1>
-              <div className="flex w-full flex-col items-start justify-start">
+              <div className="flex w-full flex-col items-end justify-start lg:items-start">
                 {moduleGroup?.modules?.map((module) => (
                   <div key={module.internalDetails?._id}>
                     {module.type === "internal" && (

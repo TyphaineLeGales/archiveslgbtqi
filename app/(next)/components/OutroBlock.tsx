@@ -12,7 +12,7 @@ export default function OutroBlock({ outro }: Props) {
     <div className="flex items-center justify-center py-[5rem]">
       <CustomPortableText
         value={outro?.outro?.outroText! as any}
-        className="w-[50%] text-[1rem] leading-[1.5rem] tracking-tight"
+        className="w-full px-[1rem] text-[1rem] leading-[1.5rem] tracking-tight lg:w-[50%]"
       />
     </div>
   );
