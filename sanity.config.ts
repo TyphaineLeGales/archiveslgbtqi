@@ -37,6 +37,7 @@ import blogs from "./sanity/schemas/documents/blogs";
 import contactForm from "./sanity/schemas/blocks/contact-form";
 import lastEvent from "./sanity/schemas/blocks/last-event";
 import creationArchives from "./sanity/schemas/blocks/creation-archives";
+import richtextAndTitle from "./sanity/schemas/blocks/richtext-title";
 
 const homeLocation = {
   title: "Home",
@@ -59,6 +60,7 @@ export default defineConfig({
       blogs,
       // Blocks
       richtext,
+      richtextAndTitle,
       documentFile,
       singleImage,
       multiImages,

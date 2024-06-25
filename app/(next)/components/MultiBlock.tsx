@@ -68,10 +68,10 @@ export default function MultiBlock({ multiBlocks }: Props) {
 
       {/* Le Blog */}
       <div className="w-1/3 pl-[1rem]">
-        <h1 className="whitespace-nowrap text-[1.5rem] font-bold uppercase">
-          Le Blog
-        </h1>
-        <Link href="/blog" className="flex flex-col pt-[2rem]">
+        <Link
+          href="/blog"
+          className="whitespace-nowrap text-[1.5rem] font-bold uppercase"
+        >
           {multiBlocks?.multiBlock?.leBlogBlock?.blogLabel}
         </Link>
       </div>

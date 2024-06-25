@@ -2,12 +2,11 @@
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 import { HomepageQueryResult, PagesContentQueryResult } from "@/sanity.types";
-import { heroQuery } from "@/sanity/lib/queries";
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Lenis from "lenis";
-import { useScroll, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { SplitText } from "./SplitText";
 
 type Props = {
@@ -43,8 +42,16 @@ const HeroList = ({ heroes }: Props) => {
       {heroes?.hero?.map((hero, index) => (
         <Link
           key={`hero-${index}`}
-          // key={hero._id}
-          href={hero.cta?.ctaLink?.slug || ""}
+          href={
+            hero.cta?.ctaLink?._type === "pages"
+              ? `/${hero.cta?.ctaLink?.slug || ""}`
+              : hero.cta?.ctaLink?._type === "events"
+                ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`
+                : hero.cta?.ctaLink?._type === "blogs"
+                  ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
+                  : "#"
+          }
+          passHref
           className="sticky top-0 max-h-[100vh] bg-white"
         >
           {hero.image && (

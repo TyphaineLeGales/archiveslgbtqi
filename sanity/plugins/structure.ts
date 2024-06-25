@@ -17,6 +17,7 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "settings" &&
           item.getId() !== "pages" &&
           item.getId() !== "richtext" &&
+          item.getId() !== "richTextAndTitle" &&
           item.getId() !== "document-file" &&
           item.getId() !== "single-image" &&
           item.getId() !== "multi-images" &&

@@ -50,6 +50,7 @@ export default defineType({
       of: [
         { type: "document-file" },
         { type: "richtext" },
+        { type: "richTextAndTitle" },
         { type: "single-image" },
         { type: "multi-images" },
         { type: "link" },

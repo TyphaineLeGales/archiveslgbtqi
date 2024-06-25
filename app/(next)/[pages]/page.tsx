@@ -23,9 +23,8 @@ import {
   MultiImagesModule,
   RichTextModule,
   CreationArchivesModule,
+  RichTextAndTitleModule,
 } from "../components/modules";
-import { ca } from "date-fns/locale";
-import CustomPortableText from "../portable-text";
 
 type Props = {
   params: {
@@ -62,6 +61,9 @@ export default async function Page({ params }: Props) {
               switch (item._type as string) {
                 case "richtext":
                   return <RichTextModule item={item} />;
+
+                case "richTextAndTitle":
+                  return <RichTextAndTitleModule item={item as any} />;
 
                 case "single-image":
                   return (

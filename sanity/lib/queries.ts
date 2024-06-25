@@ -67,6 +67,7 @@ export const heroFields = /* groq */ `
   cta {
     ctaLabel,
     ctaLink->{
+      _type,
       "slug": slug.current
     }
   },
@@ -146,6 +147,10 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
 
     // richtext
     "richtext": text[],
+
+    // richtextTitle
+    "richtextTitleText": text[],
+    "richTextTitle": title,
 
     // single-image
     "imageTitle": title,

@@ -197,6 +197,33 @@ export type DocumentFile = {
   };
 };
 
+export type RichTextAndTitle = {
+  _id: string;
+  _type: "richTextAndTitle";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
 export type Richtext = {
   _id: string;
   _type: "richtext";
@@ -221,37 +248,6 @@ export type Richtext = {
     _type: "block";
     _key: string;
   }>;
-};
-
-export type Events = {
-  _id: string;
-  _type: "events";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  eventTitle?: string;
-  slug?: Slug;
-  eventDescription?: string;
-  eventDate?: {
-    eventStartDate?: string;
-    addEndDate?: boolean;
-    eventEndDate?: string;
-  };
-  eventLocation?: string;
-  eventImage?: {
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-    alt?: string;
-  };
 };
 
 export type LesArchivesVivantes = {
@@ -292,12 +288,25 @@ export type Homepage = {
       };
       cta?: {
         ctaLabel?: string;
-        ctaLink?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "pages";
-        };
+        ctaLink?:
+          | {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "pages";
+            }
+          | {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "events";
+            }
+          | {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "blogs";
+            };
       };
       _key: string;
     }>;
@@ -404,6 +413,37 @@ export type Blogs = {
   }>;
 };
 
+export type Events = {
+  _id: string;
+  _type: "events";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  eventTitle?: string;
+  slug?: Slug;
+  eventDescription?: string;
+  eventDate?: {
+    eventStartDate?: string;
+    addEndDate?: boolean;
+    eventEndDate?: string;
+  };
+  eventLocation?: string;
+  eventImage?: {
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    alt?: string;
+  };
+};
+
 export type Settings = {
   _id: string;
   _type: "settings";
@@ -504,6 +544,13 @@ export type Pages = {
         _weak?: boolean;
         _key: string;
         [internalGroqTypeReferenceTo]?: "richtext";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "richTextAndTitle";
       }
     | {
         _ref: string;
@@ -688,7 +735,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "intro": intro[],    "archive": archive[] {      ...,      title,      description[],      status,    },  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // richtextTitle    "richtextTitleText": text[],    "richTextTitle": title,    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "intro": intro[],    "archive": archive[] {      ...,      title,      description[],      status,    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -702,6 +749,8 @@ export type PagesContentQueryResult = {
     | {
         _type: "contact-form";
         richtext: null;
+        richtextTitleText: null;
+        richTextTitle: string | null;
         imageTitle: string | null;
         imageUrl: null;
         multiImages: null;
@@ -717,6 +766,8 @@ export type PagesContentQueryResult = {
     | {
         _type: "link";
         richtext: null;
+        richtextTitleText: null;
+        richTextTitle: null;
         imageTitle: null;
         imageUrl: null;
         multiImages: null;
@@ -737,6 +788,8 @@ export type PagesContentQueryResult = {
     | {
         _type: "reference";
         richtext: null;
+        richtextTitleText: null;
+        richTextTitle: null;
         imageTitle: null;
         imageUrl: null;
         multiImages: null;
@@ -752,7 +805,7 @@ export type PagesContentQueryResult = {
   > | null;
 } | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      "slug": slug.current    }  },  },  "multiBlock": multiBlock {    leBlogBlock {      title,      "linkToBlog": linkToBlog->_ref,      blogLabel    },    lesArchivesVivantesBlock {      title,      vimeo {        vimeoTitle,        linkToVimeo      },      podcast {        linkToPodcast,        podcastTitle      }    },    eventsBlock {      "events": events[]->{        _id,        eventTitle,        slug,        eventDate,        eventDescription,        eventLocation,        "image": eventImage{          "imageUrl": image.asset->url,          alt,        }      }    },  },  video {    videoTitle,    videoLink,  },  outro {    outroTitle,    outroText,  },}
+// Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "multiBlock": multiBlock {    leBlogBlock {      title,      "linkToBlog": linkToBlog->_ref,      blogLabel    },    lesArchivesVivantesBlock {      title,      vimeo {        vimeoTitle,        linkToVimeo      },      podcast {        linkToPodcast,        podcastTitle      }    },    eventsBlock {      "events": events[]->{        _id,        eventTitle,        slug,        eventDate,        eventDescription,        eventLocation,        "image": eventImage{          "imageUrl": image.asset->url,          alt,        }      }    },  },  video {    videoTitle,    videoLink,  },  outro {    outroTitle,    outroText,  },}
 export type HomepageQueryResult = {
   _id: string;
   _type: "homepage";
@@ -768,9 +821,20 @@ export type HomepageQueryResult = {
     } | null;
     cta: {
       ctaLabel: string | null;
-      ctaLink: {
-        slug: string | null;
-      } | null;
+      ctaLink:
+        | {
+            _type: "blogs";
+            slug: string | null;
+          }
+        | {
+            _type: "events";
+            slug: string | null;
+          }
+        | {
+            _type: "pages";
+            slug: string | null;
+          }
+        | null;
     } | null;
     _id: null;
     _key: string;

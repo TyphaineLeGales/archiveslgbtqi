@@ -19,7 +19,7 @@ export default function CreationArchivesModule({
     <div className="flex flex-col gap-[1rem] py-[1rem]">
       {/* TODO: Collapsible */}
       <CustomPortableText value={intro} />
-      <ul>
+      <ul className="divide-y-[1px] divide-black/10 border-t-[1px] border-black">
         {archive?.map((archiveItem, index) => (
           <li
             key={`archive-item-${index}`}
