@@ -49,7 +49,7 @@ export default function HeaderMobile({ settings }: NavLinkProps) {
               transition: { duration: 0.5, ease: [0.6, 0.01, 0.05, 0.95] },
             }}
             transition={{
-              duration: 1,
+              duration: 0.5,
               ease: [0.6, 0.01, 0.05, 0.95],
               delayChildren: 0.5,
               staggerChildren: 0.05,
