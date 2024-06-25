@@ -10,7 +10,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 // import { AlertBanner } from "./components/ui";
 
-import { BannerAlert, Providers } from "./components/ui";
+import { BannerAlert, ToastProviders } from "./components/ui";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,7 +30,7 @@ export default function RootLayout({
           {draftMode().isEnabled && <div>hello</div>}
           <Header />
           <main className="py-[5rem]">
-            <Providers>{children}</Providers>
+            <ToastProviders>{children}</ToastProviders>
           </main>
           <Footer />
         </section>
