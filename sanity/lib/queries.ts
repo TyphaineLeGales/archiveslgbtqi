@@ -187,6 +187,10 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
       description[],
       status,
     },
+
+    // custom-html
+    "customHtml": html,
+    "codeTitle": codeTitle,
   }
 }`;
 

@@ -46,6 +46,12 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type CustomHtml = {
+  _type: "custom-html";
+  codeTitle?: string;
+  html?: Code;
+};
+
 export type CreationArchives = {
   _id: string;
   _type: "creationArchives";
@@ -586,6 +592,9 @@ export type Pages = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "creationArchives";
       }
+    | ({
+        _key: string;
+      } & CustomHtml)
   >;
 };
 
@@ -673,6 +682,14 @@ export type SanityImageMetadata = {
   hasAlpha?: boolean;
   isOpaque?: boolean;
 };
+
+export type Code = {
+  _type: "code";
+  language?: string;
+  filename?: string;
+  code?: string;
+  highlightedLines?: Array<number>;
+};
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -735,7 +752,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // richtextTitle    "richtextTitleText": text[],    "richTextTitle": title,    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "intro": intro[],    "archive": archive[] {      ...,      title,      description[],      status,    },  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // richtextTitle    "richtextTitleText": text[],    "richTextTitle": title,    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "intro": intro[],    "archive": archive[] {      ...,      title,      description[],      status,    },    // custom-html    "customHtml": html,    "codeTitle": codeTitle,  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -762,6 +779,27 @@ export type PagesContentQueryResult = {
         goToAllEvents: null;
         intro: null;
         archive: null;
+        customHtml: null;
+        codeTitle: null;
+      }
+    | {
+        _type: "custom-html";
+        richtext: null;
+        richtextTitleText: null;
+        richTextTitle: null;
+        imageTitle: null;
+        imageUrl: null;
+        multiImages: null;
+        linkLabel: null;
+        external: null;
+        internal: null;
+        isDisplayed: null;
+        lastEventLabel: null;
+        goToAllEvents: null;
+        intro: null;
+        archive: null;
+        customHtml: Code | null;
+        codeTitle: string | null;
       }
     | {
         _type: "link";
@@ -784,6 +822,8 @@ export type PagesContentQueryResult = {
         goToAllEvents: null;
         intro: null;
         archive: null;
+        customHtml: null;
+        codeTitle: null;
       }
     | {
         _type: "reference";
@@ -801,6 +841,8 @@ export type PagesContentQueryResult = {
         goToAllEvents: null;
         intro: null;
         archive: null;
+        customHtml: null;
+        codeTitle: null;
       }
   > | null;
 } | null;

@@ -43,7 +43,7 @@
   }
 
   .heroTitle {
-    @apply overflow-hidden text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter lg:text-[5rem] lg:leading-[4.5rem] lg:tracking-tighter;
+    @apply overflow-hidden text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter lg:text-[6rem] lg:leading-[5.5rem] lg:tracking-tighter;
   }
 
   .sideBarTitle {

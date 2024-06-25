@@ -57,6 +57,7 @@ export default defineType({
         { type: "contact-form" },
         { type: "lastEvent" },
         { type: "creationArchives" },
+        { type: "custom-html" },
       ],
     }),
   ],

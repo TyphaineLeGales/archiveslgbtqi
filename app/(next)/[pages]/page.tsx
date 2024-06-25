@@ -22,6 +22,7 @@ import {
   RichTextModule,
   CreationArchivesModule,
   RichTextAndTitleModule,
+  CustomHtml,
 } from "../components/modules";
 
 import { FormSubmission } from "../components/ui";
@@ -98,6 +99,13 @@ export default async function Page({ params }: Props) {
                     />
                   );
 
+                case "custom-html":
+                  return (
+                    <CustomHtml
+                      title={item.codeTitle!}
+                      html={item.customHtml?.code!}
+                    />
+                  );
                 default:
                   return null;
               }

@@ -5,6 +5,7 @@
 import { visionTool } from "@sanity/vision";
 import { PluginOptions, defineConfig } from "sanity";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
+import { codeInput } from "@sanity/code-input";
 import {
   presentationTool,
   defineDocuments,
@@ -38,6 +39,7 @@ import contactForm from "./sanity/schemas/blocks/contact-form";
 import lastEvent from "./sanity/schemas/blocks/last-event";
 import creationArchives from "./sanity/schemas/blocks/creation-archives";
 import richtextAndTitle from "./sanity/schemas/blocks/richtext-title";
+import customHtml from "./sanity/schemas/blocks/custom-html";
 
 const homeLocation = {
   title: "Home",
@@ -68,6 +70,7 @@ export default defineConfig({
       contactForm,
       lastEvent,
       creationArchives,
+      customHtml,
     ],
   },
   plugins: [
@@ -110,6 +113,7 @@ export default defineConfig({
     structureTool({
       structure,
     }),
+    codeInput(),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([settings.name]),
     // Add an image asset source for Unsplash
