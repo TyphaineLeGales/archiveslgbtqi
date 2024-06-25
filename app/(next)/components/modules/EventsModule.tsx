@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { LastEventQueryResult } from "@/sanity.types";
 
-import { DateAndHour } from "../ui";
+import { DateHourFormat } from "../ui";
 
 type Props = {
   events: LastEventQueryResult;
@@ -21,11 +21,13 @@ export default function EventsModule({ events, title, link }: Props) {
           <Link href={`/agenda/${event.slug?.current}`}>
             <h2>{event.eventTitle}</h2>
             <div className="inline-block">
-              <DateAndHour dateString={event.eventDate?.eventStartDate || ""} />
+              <DateHourFormat
+                dateString={event.eventDate?.eventStartDate || ""}
+              />
               {event.eventDate?.eventEndDate && (
                 <>
                   <span>&nbsp;-&nbsp;</span>
-                  <DateAndHour
+                  <DateHourFormat
                     dateString={event.eventDate?.eventEndDate || ""}
                   />
                 </>

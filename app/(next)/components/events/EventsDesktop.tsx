@@ -9,7 +9,7 @@ import { EventsQueryResult } from "@/sanity.types";
 
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
-import { DateAndHour, Marquee } from "../ui";
+import { DateHourFormat, TextMarquee } from "../ui";
 
 type EventProps = {
   event: EventsQueryResult;
@@ -130,7 +130,7 @@ export default function EventsDesktop({ event }: EventProps) {
                 <div className="flex items-center justify-between">
                   {eventItem.eventTitle?.length! > 15 ? (
                     <div className="flex h-[5.5rem] flex-col overflow-hidden rounded-r-full">
-                      <Marquee
+                      <TextMarquee
                         text={eventItem.eventTitle!}
                         className="eventTitle whitespace-nowrap transition-transform delay-200 duration-500 ease-tamisitée group-hover:animate-marquee"
                       />
@@ -147,13 +147,13 @@ export default function EventsDesktop({ event }: EventProps) {
                   )}
 
                   <div className="whitespace-nowrap rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
-                    <DateAndHour
+                    <DateHourFormat
                       dateString={eventItem.eventDate?.eventStartDate || ""}
                     />
                     {eventItem.eventDate?.addEndDate && (
                       <>
                         <span className="mx-[0.5rem]">-</span>
-                        <DateAndHour
+                        <DateHourFormat
                           dateString={eventItem.eventDate?.eventEndDate || ""}
                         />
                       </>

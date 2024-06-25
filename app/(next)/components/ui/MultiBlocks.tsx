@@ -7,7 +7,7 @@ type Props = {
   multiBlocks: HomepageQueryResult;
 };
 
-export default function MultiBlock({ multiBlocks }: Props) {
+export default function MultiBlocks({ multiBlocks }: Props) {
   return (
     <div className="flex min-h-[25rem] flex-col divide-y-[1px] divide-black px-[1rem] py-[1rem] lg:flex-row lg:divide-x-[1px] lg:divide-y-0">
       {/* Agenda */}

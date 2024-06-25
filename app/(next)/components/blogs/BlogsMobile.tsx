@@ -1,15 +1,17 @@
 "use client";
 
-import { BlogsQueryResult, EventsQueryResult } from "@/sanity.types";
 import React, { useState } from "react";
-import Image from "next/image";
-import DateFormat from "../ui/DateAndHour";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { NorthEastArrow } from "../ui/icon";
+
 import { useRouter } from "next/navigation";
-import Marquee from "../ui/Marquee";
+
+import { BlogsQueryResult, EventsQueryResult } from "@/sanity.types";
+
+import { motion, AnimatePresence } from "framer-motion";
+
 import clsx from "clsx";
+
+import { NorthEastArrow } from "../ui/icon";
+import { TextMarquee } from "../ui";
 
 type BlogProps = {
   blog: BlogsQueryResult;
@@ -59,7 +61,7 @@ export default function BlogsMobile({ blog }: BlogProps) {
               <div className="relative flex w-full flex-col justify-start gap-[1rem]">
                 <div className="flex items-center justify-between">
                   {blogItem.blogTitle?.length! > 15 ? (
-                    <Marquee
+                    <TextMarquee
                       text={blogItem.blogTitle!}
                       className={clsx(
                         isClicked && isClickedIndex === index

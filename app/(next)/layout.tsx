@@ -8,7 +8,10 @@ import { Suspense } from "react";
 
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
-import { AlertBanner, Providers } from "./components/ui";
+// import { AlertBanner } from "./components/ui";
+import { ToastProvider } from "./ToastProvider";
+
+import { BannerAlert } from "./components/ui";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,10 +28,10 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} bg-white text-black`}>
       <body>
         <section className="min-h-screen">
-          {draftMode().isEnabled && <AlertBanner />}
+          {draftMode().isEnabled && <BannerAlert />}
           <Header />
           <main className="py-[5rem]">
-            <Providers>{children}</Providers>
+            <ToastProvider>{children}</ToastProvider>
           </main>
           <Footer />
         </section>

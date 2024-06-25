@@ -2,7 +2,7 @@ import { HomepageQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { homepageQuery } from "@/sanity/lib/queries";
 
-import { Hero, MultiBlock, OutroBlock, VideoBlock } from "./components/ui";
+import { HeroSection, MultiBlocks, Outro, Video } from "./components/ui";
 
 export default async function Page() {
   const [homePage] = await Promise.all([
@@ -13,10 +13,10 @@ export default async function Page() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <Hero heroes={homePage} />
-      <MultiBlock multiBlocks={homePage} />
-      <VideoBlock video={homePage} />
-      <OutroBlock outro={homePage} />
+      <HeroSection heroes={homePage} />
+      <MultiBlocks multiBlocks={homePage} />
+      <Video video={homePage} />
+      <Outro outro={homePage} />
     </div>
   );
 }

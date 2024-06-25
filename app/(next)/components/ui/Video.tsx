@@ -5,7 +5,7 @@ type Props = {
   video: HomepageQueryResult;
 };
 
-export default function VideoBlock({ video }: Props) {
+export default function Video({ video }: Props) {
   return (
     <div className="min-h-full">
       {video?.video?.videoLink && (

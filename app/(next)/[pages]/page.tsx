@@ -24,7 +24,7 @@ import {
   RichTextAndTitleModule,
 } from "../components/modules";
 
-import { ContactForm } from "../components/ui";
+import { FormSubmission } from "../components/ui";
 
 type Props = {
   params: {
@@ -80,7 +80,7 @@ export default async function Page({ params }: Props) {
                   return <LinksModule item={item as any} />;
 
                 case "contact-form":
-                  return <ContactForm />;
+                  return <FormSubmission />;
 
                 case "lastEvent":
                   return (

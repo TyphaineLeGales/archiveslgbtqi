@@ -7,7 +7,7 @@ import { EventQueryResult } from "@/sanity.types";
 
 import { motion } from "framer-motion";
 
-import { DateAndHour } from "../ui";
+import { DateHourFormat } from "../ui";
 
 type Event = {
   params: {
@@ -32,11 +32,15 @@ export default function SingleEvent({ params, event }: Event) {
         <div className="mb-[1rem] flex flex-col justify-between gap-[1rem] border-b-[1px] border-black px-[1rem] pb-[1rem]">
           <h1 className="eventTitle">{event?.eventTitle}</h1>
           <div className="eventDate mb-[2rem] flex h-fit w-full justify-between rounded-full border-[1px] border-black px-[1rem] py-[.5rem] text-[.75rem]">
-            <DateAndHour dateString={event?.eventDate?.eventStartDate || ""} />
+            <DateHourFormat
+              dateString={event?.eventDate?.eventStartDate || ""}
+            />
             {event?.eventDate?.addEndDate && (
               <div className="flex w-1/2 items-center justify-between">
                 <span className="mx-[0.5rem]">→</span>
-                <DateAndHour dateString={event.eventDate.eventEndDate || ""} />
+                <DateHourFormat
+                  dateString={event.eventDate.eventEndDate || ""}
+                />
               </div>
             )}
           </div>

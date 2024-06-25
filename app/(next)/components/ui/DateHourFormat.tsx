@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
-export default function DateAndHour({
+export default function DateHourFormat({
   dateString,
   className,
 }: {

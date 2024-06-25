@@ -2,13 +2,13 @@
 
 import { BlogsQueryResult, EventsQueryResult } from "@/sanity.types";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import DateFormat from "../ui/DateAndHour";
+
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
+
 import { useRouter } from "next/navigation";
-import Marquee from "../ui/Marquee";
+
+import { TextMarquee } from "../ui";
 
 type BlogProps = {
   blog: BlogsQueryResult;
@@ -129,7 +129,7 @@ export default function BlogsDesktop({ blog }: BlogProps) {
                 <div className="flex items-center justify-between">
                   {blogItem.blogTitle?.length! > 15 ? (
                     <div className="flex h-[5.5rem] flex-col overflow-hidden rounded-r-full">
-                      <Marquee
+                      <TextMarquee
                         text={blogItem.blogTitle!}
                         className="eventTitle whitespace-nowrap transition-transform delay-200 duration-500 ease-tamisitée group-hover:animate-marquee"
                       />

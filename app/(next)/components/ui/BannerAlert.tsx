@@ -7,7 +7,7 @@ import { disableDraftMode } from "../../actions";
 
 const emptySubscribe = () => () => {};
 
-export default function AlertBanner() {
+export default function BannerAlert() {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
 

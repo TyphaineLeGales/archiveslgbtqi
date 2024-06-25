@@ -14,7 +14,7 @@ import {
   type PortableTextBlock,
 } from "next-sanity";
 
-export default function CustomPortableText({
+export default function MyCustomPortableText({
   className,
   value,
 }: {

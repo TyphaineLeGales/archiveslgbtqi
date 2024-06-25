@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomPortableText } from "../ui";
+import { MyCustomPortableText } from "../ui";
 
 type Props = {
   item: {
@@ -12,7 +12,7 @@ export default function RichTextAndTitleModule({ item }: Props) {
   return (
     <div>
       <h2>{item.richTextTitle}</h2>
-      <CustomPortableText value={item.richtextTitleText!} />
+      <MyCustomPortableText value={item.richtextTitleText!} />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { BlogQueryResult } from "@/sanity.types";
 
 import { motion } from "framer-motion";
 
-import { CustomPortableText } from "../ui";
+import { MyCustomPortableText } from "../ui";
 
 type Blogs = {
   params: {
@@ -31,7 +31,7 @@ export default function Blog({ params, blog }: Blogs) {
       <div className="flex flex-col gap-[1rem]">
         <div className="mb-[1rem] flex flex-col justify-between gap-[1rem] border-b-[1px] border-black px-[1rem] pb-[1rem]">
           <h1 className="eventTitle">{blog?.blogTitle!}</h1>
-          <CustomPortableText value={blog?.blogContentText as any} />
+          <MyCustomPortableText value={blog?.blogContentText as any} />
         </div>
         <div>
           {blog?.blogImages?.map((image, index) => (

@@ -1,5 +1,6 @@
 import React from "react";
-import CustomPortableText from "../ui/CustomPortableText";
+
+import { MyCustomPortableText } from "../ui";
 
 type Props = {
   item: {
@@ -11,7 +12,7 @@ type Props = {
 export default function RichTextModule({ item }: Props) {
   return (
     <div className="py-[1rem]">
-      <CustomPortableText value={item?.richtext!} />
+      <MyCustomPortableText value={item?.richtext!} />
     </div>
   );
 }

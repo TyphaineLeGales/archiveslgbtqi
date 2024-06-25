@@ -7,7 +7,11 @@ interface MarqueeProps {
   onClick?: () => void;
 }
 
-export default function Marquee({ text, className, onClick }: MarqueeProps) {
+export default function TextMarquee({
+  text,
+  className,
+  onClick,
+}: MarqueeProps) {
   const items = new Array(2).fill(text).map((item, index) => (
     <span key={index} className="inline-block lg:last:ml-[1rem]">
       {item}

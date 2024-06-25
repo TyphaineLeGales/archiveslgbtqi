@@ -1,4 +1,4 @@
-import ContactForm from "../components/ui/ContactForm";
+import { FormSubmission } from "../components/ui";
 
 export default function Contact() {
   return (
@@ -7,7 +7,7 @@ export default function Contact() {
         <h1 className="mb-10 text-center font-serif text-3xl font-medium">
           Contact us
         </h1>
-        <ContactForm />
+        <FormSubmission />
       </div>
     </section>
   );

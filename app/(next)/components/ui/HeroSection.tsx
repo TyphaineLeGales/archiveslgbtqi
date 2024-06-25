@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import Lenis from "lenis";
 
 import { HomepageQueryResult } from "@/sanity.types";
-import SplitText from "./SplitText";
+import TextSplitting from "./TextSplitting";
 
 type Props = {
   heroes: HomepageQueryResult;
@@ -20,7 +20,7 @@ const AnimatedText = {
   visible: { y: 0 },
 };
 
-export default function Hero({ heroes }: Props) {
+export default function HeroSection({ heroes }: Props) {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -82,14 +82,17 @@ export default function Hero({ heroes }: Props) {
                       }}
                       aria-hidden
                     >
-                      <SplitText variants={AnimatedText} className="heroTitle">
+                      <TextSplitting
+                        variants={AnimatedText}
+                        className="heroTitle"
+                      >
                         {hero.title}
-                      </SplitText>
+                      </TextSplitting>
                     </motion.h1>
                   </div>
                   <div>
                     <p className="sr-only">{hero.paragraph}</p>
-                    <SplitText
+                    <TextSplitting
                       initial={{ y: "102%" }}
                       whileInView="visible"
                       variants={{
@@ -105,7 +108,7 @@ export default function Hero({ heroes }: Props) {
                       className="text-[1.5rem] font-medium uppercase leading-[1.5rem] tracking-tighter"
                     >
                       {hero.paragraph}
-                    </SplitText>
+                    </TextSplitting>
                   </div>
                 </div>
               </div>

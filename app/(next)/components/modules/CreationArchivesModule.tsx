@@ -2,7 +2,7 @@ import React from "react";
 
 import { PortableTextBlock } from "next-sanity";
 
-import { CustomPortableText } from "../ui";
+import { MyCustomPortableText } from "../ui";
 
 type CreationArchivesModuleProps = {
   intro: PortableTextBlock[];
@@ -20,7 +20,7 @@ export default function CreationArchivesModule({
   return (
     <div className="flex flex-col gap-[1rem] py-[1rem]">
       {/* TODO: Collapsible */}
-      <CustomPortableText value={intro} />
+      <MyCustomPortableText value={intro} />
       <ul className="divide-y-[1px] divide-black/10 border-t-[1px] border-black">
         {archive?.map((archiveItem, index) => (
           <li
@@ -28,7 +28,7 @@ export default function CreationArchivesModule({
             className="flex flex-col gap-[1rem] py-[2rem]"
           >
             <h3>{archiveItem.title}</h3>
-            <CustomPortableText value={archiveItem.description} />
+            <MyCustomPortableText value={archiveItem.description} />
             <p>{archiveItem.status}</p>
           </li>
         ))}

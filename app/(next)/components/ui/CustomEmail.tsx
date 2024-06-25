@@ -1,10 +1,10 @@
 import * as React from "react";
 
-interface EmailTemplateProps {
+interface CustomEmailProps {
   firstName: string;
 }
 
-export default function EmailTemplate(props: EmailTemplateProps) {
+export default function CustomEmail(props: CustomEmailProps) {
   return (
     <div>
       <h1>Welcome, {props.firstName}!</h1>

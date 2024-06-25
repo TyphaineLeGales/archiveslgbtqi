@@ -8,7 +8,8 @@ import { EventsQueryResult } from "@/sanity.types";
 import { motion, AnimatePresence } from "framer-motion";
 
 import clsx from "clsx";
-import { DateAndHour, Marquee } from "../ui";
+
+import { DateHourFormat, TextMarquee } from "../ui";
 import { NorthEastArrow } from "../ui/icon";
 
 type EventProps = {
@@ -59,7 +60,7 @@ export default function EventsMobile({ event }: EventProps) {
               <div className="relative flex w-full flex-col justify-start gap-[1rem]">
                 <div className="flex items-center justify-between">
                   {eventItem.eventTitle?.length! > 15 ? (
-                    <Marquee
+                    <TextMarquee
                       text={eventItem.eventTitle!}
                       className={clsx(
                         isClicked && isClickedIndex === index
@@ -105,13 +106,13 @@ export default function EventsMobile({ event }: EventProps) {
                   </motion.div>
                 </div>
                 <div className="mx-[1rem] flex justify-between rounded-full border-[1px] border-black px-[1rem] py-[.25rem] text-[.75rem]">
-                  <DateAndHour
+                  <DateHourFormat
                     dateString={eventItem.eventDate?.eventStartDate || ""}
                   />
                   {eventItem.eventDate?.addEndDate && (
                     <div className="flex w-1/2 items-center justify-between">
                       <span className="mx-[0.5rem]">→</span>
-                      <DateAndHour
+                      <DateHourFormat
                         dateString={eventItem.eventDate?.eventEndDate || ""}
                       />
                     </div>

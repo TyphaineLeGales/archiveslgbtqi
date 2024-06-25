@@ -11,7 +11,7 @@ import { sendEmail } from "../../_actions";
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 
-export default function ContactForm() {
+export default function FormSubmission() {
   const {
     register,
     handleSubmit,
