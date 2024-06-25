@@ -95,8 +95,8 @@ export default async function Page({ params }: Props) {
                 case "creationArchives":
                   return (
                     <CreationArchivesModule
-                      intro={item.intro || []}
-                      archive={item.archive || []}
+                      intro={item.creationArchivesTitle! as any}
+                      archive={item.creationArchivesArchive || []}
                     />
                   );
 

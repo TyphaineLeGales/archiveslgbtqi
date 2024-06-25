@@ -46,6 +46,39 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type CreativeModule = {
+  _type: "creative-module";
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  modules?: Array<{
+    subModules?: Array<
+      {
+        _key: string;
+      } & CustomHtml
+    >;
+    colSpan?: number;
+    _key: string;
+  }>;
+  columns?: number;
+  bordered?: boolean;
+};
+
 export type CustomHtml = {
   _type: "custom-html";
   codeTitle?: string;
@@ -610,6 +643,9 @@ export type Pages = {
     | ({
         _key: string;
       } & CustomHtml)
+    | ({
+        _key: string;
+      } & CreativeModule)
   >;
 };
 
@@ -767,7 +803,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // richtextTitle    "richtextTitleText": text[],    "richTextTitle": title,    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "intro": intro[],    "archive": archive[] {      ...,      title,      description[],      status,    },    // custom-html    "customHtml": html,    "codeTitle": codeTitle,    "isAddFiles": isAddFiles,    "fileGroup": fileGroup[] {      title,      files[] {        asset-> {          url,          originalFilename,        },      },    },  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // richtextTitle    "richtextTitleText": text[],    "richTextTitle": title,    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "creationArchivesTitle": intro[],    "creationArchivesArchive": archive[] {      ...,      title,      description[],      status,    },    // custom-html    "customHtml": html,    "codeTitle": codeTitle,    "isAddFiles": isAddFiles,    "fileGroup": fileGroup[] {      title,      files[] {        asset->,      },    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -792,8 +828,54 @@ export type PagesContentQueryResult = {
         isDisplayed: null;
         lastEventLabel: null;
         goToAllEvents: null;
-        intro: null;
-        archive: null;
+        creationArchivesTitle: null;
+        creationArchivesArchive: null;
+        customHtml: null;
+        codeTitle: null;
+        isAddFiles: null;
+        fileGroup: null;
+      }
+    | {
+        _type: "creative-module";
+        richtext: null;
+        richtextTitleText: null;
+        richTextTitle: null;
+        imageTitle: null;
+        imageUrl: null;
+        multiImages: null;
+        linkLabel: null;
+        external: null;
+        internal: null;
+        isDisplayed: null;
+        lastEventLabel: null;
+        goToAllEvents: null;
+        creationArchivesTitle: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?:
+            | "blockquote"
+            | "h1"
+            | "h2"
+            | "h3"
+            | "h4"
+            | "h5"
+            | "h6"
+            | "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
+        creationArchivesArchive: null;
         customHtml: null;
         codeTitle: null;
         isAddFiles: null;
@@ -813,8 +895,8 @@ export type PagesContentQueryResult = {
         isDisplayed: null;
         lastEventLabel: null;
         goToAllEvents: null;
-        intro: null;
-        archive: null;
+        creationArchivesTitle: null;
+        creationArchivesArchive: null;
         customHtml: Code | null;
         codeTitle: string | null;
         isAddFiles: boolean | null;
@@ -822,8 +904,25 @@ export type PagesContentQueryResult = {
           title: string | null;
           files: Array<{
             asset: {
-              url: string | null;
-              originalFilename: string | null;
+              _id: string;
+              _type: "sanity.fileAsset";
+              _createdAt: string;
+              _updatedAt: string;
+              _rev: string;
+              originalFilename?: string;
+              label?: string;
+              title?: string;
+              description?: string;
+              altText?: string;
+              sha1hash?: string;
+              extension?: string;
+              mimeType?: string;
+              size?: number;
+              assetId?: string;
+              uploadId?: string;
+              path?: string;
+              url?: string;
+              source?: SanityAssetSourceData;
             } | null;
           }> | null;
         }> | null;
@@ -847,8 +946,8 @@ export type PagesContentQueryResult = {
         isDisplayed: null;
         lastEventLabel: null;
         goToAllEvents: null;
-        intro: null;
-        archive: null;
+        creationArchivesTitle: null;
+        creationArchivesArchive: null;
         customHtml: null;
         codeTitle: null;
         isAddFiles: null;
@@ -868,8 +967,8 @@ export type PagesContentQueryResult = {
         isDisplayed: null;
         lastEventLabel: null;
         goToAllEvents: null;
-        intro: null;
-        archive: null;
+        creationArchivesTitle: null;
+        creationArchivesArchive: null;
         customHtml: null;
         codeTitle: null;
         isAddFiles: null;

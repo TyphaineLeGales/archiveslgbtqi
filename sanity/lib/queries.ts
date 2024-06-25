@@ -180,8 +180,8 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
     "goToAllEvents": event.ctaToEvents,
 
     // creationArchives
-    "intro": intro[],
-    "archive": archive[] {
+    "creationArchivesTitle": intro[],
+    "creationArchivesArchive": archive[] {
       ...,
       title,
       description[],
