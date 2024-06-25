@@ -33,10 +33,16 @@ export default function HeaderMobile({ settings }: NavLinkProps) {
 
   const handleMenu = () => {
     setMenu((prevMenu) => !prevMenu);
+
+    if (menu) {
+      document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
   };
 
   return (
-    <div>
+    <div className="z-50">
       <button onClick={handleMenu} className="z-50 lg:hidden">
         {menu ? "[close]" : "[menu]"}
       </button>
@@ -71,7 +77,7 @@ export default function HeaderMobile({ settings }: NavLinkProps) {
               },
             }}
             ref={menuRef}
-            className="absolute left-0 top-0 z-30 mt-[5rem] h-screen w-full flex-col gap-[1rem] overflow-hidden bg-white p-[1rem] lg:hidden"
+            className="absolute left-0 top-0 z-50 mt-[5rem] h-screen w-full flex-col gap-[1rem] overflow-hidden bg-white p-[1rem] lg:hidden"
           >
             <nav className="flex flex-col items-center justify-center gap-[3rem]">
               {settings?.header.links &&

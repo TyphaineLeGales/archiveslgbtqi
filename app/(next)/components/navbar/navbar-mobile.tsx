@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 
 import { PagesContentQueryResult } from "@/sanity.types";
+
+import { useScrollDirection } from "../../utils/useScrollDirection";
 
 type Props = {
   onSectionClick?: (sectionId: string) => void;
@@ -15,41 +17,19 @@ type Props = {
 
 export default function MobileNavigationBar({ content }: Props) {
   const navbarRef = useRef<HTMLDivElement>(null);
-  const [menu, setMenu] = React.useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  const { pages } = useParams();
+  const [menu, setMenu] = useState(false);
+  const visible = useScrollDirection();
   const controls = useAnimation();
-
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY) {
-      setVisible(false); // Scrolling down
-    } else {
-      setVisible(true); // Scrolling up
-    }
-    setLastScrollY(currentScrollY);
-  };
+  const { pages } = useParams();
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
-  useEffect(() => {
-    if (visible) {
-      controls.start({ y: 0, opacity: 1 });
-    } else {
-      controls.start({ y: 100, opacity: 0 });
-    }
+    controls.start({ y: visible ? 0 : 100, opacity: visible ? 1 : 0 });
   }, [visible, controls]);
 
-  const handleMenu = () => {
-    setMenu(!menu);
+  const handleMenu = useCallback(() => {
+    setMenu((prevMenu) => !prevMenu);
     navbarRef.current?.classList.toggle("hidden");
-  };
+  }, []);
 
   return (
     <div className="block lg:hidden">
@@ -61,7 +41,7 @@ export default function MobileNavigationBar({ content }: Props) {
           }}
           animate={controls}
           onClick={handleMenu}
-          className="fixed inset-x-0 bottom-[1rem] z-40 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] border-black bg-white text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
+          className="absolute inset-x-0 bottom-[1rem] z-30 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] border-black bg-white text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
         >
           {menu ? "Close" : "Menu"}
         </motion.button>
@@ -81,7 +61,7 @@ export default function MobileNavigationBar({ content }: Props) {
                 ease: [0.6, 0.01, 0.05, 0.95],
                 duration: 0.5,
               }}
-              className="fixed inset-0 z-10 origin-bottom bg-white/50 bg-opacity-50 backdrop-blur-md"
+              className="absolute inset-0 z-10 origin-bottom bg-white/50 bg-opacity-50 backdrop-blur-md"
               onClick={handleMenu}
             />
             <motion.div
