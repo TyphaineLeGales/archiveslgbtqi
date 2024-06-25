@@ -23,7 +23,7 @@ export default async function Header() {
           alt="logo"
           width={65}
           height={65}
-          className="aspect-square h-[3rem] w-[3rem] object-center"
+          className="aspect-square h-[3rem] w-[3rem]"
         />
       </Link>
       <div>
