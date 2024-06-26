@@ -35,7 +35,7 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
               <Link
                 key={`link-${index}`}
                 href={`/${link.internalLinkDetails?.slug || ""}`}
-                className="headerItem group relative flex h-[.8rem] w-fit flex-col overflow-hidden"
+                className="headerItem group relative flex h-[.7rem] w-fit flex-col overflow-hidden"
               >
                 <span className="transition-transform duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
                   {link.internalLinkDetails?.title || ""}
