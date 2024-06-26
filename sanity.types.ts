@@ -46,39 +46,6 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type CreativeModule = {
-  _type: "creative-module";
-  intro?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  modules?: Array<{
-    subModules?: Array<
-      {
-        _key: string;
-      } & CustomHtml
-    >;
-    colSpan?: number;
-    _key: string;
-  }>;
-  columns?: number;
-  bordered?: boolean;
-};
-
 export type CustomHtml = {
   _type: "custom-html";
   codeTitle?: string;
@@ -643,9 +610,6 @@ export type Pages = {
     | ({
         _key: string;
       } & CustomHtml)
-    | ({
-        _key: string;
-      } & CreativeModule)
   >;
 };
 
@@ -829,52 +793,6 @@ export type PagesContentQueryResult = {
         lastEventLabel: null;
         goToAllEvents: null;
         creationArchivesTitle: null;
-        creationArchivesArchive: null;
-        customHtml: null;
-        codeTitle: null;
-        isAddFiles: null;
-        fileGroup: null;
-      }
-    | {
-        _type: "creative-module";
-        richtext: null;
-        richtextTitleText: null;
-        richTextTitle: null;
-        imageTitle: null;
-        imageUrl: null;
-        multiImages: null;
-        linkLabel: null;
-        external: null;
-        internal: null;
-        isDisplayed: null;
-        lastEventLabel: null;
-        goToAllEvents: null;
-        creationArchivesTitle: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?:
-            | "blockquote"
-            | "h1"
-            | "h2"
-            | "h3"
-            | "h4"
-            | "h5"
-            | "h6"
-            | "normal";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-            href?: string;
-            _type: "link";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }> | null;
         creationArchivesArchive: null;
         customHtml: null;
         codeTitle: null;
