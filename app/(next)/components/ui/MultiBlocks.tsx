@@ -2,6 +2,7 @@ import { HomepageQueryResult } from "@/sanity.types";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import TransitionLink from "./TransitionLink";
 
 type Props = {
   multiBlocks: HomepageQueryResult;
@@ -12,12 +13,15 @@ export default function MultiBlocks({ multiBlocks }: Props) {
     <div className="flex min-h-[25rem] flex-col divide-y-[1px] divide-black px-[1rem] py-[1rem] lg:flex-row lg:divide-x-[1px] lg:divide-y-0">
       {/* Agenda */}
       <div className="py-[1rem] lg:w-1/3 lg:py-0">
-        <Link href="/agenda" className="text-[1.5rem] font-bold uppercase">
+        <TransitionLink
+          href="/agenda"
+          className="text-[1.5rem] font-bold uppercase"
+        >
           L&apos;agenda
-        </Link>
+        </TransitionLink>
         <div className="flex flex-col gap-[1rem] lg:pt-[2rem]">
           {multiBlocks?.multiBlock?.eventsBlock?.events?.map((event, index) => (
-            <Link
+            <TransitionLink
               key={`event-${index}`}
               href={`/agenda/${event.slug?.current || ""}`}
               className="flex w-fit flex-col gap-[.5rem]"
@@ -30,7 +34,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
                 height="100"
                 className="h-auto max-h-[5rem] w-auto"
               />
-            </Link>
+            </TransitionLink>
           ))}
         </div>
       </div>
@@ -52,7 +56,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
                 ?.vimeoTitle
             }
           </Link>
-          <Link
+          <TransitionLink
             href={
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.podcast
                 ?.linkToPodcast || ""
@@ -62,18 +66,18 @@ export default function MultiBlocks({ multiBlocks }: Props) {
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.podcast
                 ?.podcastTitle
             }
-          </Link>
+          </TransitionLink>
         </div>
       </div>
 
       {/* Le Blog */}
       <div className="py-[1rem] lg:w-1/3 lg:py-0 lg:pl-[1rem]">
-        <Link
+        <TransitionLink
           href="/blog"
           className="whitespace-nowrap text-[1.5rem] font-bold uppercase"
         >
           {multiBlocks?.multiBlock?.leBlogBlock?.blogLabel}
-        </Link>
+        </TransitionLink>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { animatePageIn } from "./utils/animations";
+import { animatePageIn } from "./../../utils/animations";
 
 export default function Template({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -8,10 +8,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
   }, []);
   return (
     <>
-      <div
+      {/* <div
         id="transitionLayer"
-        className="fixed inset-0 z-50 min-h-screen bg-neutral-600"
-      />
+        className="fixed inset-0 min-h-screen bg-neutral-600"
+      /> */}
       {children}
     </>
   );

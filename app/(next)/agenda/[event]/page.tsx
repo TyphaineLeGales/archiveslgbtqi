@@ -18,7 +18,7 @@ export default async function Page({ params }: Event) {
     }),
   ]);
   return (
-    <div className="min-h-[100dvh] py-[1rem]">
+    <div className="relative min-h-screen">
       <SingleEvent
         params={{
           event: params.event,

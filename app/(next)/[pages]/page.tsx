@@ -53,7 +53,7 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  console.log("Pages Content:", content.content);
+  // console.log("Pages Content:", content.content);
 
   return (
     <>
