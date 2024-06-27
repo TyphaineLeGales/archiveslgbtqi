@@ -26,8 +26,6 @@ import {
 } from "../components/modules";
 
 import { FormSubmission } from "../components/ui";
-import ExitLayer from "../components/ui/transition/ExitLayer";
-import EnterLayer from "../components/ui/transition/EnterLayer";
 
 type Props = {
   params: {
@@ -57,7 +55,6 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      {/* <EnterLayer /> */}
       <div className="flex min-h-screen w-full flex-col gap-[1rem] px-[1rem] lg:pr-[1rem]">
         <h1 className="text-4xl font-bold">{content.title}</h1>
         <div className="flex flex-col py-[1rem]">
