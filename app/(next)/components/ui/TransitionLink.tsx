@@ -24,7 +24,6 @@ export default function TransitionLink({
     if (pathname != href) {
       animatePageOut(href, router);
     }
-    console.log(href);
   };
   return (
     <button key={key} onClick={handleClick} className={className}>
