@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SettingsQueryResult } from "@/sanity.types";
-import ExitLayer from "../ui/transition/ExitLayer";
-import { AnimatePresence, motion } from "framer-motion";
+import TransitionLink from "../ui/TransitionLink";
 
 type NavLinkProps = {
   settings: SettingsQueryResult;
@@ -20,7 +19,7 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
         settings.header.links.map((link, index) => {
           if (link.type === "internal") {
             return (
-              // <motion.button
+              // <button
               //   key={`link-${index}`}
               //   // href={`/${link.internalLinkDetails?.slug || ""}`}
               //   onClick={() => {
@@ -32,7 +31,7 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
               //   }}
               //   className="headerItem group relative flex h-[.8rem] w-fit flex-col overflow-hidden"
               // >
-              <Link
+              <TransitionLink
                 key={`link-${index}`}
                 href={`/${link.internalLinkDetails?.slug || ""}`}
                 className="headerItem group relative flex h-[.7rem] w-fit flex-col overflow-hidden"
@@ -43,8 +42,8 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
                 <span className="transition-transform duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
                   {link.internalLinkDetails?.title || ""}
                 </span>
-                {/* </motion.button> */}
-              </Link>
+                {/* </button> */}
+              </TransitionLink>
             );
           } else {
             return (

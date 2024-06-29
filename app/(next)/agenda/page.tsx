@@ -14,7 +14,7 @@ export default async function Page() {
   ]);
 
   return (
-    <div className="min-h-[100dvh] py-[1rem]">
+    <div className="relative min-h-screen py-[1rem]">
       <Event events={events} />
     </div>
   );
