@@ -1,5 +1,6 @@
 import React from "react";
-import Link from "next/link";
+
+import TransitionLink from "../ui/TransitionLink";
 
 type Props = {
   item: {
@@ -13,12 +14,12 @@ export default function LinksModule({ item }: Props) {
   const link = item;
   return (
     <div className="py-[1rem]">
-      <Link
+      <TransitionLink
         href={`${link.internal?.slug || link.external}`}
         className="underline"
       >
         {link.linkLabel}
-      </Link>
+      </TransitionLink>
     </div>
   );
 }

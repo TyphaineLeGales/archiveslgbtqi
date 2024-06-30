@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { HomepageQueryResult } from "@/sanity.types";
 import TextSplitting from "../TextSplitting";
+import TransitionLink from "../TransitionLink";
 
 type Props = {
   heroes: HomepageQueryResult;
@@ -17,7 +18,7 @@ export default function StickyHero({ heroes }: Props) {
       className="no-scrollbar relative max-h-[calc(100dvh-5rem)] overflow-y-scroll"
     >
       {heroes?.hero?.map((hero) => (
-        <Link
+        <TransitionLink
           key={hero.title!}
           href={
             hero.cta?.ctaLink?._type === "pages"
@@ -75,7 +76,7 @@ export default function StickyHero({ heroes }: Props) {
               </div>
             </div>
           )}
-        </Link>
+        </TransitionLink>
       ))}
     </div>
   );
