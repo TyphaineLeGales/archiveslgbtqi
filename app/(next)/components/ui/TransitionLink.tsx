@@ -2,6 +2,7 @@
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { animatePageOut } from "../../utils/animations";
+import Link from "next/link";
 
 type Props = {
   key?: string;
@@ -19,15 +20,15 @@ export default function TransitionLink({
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (pathname != href) {
       animatePageOut(href, router);
     }
   };
   return (
-    <button key={key} onClick={handleClick} className={className}>
+    <Link key={key} href={href} onClick={handleClick} className={className}>
       {children}
-    </button>
+    </Link>
   );
 }

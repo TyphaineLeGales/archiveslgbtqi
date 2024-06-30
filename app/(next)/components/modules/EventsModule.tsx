@@ -5,6 +5,7 @@ import Link from "next/link";
 import { LastEventQueryResult } from "@/sanity.types";
 
 import { DateHourFormat } from "../ui";
+import TransitionLink from "../ui/TransitionLink";
 
 type Props = {
   events: LastEventQueryResult;
@@ -18,7 +19,7 @@ export default function EventsModule({ events, title, link }: Props) {
       <h1>{title}</h1>
       {events.map((event) => (
         <li key={event.eventTitle}>
-          <Link href={`/agenda/${event.slug?.current}`}>
+          <TransitionLink href={`/agenda/${event.slug?.current}`}>
             <h2>{event.eventTitle}</h2>
             <div className="inline-block">
               <DateHourFormat
@@ -34,12 +35,12 @@ export default function EventsModule({ events, title, link }: Props) {
               )}
             </div>
             <p>{event.eventLocation}</p>
-          </Link>
+          </TransitionLink>
         </li>
       ))}
-      <Link href="/agenda" className="underline">
+      <TransitionLink href="/agenda" className="underline">
         {link}
-      </Link>
+      </TransitionLink>
     </ul>
   );
 }
