@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 import { TextMarquee } from "../ui";
 import TransitionLink from "../ui/TransitionLink";
+import Link from "next/link";
 
 type BlogProps = {
   blog: BlogsQueryResult;
@@ -42,7 +43,7 @@ export default function BlogsDesktop({ blog }: BlogProps) {
     <>
       <div className="hidden min-h-[85dvh] flex-col justify-end lg:flex">
         {blog?.map((blogItem, index) => (
-          <TransitionLink
+          <Link
             key={`event-${index}`}
             className="group relative flex items-start overflow-hidden border-b-[1px] border-black bg-white"
             href={`/blog/${blogItem.slug?.current}`}
@@ -91,7 +92,7 @@ export default function BlogsDesktop({ blog }: BlogProps) {
                 )}
               </div>
             </div>
-          </TransitionLink>
+          </Link>
         ))}
       </div>
     </>

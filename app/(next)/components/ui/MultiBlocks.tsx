@@ -13,15 +13,12 @@ export default function MultiBlocks({ multiBlocks }: Props) {
     <div className="flex min-h-[25rem] flex-col divide-y-[1px] divide-black px-[1rem] py-[1rem] lg:flex-row lg:divide-x-[1px] lg:divide-y-0">
       {/* Agenda */}
       <div className="py-[1rem] lg:w-1/3 lg:py-0">
-        <TransitionLink
-          href="/agenda"
-          className="text-[1.5rem] font-bold uppercase"
-        >
+        <Link href="/agenda" className="text-[1.5rem] font-bold uppercase">
           L&apos;agenda
-        </TransitionLink>
+        </Link>
         <div className="flex flex-col gap-[1rem] lg:pt-[2rem]">
           {multiBlocks?.multiBlock?.eventsBlock?.events?.map((event, index) => (
-            <TransitionLink
+            <Link
               key={`event-${index}`}
               href={`/agenda/${event.slug?.current || ""}`}
               className="flex w-fit flex-col gap-[.5rem]"
@@ -34,7 +31,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
                 height="100"
                 className="h-auto max-h-[5rem] w-auto"
               />
-            </TransitionLink>
+            </Link>
           ))}
         </div>
       </div>
@@ -56,7 +53,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
                 ?.vimeoTitle
             }
           </Link>
-          <TransitionLink
+          <Link
             href={
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.podcast
                 ?.linkToPodcast || ""
@@ -66,18 +63,18 @@ export default function MultiBlocks({ multiBlocks }: Props) {
               multiBlocks?.multiBlock?.lesArchivesVivantesBlock?.podcast
                 ?.podcastTitle
             }
-          </TransitionLink>
+          </Link>
         </div>
       </div>
 
       {/* Le Blog */}
       <div className="py-[1rem] lg:w-1/3 lg:py-0 lg:pl-[1rem]">
-        <TransitionLink
+        <Link
           href="/blog"
           className="whitespace-nowrap text-[1.5rem] font-bold uppercase"
         >
           {multiBlocks?.multiBlock?.leBlogBlock?.blogLabel}
-        </TransitionLink>
+        </Link>
       </div>
     </div>
   );

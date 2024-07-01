@@ -31,7 +31,7 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
               //   }}
               //   className="headerItem group relative flex h-[.8rem] w-fit flex-col overflow-hidden"
               // >
-              <TransitionLink
+              <Link
                 key={`link-${index}`}
                 href={`/${link.internalLinkDetails?.slug || ""}`}
                 className="headerItem group relative flex h-[.7rem] w-fit flex-col overflow-hidden"
@@ -43,7 +43,7 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
                   {link.internalLinkDetails?.title || ""}
                 </span>
                 {/* </button> */}
-              </TransitionLink>
+              </Link>
             );
           } else {
             return (

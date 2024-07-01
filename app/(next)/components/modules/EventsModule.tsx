@@ -19,7 +19,7 @@ export default function EventsModule({ events, title, link }: Props) {
       <h1>{title}</h1>
       {events.map((event) => (
         <li key={event.eventTitle}>
-          <TransitionLink href={`/agenda/${event.slug?.current}`}>
+          <Link href={`/agenda/${event.slug?.current}`}>
             <h2>{event.eventTitle}</h2>
             <div className="inline-block">
               <DateHourFormat
@@ -35,12 +35,12 @@ export default function EventsModule({ events, title, link }: Props) {
               )}
             </div>
             <p>{event.eventLocation}</p>
-          </TransitionLink>
+          </Link>
         </li>
       ))}
-      <TransitionLink href="/agenda" className="underline">
+      <Link href="/agenda" className="underline">
         {link}
-      </TransitionLink>
+      </Link>
     </ul>
   );
 }

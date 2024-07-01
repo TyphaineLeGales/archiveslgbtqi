@@ -40,7 +40,7 @@ export default function EventsDesktop({ event }: EventProps) {
   return (
     <div className="hidden min-h-[85dvh] flex-col justify-end lg:flex">
       {event?.map((eventItem, index) => (
-        <TransitionLink
+        <Link
           key={`event-${index}`}
           href={`/agenda/${eventItem.slug?.current}`}
           className="group relative flex items-start overflow-hidden border-b-[1px] border-black bg-white"
@@ -102,7 +102,7 @@ export default function EventsDesktop({ event }: EventProps) {
               </div>
             </div>
           </div>
-        </TransitionLink>
+        </Link>
       ))}
     </div>
   );

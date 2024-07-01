@@ -18,7 +18,7 @@ export default function StickyHero({ heroes }: Props) {
       className="no-scrollbar relative max-h-[calc(100dvh-5rem)] overflow-y-scroll"
     >
       {heroes?.hero?.map((hero) => (
-        <TransitionLink
+        <Link
           key={hero.title!}
           href={
             hero.cta?.ctaLink?._type === "pages"
@@ -76,7 +76,7 @@ export default function StickyHero({ heroes }: Props) {
               </div>
             </div>
           )}
-        </TransitionLink>
+        </Link>
       ))}
     </div>
   );

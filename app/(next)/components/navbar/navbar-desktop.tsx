@@ -15,7 +15,7 @@ export default function DesktopNavigationBar({ content }: Props) {
   return (
     <div className="fixed hidden w-[25%] flex-col items-start gap-[1rem] whitespace-nowrap px-[1rem] pt-[2rem] lg:flex">
       {content?.navigation?.map((navItem) => (
-        <TransitionLink
+        <Link
           key={navItem._id}
           href={navItem.slug?.current!}
           className={` ${
@@ -29,7 +29,7 @@ export default function DesktopNavigationBar({ content }: Props) {
             {navItem.title}
           </span>
           <div className="absolute bottom-0 left-0 h-[1px] w-full translate-x-[-100%] bg-black transition-transform delay-300 duration-[.7s] ease-tamisitée group-hover:translate-x-0" />
-        </TransitionLink>
+        </Link>
       ))}
     </div>
   );
