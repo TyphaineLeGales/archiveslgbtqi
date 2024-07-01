@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import Lenis from "lenis";
 
 import { HomepageQueryResult } from "@/sanity.types";
-import { CustomStickyHero, StickyHero } from "./Heroes";
+import { Hero2, Hero3 } from "./Heroes";
 
 type Props = {
   heroes: HomepageQueryResult;
@@ -35,7 +35,8 @@ export default function HeroSection({ heroes }: Props) {
   return (
     <>
       {/* <StickyHero heroes={heroes} /> */}
-      <CustomStickyHero heroes={heroes} />
+      {/* <Hero2 heroes={heroes} /> */}
+      <Hero3 heroes={heroes} />
     </>
   );
 }
