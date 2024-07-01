@@ -34,8 +34,8 @@ export default function HeroSection({ heroes }: Props) {
 
   return (
     <>
-      <StickyHero heroes={heroes} />
-      {/* <CustomStickyHero heroes={heroes} /> */}
+      {/* <StickyHero heroes={heroes} /> */}
+      <CustomStickyHero heroes={heroes} />
     </>
   );
 }
