@@ -43,7 +43,7 @@
   }
 
   .heroTitle {
-    @apply overflow-hidden text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter text-white lg:text-[4.5rem] lg:leading-[4rem] lg:tracking-tighter;
+    @apply prose text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter text-white will-change-auto lg:text-[4.5rem] lg:leading-[4rem] lg:tracking-tighter;
   }
 
   .heroParagraph {

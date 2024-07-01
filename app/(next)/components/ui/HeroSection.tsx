@@ -11,11 +11,6 @@ type Props = {
   heroes: HomepageQueryResult;
 };
 
-const AnimatedText = {
-  hidden: { y: "100%" },
-  visible: { y: 0 },
-};
-
 export default function HeroSection({ heroes }: Props) {
   useEffect(() => {
     const lenis = new Lenis();
