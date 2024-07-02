@@ -43,11 +43,11 @@
   }
 
   .heroTitle {
-    @apply overflow-hidden text-center text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter text-white lg:text-[4rem] lg:leading-[3.5rem] lg:tracking-tighter;
+    @apply prose text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter text-white will-change-auto lg:text-[4.5rem] lg:leading-[4rem] lg:tracking-tighter;
   }
 
   .heroParagraph {
-    @apply text-center text-[1rem] leading-[1.5rem] tracking-tighter text-white lg:text-[1.5rem] lg:leading-[2rem];
+    @apply prose text-[1rem] leading-[1.5rem] tracking-tighter text-white;
   }
 
   .sideBarTitle {
@@ -64,5 +64,11 @@
 
   .eventLocation {
     @apply text-start text-[1.5rem] font-semibold leading-[1.5rem] tracking-tighter lg:text-[2rem] lg:leading-[2rem];
+  }
+}
+
+@layer utilities {
+  .customRounded {
+    @apply rounded-b-full rounded-tr-full;
   }
 }

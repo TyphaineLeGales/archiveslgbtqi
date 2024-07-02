@@ -12,7 +12,7 @@ type Props = {
   heroes: HomepageQueryResult;
 };
 
-export default function CustomStickyHero({ heroes }: Props) {
+export default function Hero2({ heroes }: Props) {
   const [index, setIndex] = useState(0);
 
   const imageRef = React.useRef<HTMLImageElement>(null);
@@ -29,8 +29,9 @@ export default function CustomStickyHero({ heroes }: Props) {
   useGSAP(() => {
     gsap.from(imageRef.current, {
       opacity: 0,
-      duration: 2,
-      ease: "power2.out",
+      scale: 1.1,
+      duration: 1,
+      ease: "power4.inOut",
     });
     gsap.from(titleRef.current, {
       translateY: "100%",
@@ -67,9 +68,8 @@ export default function CustomStickyHero({ heroes }: Props) {
         alt={imageAlt || ""}
         width={1920}
         height={1080}
-        className="max-h-[calc(100dvh-5rem)]"
+        className="max-h-[calc(100dvh-5rem)] object-cover"
       />
-
       <Link
         href={
           hero?.cta?.ctaLink?._type === "pages"
@@ -80,9 +80,12 @@ export default function CustomStickyHero({ heroes }: Props) {
                 ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
                 : "#"
         }
-        className="absolute bottom-[1rem] right-[1rem] z-30 rounded-full bg-white px-[2rem] py-[.5rem]"
+        className="group absolute bottom-[1rem] right-[1rem] z-30 cursor-pointer overflow-hidden rounded-full border border-white bg-opacity-50 px-[2rem] py-[.5rem] text-white transition-all duration-300 ease-in-out hover:bg-opacity-100 hover:text-black"
       >
-        Aller à la page
+        <div className="relative z-10 text-[.8rem] uppercase leading-[.8rem] tracking-tight">
+          Aller à la page
+        </div>
+        <div className="absolute inset-0 z-0 mx-auto w-full translate-y-[100%] rounded-full bg-white transition-transform duration-500 ease-tamisitée group-hover:translate-y-0" />
       </Link>
       <div
         ref={textRef}
