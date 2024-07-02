@@ -33,7 +33,7 @@ export default function MyCustomPortableText({
     marks: {
       link: ({ children, value }) => {
         return (
-          <a href={value?.href} rel="noreferrer noopener">
+          <a href={value?.href} rel="noreferrer noopener" target="_blank">
             {children}
           </a>
         );
