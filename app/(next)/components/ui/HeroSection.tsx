@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import Lenis from "lenis";
 
 import { HomepageQueryResult } from "@/sanity.types";
-import { Hero2, Hero3 } from "./Heroes";
+import { Hero2, Hero3, StickyHero } from "./Heroes";
 
 type Props = {
   heroes: HomepageQueryResult;

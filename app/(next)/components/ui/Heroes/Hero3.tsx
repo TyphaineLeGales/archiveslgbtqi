@@ -29,12 +29,12 @@ export default function StickyHero({ heroes }: Props) {
   gsap.registerPlugin(Observer);
 
   useGSAP(() => {
-    gsap.from(imageRef.current, {
-      opacity: 0,
-      scale: 1.1,
-      duration: 1,
-      ease: "power4.inOut",
-    });
+    // gsap.from(imageRef.current, {
+    //   opacity: 0,
+    //   scale: 1.1,
+    //   duration: 1,
+    //   ease: "power4.inOut",
+    // });
     gsap.from(paragraphRef.current, {
       translateY: "100%",
       duration: 1,
@@ -43,16 +43,16 @@ export default function StickyHero({ heroes }: Props) {
   }, [currentHero]);
 
   console.log("Current Hero: ", currentHero);
-
   console.log("Number of Heroes: ", numberOfHeroes);
+
   return (
-    <div className="relative flex max-h-[calc(100dvh-5rem)] min-w-[100vw]">
+    <div className="relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] min-w-[100vw]">
       {heroes?.hero?.map((hero) => (
         <div
           key={hero.title!}
           ref={containerRef}
           className={clsx(
-            "group relative h-full max-h-[calc(100dvh-5rem)] w-[100vw] overflow-hidden border-x-[.5px] border-black bg-white transition-[width] duration-[1s] ease-tamisitée",
+            "group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black bg-white transition-[width] duration-[1s] ease-tamisitée",
             currentHero === heroes?.hero?.indexOf(hero)
               ? `w-[100vw]`
               : `w-[3rem] cursor-pointer`,
@@ -61,10 +61,8 @@ export default function StickyHero({ heroes }: Props) {
         >
           <div
             className={clsx(
-              "absolute inset-0 z-20 h-full w-full bg-black transition-all duration-500 ease-tamisitée group-hover:bg-opacity-10",
-              currentHero === heroes?.hero?.indexOf(hero)
-                ? "bg-opacity-0"
-                : "bg-opacity-50",
+              "absolute inset-0 z-20 h-full w-full bg-black bg-opacity-50 transition-all duration-500 ease-tamisitée group-hover:bg-opacity-0",
+              currentHero === heroes?.hero?.indexOf(hero) ? "hidden" : "block",
             )}
           />
           <div className="relative max-h-[calc(100dvh-5rem)] w-full">
@@ -125,13 +123,7 @@ export default function StickyHero({ heroes }: Props) {
                   alt={hero.image.alt || ""}
                   width={1920}
                   height={1080}
-                  //   className={clsx(
-                  //     "h-full max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full min-w-full object-cover transition-[width] duration-[1s] ease-tamisitée",
-                  //     currentHero === heroes?.hero?.indexOf(hero)
-                  //       ? "opacity-100"
-                  //       : "opacity-50 transition-opacity duration-300 ease-tamisitée group-hover:opacity-100",
-                  //   )}
-                  className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover"
+                  className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover will-change-transform"
                 />
               </>
             )}
