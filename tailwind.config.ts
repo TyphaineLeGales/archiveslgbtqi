@@ -21,6 +21,10 @@ export default {
       animation: {
         marquee: "marquee 10s linear infinite",
       },
+      colors: {
+        "white-primary": "#F7F7F7",
+        "black-primary": "#121212",
+      },
     },
   },
   future: {

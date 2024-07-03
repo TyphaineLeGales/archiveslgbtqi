@@ -81,7 +81,7 @@ export default function FormSubmission() {
 
       <button
         disabled={isSubmitting}
-        className="rounded-lg border border-black bg-black py-2.5 font-medium text-white transition-colors hover:bg-black/80 disabled:cursor-not-allowed disabled:opacity-50"
+        className="border-black-primary bg-black-primary text-white-primary rounded-lg border py-2.5 font-medium transition-colors hover:bg-black/80 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isSubmitting ? "Submitting..." : "Submit"}
       </button>

@@ -18,7 +18,7 @@ export default async function Header() {
   });
 
   return (
-    <div className="fixed top-0 z-40 flex h-[5rem] w-full items-center justify-between border-b-[1px] border-black bg-white bg-opacity-50 p-[1rem] backdrop-blur-md">
+    <div className="border-black-primary bg-white-primary fixed top-0 z-40 flex h-[5rem] w-full items-center justify-between border-b-[1px] bg-opacity-50 p-[1rem] backdrop-blur-md">
       <Link href="/" className="relative aspect-square h-[3rem] w-[3rem]">
         <Image
           src={settings?.header?.logo || "https://via.placeholder.com/100x100"}

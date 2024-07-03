@@ -25,7 +25,7 @@ export default function MobileNavigationBar({ content }: Props) {
           setMenu((prevMenu) => !prevMenu);
           document.body.style.overflow = menu ? "auto" : "hidden";
         }}
-        className="fixed inset-x-0 bottom-[1rem] z-30 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] border-black bg-white text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
+        className="border-black-primary bg-white-primary fixed inset-x-0 bottom-[1rem] z-30 mx-auto aspect-square h-[2.5rem] w-[2.5rem] rounded-full border-[.5px] text-[.7rem] uppercase leading-[.7rem] tracking-tighter shadow-sm"
       >
         {menu ? "Close" : "Menu"}
       </button>
@@ -37,7 +37,7 @@ export default function MobileNavigationBar({ content }: Props) {
               setMenu(false);
             }}
           />
-          <div className="fixed inset-x-0 bottom-[1rem] z-20 mx-auto mb-[1.25rem] flex w-[50%] origin-bottom flex-col rounded-b-[5%] border-[.5px] border-black bg-white pb-[1rem] lg:hidden">
+          <div className="border-black-primary bg-white-primary fixed inset-x-0 bottom-[1rem] z-20 mx-auto mb-[1.25rem] flex w-[50%] origin-bottom flex-col rounded-b-[5%] border-[.5px] pb-[1rem] lg:hidden">
             <nav
               ref={navbarRef}
               className="flex h-auto flex-col items-center justify-center gap-[1rem] py-[2rem]"

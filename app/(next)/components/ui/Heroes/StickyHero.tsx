@@ -29,7 +29,7 @@ export default function StickyHero({ heroes }: Props) {
                   ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
                   : "#"
           }
-          className="sticky top-0 max-h-[calc(100dvh-5rem)] bg-white"
+          className="bg-white-primary sticky top-0 max-h-[calc(100dvh-5rem)]"
         >
           {hero.image && (
             <div className="relative max-h-[calc(100dvh-5rem)]">
@@ -43,7 +43,7 @@ export default function StickyHero({ heroes }: Props) {
                 height={1080}
               />
               <div className="absolute inset-0 flex items-center justify-center px-[2.5rem] lg:px-[10rem]">
-                <div className="mb-[10vh] space-y-[2rem] text-center text-white mix-blend-difference">
+                <div className="text-white-primary mb-[10vh] space-y-[2rem] text-center mix-blend-difference">
                   <div>
                     <h1 className="sr-only">{hero.title}</h1>
                     <h1 aria-hidden>
