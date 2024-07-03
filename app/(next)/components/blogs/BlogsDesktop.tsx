@@ -45,7 +45,7 @@ export default function BlogsDesktop({ blog }: BlogProps) {
         {blog?.map((blogItem, index) => (
           <Link
             key={`event-${index}`}
-            className="group relative flex items-start overflow-hidden border-b-[1px] border-black bg-white"
+            className="border-black-primary bg-white-primary group relative flex items-start overflow-hidden border-b-[1px]"
             href={`/blog/${blogItem.slug?.current}`}
           >
             {/* {hoveredIndex === index && (

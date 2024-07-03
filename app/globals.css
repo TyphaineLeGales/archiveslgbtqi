@@ -2,29 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-
-  .lenis.lenis-smooth {
-    scroll-behavior: auto;
-  }
-
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
-
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
-
-  .lenis.lenis-smooth iframe {
-    pointer-events: none;
-  }
-}
-
 @layer components {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -43,11 +20,11 @@
   }
 
   .heroTitle {
-    @apply prose text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter text-white will-change-auto lg:text-[4.5rem] lg:leading-[4rem] lg:tracking-tighter;
+    @apply prose text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter text-white-primary will-change-auto lg:text-[4.5rem] lg:leading-[4rem] lg:tracking-tighter;
   }
 
   .heroParagraph {
-    @apply prose text-[1rem] leading-[1.5rem] tracking-tighter text-white;
+    @apply prose text-[1rem] leading-[1.5rem] tracking-tighter text-white-primary;
   }
 
   .sideBarTitle {
@@ -70,5 +47,9 @@
 @layer utilities {
   .customRounded {
     @apply rounded-b-full rounded-tr-full;
+  }
+
+  .boxRounded {
+    @apply rounded-b-3xl rounded-tr-3xl;
   }
 }

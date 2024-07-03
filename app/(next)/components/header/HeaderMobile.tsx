@@ -31,7 +31,7 @@ export default function HeaderMobile({ settings }: NavLinkProps) {
         <div
           key={"menu"}
           ref={menuRef}
-          className="absolute left-0 top-0 z-50 mt-[5rem] h-screen w-full flex-col gap-[1rem] overflow-hidden bg-white p-[1rem] lg:hidden"
+          className="bg-white-primary absolute left-0 top-0 z-50 mt-[5rem] h-screen w-full flex-col gap-[1rem] overflow-hidden p-[1rem] lg:hidden"
         >
           <nav className="z-50 flex flex-col items-center justify-center gap-[3rem]">
             {settings?.header.links &&

@@ -37,7 +37,7 @@ export default function BlogsMobile({ blog }: BlogProps) {
         <div
           key={`event-${index}`}
           onClick={() => handleClicked(index)}
-          className="group relative flex h-auto cursor-pointer items-start overflow-hidden border-b-[1px] border-black pb-[2rem]"
+          className="border-black-primary group relative flex h-auto cursor-pointer items-start overflow-hidden border-b-[1px] pb-[2rem]"
         >
           <div className="relative flex w-full flex-col justify-start gap-[1rem]">
             <div className="flex items-center justify-between">
@@ -65,7 +65,7 @@ export default function BlogsMobile({ blog }: BlogProps) {
                       router.push(`/blog/${blogItem.slug?.current}`);
                     }, 1000);
                   }}
-                  className="flex w-auto justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black bg-white py-[.30rem] pl-[5rem] pr-[1rem]"
+                  className="border-black-primary bg-white-primary flex w-auto justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] py-[.30rem] pl-[5rem] pr-[1rem]"
                 >
                   <NorthEastArrow className="aspect-square h-[2rem] w-[2rem] pt-1" />
                 </button>

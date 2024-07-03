@@ -23,7 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} bg-white text-black`}>
+    <html
+      lang="en"
+      className={`${inter.variable} bg-white-primary text-black-primary`}
+    >
       <body>
         <section className="min-h-screen">
           {draftMode().isEnabled && <BannerAlert />}

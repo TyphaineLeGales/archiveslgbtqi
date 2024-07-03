@@ -55,7 +55,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <div className="flex min-h-screen w-full flex-col gap-[1rem] px-[1rem] lg:pr-[1rem]">
+      <div className="flex min-h-screen w-full flex-col gap-[1rem] p-[1rem] lg:pr-[1rem]">
         <h1 className="text-4xl font-bold">{content.title}</h1>
         <div className="flex flex-col py-[1rem]">
           {content.content?.map((item, index) => (

@@ -5,13 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { HomepageQueryResult } from "@/sanity.types";
-import TextSplitting from "../TextSplitting";
-import TransitionLink from "../TransitionLink";
 import clsx from "clsx";
 import gsap from "gsap";
 import { Observer } from "gsap/Observer";
 import { useGSAP } from "@gsap/react";
-import { se } from "date-fns/locale";
 
 type Props = {
   heroes: HomepageQueryResult;
@@ -19,7 +16,6 @@ type Props = {
 
 export default function StickyHero({ heroes }: Props) {
   const [currentHero, setCurrentHero] = React.useState(0);
-  const numberOfHeroes = heroes?.hero?.length || 0;
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const imageRef = React.useRef<HTMLImageElement>(null);
@@ -29,12 +25,6 @@ export default function StickyHero({ heroes }: Props) {
   gsap.registerPlugin(Observer);
 
   useGSAP(() => {
-    // gsap.from(imageRef.current, {
-    //   opacity: 0,
-    //   scale: 1.1,
-    //   duration: 1,
-    //   ease: "power4.inOut",
-    // });
     gsap.from(paragraphRef.current, {
       translateY: "100%",
       duration: 1,
@@ -42,17 +32,14 @@ export default function StickyHero({ heroes }: Props) {
     });
   }, [currentHero]);
 
-  console.log("Current Hero: ", currentHero);
-  console.log("Number of Heroes: ", numberOfHeroes);
-
   return (
     <div className="relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] min-w-[100vw]">
       {heroes?.hero?.map((hero) => (
         <div
-          key={hero.title!}
+          key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
           className={clsx(
-            "group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black bg-white transition-[width] duration-[1s] ease-tamisitée",
+            "bg-white-primary group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black transition-[width] duration-[1s] ease-tamisitée",
             currentHero === heroes?.hero?.indexOf(hero)
               ? `w-[100vw]`
               : `w-[3rem] cursor-pointer`,
@@ -61,7 +48,7 @@ export default function StickyHero({ heroes }: Props) {
         >
           <div
             className={clsx(
-              "absolute inset-0 z-20 h-full w-full bg-black bg-opacity-50 transition-all duration-500 ease-tamisitée group-hover:bg-opacity-0",
+              "bg-black-primary absolute inset-0 z-20 h-full w-full bg-opacity-50 transition-all duration-500 ease-tamisitée group-hover:bg-opacity-0",
               currentHero === heroes?.hero?.indexOf(hero) ? "hidden" : "block",
             )}
           />
@@ -104,12 +91,12 @@ export default function StickyHero({ heroes }: Props) {
                         ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
                         : "#"
                 }
-                className="customRounded group/button absolute bottom-[1rem] right-[1rem] z-30 cursor-pointer overflow-hidden border-[1px] border-white bg-opacity-50 px-[2rem] py-[.5rem] text-white transition-all duration-300 ease-in-out hover:bg-opacity-100 hover:text-black"
+                className="customRounded group/button border-white-primary text-white-primary hover:text-black-primary absolute bottom-[1rem] right-[1rem] z-30 cursor-pointer overflow-hidden border-[1px] bg-opacity-50 px-[2rem] py-[.5rem] transition-all duration-700 ease-tamisitée hover:rounded-full hover:bg-opacity-100"
               >
                 <div className="relative z-10 text-[.8rem] uppercase leading-[.8rem] tracking-tight">
                   Aller à la page
                 </div>
-                <div className="customRounded absolute inset-0 z-0 mx-auto w-full translate-y-[100%] bg-white transition-transform duration-500 ease-tamisitée group-hover/button:translate-y-0" />
+                <div className="customRounded bg-white-primary absolute inset-0 z-0 mx-auto w-full translate-y-[100%] transition-transform duration-500 ease-tamisitée group-hover/button:translate-y-0" />
               </Link>
             )}
             {hero.image && (

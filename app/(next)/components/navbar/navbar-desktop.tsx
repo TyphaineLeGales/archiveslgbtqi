@@ -28,7 +28,7 @@ export default function DesktopNavigationBar({ content }: Props) {
           <span className="duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
             {navItem.title}
           </span>
-          <div className="absolute bottom-0 left-0 h-[1px] w-full translate-x-[-100%] bg-black transition-transform delay-300 duration-[.7s] ease-tamisitée group-hover:translate-x-0" />
+          <div className="bg-black-primary absolute bottom-0 left-0 h-[1px] w-full translate-x-[-100%] transition-transform delay-300 duration-[.7s] ease-tamisitée group-hover:translate-x-0" />
         </Link>
       ))}
     </div>
