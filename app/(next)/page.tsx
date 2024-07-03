@@ -14,8 +14,8 @@ export default async function Page() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       <HeroSection heroes={homePage} />
-      {/* <MultiBlocks multiBlocks={homePage} /> */}
-      <StickyMultiBlocks multiBlocks={homePage} />
+      <MultiBlocks multiBlocks={homePage} />
+      {/* <StickyMultiBlocks multiBlocks={homePage} /> */}
       <Video video={homePage} />
       <Outro outro={homePage} />
     </div>
