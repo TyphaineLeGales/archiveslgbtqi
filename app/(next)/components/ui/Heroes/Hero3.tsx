@@ -39,7 +39,7 @@ export default function StickyHero({ heroes }: Props) {
           key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
           className={clsx(
-            "bg-white-primary group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black transition-[width] duration-[1s] ease-tamisitée",
+            "group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black bg-white-primary transition-[width] duration-[1s] ease-tamisitée",
             currentHero === heroes?.hero?.indexOf(hero)
               ? `w-[100vw]`
               : `w-[3rem] cursor-pointer`,
@@ -48,7 +48,7 @@ export default function StickyHero({ heroes }: Props) {
         >
           <div
             className={clsx(
-              "bg-black-primary absolute inset-0 z-20 h-full w-full bg-opacity-50 transition-all duration-500 ease-tamisitée group-hover:bg-opacity-0",
+              "absolute inset-0 z-20 h-full w-full bg-black-primary bg-opacity-50 transition-all duration-500 ease-tamisitée group-hover:bg-opacity-0",
               currentHero === heroes?.hero?.indexOf(hero) ? "hidden" : "block",
             )}
           />
@@ -91,12 +91,12 @@ export default function StickyHero({ heroes }: Props) {
                         ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
                         : "#"
                 }
-                className="customRounded group/button border-white-primary text-white-primary hover:text-black-primary absolute bottom-[1rem] right-[1rem] z-30 cursor-pointer overflow-hidden border-[1px] bg-opacity-50 px-[2rem] py-[.5rem] transition-all duration-700 ease-tamisitée hover:rounded-full hover:bg-opacity-100"
+                className="customRounded group/button absolute bottom-[1rem] right-[1rem] z-30 cursor-pointer overflow-hidden border-[1px] border-white-primary bg-opacity-50 px-[2rem] py-[.5rem] text-white-primary transition-all duration-700 ease-tamisitée hover:rounded-full hover:bg-opacity-100 hover:text-black-primary"
               >
                 <div className="relative z-10 text-[.8rem] uppercase leading-[.8rem] tracking-tight">
                   Aller à la page
                 </div>
-                <div className="customRounded bg-white-primary absolute inset-0 z-0 mx-auto w-full translate-y-[100%] transition-transform duration-500 ease-tamisitée group-hover/button:translate-y-0" />
+                <div className="customRounded absolute inset-0 z-0 mx-auto w-full translate-y-[100%] bg-white-primary transition-transform duration-500 ease-tamisitée group-hover/button:translate-y-0" />
               </Link>
             )}
             {hero.image && (
