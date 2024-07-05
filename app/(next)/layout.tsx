@@ -31,7 +31,7 @@ export default function RootLayout({
         <section className="min-h-screen">
           {draftMode().isEnabled && <BannerAlert />}
           <Header />
-          <main className="py-[5rem]">
+          <main>
             <ToastProviders>{children}</ToastProviders>
           </main>
           <Footer />

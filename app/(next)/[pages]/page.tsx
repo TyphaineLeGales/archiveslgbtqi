@@ -3,13 +3,13 @@ import React from "react";
 import {
   EventsQueryResult,
   LastEventQueryResult,
-  PagesContentQueryResult,
-} from "@/sanity.types";
+  MainPagesContentQueryResult,
+} from "@/sanity.types"; // Ensure this path is correct
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   eventsQuery,
   lastEventQuery,
-  pagesContentQuery,
+  mainPagesContentQuery,
 } from "@/sanity/lib/queries";
 
 import { notFound } from "next/navigation";
@@ -26,6 +26,7 @@ import {
 } from "../components/modules";
 
 import { FormSubmission } from "../components/ui";
+import DesktopNavigationBar from "../components/navbar/navbar-desktop";
 
 type Props = {
   params: {
@@ -35,8 +36,8 @@ type Props = {
 
 export default async function Page({ params }: Props) {
   const [content, events, lastEvent] = await Promise.all([
-    sanityFetch<PagesContentQueryResult>({
-      query: pagesContentQuery,
+    sanityFetch<MainPagesContentQueryResult>({
+      query: mainPagesContentQuery,
       params,
     }),
     sanityFetch<EventsQueryResult>({
@@ -51,72 +52,104 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  // console.log("Pages Content:", content.content);
+  console.log("Pages Content:", content.content?.[0]);
 
   return (
-    <>
-      <div className="flex min-h-screen w-full flex-col gap-[1rem] p-[1rem] lg:pr-[1rem]">
+    <div className="flex h-full min-h-[calc(100%-5rem)] overflow-hidden">
+      <div className="relative hidden w-[20%] md:block">
+        <DesktopNavigationBar content={content} />
+      </div>
+      <div className="flex h-full w-full flex-col gap-[1rem] overflow-hidden p-[1rem] md:w-[80%]">
         <h1 className="text-4xl font-bold">{content.title}</h1>
-        <div className="flex flex-col py-[1rem]">
+        <div className="flex flex-col gap-[2rem] py-[1rem]">
           {content.content?.map((item, index) => (
-            <div key={`content-item-${index}`}>
-              {(() => {
-                switch (item._type as string) {
-                  case "richtext":
-                    return <RichTextModule item={item} />;
+            <div
+              id={item.titleBlock || ""}
+              key={`content-title-${index}`}
+              className="pb-[5rem]"
+            >
+              <h2 className="text-2xl font-bold uppercase">
+                {item.titleBlock || ""}
+              </h2>
+              <div key={`content-item-${index}`}>
+                {item.block && (
+                  <div className="flex flex-col gap-[1rem]">
+                    {item.block.map((blockItem, blockIndex) => {
+                      if (!blockItem) return null;
 
-                  case "richTextAndTitle":
-                    return <RichTextAndTitleModule item={item as any} />;
-
-                  case "single-image":
-                    return (
-                      <SingleImageModule
-                        imageUrl={item.imageUrl || ""}
-                        imageTitle={item.imageTitle || ""}
-                      />
-                    );
-
-                  case "multi-images":
-                    return <MultiImagesModule item={item as any} />;
-
-                  case "link":
-                    return <LinksModule item={item as any} />;
-
-                  case "contact-form":
-                    return <FormSubmission />;
-
-                  case "lastEvent":
-                    return (
-                      <EventsModule
-                        title={item.lastEventLabel || ""}
-                        link={item.goToAllEvents || ""}
-                        events={lastEvent}
-                      />
-                    );
-                  case "creationArchives":
-                    return (
-                      <CreationArchivesModule
-                        intro={item.creationArchivesTitle! as any}
-                        archive={item.creationArchivesArchive || []}
-                      />
-                    );
-
-                  case "custom-html":
-                    return (
-                      <CustomHtml
-                        title={item.codeTitle!}
-                        html={item.customHtml?.code!}
-                        item={item as any}
-                      />
-                    );
-                  default:
-                    return null;
-                }
-              })()}
+                      switch (blockItem._type as string) {
+                        case "richtext":
+                          return (
+                            <RichTextModule key={blockIndex} item={blockItem} />
+                          );
+                        case "richTextAndTitle":
+                          return (
+                            <RichTextAndTitleModule
+                              key={blockIndex}
+                              item={blockItem as any}
+                            />
+                          );
+                        case "single-image":
+                          return (
+                            <SingleImageModule
+                              key={blockIndex}
+                              imageUrl={blockItem.imageUrl || ""}
+                              imageTitle={blockItem.imageTitle || ""}
+                            />
+                          );
+                        case "multi-images":
+                          return (
+                            <MultiImagesModule
+                              key={blockIndex}
+                              item={blockItem as any}
+                            />
+                          );
+                        case "link":
+                          return (
+                            <LinksModule
+                              key={blockIndex}
+                              item={blockItem as any}
+                            />
+                          );
+                        case "contact-form":
+                          return <FormSubmission />;
+                        case "lastEvent":
+                          return (
+                            <EventsModule
+                              key={blockIndex}
+                              title={blockItem.lastEventLabel || ""}
+                              link={blockItem.goToAllEvents || ""}
+                              events={lastEvent}
+                            />
+                          );
+                        case "creationArchives":
+                          return (
+                            <CreationArchivesModule
+                              key={blockIndex}
+                              intro={blockItem.creationArchivesTitle as any}
+                              archive={blockItem.creationArchivesArchive as any}
+                            />
+                          );
+                        case "custom-html":
+                          return (
+                            <CustomHtml
+                              key={blockIndex}
+                              title={blockItem.codeTitle || ""}
+                              html={(blockItem.customHtml as any)?.code}
+                              item={blockItem as any}
+                            />
+                          );
+                        default:
+                          return null;
+                      }
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

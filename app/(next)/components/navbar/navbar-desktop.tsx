@@ -1,35 +1,45 @@
 "use client";
 
-import { PagesContentQueryResult } from "@/sanity.types";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import React, { useRef } from "react";
-import TransitionLink from "../ui/TransitionLink";
+import React from "react";
+import { MainPagesContentQueryResult } from "@/sanity.types";
 
 type Props = {
-  content: PagesContentQueryResult;
+  content: MainPagesContentQueryResult;
 };
 
 export default function DesktopNavigationBar({ content }: Props) {
-  const { pages } = useParams();
+  const handleClickScroll = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    index: number,
+  ) => {
+    e.preventDefault();
+    const target = e.target as HTMLButtonElement;
+    const id = target.textContent;
+    const element = document.getElementById(id!);
+
+    if (element) {
+      if (index === 0) {
+        // Scroll to top for the first element
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        // For other elements, add 5rem margin top
+        const yOffset = -80; // 5rem = 80px
+        const y =
+          element.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <div className="fixed hidden w-[25%] flex-col items-start gap-[1rem] whitespace-nowrap px-[1rem] pt-[2rem] lg:flex">
-      {content?.navigation?.map((navItem) => (
-        <Link
-          key={navItem._id}
-          href={navItem.slug?.current!}
-          className={` ${
-            pages === navItem.slug?.current ? "font-bold" : ""
-          } sideBarTitle group relative flex h-[1.3rem] flex-col overflow-hidden pr-[.1rem]`}
+      {content?.content?.map((item, index) => (
+        <button
+          key={item.titleBlock}
+          onClick={(e) => handleClickScroll(e, index)}
         >
-          <span className="duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
-            {navItem.title}
-          </span>
-          <span className="duration-700 ease-tamisitée group-hover:translate-y-[-100%]">
-            {navItem.title}
-          </span>
-          <div className="bg-black-primary absolute bottom-0 left-0 h-[1px] w-full translate-x-[-100%] transition-transform delay-300 duration-[.7s] ease-tamisitée group-hover:translate-x-0" />
-        </Link>
+          {item.titleBlock}
+        </button>
       ))}
     </div>
   );
