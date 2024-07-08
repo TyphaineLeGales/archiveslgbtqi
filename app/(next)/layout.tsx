@@ -28,7 +28,7 @@ export default function RootLayout({
       className={`${inter.variable} bg-white-primary text-black-primary`}
     >
       <body>
-        <section className="min-h-screen">
+        <section className="flex min-h-screen flex-grow flex-col">
           {draftMode().isEnabled && <BannerAlert />}
           <Header />
           <main>
