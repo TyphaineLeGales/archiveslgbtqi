@@ -39,7 +39,7 @@ export default function StickyHero({ heroes }: Props) {
           key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
           className={clsx(
-            "group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black bg-white-primary transition-[width] duration-[1s] ease-tamisitée",
+            "group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black-primary bg-white-primary transition-[width] duration-[1s] ease-tamisitée",
             currentHero === heroes?.hero?.indexOf(hero)
               ? `w-[100vw]`
               : `w-[3rem] cursor-pointer`,
@@ -83,7 +83,7 @@ export default function StickyHero({ heroes }: Props) {
             {currentHero === heroes?.hero?.indexOf(hero) && (
               <Link
                 href={
-                  hero?.cta?.ctaLink?._type === "pages"
+                  hero?.cta?.ctaLink?._type === "main-pages"
                     ? `/${hero.cta?.ctaLink?.slug || ""}`
                     : hero?.cta?.ctaLink?._type === "events"
                       ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`
@@ -110,7 +110,7 @@ export default function StickyHero({ heroes }: Props) {
                   alt={hero.image.alt || ""}
                   width={1920}
                   height={1080}
-                  className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover will-change-transform"
+                  className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover"
                 />
               </>
             )}

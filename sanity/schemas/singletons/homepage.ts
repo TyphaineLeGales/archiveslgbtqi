@@ -92,7 +92,7 @@ export default defineType({
                       title: "CTA Link",
                       type: "reference",
                       to: [
-                        { type: "pages" },
+                        { type: "main-pages" },
                         { type: "events" },
                         { type: "blogs" },
                       ],
@@ -102,8 +102,6 @@ export default defineType({
               ],
             }),
           ],
-          validation: (Rule) =>
-            Rule.max(3).warning("You can only have up to 3 heroes."),
         }),
       ],
     }),

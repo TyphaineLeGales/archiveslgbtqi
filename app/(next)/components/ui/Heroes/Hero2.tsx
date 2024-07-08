@@ -72,7 +72,7 @@ export default function Hero2({ heroes }: Props) {
       />
       <Link
         href={
-          hero?.cta?.ctaLink?._type === "pages"
+          hero?.cta?.ctaLink?._type === "main-pages"
             ? `/${hero.cta?.ctaLink?.slug || ""}`
             : hero?.cta?.ctaLink?._type === "events"
               ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`

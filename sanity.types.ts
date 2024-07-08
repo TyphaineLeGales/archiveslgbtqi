@@ -271,6 +271,143 @@ export type Richtext = {
   }>;
 };
 
+export type Content = {
+  _id: string;
+  _type: "content";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  titleBlock?: string;
+  block?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "document-file";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "richtext";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "richTextAndTitle";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "single-image";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "multi-images";
+      }
+    | ({
+        _key: string;
+      } & Link)
+    | ({
+        _key: string;
+      } & ContactForm)
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "lastEvent";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "creationArchives";
+      }
+    | ({
+        _key: string;
+      } & CustomHtml)
+  >;
+};
+
+export type Intro = {
+  _id: string;
+  _type: "intro";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  block?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "document-file";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "richtext";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "richTextAndTitle";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "single-image";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "multi-images";
+      }
+    | ({
+        _key: string;
+      } & Link)
+    | ({
+        _key: string;
+      } & ContactForm)
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "lastEvent";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "creationArchives";
+      }
+    | ({
+        _key: string;
+      } & CustomHtml)
+  >;
+};
+
 export type LesArchivesVivantes = {
   _id: string;
   _type: "lesArchivesVivantes";
@@ -314,7 +451,7 @@ export type Homepage = {
               _ref: string;
               _type: "reference";
               _weak?: boolean;
-              [internalGroqTypeReferenceTo]?: "pages";
+              [internalGroqTypeReferenceTo]?: "main-pages";
             }
           | {
               _ref: string;
@@ -504,7 +641,7 @@ export type Settings = {
         _ref: string;
         _type: "reference";
         _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "pages";
+        [internalGroqTypeReferenceTo]?: "main-pages";
       };
       externalLink?: {
         title?: string;
@@ -610,6 +747,32 @@ export type Pages = {
     | ({
         _key: string;
       } & CustomHtml)
+  >;
+};
+
+export type MainPages = {
+  _id: string;
+  _type: "main-pages";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  content?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "intro";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "content";
+      }
   >;
 };
 
@@ -721,7 +884,7 @@ export type SettingsQueryResult = {
       type: "external" | "internal" | null;
       internalLinkDetails: {
         _id: string;
-        _type: "pages";
+        _type: "main-pages";
         title: string | null;
         slug: string | null;
       } | null;
@@ -766,134 +929,6 @@ export type FooterQueryResult = null;
 // Variable: heroQuery
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
-// Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  "navigation": navigation[]->{    _id,    title,    slug,  },  "content": content[]{    _type,    // richtext    "richtext": text[],    // richtextTitle    "richtextTitleText": text[],    "richTextTitle": title,    // single-image    "imageTitle": title,    "imageUrl": image.asset->url,    // multi-images    "multiImages": images[] {      "imageUrl": image.asset->url,      alt,    },    // link    "linkLabel": label,    // external    external,    // internal    "internal": internal->{      _id,      _type,      title,      "slug": slug.current,    },    // lastEvent    "isDisplayed": event.isDisplayed,    "lastEventLabel": event.title,    "goToAllEvents": event.ctaToEvents,    // creationArchives    "creationArchivesTitle": intro[],    "creationArchivesArchive": archive[] {      ...,      title,      description[],      status,    },    // custom-html    "customHtml": html,    "codeTitle": codeTitle,    "isAddFiles": isAddFiles,    "fileGroup": fileGroup[] {      title,      files[] {        asset->,      },    },  }}
-export type PagesContentQueryResult = {
-  _id: string;
-  title: string | null;
-  slug: Slug | null;
-  navigation: Array<{
-    _id: string;
-    title: string | null;
-    slug: Slug | null;
-  }> | null;
-  content: Array<
-    | {
-        _type: "contact-form";
-        richtext: null;
-        richtextTitleText: null;
-        richTextTitle: string | null;
-        imageTitle: string | null;
-        imageUrl: null;
-        multiImages: null;
-        linkLabel: null;
-        external: null;
-        internal: null;
-        isDisplayed: null;
-        lastEventLabel: null;
-        goToAllEvents: null;
-        creationArchivesTitle: null;
-        creationArchivesArchive: null;
-        customHtml: null;
-        codeTitle: null;
-        isAddFiles: null;
-        fileGroup: null;
-      }
-    | {
-        _type: "custom-html";
-        richtext: null;
-        richtextTitleText: null;
-        richTextTitle: null;
-        imageTitle: null;
-        imageUrl: null;
-        multiImages: null;
-        linkLabel: null;
-        external: null;
-        internal: null;
-        isDisplayed: null;
-        lastEventLabel: null;
-        goToAllEvents: null;
-        creationArchivesTitle: null;
-        creationArchivesArchive: null;
-        customHtml: Code | null;
-        codeTitle: string | null;
-        isAddFiles: boolean | null;
-        fileGroup: Array<{
-          title: string | null;
-          files: Array<{
-            asset: {
-              _id: string;
-              _type: "sanity.fileAsset";
-              _createdAt: string;
-              _updatedAt: string;
-              _rev: string;
-              originalFilename?: string;
-              label?: string;
-              title?: string;
-              description?: string;
-              altText?: string;
-              sha1hash?: string;
-              extension?: string;
-              mimeType?: string;
-              size?: number;
-              assetId?: string;
-              uploadId?: string;
-              path?: string;
-              url?: string;
-              source?: SanityAssetSourceData;
-            } | null;
-          }> | null;
-        }> | null;
-      }
-    | {
-        _type: "link";
-        richtext: null;
-        richtextTitleText: null;
-        richTextTitle: null;
-        imageTitle: null;
-        imageUrl: null;
-        multiImages: null;
-        linkLabel: string | null;
-        external: string | null;
-        internal: {
-          _id: string;
-          _type: "pages";
-          title: string | null;
-          slug: string | null;
-        } | null;
-        isDisplayed: null;
-        lastEventLabel: null;
-        goToAllEvents: null;
-        creationArchivesTitle: null;
-        creationArchivesArchive: null;
-        customHtml: null;
-        codeTitle: null;
-        isAddFiles: null;
-        fileGroup: null;
-      }
-    | {
-        _type: "reference";
-        richtext: null;
-        richtextTitleText: null;
-        richTextTitle: null;
-        imageTitle: null;
-        imageUrl: null;
-        multiImages: null;
-        linkLabel: null;
-        external: null;
-        internal: null;
-        isDisplayed: null;
-        lastEventLabel: null;
-        goToAllEvents: null;
-        creationArchivesTitle: null;
-        creationArchivesArchive: null;
-        customHtml: null;
-        codeTitle: null;
-        isAddFiles: null;
-        fileGroup: null;
-      }
-  > | null;
-} | null;
 // Variable: homepageQuery
 // Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "multiBlock": multiBlock {    leBlogBlock {      title,      "linkToBlog": linkToBlog->_ref,      blogLabel    },    lesArchivesVivantesBlock {      title,      vimeo {        vimeoTitle,        linkToVimeo      },      podcast {        linkToPodcast,        podcastTitle      }    },    eventsBlock {      "events": events[]->{        _id,        eventTitle,        slug,        eventDate,        eventDescription,        eventLocation,        "image": eventImage{          "imageUrl": image.asset->url,          alt,        }      }    },  },  video {    videoTitle,    videoLink,  },  outro {    outroTitle,    outroText,  },}
 export type HomepageQueryResult = {
@@ -921,7 +956,7 @@ export type HomepageQueryResult = {
             slug: string | null;
           }
         | {
-            _type: "pages";
+            _type: "main-pages";
             slug: string | null;
           }
         | null;
@@ -1115,4 +1150,15 @@ export type LesArchivesVivantesQueryResult = {
   slug?: Slug;
   linkToVimeo?: string;
   linkToPodcast?: string;
+} | null;
+// Variable: mainPagesContentQuery
+// Query: *[_type == "main-pages" && slug.current == $pages][0] {  _id,  title,  slug,  content[] {    titleBlock,    block[] {      _type,      //intro      // "intro": intro[],            blockItems[] {      // richtext        _id,  "richtext": text[],      // richtextTitle        _id,  "richTextTitle": title,  "richtextTitleText": text[],      // single-image        _id,  "imageTitle": title,  "imageUrl": image.asset->url,      // multi-images        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },      // link        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },      // lastEvent        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,      // creationArchives        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },      // custom-html        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },    }    }  }}
+export type MainPagesContentQueryResult = {
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  content: Array<{
+    titleBlock: null;
+    block: null;
+  }> | null;
 } | null;

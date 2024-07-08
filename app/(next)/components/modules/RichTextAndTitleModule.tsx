@@ -12,7 +12,7 @@ export default function RichTextAndTitleModule({ item }: Props) {
   return (
     <div>
       <h2>{item.richTextTitle}</h2>
-      <MyCustomPortableText value={item.richtextTitleText!} />
+      <MyCustomPortableText value={item.richtextTitleText} />
     </div>
   );
 }

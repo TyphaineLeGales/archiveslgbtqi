@@ -50,6 +50,6 @@
   }
 
   .boxRounded {
-    @apply rounded-b-3xl rounded-tr-3xl;
+    @apply rounded-b-3xl rounded-tl-lg rounded-tr-3xl;
   }
 }

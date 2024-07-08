@@ -133,73 +133,73 @@ export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | orde
   ${postFields}
 }`;
 
-export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages][0] {
-  _id,
-  title,
-  slug,
-  "navigation": navigation[]->{
-    _id,
-    title,
-    slug,
-  },
-  "content": content[]{
-    _type,
+// export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages][0] {
+//   _id,
+//   title,
+//   slug,
+//   "navigation": navigation[]->{
+//     _id,
+//     title,
+//     slug,
+//   },
+//   "content": content[]{
+//     _type,
 
-    // richtext
-    "richtext": text[],
+//     // richtext
+//     "richtext": text[],
 
-    // richtextTitle
-    "richtextTitleText": text[],
-    "richTextTitle": title,
+//     // richtextTitle
+//     "richtextTitleText": text[],
+//     "richTextTitle": title,
 
-    // single-image
-    "imageTitle": title,
-    "imageUrl": image.asset->url,
+//     // single-image
+//     "imageTitle": title,
+//     "imageUrl": image.asset->url,
 
-    // multi-images
-    "multiImages": images[] {
-      "imageUrl": image.asset->url,
-      alt,
-    },
+//     // multi-images
+//     "multiImages": images[] {
+//       "imageUrl": image.asset->url,
+//       alt,
+//     },
 
-    // link
-    "linkLabel": label,
-    // external
-    external,
-    // internal
-    "internal": internal->{
-      _id,
-      _type,
-      title,
-      "slug": slug.current,
-    },
+//     // link
+//     "linkLabel": label,
+//     // external
+//     external,
+//     // internal
+//     "internal": internal->{
+//       _id,
+//       _type,
+//       title,
+//       "slug": slug.current,
+//     },
 
-    // lastEvent
-    "isDisplayed": event.isDisplayed,
-    "lastEventLabel": event.title,
-    "goToAllEvents": event.ctaToEvents,
+//     // lastEvent
+//     "isDisplayed": event.isDisplayed,
+//     "lastEventLabel": event.title,
+//     "goToAllEvents": event.ctaToEvents,
 
-    // creationArchives
-    "creationArchivesTitle": intro[],
-    "creationArchivesArchive": archive[] {
-      ...,
-      title,
-      description[],
-      status,
-    },
+//     // creationArchives
+//     "creationArchivesTitle": intro[],
+//     "creationArchivesArchive": archive[] {
+//       ...,
+//       title,
+//       description[],
+//       status,
+//     },
 
-    // custom-html
-    "customHtml": html,
-    "codeTitle": codeTitle,
-    "isAddFiles": isAddFiles,
-    "fileGroup": fileGroup[] {
-      title,
-      files[] {
-        asset->,
-      },
-    },
-  }
-}`;
+//     // custom-html
+//     "customHtml": html,
+//     "codeTitle": codeTitle,
+//     "isAddFiles": isAddFiles,
+//     "fileGroup": fileGroup[] {
+//       title,
+//       files[] {
+//         asset->,
+//       },
+//     },
+//   }
+// }`;
 
 export const homepageQuery = groq`
 *[_type == "homepage"][0] {
@@ -311,3 +311,125 @@ export const blogQuery = groq`*[_type == "blogs" && slug.current == $blog][0]{
 }`;
 
 export const lesArchivesVivantesQuery = groq`*[_type == "lesArchivesVivantes"][0]`;
+
+// export const eventFields = /* groq */ `
+//   _id,
+//   eventTitle,
+//   slug,
+//   eventDate,
+//   eventDescription,
+//   eventLocation,
+//   "image": eventImage{
+//       "imageUrl": image.asset->url,
+//       alt,
+//     },
+// `;
+
+export const richTextFields = /* groq */ `
+  _id,
+  "richtext": text[],
+`;
+
+export const richTextAndTitleFields = /* groq */ `
+  _id,
+  "richTextTitle": title,
+  "richtextTitleText": text[],
+`;
+
+export const singleImageFields = /* groq */ `
+  _id,
+  "imageTitle": title,
+  "imageUrl": image.asset->url,
+`;
+
+export const multiImagesFields = /* groq */ `
+  _id,
+  "multiImages": images[] {
+        "imageUrl": image.asset->url,
+        alt,
+      },
+`;
+
+export const linkFields = /* groq */ `
+  _id,
+  "linkLabel": label,
+  // external
+  external,
+  // internal
+  "internal": internal->{
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+  },
+`;
+
+export const lastEventFields = /* groq */ `
+  _id,
+  "isDisplayed": event.isDisplayed,
+  "lastEventLabel": event.title,
+  "goToAllEvents": event.ctaToEvents,
+`;
+
+export const creationArchivesFields = /* groq */ `
+  _id,
+  "creationArchivesTitle": intro[],
+  "creationArchivesArchive": archive[] {
+    title,
+    description[],
+    status,
+    },
+`;
+
+export const customHtmlFields = /* groq */ `
+  _id,
+  "customHtml": html,
+  "codeTitle": codeTitle,
+  "isAddFiles": isAddFiles,
+  "fileGroup": fileGroup[] {
+    title,
+    files[] {
+      asset->,
+      },
+      },
+`;
+
+export const mainPagesContentQuery = groq`*[_type == "main-pages" && slug.current == $pages][0] {
+  _id,
+  title,
+  slug,
+  content[] {
+    titleBlock,
+    block[] {
+      _type,
+
+      //intro
+      // "intro": intro[],
+      
+      
+      // richtext
+      ${richTextFields}
+
+      // richtextTitle
+      ${richTextAndTitleFields}
+
+      // single-image
+      ${singleImageFields}
+
+      // multi-images
+      ${multiImagesFields}
+
+      // link
+      ${linkFields}
+
+      // lastEvent
+      ${lastEventFields}
+
+      // creationArchives
+      ${creationArchivesFields}
+
+      // custom-html
+      ${customHtmlFields}
+    }
+  }
+}`;

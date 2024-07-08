@@ -9,13 +9,22 @@ export const structure = (S: StructureBuilder) =>
       S.documentListItem().id("homepage").schemaType("homepage"),
       S.divider(),
       ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
+      ...S.documentTypeListItems().filter(
+        (item) => item.getId() == "main-pages",
+      ),
       S.divider(),
       // Add the rest of the document types, but filter out the siteSettings type defined above
       ...S.documentTypeListItems().filter(
         (item) =>
+          // Singletons
           item.getId() !== "homepage" &&
           item.getId() !== "settings" &&
           item.getId() !== "pages" &&
+          item.getId() !== "main-pages" &&
+          // Content
+          item.getId() !== "intro" &&
+          item.getId() !== "content" &&
+          // Blocks
           item.getId() !== "richtext" &&
           item.getId() !== "richTextAndTitle" &&
           item.getId() !== "document-file" &&
@@ -32,7 +41,8 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "creativeCtas" &&
           item.getId() !== "creativeIcon" &&
           item.getId() !== "creativeImage" &&
-          item.getId() !== "creativeRichtext",
+          item.getId() !== "creativeRichtext" &&
+          item.getId() !== "pageBlocks",
       ),
       S.documentListItem()
         .id("lesArchivesVivantes")
