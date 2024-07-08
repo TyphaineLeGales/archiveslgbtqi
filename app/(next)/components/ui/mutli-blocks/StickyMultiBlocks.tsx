@@ -112,7 +112,7 @@ export default function StickyMultiBlocks({ multiBlocks }: Props) {
   // TODO: Faire en sorte que le couleure de chaque overlay soit dynamique via Sanity
 
   return (
-    <div className="relative h-fit overflow-hidden">
+    <div className="relative h-[100vh] overflow-hidden bg-blue-200">
       <div className="absolute bottom-[10vh] z-10 h-[2.5rem] w-full bg-gradient-to-t from-white-primary" />
 
       <div
