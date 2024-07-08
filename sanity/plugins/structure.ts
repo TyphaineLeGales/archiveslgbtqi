@@ -8,7 +8,7 @@ export const structure = (S: StructureBuilder) =>
       S.documentListItem().id("settings").schemaType("settings"),
       S.documentListItem().id("homepage").schemaType("homepage"),
       S.divider(),
-      ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
+      // ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
       ...S.documentTypeListItems().filter(
         (item) => item.getId() == "main-pages",
       ),

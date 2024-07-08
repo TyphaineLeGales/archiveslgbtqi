@@ -9,7 +9,7 @@ export default async function Page() {
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
   ]);
 
-  console.log("Homepage: ", homePage);
+  // console.log("Homepage: ", homePage);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
