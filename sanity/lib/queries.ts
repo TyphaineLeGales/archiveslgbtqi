@@ -312,6 +312,88 @@ export const blogQuery = groq`*[_type == "blogs" && slug.current == $blog][0]{
 
 export const lesArchivesVivantesQuery = groq`*[_type == "lesArchivesVivantes"][0]`;
 
+// export const eventFields = /* groq */ `
+//   _id,
+//   eventTitle,
+//   slug,
+//   eventDate,
+//   eventDescription,
+//   eventLocation,
+//   "image": eventImage{
+//       "imageUrl": image.asset->url,
+//       alt,
+//     },
+// `;
+
+export const richTextFields = /* groq */ `
+  _id,
+  "richtext": text[],
+`;
+
+export const richTextAndTitleFields = /* groq */ `
+  _id,
+  "richTextTitle": title,
+  "richtextTitleText": text[],
+`;
+
+export const singleImageFields = /* groq */ `
+  _id,
+  "imageTitle": title,
+  "imageUrl": image.asset->url,
+`;
+
+export const multiImagesFields = /* groq */ `
+  _id,
+  "multiImages": images[] {
+        "imageUrl": image.asset->url,
+        alt,
+      },
+`;
+
+export const linkFields = /* groq */ `
+  _id,
+  "linkLabel": label,
+  // external
+  external,
+  // internal
+  "internal": internal->{
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+  },
+`;
+
+export const lastEventFields = /* groq */ `
+  _id,
+  "isDisplayed": event.isDisplayed,
+  "lastEventLabel": event.title,
+  "goToAllEvents": event.ctaToEvents,
+`;
+
+export const creationArchivesFields = /* groq */ `
+  _id,
+  "creationArchivesTitle": intro[],
+  "creationArchivesArchive": archive[] {
+    title,
+    description[],
+    status,
+    },
+`;
+
+export const customHtmlFields = /* groq */ `
+  _id,
+  "customHtml": html,
+  "codeTitle": codeTitle,
+  "isAddFiles": isAddFiles,
+  "fileGroup": fileGroup[] {
+    title,
+    files[] {
+      asset->,
+      },
+      },
+`;
+
 export const mainPagesContentQuery = groq`*[_type == "main-pages" && slug.current == $pages][0] {
   _id,
   title,
@@ -319,65 +401,35 @@ export const mainPagesContentQuery = groq`*[_type == "main-pages" && slug.curren
   content[] {
     titleBlock,
     block[] {
-      ...,
       _type,
 
       //intro
-      "intro": intro[],
+      // "intro": intro[],
+      
       
       // richtext
-      "richtext": text[],
+      ${richTextFields}
 
       // richtextTitle
-      "richtextTitleText": text[],
-      "richTextTitle": title,
+      ${richTextAndTitleFields}
 
       // single-image
-      "imageTitle": title,
-      "imageUrl": image.asset->url,
+      ${singleImageFields}
 
       // multi-images
-      "multiImages": images[] {
-        "imageUrl": image.asset->url,
-        alt,
-      },
+      ${multiImagesFields}
 
       // link
-      "linkLabel": label,
-      // external
-      external,
-      // internal
-      "internal": internal->{
-        _id,
-        _type,
-        title,
-        "slug": slug.current,
-      },
+      ${linkFields}
 
       // lastEvent
-      "isDisplayed": event.isDisplayed,
-      "lastEventLabel": event.title,
-      "goToAllEvents": event.ctaToEvents,
+      ${lastEventFields}
 
       // creationArchives
-      "creationArchivesTitle": intro[],
-      "creationArchivesArchive": archive[] {
-        ...,
-        title,
-        description[],
-        status,
-      },
+      ${creationArchivesFields}
 
       // custom-html
-      "customHtml": html,
-      "codeTitle": codeTitle,
-      "isAddFiles": isAddFiles,
-      "fileGroup": fileGroup[] {
-        title,
-        files[] {
-          asset->,
-        },
-      },
+      ${customHtmlFields}
     }
   }
 }`;
