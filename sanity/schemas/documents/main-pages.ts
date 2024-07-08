@@ -21,7 +21,7 @@ import { array } from "zod";
 
 export default defineType({
   name: "main-pages",
-  title: "Main Pages",
+  title: "Pages",
   icon: FolderIcon,
   type: "document",
   fields: [
