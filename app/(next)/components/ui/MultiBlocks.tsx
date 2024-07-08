@@ -64,7 +64,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
     >
       {/* Agenda */}
       <div className="boxRounded group/title group/overlay relative overflow-hidden border-[1px] border-black-primary bg-white-primary p-[1rem] transition-all duration-500 ease-tamisitée hover:-skew-x-1 hover:scale-105 lg:w-[25rem]">
-        <div className="duration-s] absolute inset-0 z-0 h-full w-full origin-center translate-x-[100%] translate-y-[100%] rounded-full bg-[#29AB87] transition-all ease-tamisitée group-hover/overlay:translate-x-0 group-hover/overlay:translate-y-0 group-hover/overlay:rounded-none" />
+        {/* <div className="duration-s] absolute inset-0 z-0 h-full w-full origin-center translate-x-[100%] translate-y-[100%] rounded-full bg-[#29AB87] transition-all ease-tamisitée group-hover/overlay:translate-x-0 group-hover/overlay:translate-y-0 group-hover/overlay:rounded-none" /> */}
         <Link
           href="/agenda"
           className="group/reset flex h-[1.5rem] flex-col overflow-hidden text-[1.5rem] font-bold uppercase leading-[1.5rem] tracking-tighter text-black-primary transition-colors duration-1000 ease-tamisitée group-hover/overlay:text-white-primary"

@@ -23,9 +23,12 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
     }
   },
   "footer": {
+    _id,
     "moduleGroups": footer.moduleGroups[] {
-      ...,
+      _id,
+      groupName,
       "modules": modules[] {
+        _id,
         type,
         "internalDetails": internalLink-> {
           _id,

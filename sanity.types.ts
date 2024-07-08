@@ -871,7 +871,7 @@ export type Code = {
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      type,      "internalLinkDetails": internalLink-> {        _id,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    "moduleGroups": footer.moduleGroups[] {      ...,      "modules": modules[] {        type,        "internalDetails": internalLink-> {          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
+// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      type,      "internalLinkDetails": internalLink-> {        _id,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    _id,    "moduleGroups": footer.moduleGroups[] {      _id,      groupName,      "modules": modules[] {        _id,        type,        "internalDetails": internalLink-> {          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
 export type SettingsQueryResult = {
   globalSettings: {
     siteTitle: string | null;
@@ -895,9 +895,12 @@ export type SettingsQueryResult = {
     }> | null;
   };
   footer: {
+    _id: string;
     moduleGroups: Array<{
-      groupName?: string;
+      _id: null;
+      groupName: string | null;
       modules: Array<{
+        _id: null;
         type: "external" | "internal" | "text" | null;
         internalDetails: {
           _id: string;
@@ -1152,7 +1155,7 @@ export type LesArchivesVivantesQueryResult = {
   linkToPodcast?: string;
 } | null;
 // Variable: mainPagesContentQuery
-// Query: *[_type == "main-pages" && slug.current == $pages][0] {  _id,  title,  slug,  content[] {    titleBlock,    block[] {      _type,      //intro      // "intro": intro[],            blockItems[] {      // richtext        _id,  "richtext": text[],      // richtextTitle        _id,  "richTextTitle": title,  "richtextTitleText": text[],      // single-image        _id,  "imageTitle": title,  "imageUrl": image.asset->url,      // multi-images        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },      // link        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },      // lastEvent        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,      // creationArchives        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },      // custom-html        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },    }    }  }}
+// Query: *[_type == "main-pages" && slug.current == $pages][0] {  _id,  title,  slug,  content[] {    titleBlock,    block[] {      _type,      //intro      // "intro": intro[],                  // richtext        _id,  "richtext": text[],      // richtextTitle        _id,  "richTextTitle": title,  "richtextTitleText": text[],      // single-image        _id,  "imageTitle": title,  "imageUrl": image.asset->url,      // multi-images        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },      // link        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },      // lastEvent        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,      // creationArchives        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },      // custom-html        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },    }  }}
 export type MainPagesContentQueryResult = {
   _id: string;
   title: string | null;
