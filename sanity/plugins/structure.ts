@@ -24,6 +24,7 @@ export const structure = (S: StructureBuilder) =>
           // Content
           item.getId() !== "intro" &&
           item.getId() !== "content" &&
+          item.getId() !== "not-found" &&
           // Blocks
           item.getId() !== "richtext" &&
           item.getId() !== "richTextAndTitle" &&
