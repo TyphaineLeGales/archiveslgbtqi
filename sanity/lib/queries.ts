@@ -397,6 +397,13 @@ export const customHtmlFields = /* groq */ `
       },
 `;
 
+export const documentFileFields = /* groq */ `
+  _id,
+  title,
+  "fileUrl": file.asset->url,
+  "fileName": file.asset->originalFilename,
+`;
+
 export const mainPagesContentQuery = groq`*[_type == "main-pages" && slug.current == $pages][0] {
   _id,
   title,
@@ -433,6 +440,9 @@ export const mainPagesContentQuery = groq`*[_type == "main-pages" && slug.curren
 
       // custom-html
       ${customHtmlFields}
+
+      // file
+      ${documentFileFields}
     }
   }
 }`;

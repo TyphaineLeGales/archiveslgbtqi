@@ -67,7 +67,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
         {/* <div className="duration-s] absolute inset-0 z-0 h-full w-full origin-center translate-x-[100%] translate-y-[100%] rounded-full bg-[#29AB87] transition-all ease-tamisitée group-hover/overlay:translate-x-0 group-hover/overlay:translate-y-0 group-hover/overlay:rounded-none" /> */}
         <Link
           href="/agenda"
-          className="group/reset flex h-[1.5rem] flex-col overflow-hidden text-[1.5rem] font-bold uppercase leading-[1.5rem] tracking-tighter text-black-primary transition-colors duration-1000 ease-tamisitée group-hover/overlay:text-white-primary"
+          className="group/reset flex h-[1.5rem] flex-col overflow-hidden text-[1.5rem] font-bold uppercase leading-[1.5rem] tracking-tighter text-black-primary transition-colors duration-1000 ease-tamisitée"
         >
           <span className="z-10 transition-transform duration-500 ease-tamisitée group-hover/reset:translate-y-0 group-hover/title:translate-y-[-100%]">
             L&apos;agenda
@@ -85,7 +85,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
               // className="boxRounded border-black-primary group-hover/overlay:border-white-primarym group-hover:text-white-primary text-black-primary group relative z-10 flex h-[3rem] w-full flex-col items-start justify-center overflow-hidden border-[1px] p-[.5rem] transition-all duration-[1s] ease-tamisitée hover:rounded-full group-hover/overlay:border-white group-hover/overlay:text-white"
-              className={`boxRounded group-hover/overlay:border-white-primarym group relative z-10 flex h-[3rem] w-full flex-col items-start justify-center overflow-hidden border-[1px] border-black-primary p-[.5rem] text-black-primary transition-all duration-[1s] ease-tamisitée hover:rounded-full group-hover/overlay:border-white group-hover/overlay:text-white group-hover:text-white-primary`}
+              className={`boxRounded group-hover/overlay:border-white-primarym group relative z-10 flex h-[3rem] w-full flex-col items-start justify-center overflow-hidden border-[1px] border-black-primary p-[.5rem] text-black-primary transition-all duration-[1s] ease-tamisitée hover:rounded-full`}
             >
               <span className="z-10 truncate text-[.8rem] uppercase tracking-tighter">
                 {event.eventTitle}

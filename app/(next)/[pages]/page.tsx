@@ -52,7 +52,7 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  // console.log("Pages Content:", content.content?.[0]);
+  console.log("Pages Content:", content.content?.[0]);
 
   return (
     <div className="flex h-full min-h-[calc(100%-5rem)] overflow-hidden">
@@ -137,6 +137,17 @@ export default async function Page({ params }: Props) {
                             html={(blockItem.customHtml as any)?.code}
                             item={blockItem as any}
                           />
+                        );
+                      case "document-file":
+                        return (
+                          <a
+                            href={blockItem.fileUrl || ""}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-bold"
+                          >
+                            {blockItem.title || ""}
+                          </a>
                         );
                       default:
                         return null;

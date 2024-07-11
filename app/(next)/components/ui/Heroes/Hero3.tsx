@@ -39,19 +39,19 @@ export default function StickyHero({ heroes }: Props) {
           key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
           className={clsx(
-            "group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black-primary bg-white-primary transition-[width] duration-[1s] ease-tamisitée",
+            "group relative h-full max-h-[calc(100dvh-5rem)] overflow-hidden border-x-[.5px] border-black-primary transition-[width] duration-[1s] ease-tamisitée",
             currentHero === heroes?.hero?.indexOf(hero)
               ? `w-[100vw]`
               : `w-[3rem] cursor-pointer`,
           )}
           onClick={() => setCurrentHero(heroes?.hero?.indexOf(hero)!)}
         >
-          <div
+          {/* <div
             className={clsx(
               "absolute inset-0 z-20 h-full w-full bg-black-primary bg-opacity-50 transition-all duration-500 ease-tamisitée group-hover:bg-opacity-0",
               currentHero === heroes?.hero?.indexOf(hero) ? "hidden" : "block",
             )}
-          />
+          /> */}
           <div className="relative max-h-[calc(100dvh-5rem)] w-full">
             <div className="absolute left-[1rem] top-[1rem] z-10 h-fit w-2/3 overflow-hidden">
               <h1
