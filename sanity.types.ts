@@ -146,7 +146,7 @@ export type ContactForm = {
 export type Link = {
   _type: "link";
   label?: string;
-  type?: "internal" | "external";
+  type?: "internal" | "external" | "mail";
   internal?: {
     _ref: string;
     _type: "reference";
@@ -154,6 +154,7 @@ export type Link = {
     [internalGroqTypeReferenceTo]?: "main-pages";
   };
   external?: string;
+  mail?: string;
 };
 
 export type MultiImages = {
@@ -1176,7 +1177,7 @@ export type LesArchivesVivantesQueryResult = {
   linkToPodcast?: string;
 } | null;
 // Variable: mainPagesContentQuery
-// Query: *[_type == "main-pages" && slug.current == $pages][0] {  _id,  title,  slug,  content[] {    titleBlock,    block[] {      _type,      //intro      // "intro": intro[],                  // richtext        _id,  "richtext": text[],      // richtextTitle        _id,  "richTextTitle": title,  "richtextTitleText": text[],      // single-image        _id,  "imageTitle": title,  "imageUrl": image.asset->url,      // multi-images        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },      // link        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },      // lastEvent        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,      // creationArchives        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },      // custom-html        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },      // file        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    }  }}
+// Query: *[_type == "main-pages" && slug.current == $pages][0] {  _id,  title,  slug,  content[] {    titleBlock,    block[] {      _type,      //intro      // "intro": intro[],                  // richtext        _id,  "richtext": text[],      // richtextTitle        _id,  "richTextTitle": title,  "richtextTitleText": text[],      // single-image        _id,  "imageTitle": title,  "imageUrl": image.asset->url,      // multi-images        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },      // link        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,      // lastEvent        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,      // creationArchives        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },      // custom-html        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },      // file        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    }  }}
 export type MainPagesContentQueryResult = {
   _id: string;
   title: string | null;

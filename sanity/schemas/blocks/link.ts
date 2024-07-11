@@ -20,6 +20,7 @@ export default defineType({
         list: [
           { title: "internal", value: "internal" },
           { title: "external", value: "external" },
+          { title: "mail", value: "mail" },
         ],
       },
     }),
@@ -38,6 +39,12 @@ export default defineType({
           allowRelative: true,
         }),
       hidden: ({ parent }) => parent?.type !== "external",
+    }),
+    defineField({
+      name: "mail",
+      type: "string",
+      validation: (Rule) => Rule.email(),
+      hidden: ({ parent }) => parent?.type !== "mail",
     }),
   ],
   preview: {

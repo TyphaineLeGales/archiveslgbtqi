@@ -365,6 +365,7 @@ export const linkFields = /* groq */ `
     title,
     "slug": slug.current,
   },
+  "mail": mail,
 `;
 
 export const lastEventFields = /* groq */ `

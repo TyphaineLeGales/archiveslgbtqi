@@ -929,6 +929,10 @@
               {
                 "type": "string",
                 "value": "external"
+              },
+              {
+                "type": "string",
+                "value": "mail"
               }
             ]
           },
@@ -965,6 +969,13 @@
           "optional": true
         },
         "external": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "mail": {
           "type": "objectAttribute",
           "value": {
             "type": "string"

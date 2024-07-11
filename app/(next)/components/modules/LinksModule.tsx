@@ -7,6 +7,7 @@ type Props = {
   item: {
     internal: { slug: string };
     external: string;
+    mail: string;
     linkLabel: string;
   };
 };
@@ -16,7 +17,7 @@ export default function LinksModule({ item }: Props) {
   return (
     <div className="py-[1rem]">
       <Link
-        href={`${link.internal?.slug || link.external}`}
+        href={`${link.internal?.slug || link.external || `mailto:${link.mail}`}`}
         className="underline"
       >
         {link.linkLabel}
