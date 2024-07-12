@@ -29,9 +29,7 @@ import pages from "@/sanity/schemas/documents/pages";
 import events from "./sanity/schemas/documents/events";
 
 // Content
-import intro from "./sanity/schemas/contents/intro";
 import content from "./sanity/schemas/contents/content";
-import notFound from "./sanity/schemas/contents/not-found";
 
 // Blocks
 import richtext from "./sanity/schemas/blocks/richtext";
@@ -68,9 +66,7 @@ export default defineConfig({
       events,
       blogs,
       // Content
-      intro,
       content,
-      notFound,
       // Blocks
       richtext,
       richtextAndTitle,
