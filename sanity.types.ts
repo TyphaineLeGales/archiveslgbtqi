@@ -890,6 +890,40 @@ export type Code = {
   code?: string;
   highlightedLines?: Array<number>;
 };
+
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | Geopoint
+  | CustomHtml
+  | CreationArchives
+  | LastEvent
+  | ContactForm
+  | Link
+  | MultiImages
+  | SingleImage
+  | DocumentFile
+  | RichTextAndTitle
+  | Richtext
+  | NotFound
+  | Content
+  | Intro
+  | LesArchivesVivantes
+  | Homepage
+  | Blogs
+  | Events
+  | Settings
+  | Pages
+  | MainPages
+  | SanityFileAsset
+  | Slug
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | Code;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -986,8 +1020,8 @@ export type HomepageQueryResult = {
           }
         | null;
     } | null;
-    _id: null;
     _key: string;
+    _id: null;
   }> | null;
   multiBlock: {
     leBlogBlock: {

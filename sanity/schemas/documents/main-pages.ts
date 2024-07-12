@@ -41,7 +41,7 @@ export default defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "intro" }, { type: "content" }, { type: "not-found" }],
+      of: [{ type: "content" }],
     }),
   ],
   preview: {
