@@ -6,8 +6,8 @@ export const structure = (S: StructureBuilder) =>
     .items([
       // Make a singleton of the document with ID header”
       S.documentListItem().id("settings").schemaType("settings"),
-      S.documentListItem().id("homepage").schemaType("homepage"),
       S.divider(),
+      S.documentListItem().id("homepage").schemaType("homepage"),
       // ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
       ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
       S.divider(),
@@ -18,8 +18,10 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "homepage" &&
           item.getId() !== "settings" &&
           item.getId() !== "pages" &&
+          item.getId() !== "events" &&
+          item.getId() !== "blogs" &&
           // Content
-          item.getId() !== "intro" &&
+          item.getId() !== "content" &&
           // Blocks
           item.getId() !== "richtext" &&
           item.getId() !== "richTextAndTitle" &&
@@ -37,10 +39,14 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "creativeCtas" &&
           item.getId() !== "creativeIcon" &&
           item.getId() !== "creativeImage" &&
-          item.getId() !== "creativeRichtext" &&
-          item.getId() !== "pageBlocks",
+          item.getId() !== "creativeRichtext",
       ),
+      ...S.documentTypeListItems().filter((item) => item.getId() == "blogs"),
+      S.divider(),
+      ...S.documentTypeListItems().filter((item) => item.getId() == "events"),
+      S.divider(),
       S.documentListItem()
         .id("lesArchivesVivantes")
         .schemaType("lesArchivesVivantes"),
+      S.divider(),
     ]);
