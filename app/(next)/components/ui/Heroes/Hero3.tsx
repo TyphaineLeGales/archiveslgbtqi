@@ -83,7 +83,7 @@ export default function StickyHero({ heroes }: Props) {
             {currentHero === heroes?.hero?.indexOf(hero) && (
               <Link
                 href={
-                  hero?.cta?.ctaLink?._type === "main-pages"
+                  hero?.cta?.ctaLink?._type === "pages"
                     ? `/${hero.cta?.ctaLink?.slug || ""}`
                     : hero?.cta?.ctaLink?._type === "events"
                       ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`
