@@ -25,7 +25,6 @@ import homepage from "./sanity/schemas/singletons/homepage";
 import lesArchivesVivantes from "./sanity/schemas/singletons/les-archives-vivantes";
 
 // Documents
-import pages from "@/sanity/schemas/documents/pages";
 import events from "./sanity/schemas/documents/events";
 
 // Content
@@ -43,7 +42,7 @@ import lastEvent from "./sanity/schemas/blocks/last-event";
 import creationArchives from "./sanity/schemas/blocks/creation-archives";
 import richtextAndTitle from "./sanity/schemas/blocks/richtext-title";
 import customHtml from "./sanity/schemas/blocks/custom-html";
-import mainPages from "./sanity/schemas/documents/main-pages";
+import pages from "./sanity/schemas/documents/pages";
 
 const homeLocation = {
   title: "Home",
@@ -62,7 +61,6 @@ export default defineConfig({
       lesArchivesVivantes,
       // Documents
       pages,
-      mainPages,
       events,
       blogs,
       // Content

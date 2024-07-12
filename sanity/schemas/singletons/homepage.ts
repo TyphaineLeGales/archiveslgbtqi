@@ -92,7 +92,7 @@ export default defineType({
                       title: "CTA Link",
                       type: "reference",
                       to: [
-                        { type: "main-pages" },
+                        { type: "pages" },
                         { type: "events" },
                         { type: "blogs" },
                       ],

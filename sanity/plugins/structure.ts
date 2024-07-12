@@ -9,9 +9,7 @@ export const structure = (S: StructureBuilder) =>
       S.documentListItem().id("homepage").schemaType("homepage"),
       S.divider(),
       // ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
-      ...S.documentTypeListItems().filter(
-        (item) => item.getId() == "main-pages",
-      ),
+      ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
       S.divider(),
       // Add the rest of the document types, but filter out the siteSettings type defined above
       ...S.documentTypeListItems().filter(
@@ -20,7 +18,6 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "homepage" &&
           item.getId() !== "settings" &&
           item.getId() !== "pages" &&
-          item.getId() !== "main-pages" &&
           // Content
           item.getId() !== "intro" &&
           // Blocks
