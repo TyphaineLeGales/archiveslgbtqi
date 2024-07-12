@@ -405,7 +405,7 @@ export const documentFileFields = /* groq */ `
   "fileName": file.asset->originalFilename,
 `;
 
-export const mainPagesContentQuery = groq`*[_type == "main-pages" && slug.current == $pages][0] {
+export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages][0] {
   _id,
   title,
   slug,
@@ -413,36 +413,14 @@ export const mainPagesContentQuery = groq`*[_type == "main-pages" && slug.curren
     titleBlock,
     block[] {
       _type,
-
-      //intro
-      // "intro": intro[],
-      
-      
-      // richtext
       ${richTextFields}
-
-      // richtextTitle
       ${richTextAndTitleFields}
-
-      // single-image
       ${singleImageFields}
-
-      // multi-images
       ${multiImagesFields}
-
-      // link
       ${linkFields}
-
-      // lastEvent
       ${lastEventFields}
-
-      // creationArchives
       ${creationArchivesFields}
-
-      // custom-html
       ${customHtmlFields}
-
-      // file
       ${documentFileFields}
     }
   }

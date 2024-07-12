@@ -1,4 +1,3 @@
-import { MainPagesContentQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 
 import Link from "next/link";

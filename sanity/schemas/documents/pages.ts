@@ -1,4 +1,4 @@
-import { DocumentIcon, FolderIcon, icons } from "@sanity/icons";
+import { FolderIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 /**
@@ -21,15 +21,15 @@ export default defineType({
   fields: [
     defineField({
       name: "title",
-      title: "Title",
+      title: "Title de la page",
       type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "slug",
-      title: "Slug",
+      title: "Slug de la page",
       type: "slug",
-      description: "A slug is required for the post to show up in the preview",
+      description: "Un slug est utilisé pour générer l'URL de la page",
       options: {
         source: "title",
         maxLength: 96,
@@ -38,27 +38,10 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "navigation",
-      title: "Navigation",
-      type: "array",
-      of: [{ type: "reference", weak: true, to: [{ type: "pages" }] }],
-    }),
-    defineField({
       name: "content",
       title: "Content",
       type: "array",
-      of: [
-        { type: "document-file" },
-        { type: "richtext" },
-        { type: "richTextAndTitle" },
-        { type: "single-image" },
-        { type: "multi-images" },
-        { type: "link" },
-        { type: "contact-form" },
-        { type: "lastEvent" },
-        { type: "creationArchives" },
-        { type: "custom-html" },
-      ],
+      of: [{ type: "content" }],
     }),
   ],
   preview: {

@@ -151,7 +151,7 @@ export type Link = {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "main-pages";
+    [internalGroqTypeReferenceTo]?: "pages";
   };
   external?: string;
   mail?: string;
@@ -272,34 +272,58 @@ export type Richtext = {
   }>;
 };
 
-export type NotFound = {
-  _id: string;
-  _type: "not-found";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  content?: string;
-  link?: {
-    ctaTitle?: string;
-    href?: string;
-  };
-};
-
 export type Content = {
   _id: string;
   _type: "content";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  isLink?: boolean;
   titleBlock?: string;
   block?: Array<
+    | ({
+        _key: string;
+      } & ContactForm)
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "creationArchives";
+      }
+    | ({
+        _key: string;
+      } & CustomHtml)
     | {
         _ref: string;
         _type: "reference";
         _weak?: boolean;
         _key: string;
         [internalGroqTypeReferenceTo]?: "document-file";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "lastEvent";
+      }
+    | ({
+        _key: string;
+      } & Link)
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "multi-images";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "single-image";
       }
     | {
         _ref: string;
@@ -315,111 +339,6 @@ export type Content = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "richTextAndTitle";
       }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "single-image";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "multi-images";
-      }
-    | ({
-        _key: string;
-      } & Link)
-    | ({
-        _key: string;
-      } & ContactForm)
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "lastEvent";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "creationArchives";
-      }
-    | ({
-        _key: string;
-      } & CustomHtml)
-  >;
-};
-
-export type Intro = {
-  _id: string;
-  _type: "intro";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  block?: Array<
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "document-file";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "richtext";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "richTextAndTitle";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "single-image";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "multi-images";
-      }
-    | ({
-        _key: string;
-      } & Link)
-    | ({
-        _key: string;
-      } & ContactForm)
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "lastEvent";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "creationArchives";
-      }
-    | ({
-        _key: string;
-      } & CustomHtml)
   >;
 };
 
@@ -466,7 +385,7 @@ export type Homepage = {
               _ref: string;
               _type: "reference";
               _weak?: boolean;
-              [internalGroqTypeReferenceTo]?: "main-pages";
+              [internalGroqTypeReferenceTo]?: "pages";
             }
           | {
               _ref: string;
@@ -656,7 +575,7 @@ export type Settings = {
         _ref: string;
         _type: "reference";
         _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "main-pages";
+        [internalGroqTypeReferenceTo]?: "pages";
       };
       externalLink?: {
         title?: string;
@@ -696,106 +615,13 @@ export type Pages = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  navigation?: Array<{
+  content?: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
-    [internalGroqTypeReferenceTo]?: "pages";
+    [internalGroqTypeReferenceTo]?: "content";
   }>;
-  content?: Array<
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "document-file";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "richtext";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "richTextAndTitle";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "single-image";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "multi-images";
-      }
-    | ({
-        _key: string;
-      } & Link)
-    | ({
-        _key: string;
-      } & ContactForm)
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "lastEvent";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "creationArchives";
-      }
-    | ({
-        _key: string;
-      } & CustomHtml)
-  >;
-};
-
-export type MainPages = {
-  _id: string;
-  _type: "main-pages";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  content?: Array<
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "intro";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "content";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "not-found";
-      }
-  >;
 };
 
 export type SanityFileAsset = {
@@ -906,16 +732,13 @@ export type AllSanitySchemaTypes =
   | DocumentFile
   | RichTextAndTitle
   | Richtext
-  | NotFound
   | Content
-  | Intro
   | LesArchivesVivantes
   | Homepage
   | Blogs
   | Events
   | Settings
   | Pages
-  | MainPages
   | SanityFileAsset
   | Slug
   | SanityImageCrop
@@ -940,7 +763,7 @@ export type SettingsQueryResult = {
       type: "external" | "internal" | null;
       internalLinkDetails: {
         _id: string;
-        _type: "main-pages";
+        _type: "pages";
         title: string | null;
         slug: string | null;
       } | null;
@@ -1015,7 +838,7 @@ export type HomepageQueryResult = {
             slug: string | null;
           }
         | {
-            _type: "main-pages";
+            _type: "pages";
             slug: string | null;
           }
         | null;
@@ -1210,9 +1033,9 @@ export type LesArchivesVivantesQueryResult = {
   linkToVimeo?: string;
   linkToPodcast?: string;
 } | null;
-// Variable: mainPagesContentQuery
-// Query: *[_type == "main-pages" && slug.current == $pages][0] {  _id,  title,  slug,  content[] {    titleBlock,    block[] {      _type,      //intro      // "intro": intro[],                  // richtext        _id,  "richtext": text[],      // richtextTitle        _id,  "richTextTitle": title,  "richtextTitleText": text[],      // single-image        _id,  "imageTitle": title,  "imageUrl": image.asset->url,      // multi-images        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },      // link        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,      // lastEvent        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,      // creationArchives        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },      // custom-html        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },      // file        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    }  }}
-export type MainPagesContentQueryResult = {
+// Variable: pagesContentQuery
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  slug,  content[] {    titleBlock,    block[] {      _type,        _id,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    }  }}
+export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
   slug: Slug | null;

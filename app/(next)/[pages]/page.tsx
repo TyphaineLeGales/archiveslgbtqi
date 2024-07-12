@@ -3,13 +3,13 @@ import React from "react";
 import {
   EventsQueryResult,
   LastEventQueryResult,
-  MainPagesContentQueryResult,
+  PagesContentQueryResult,
 } from "@/sanity.types"; // Ensure this path is correct
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   eventsQuery,
   lastEventQuery,
-  mainPagesContentQuery,
+  pagesContentQuery,
 } from "@/sanity/lib/queries";
 
 import { notFound } from "next/navigation";
@@ -36,8 +36,8 @@ type Props = {
 
 export default async function Page({ params }: Props) {
   const [content, events, lastEvent] = await Promise.all([
-    sanityFetch<MainPagesContentQueryResult>({
-      query: mainPagesContentQuery,
+    sanityFetch<PagesContentQueryResult>({
+      query: pagesContentQuery,
       params,
     }),
     sanityFetch<EventsQueryResult>({
@@ -52,7 +52,7 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  console.log("Pages Content:", content.content?.[0]);
+  console.log("Pages Content:", content);
 
   return (
     <div className="flex h-full min-h-[calc(100%-5rem)] overflow-hidden">

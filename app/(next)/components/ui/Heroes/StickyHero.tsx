@@ -21,7 +21,7 @@ export default function StickyHero({ heroes }: Props) {
         <Link
           key={hero.title!}
           href={
-            hero?.cta?.ctaLink?._type === "main-pages"
+            hero?.cta?.ctaLink?._type === "pages"
               ? `/${hero.cta?.ctaLink?.slug || ""}`
               : hero?.cta?.ctaLink?._type === "events"
                 ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`

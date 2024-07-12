@@ -1,10 +1,10 @@
 "use client";
 
+import { PagesContentQueryResult } from "@/sanity.types";
 import React from "react";
-import { MainPagesContentQueryResult } from "@/sanity.types";
 
 type Props = {
-  content: MainPagesContentQueryResult;
+  content: PagesContentQueryResult;
 };
 
 export default function DesktopNavigationBar({ content }: Props) {
