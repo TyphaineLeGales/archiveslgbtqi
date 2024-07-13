@@ -9,14 +9,17 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
   "header": {
     "logo": header.logo.asset->url,
     "links": header.headerLinks[] {
+      _key,
       type,
       "internalLinkDetails": internalLink-> {
         _id,
+        _key,
         _type,
         title,
         "slug": slug.current
       },
       "externalLinkDetails": {
+        _key,
         "title": externalLink.title,
         "url": externalLink.url
       }
@@ -26,11 +29,14 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
     _id,
     "moduleGroups": footer.moduleGroups[] {
       _id,
+      _key,
       groupName,
       "modules": modules[] {
+        _key,
         _id,
         type,
         "internalDetails": internalLink-> {
+          _key,
           _id,
           _type,
           title,

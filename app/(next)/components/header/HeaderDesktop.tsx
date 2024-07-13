@@ -19,20 +19,8 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
         settings.header.links.map((link, index) => {
           if (link.type === "internal") {
             return (
-              // <button
-              //   key={`link-${index}`}
-              //   // href={`/${link.internalLinkDetails?.slug || ""}`}
-              //   onClick={() => {
-              //     setIsClicked(true);
-              //     setTimeout(() => {
-              //       setIsClicked(false);
-              //       router.push(`/${link.internalLinkDetails?.slug || ""}`);
-              //     }, 1000);
-              //   }}
-              //   className="headerItem group relative flex h-[.8rem] w-fit flex-col overflow-hidden"
-              // >
               <Link
-                key={`link-${index}`}
+                key={link._key}
                 href={`/${link.internalLinkDetails?.slug || ""}`}
                 className="headerItem group relative flex h-[.7rem] w-fit flex-col overflow-hidden"
               >
@@ -48,7 +36,7 @@ export default function HeaderDesktop({ settings }: NavLinkProps) {
           } else {
             return (
               <a
-                key={`link-${index}`}
+                key={link._key}
                 href={link.externalLinkDetails.url || ""}
                 target="_blank"
                 rel="noreferrer"
