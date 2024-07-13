@@ -16,14 +16,16 @@ export default async function Header() {
   });
 
   return (
-    <nav className="sticky top-0 z-40 flex h-[5rem] w-full items-center justify-between border-b-[1px] border-black-primary bg-white-primary bg-opacity-50 p-[1rem] backdrop-blur-md">
-      <Link href="/" className="relative aspect-square h-[3rem] w-[3rem]">
+    <nav className="sticky top-0 z-40 flex max-h-[5rem] w-full items-center justify-between overflow-hidden border-b-[1px] border-black-primary bg-white-primary bg-opacity-50 px-[1rem] backdrop-blur-md">
+      <Link
+        href="/"
+        className="relative my-auto flex aspect-square h-[5rem] w-[5rem] items-center justify-center"
+      >
         <Image
           src={settings?.header?.logo || "https://via.placeholder.com/100x100"}
           alt="logo"
           width={65}
           height={65}
-          className="absolute inset-0"
         />
       </Link>
       <div>
