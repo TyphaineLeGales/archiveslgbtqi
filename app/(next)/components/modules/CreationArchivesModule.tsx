@@ -39,25 +39,31 @@ export default function CreationArchivesModule({
             onClick={() => handleClick(index)}
             className={clsx(
               "relative flex w-full flex-col items-start justify-start overflow-hidden py-[1rem] text-start transition-[max-height] duration-[.5s] ease-in-out",
-              archiveIndex === index ? "max-h-[15rem]" : "max-h-[2rem]",
+              archiveIndex === index
+                ? "max-h-[25rem] lg:max-h-[15rem]"
+                : "max-h-[3rem] lg:max-h-[2.5rem]",
             )}
           >
-            <div className="absolute left-0 top-[.25rem] flex w-full items-center justify-between pr-[1rem]">
-              <h3 className="text-[1.5rem] font-bold leading-[1.5rem] tracking-tighter">
+            <div className="absolute left-0 top-[.75rem] flex w-full items-center justify-between pr-[1rem] lg:top-[.5rem]">
+              <h3 className="text-[1rem] font-bold leading-[1rem] tracking-tighter lg:text-[1.5rem] lg:leading-[1.5rem]">
                 {archiveItem.title}
               </h3>
-              <div
-                className={clsx(
-                  "font-bold transition-transform duration-[.5s] ease-tamisitée",
-                  archiveIndex === index ? "rotate-45" : "rotate-0",
-                )}
-              >
-                +
+              <div className="flex items-center gap-[1rem] lg:gap-[2rem]">
+                <span className="text-[.8em] leading-[.8rem] tracking-tighter">
+                  {archiveItem.status}
+                </span>
+                <div
+                  className={clsx(
+                    "font-bold transition-transform duration-[.5s] ease-tamisitée",
+                    archiveIndex === index ? "rotate-[135deg]" : "rotate-0",
+                  )}
+                >
+                  +
+                </div>
               </div>
             </div>
-            <li className="pt-[1rem]">
+            <li className="pt-[2rem]">
               <MyCustomPortableText value={archiveItem.description} />
-              <p>{archiveItem.status}</p>
             </li>
           </button>
         ))}
