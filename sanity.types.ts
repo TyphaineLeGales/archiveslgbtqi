@@ -750,7 +750,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      type,      "internalLinkDetails": internalLink-> {        _id,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    _id,    "moduleGroups": footer.moduleGroups[] {      _id,      groupName,      "modules": modules[] {        _id,        type,        "internalDetails": internalLink-> {          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
+// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      _key,      type,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    _id,    "moduleGroups": footer.moduleGroups[] {      _id,      _key,      groupName,      "modules": modules[] {        _key,        _id,        type,        "internalDetails": internalLink-> {          _key,          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
 export type SettingsQueryResult = {
   globalSettings: {
     siteTitle: string | null;
@@ -760,14 +760,17 @@ export type SettingsQueryResult = {
   header: {
     logo: string | null;
     links: Array<{
+      _key: string;
       type: "external" | "internal" | null;
       internalLinkDetails: {
         _id: string;
+        _key: null;
         _type: "pages";
         title: string | null;
         slug: string | null;
       } | null;
       externalLinkDetails: {
+        _key: string;
         title: string | null;
         url: string | null;
       };
@@ -777,11 +780,14 @@ export type SettingsQueryResult = {
     _id: string;
     moduleGroups: Array<{
       _id: null;
+      _key: string;
       groupName: string | null;
       modules: Array<{
+        _key: string;
         _id: null;
         type: "external" | "internal" | "text" | null;
         internalDetails: {
+          _key: null;
           _id: string;
           _type: "pages";
           title: string | null;

@@ -26,6 +26,7 @@ export default async function Header() {
           alt="logo"
           width={65}
           height={65}
+          className="h-auto w-auto"
         />
       </Link>
       <div>
