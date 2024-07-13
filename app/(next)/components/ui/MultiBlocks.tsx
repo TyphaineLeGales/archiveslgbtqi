@@ -84,8 +84,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
               href={`/agenda/${event.slug?.current || ""}`}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
-              // className="boxRounded border-black-primary group-hover/overlay:border-white-primarym group-hover:text-white-primary text-black-primary group relative z-10 flex h-[3rem] w-full flex-col items-start justify-center overflow-hidden border-[1px] p-[.5rem] transition-all duration-[1s] ease-tamisitée hover:rounded-full group-hover/overlay:border-white group-hover/overlay:text-white"
-              className={`boxRounded group-hover/overlay:border-white-primarym group relative z-10 flex h-[3rem] w-full flex-col items-start justify-center overflow-hidden border-[1px] border-black-primary p-[.5rem] text-black-primary transition-all duration-[1s] ease-tamisitée hover:rounded-full`}
+              className="boxRounded group-hover/overlay:border-white-primarym group relative z-10 flex h-[3rem] w-full flex-col items-start justify-center overflow-hidden border-[1px] border-black-primary p-[.5rem] text-black-primary transition-all duration-[1s] ease-tamisitée hover:rounded-full"
             >
               <span className="z-10 truncate text-[.8rem] uppercase tracking-tighter">
                 {event.eventTitle}

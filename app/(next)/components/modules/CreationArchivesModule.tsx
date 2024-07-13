@@ -44,12 +44,12 @@ export default function CreationArchivesModule({
                 : "max-h-[3rem] lg:max-h-[2.5rem]",
             )}
           >
-            <div className="absolute left-0 top-[.75rem] flex w-full items-center justify-between pr-[1rem] lg:top-[.5rem]">
+            <div className="absolute left-0 top-[.75rem] flex w-full items-center justify-between lg:top-[.5rem] lg:pr-[1rem]">
               <h3 className="text-[1rem] font-bold leading-[1rem] tracking-tighter lg:text-[1.5rem] lg:leading-[1.5rem]">
                 {archiveItem.title}
               </h3>
               <div className="flex items-center gap-[1rem] lg:gap-[2rem]">
-                <span className="text-[.8em] leading-[.8rem] tracking-tighter">
+                <span className="text-[.6rem] leading-[.6rem] tracking-tighter lg:text-[.8em] lg:leading-[.8rem]">
                   {archiveItem.status}
                 </span>
                 <div
