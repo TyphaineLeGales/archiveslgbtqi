@@ -5,7 +5,7 @@ export default defineType({
   name: "multi-images",
   title: "Multi Images",
   icon: ImagesIcon,
-  type: "document",
+  type: "object",
   fields: [
     defineField({
       name: "title",

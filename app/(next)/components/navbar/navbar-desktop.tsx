@@ -33,7 +33,7 @@ export default function DesktopNavigationBar({ content }: Props) {
 
   return (
     <div className="fixed hidden w-[25%] flex-col items-start gap-[1rem] whitespace-nowrap px-[1rem] pt-[2rem] lg:flex">
-      {content?.content?.map((item, index) => (
+      {content?.contentModulde?.map((item, index) => (
         <button
           key={item.titleBlock}
           onClick={(e) => handleClickScroll(e, index)}

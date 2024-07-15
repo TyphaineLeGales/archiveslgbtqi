@@ -24,9 +24,10 @@ export default async function Header() {
         <Image
           src={settings?.header?.logo || "https://via.placeholder.com/100x100"}
           alt="logo"
-          width={65}
-          height={65}
-          className="h-auto w-auto"
+          width={50}
+          height={50}
+          priority
+          className="aspect-square h-[50px] w-[50px]"
         />
       </Link>
       <div>

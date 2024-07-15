@@ -1,6 +1,5 @@
-import { DocumentIcon, FolderIcon, icons } from "@sanity/icons";
+import { FolderIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { array } from "zod";
 
 /**
  * This file is the schema definition for a pages.
@@ -12,18 +11,13 @@ import { array } from "zod";
 
   https://www.sanity.io/docs/schema-types
 
-  Fields:
-  - Title: The title of the page
-  - Slug: The slug of the page
-  - Array of Blocks: The content of the page
-
- */
+*/
 
 export default defineType({
   name: "content",
   title: "Page Blocks",
   icon: FolderIcon,
-  type: "document",
+  type: "object",
   fields: [
     defineField({
       name: "isLink",
