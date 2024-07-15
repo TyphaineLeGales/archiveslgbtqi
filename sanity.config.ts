@@ -31,17 +31,17 @@ import events from "./sanity/schemas/documents/events";
 import content from "./sanity/schemas/contents/content";
 
 // Blocks
-import richtext from "./sanity/schemas/blocks/richtext";
-import documentFile from "./sanity/schemas/blocks/document-file";
-import singleImage from "./sanity/schemas/blocks/single-image";
-import multiImages from "./sanity/schemas/blocks/multi-images";
-import link from "./sanity/schemas/blocks/link";
+import richtext from "./sanity/schemas/block/richtext";
+import documentFile from "./sanity/schemas/block/document-file";
+import singleImage from "./sanity/schemas/block/single-image";
+import multiImages from "./sanity/schemas/block/multi-images";
+import link from "./sanity/schemas/block/link";
 import blogs from "./sanity/schemas/documents/blogs";
-import contactForm from "./sanity/schemas/blocks/contact-form";
-import lastEvent from "./sanity/schemas/blocks/last-event";
-import creationArchives from "./sanity/schemas/blocks/creation-archives";
-import richtextAndTitle from "./sanity/schemas/blocks/richtext-title";
-import customHtml from "./sanity/schemas/blocks/custom-html";
+import contactForm from "./sanity/schemas/block/contact-form";
+import lastEvent from "./sanity/schemas/block/last-event";
+import creationArchives from "./sanity/schemas/block/creation-archives";
+import richtextAndTitle from "./sanity/schemas/block/richtext-title";
+import customHtml from "./sanity/schemas/block/custom-html";
 import pages from "./sanity/schemas/documents/pages";
 
 const homeLocation = {

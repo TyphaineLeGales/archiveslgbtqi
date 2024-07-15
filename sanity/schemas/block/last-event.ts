@@ -5,7 +5,7 @@ export default defineType({
   name: "lastEvent",
   title: "Last Event",
   icon: CalendarIcon,
-  type: "document",
+  type: "object",
   fields: [
     defineField({
       name: "event",

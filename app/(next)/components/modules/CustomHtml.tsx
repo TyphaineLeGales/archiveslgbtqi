@@ -33,7 +33,7 @@ export default function CustomHtml({ title, html, item }: Props) {
                 {fileGroup.files?.map((file, index) => (
                   <div
                     key={`file-${index}`}
-                    className="bg-white-primary hover:bg-black-primary hover:text-white-primary border-black-primary w-fit cursor-pointer rounded-full border-[1px] px-[1rem] py-[0.1rem] transition-colors duration-300 ease-in-out"
+                    className="w-fit cursor-pointer rounded-full border-[1px] border-black-primary bg-white-primary px-[1rem] py-[0.1rem] transition-colors duration-300 ease-in-out hover:bg-black-primary hover:text-white-primary"
                   >
                     <a
                       href={file.asset?.url!}

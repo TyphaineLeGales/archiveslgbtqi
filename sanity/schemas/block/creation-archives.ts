@@ -7,7 +7,7 @@ export default defineType({
   name: "creationArchives",
   title: "Création d'archives",
   icon: SparkleIcon,
-  type: "document",
+  type: "object",
   fields: [
     defineField({
       name: "intro",

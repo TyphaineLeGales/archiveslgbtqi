@@ -336,6 +336,7 @@ export const lesArchivesVivantesQuery = groq`*[_type == "lesArchivesVivantes"][0
 
 export const richTextFields = /* groq */ `
   _id,
+  _key,
   "richtext": text[],
 `;
 
@@ -412,12 +413,16 @@ export const documentFileFields = /* groq */ `
 `;
 
 export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages][0] {
+  // "all": {...,},
+  // _type,
   _id,
   title,
-  slug,
-  content[] {
+  "slug": slug.current,
+  "contentModulde": content[]{
+    _type,
     titleBlock,
-    block[] {
+    "contenBlock": block[]{
+      // ...,
       _type,
       ${richTextFields}
       ${richTextAndTitleFields}
@@ -428,6 +433,7 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
       ${creationArchivesFields}
       ${customHtmlFields}
       ${documentFileFields}
-    }
+    },
   }
-}`;
+}
+`;

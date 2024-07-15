@@ -1,23 +1,22 @@
-import { ImageIcon } from "@sanity/icons";
+import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "single-image",
-  title: "Single Image",
-  icon: ImageIcon,
-  type: "document",
+  name: "document-file",
+  title: "Document | File",
+  icon: DocumentIcon,
+  type: "object",
   fields: [
     defineField({
       name: "title",
       title: "Title",
       type: "string",
-      description: "Use as alt text.",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
+      name: "file",
+      title: "File",
+      type: "file",
       validation: (rule) => rule.required(),
     }),
   ],
