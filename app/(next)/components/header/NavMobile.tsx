@@ -15,7 +15,8 @@ export default function NavMobile({ settings }: NavLinkProps) {
   const [menu, setMenu] = React.useState(false);
 
   const handleMenu = () => {
-    setMenu((prevMenu) => !prevMenu);
+    // setMenu((prevMenu) => !prevMenu);
+    setMenu(!menu);
 
     if (menu) {
       document.body.style.overflow = "auto";
@@ -27,7 +28,12 @@ export default function NavMobile({ settings }: NavLinkProps) {
   return (
     <nav className="relative z-50 block lg:hidden">
       <div className="fixed top-0 flex h-[5rem] w-full items-center justify-between border-b-[1px] border-black-primary bg-white-primary/70 px-[1rem] backdrop-blur-md">
-        <Link href="/">
+        <Link
+          href="/"
+          onClick={() => {
+            setMenu(false);
+          }}
+        >
           <Image
             src={
               settings?.header?.logo || "https://via.placeholder.com/100x100"
