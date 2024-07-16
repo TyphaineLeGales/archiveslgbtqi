@@ -64,7 +64,11 @@ export default async function Page({ params }: Props) {
         <h1 className="text-4xl font-bold">{content.title}</h1>
         <div className="flex min-h-screen flex-col gap-[2rem] py-[1rem]">
           {content.contentModulde?.map((item, index) => (
-            <div key={item._key} className="pb-[5rem]">
+            <div
+              id={item.titleBlock || ""}
+              key={item._key}
+              className="pb-[5rem]"
+            >
               <h2 className="text-2xl font-bold uppercase">
                 {item.titleBlock || ""}
               </h2>
