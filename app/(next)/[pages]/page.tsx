@@ -64,18 +64,14 @@ export default async function Page({ params }: Props) {
         <h1 className="text-4xl font-bold">{content.title}</h1>
         <div className="flex min-h-screen flex-col gap-[2rem] py-[1rem]">
           {content.contentModulde?.map((item, index) => (
-            <div
-              id={item.titleBlock || ""}
-              key={`content-title-${index}`}
-              className="pb-[5rem]"
-            >
+            <div key={item._key} className="pb-[5rem]">
               <h2 className="text-2xl font-bold uppercase">
                 {item.titleBlock || ""}
               </h2>
-              <div key={`content-item-${index}`}>
+              <div>
                 <div className="flex flex-col gap-[1rem]">
                   {item.contenBlock?.map((block, index) => (
-                    <div key={`content-block-${index}`}>
+                    <div key={block._key}>
                       {block._type === "richtext" && (
                         <RichTextModule item={block} />
                       )}
