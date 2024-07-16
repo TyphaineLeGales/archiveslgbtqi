@@ -413,12 +413,12 @@ export const documentFileFields = /* groq */ `
 `;
 
 export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages][0] {
-  // "all": {...,},
-  // _type,
   _id,
   title,
   "slug": slug.current,
   "contentModulde": content[]{
+    _id,
+    _key,
     _type,
     titleBlock,
     "contenBlock": block[]{

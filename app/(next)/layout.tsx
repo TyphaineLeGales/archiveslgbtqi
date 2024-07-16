@@ -28,10 +28,10 @@ export default function RootLayout({
       className={`${inter.variable} bg-white-primary text-black-primary`}
     >
       <body>
-        <section className="flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
+        <section className="relative flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
           {draftMode().isEnabled && <BannerAlert />}
           <Header />
-          <main>
+          <main className="mt-[5rem]">
             <ToastProviders>{children}</ToastProviders>
           </main>
           <Footer />
