@@ -14,7 +14,7 @@ type Props = {
   heroes: HomepageQueryResult;
 };
 
-export default function StickyHero({ heroes }: Props) {
+export default function Hero({ heroes }: Props) {
   const [currentHero, setCurrentHero] = React.useState(0);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
