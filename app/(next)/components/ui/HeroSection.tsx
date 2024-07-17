@@ -12,8 +12,6 @@ type Props = {
 export default function HeroSection({ heroes }: Props) {
   return (
     <>
-      {/* <StickyHero heroes={heroes} /> */}
-      {/* <Hero2 heroes={heroes} /> */}
       <Hero heroes={heroes} />
     </>
   );
