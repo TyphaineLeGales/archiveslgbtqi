@@ -7,6 +7,9 @@ export default {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)"],
+        tanker: ["var(--font-tanker)"],
+        cityburn: ["var(--font-cityburn)"],
+        jetbrains: ["var(--font-jetbrains)"],
       },
       transitionTimingFunction: {
         tamisitée: "cubic-bezier(0.6, 0.01, 0.05, 0.95)",
