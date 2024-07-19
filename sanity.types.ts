@@ -496,6 +496,7 @@ export type Settings = {
       alt?: string;
       _type: "image";
     };
+    svgIcon?: string;
   };
   header?: {
     logo?: {
@@ -647,6 +648,8 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type InlineSvg = string;
+
 export type Code = {
   _type: "code";
   language?: string;
@@ -684,16 +687,18 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | InlineSvg
   | Code;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      _key,      type,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    _id,    "moduleGroups": footer.moduleGroups[] {      _id,      _key,      groupName,      "modules": modules[] {        _key,        _id,        type,        "internalDetails": internalLink-> {          _key,          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
+// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt,    "svg": globalSettings.svgIcon,  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      _key,      type,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    _id,    "moduleGroups": footer.moduleGroups[] {      _id,      _key,      groupName,      "modules": modules[] {        _key,        _id,        type,        "internalDetails": internalLink-> {          _key,          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
 export type SettingsQueryResult = {
   globalSettings: {
     siteTitle: string | null;
     ogImage: string | null;
     altText: string | null;
+    svg: string | null;
   };
   header: {
     logo: string | null;
