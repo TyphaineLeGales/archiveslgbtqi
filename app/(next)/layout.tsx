@@ -13,7 +13,9 @@ import Footer from "./components/footer/footer";
 
 import { BannerAlert, ToastProviders } from "./components/ui";
 import { IntroAnimation } from "./components/ui/IntroAnimation";
+import { Font } from "@react-email/components";
 
+// TODO: Delete Inter Font
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
