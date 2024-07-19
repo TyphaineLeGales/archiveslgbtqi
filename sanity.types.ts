@@ -496,6 +496,7 @@ export type Settings = {
       alt?: string;
       _type: "image";
     };
+    svgIcon?: string;
   };
   header?: {
     logo?: {
@@ -647,6 +648,8 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type InlineSvg = string;
+
 export type Code = {
   _type: "code";
   language?: string;
@@ -684,6 +687,7 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | InlineSvg
   | Code;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
@@ -694,7 +698,7 @@ export type SettingsQueryResult = {
     siteTitle: string | null;
     ogImage: string | null;
     altText: string | null;
-    svg: null;
+    svg: string | null;
   };
   header: {
     logo: string | null;
