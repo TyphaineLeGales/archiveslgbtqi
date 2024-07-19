@@ -2,15 +2,17 @@ import React from "react";
 
 type Props = {
   className?: string;
+  logoRef: React.Ref<SVGSVGElement>;
 };
 
-export default function ArchLogo({ className }: Props) {
+export default function ArchLogo({ className, logoRef }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       id="Calque_1"
       data-name="Calque 1"
       viewBox="0 0 359.99 253.32"
+      ref={logoRef}
       className={className}
     >
       <defs></defs>
