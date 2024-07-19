@@ -3138,13 +3138,6 @@
                 }
               },
               "optional": true
-            },
-            "svgIcon": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
             }
           }
         },
@@ -4034,13 +4027,6 @@
           "optional": true
         }
       }
-    }
-  },
-  {
-    "name": "inlineSvg",
-    "type": "type",
-    "value": {
-      "type": "string"
     }
   },
   {

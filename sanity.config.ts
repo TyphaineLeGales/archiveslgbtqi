@@ -6,7 +6,7 @@ import { visionTool } from "@sanity/vision";
 import { PluginOptions, defineConfig } from "sanity";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { codeInput } from "@sanity/code-input";
-import { inlineSvgInput } from "@focus-reactive/sanity-plugin-inline-svg-input";
+
 import {
   presentationTool,
   defineDocuments,
@@ -127,8 +127,6 @@ export default defineConfig({
     // Sets up AI Assist with preset prompts
     // https://www.sanity.io/docs/ai-assist
     // assistWithPresets(),
-    // SVG Plugin
-    inlineSvgInput(),
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     process.env.NODE_ENV === "development" &&

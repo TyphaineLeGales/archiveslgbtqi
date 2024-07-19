@@ -59,12 +59,6 @@ export default defineType({
             }),
           ],
         }),
-        defineField({
-          name: "svgIcon",
-          title: "SVG Icon",
-          type: "inlineSvg",
-          description: "This is the SVG icon of your website.",
-        }),
       ],
     }),
     defineField({
