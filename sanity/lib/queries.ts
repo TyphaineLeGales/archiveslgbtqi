@@ -4,7 +4,8 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
   "globalSettings": {
     "siteTitle": globalSettings.siteTitle,
     "ogImage": globalSettings.ogImage.asset->url,
-    "altText": globalSettings.ogImage.alt
+    "altText": globalSettings.ogImage.alt,
+    "svg": globalSettings.svgIcon,
   },
   "header": {
     "logo": header.logo.asset->url,

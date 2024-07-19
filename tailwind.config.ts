@@ -24,6 +24,7 @@ export default {
       colors: {
         "white-primary": "#F7F7F7",
         "black-primary": "#121212",
+        "pink-arch": "#FC5F8C",
       },
     },
   },
