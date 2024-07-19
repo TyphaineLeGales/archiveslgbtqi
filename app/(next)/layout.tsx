@@ -10,6 +10,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 
 import { BannerAlert, ToastProviders } from "./components/ui";
+import IntroAnimation from "./components/ui/IntroAnimation";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body>
         <section className="relative flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
           {draftMode().isEnabled && <BannerAlert />}
+          <IntroAnimation />
           <Header />
           <main className="mt-[5rem]">
             <ToastProviders>{children}</ToastProviders>
