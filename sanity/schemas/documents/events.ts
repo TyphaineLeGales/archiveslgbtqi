@@ -1,35 +1,35 @@
 import { defineField, defineType } from "sanity";
-import { AsteriskIcon } from "@sanity/icons";
 
 export default defineType({
   name: "events",
-  title: "Events",
+  title: "Agenda",
   type: "document",
-  icon: AsteriskIcon,
+  icon: () => "🗓️",
   fields: [
     defineField({
-      name: "eventTitle",
-      title: "Event Title",
+      name: "eventType",
+      title: "Type de l'événement",
       type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      description: "A slug is required for the post to show up in the preview",
-      options: {
-        source: "eventTitle",
-        maxLength: 96,
-        isUnique: (value, context) => context.defaultIsUnique(value, context),
-      },
+      name: "eventTitle",
+      title: "Titre de l'événement",
+      type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "eventEntrance",
+      title: "Informations sur l'entrée",
+      type: "string",
+      description:
+        'ℹ️ Ajoutez des informations sur l\'entrée. (ex: "Entrée libre", "Réservé aux adhérents"...)',
+    }),
+    defineField({
       name: "eventDescription",
-      title: "Event Description",
-      type: "text",
-      validation: (rule) => rule.required(),
+      title: "Description de l'événement",
+      type: "array",
+      of: [{ type: "block" }],
     }),
     defineField({
       name: "eventDate",
@@ -38,7 +38,7 @@ export default defineType({
       fields: [
         defineField({
           name: "eventStartDate",
-          title: "Start at",
+          title: "Commence le",
           type: "datetime",
           options: {
             dateFormat: "DD-MM-YYYY",
@@ -48,13 +48,14 @@ export default defineType({
         }),
         defineField({
           name: "addEndDate",
-          title: "Add end date.",
+          title: "Ajouter une date de fin",
           type: "boolean",
-          description: "Add an end date if the end is not on the same day.",
+          description:
+            "Ajouter une date de fin si la fin n'est pas le même jour.",
         }),
         defineField({
           name: "eventEndDate",
-          title: "End at",
+          title: "Termine le",
           type: "datetime",
           options: {
             dateFormat: "DD-MM-YYYY",
@@ -66,13 +67,13 @@ export default defineType({
     }),
     defineField({
       name: "eventLocation",
-      title: "Event Location",
+      title: "Lieux de l'événement",
       type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "eventImage",
-      title: "Event Image",
+      title: "Image de l'événement",
       type: "object",
       fields: [
         defineField({
@@ -88,6 +89,8 @@ export default defineType({
           name: "alt",
           title: "Alt",
           type: "string",
+          description:
+            "Texte alternatif pour l'image, important pour l'accessibilité.",
           validation: (rule) => rule.required(),
         }),
       ],
@@ -110,7 +113,7 @@ export default defineType({
     },
     prepare({ title, media, startDate, endDate, addEndDate }) {
       const formattedStartDate = new Date(startDate).toLocaleDateString(
-        "en-US",
+        "fr-FR",
         {
           year: "numeric",
           month: "long",
@@ -120,7 +123,7 @@ export default defineType({
 
       let formattedEndDate = null;
       if (addEndDate && endDate) {
-        formattedEndDate = new Date(endDate).toLocaleDateString("en-US", {
+        formattedEndDate = new Date(endDate).toLocaleDateString("fr-Fr", {
           year: "numeric",
           month: "long",
           day: "numeric",

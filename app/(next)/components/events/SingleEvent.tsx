@@ -29,7 +29,7 @@ export default function SingleEvent({ params, event }: Event) {
           )}
         </div>
         <span className="eventLocation">{event?.eventLocation}</span>
-        <p>{event?.eventDescription}</p>
+        {/* <p>{event?.eventDescription}</p> */}
       </div>
       <Image
         src={event?.image?.imageUrl || "https://via.placeholder.com/1000x1000"}

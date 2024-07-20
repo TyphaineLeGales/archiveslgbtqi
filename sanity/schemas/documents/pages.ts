@@ -1,8 +1,8 @@
-import { FolderIcon } from "@sanity/icons";
+import { FolderIcon, DocumentIcon, BookIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 /**
- * This file is the schema definition for a pages.
+ * This file is the schema definition for pages.
  *
  * Here you'll be able to edit the different fields that appear when you 
  * create or edit a post in the studio.
@@ -42,6 +42,8 @@ export default defineType({
       title: "Content",
       type: "array",
       of: [{ type: "content" }],
+      hidden: ({ parent }) =>
+        parent?.slug?.current === "agenda" || parent?.slug?.current === "blog",
     }),
   ],
   preview: {
@@ -49,9 +51,24 @@ export default defineType({
       title: "title",
       slug: "slug.current",
     },
-    prepare: ({ title, slug }) => ({
-      title,
-      subtitle: slug && (slug === "index" ? "/" : `/${slug}`),
-    }),
+    prepare: ({ title, slug }) => {
+      let icon;
+      switch (slug) {
+        case "agenda":
+          icon = () => "🗓️";
+          break;
+        case "blog":
+          icon = () => "📝";
+          break;
+        default:
+          icon = FolderIcon;
+          break;
+      }
+      return {
+        title,
+        subtitle: slug && (slug === "index" ? "/" : `/${slug}`),
+        media: icon,
+      };
+    },
   },
 });

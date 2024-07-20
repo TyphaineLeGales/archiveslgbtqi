@@ -451,9 +451,27 @@ export type Events = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  eventType?: string;
   eventTitle?: string;
-  slug?: Slug;
-  eventDescription?: string;
+  eventEntrance?: string;
+  eventDescription?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   eventDate?: {
     eventStartDate?: string;
     addEndDate?: boolean;
@@ -511,6 +529,7 @@ export type Settings = {
     };
     headerLinks?: Array<{
       type?: "internal" | "external";
+      linkPosition?: "left" | "right";
       internalLink?: {
         _ref: string;
         _type: "reference";
@@ -688,18 +707,20 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      _key,      type,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    _id,    "moduleGroups": footer.moduleGroups[] {      _id,      _key,      groupName,      "modules": modules[] {        _key,        _id,        type,        "internalDetails": internalLink-> {          _key,          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
+// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt,    "svg": globalSettings.svgIcon,  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      _key,      type,      linkPosition,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    _id,    "moduleGroups": footer.moduleGroups[] {      _id,      _key,      groupName,      "modules": modules[] {        _key,        _id,        type,        "internalDetails": internalLink-> {          _key,          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
 export type SettingsQueryResult = {
   globalSettings: {
     siteTitle: string | null;
     ogImage: string | null;
     altText: string | null;
+    svg: null;
   };
   header: {
     logo: string | null;
     links: Array<{
       _key: string;
       type: "external" | "internal" | null;
+      linkPosition: "left" | "right" | null;
       internalLinkDetails: {
         _id: string;
         _key: null;
@@ -779,7 +800,7 @@ export type HomepageQueryResult = {
           }
         | {
             _type: "events";
-            slug: string | null;
+            slug: null;
           }
         | {
             _type: "pages";
@@ -811,13 +832,38 @@ export type HomepageQueryResult = {
       events: Array<{
         _id: string;
         eventTitle: string | null;
-        slug: Slug | null;
+        slug: null;
         eventDate: {
           eventStartDate?: string;
           addEndDate?: boolean;
           eventEndDate?: string;
         } | null;
-        eventDescription: string | null;
+        eventDescription: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?:
+            | "blockquote"
+            | "h1"
+            | "h2"
+            | "h3"
+            | "h4"
+            | "h5"
+            | "h6"
+            | "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
         eventLocation: string | null;
         image: {
           imageUrl: string | null;
@@ -857,13 +903,30 @@ export type HomepageQueryResult = {
 export type EventsQueryResult = Array<{
   _id: string;
   eventTitle: string | null;
-  slug: Slug | null;
+  slug: null;
   eventDate: {
     eventStartDate?: string;
     addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
-  eventDescription: string | null;
+  eventDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;
@@ -875,13 +938,30 @@ export type EventsQueryResult = Array<{
 export type EventQueryResult = {
   _id: string;
   eventTitle: string | null;
-  slug: Slug | null;
+  slug: null;
   eventDate: {
     eventStartDate?: string;
     addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
-  eventDescription: string | null;
+  eventDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;
@@ -893,13 +973,30 @@ export type EventQueryResult = {
 export type LastEventQueryResult = Array<{
   _id: string;
   eventTitle: string | null;
-  slug: Slug | null;
+  slug: null;
   eventDate: {
     eventStartDate?: string;
     addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
-  eventDescription: string | null;
+  eventDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;

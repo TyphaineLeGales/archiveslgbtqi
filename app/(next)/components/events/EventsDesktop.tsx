@@ -40,10 +40,9 @@ export default function EventsDesktop({ event }: EventProps) {
   return (
     <div className="hidden min-h-[85dvh] flex-col justify-end lg:flex">
       {event?.map((eventItem, index) => (
-        <Link
+        <div
           key={`event-${index}`}
-          href={`/agenda/${eventItem.slug?.current}`}
-          className="border-black-primary bg-white-primary group relative flex items-start overflow-hidden border-b-[1px]"
+          className="group relative flex items-start overflow-hidden border-b-[1px] border-black-primary bg-white-primary"
         >
           {hoveredIndex === index && (
             <div
@@ -87,7 +86,7 @@ export default function EventsDesktop({ event }: EventProps) {
                 </div>
               )}
 
-              <div className="border-black-primary whitespace-nowrap rounded-full border-[1px] px-[1rem] py-[.25rem] text-[.75rem]">
+              <div className="whitespace-nowrap rounded-full border-[1px] border-black-primary px-[1rem] py-[.25rem] text-[.75rem]">
                 <DateHourFormat
                   dateString={eventItem.eventDate?.eventStartDate || ""}
                 />
@@ -102,7 +101,7 @@ export default function EventsDesktop({ event }: EventProps) {
               </div>
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
