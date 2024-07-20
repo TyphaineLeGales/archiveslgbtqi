@@ -12,6 +12,7 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
     "links": header.headerLinks[] {
       _key,
       type,
+      linkPosition,
       "internalLinkDetails": internalLink-> {
         _id,
         _key,

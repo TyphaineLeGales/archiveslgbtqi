@@ -8,7 +8,7 @@
   }
 
   .headerItem {
-    @apply text-[1.5rem] uppercase leading-[1.5rem] tracking-tighter lg:text-[.8rem] lg:leading-[.8rem];
+    @apply lg:text-headerDesktop lg:leading-headerDesktop text-headerMobile leading-headerMobile font-tanker uppercase tracking-wide;
   }
 
   .headerMobileItem {

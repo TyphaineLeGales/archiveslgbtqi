@@ -99,6 +99,19 @@ export default defineType({
                   },
                 }),
                 defineField({
+                  name: "linkPosition",
+                  title: "Position du lien",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "Left", value: "left" },
+                      { title: "Right", value: "right" },
+                    ],
+                    layout: "radio",
+                  },
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
                   name: "internalLink",
                   title: "Internal Link",
                   type: "reference",
