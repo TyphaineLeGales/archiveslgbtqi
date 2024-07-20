@@ -29,6 +29,18 @@ export default {
         "black-primary": "#121212",
         "pink-arch": "#FC5F8C",
       },
+      fontSize: {
+        headerMobile: "1.5rem",
+        headerDesktop: "1.1875rem",
+      },
+      height: {
+        headerMobile: "1.5rem",
+        headerDesktop: "1.1875rem",
+      },
+      lineHeight: {
+        headerMobile: "1.8rem",
+        headerDesktop: "1.5rem",
+      },
     },
   },
   future: {
