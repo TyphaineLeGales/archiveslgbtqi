@@ -36,7 +36,7 @@ export default function EventsMobile({ event }: EventProps) {
         <div
           key={`event-${index}`}
           onClick={() => handleClicked(index)}
-          className="border-black-primary group relative flex h-auto cursor-pointer items-start overflow-hidden border-b-[1px] pb-[2rem]"
+          className="group relative flex h-auto cursor-pointer items-start overflow-hidden border-b-[1px] border-black-primary pb-[2rem]"
         >
           <div className="relative flex w-full flex-col justify-start gap-[1rem]">
             <div className="flex items-center justify-between">
@@ -60,11 +60,8 @@ export default function EventsMobile({ event }: EventProps) {
                   onClick={(e) => {
                     e.preventDefault();
                     setIsLinkClicked(true);
-                    setTimeout(() => {
-                      router.push(`/agenda/${eventItem.slug?.current}`);
-                    }, 1000);
                   }}
-                  className="border-black-primary bg-white-primary flex w-auto justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] py-[.30rem] pl-[5rem] pr-[1rem]"
+                  className="flex w-auto justify-end rounded-l-full border-b-[1px] border-l-[1px] border-t-[1px] border-black-primary bg-white-primary py-[.30rem] pl-[5rem] pr-[1rem]"
                 >
                   <NorthEastArrow className="aspect-square h-[2rem] w-[2rem] pt-1" />
                 </button>

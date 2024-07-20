@@ -1,12 +1,10 @@
 import { defineField, defineType } from "sanity";
-import { MasterDetailIcon } from "@sanity/icons";
-import { sl } from "date-fns/locale";
 
 export default defineType({
   name: "blogs",
   title: "Blogs",
   type: "document",
-  icon: MasterDetailIcon,
+  icon: () => "📝",
   fields: [
     defineField({
       name: "blogTitle",
