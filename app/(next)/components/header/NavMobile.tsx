@@ -22,13 +22,11 @@ export default function NavMobile({ settings }: NavLinkProps) {
 
   const handleMenu = () => {
     setMenu(!menu);
-
-    if (menu) {
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
   };
+
+  menu
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
 
   return (
     <nav className="relative z-40 block lg:hidden">

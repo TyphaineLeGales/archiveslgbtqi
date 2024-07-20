@@ -53,7 +53,7 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  console.log("Pages Content:", content);
+  // console.log("Pages Content:", content);
 
   return (
     <div className="flex h-full min-h-[calc(100%-5rem)] overflow-hidden">
