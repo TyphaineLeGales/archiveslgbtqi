@@ -1,7 +1,7 @@
 "use client";
 import { SettingsQueryResult } from "@/sanity.types";
 
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -17,17 +17,19 @@ type NavLinkProps = {
 };
 
 export default function NavMobile({ settings }: NavLinkProps) {
-  const menuRef = React.useRef<HTMLDivElement>(null);
-  const [menu, setMenu] = React.useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [menu, setMenu] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = menu ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menu]);
 
   const handleMenu = () => {
     setMenu(!menu);
-
-    if (menu) {
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
   };
 
   return (
