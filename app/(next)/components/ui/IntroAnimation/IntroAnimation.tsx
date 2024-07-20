@@ -3,8 +3,8 @@
 import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
 import customEase from "@/app/(next)/utils/CustomCurves";
+
 import ArchLogo from "../Svg/ArchLogo";
 
 export default function IntroAnimation() {

@@ -19,7 +19,7 @@ export default function EventsModule({ events, title, link }: Props) {
       <h1>{title}</h1>
       {events.map((event) => (
         <li key={event.eventTitle}>
-          <Link href={`/agenda/${event.slug?.current}`}>
+          <div>
             <h2>{event.eventTitle}</h2>
             <div className="inline-block">
               <DateHourFormat
@@ -35,7 +35,7 @@ export default function EventsModule({ events, title, link }: Props) {
               )}
             </div>
             <p>{event.eventLocation}</p>
-          </Link>
+          </div>
         </li>
       ))}
       <Link href="/agenda" className="underline">

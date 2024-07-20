@@ -451,9 +451,27 @@ export type Events = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  eventType?: string;
   eventTitle?: string;
-  slug?: Slug;
-  eventDescription?: string;
+  eventEntrance?: string;
+  eventDescription?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   eventDate?: {
     eventStartDate?: string;
     addEndDate?: boolean;
@@ -780,7 +798,7 @@ export type HomepageQueryResult = {
           }
         | {
             _type: "events";
-            slug: string | null;
+            slug: null;
           }
         | {
             _type: "pages";
@@ -812,13 +830,38 @@ export type HomepageQueryResult = {
       events: Array<{
         _id: string;
         eventTitle: string | null;
-        slug: Slug | null;
+        slug: null;
         eventDate: {
           eventStartDate?: string;
           addEndDate?: boolean;
           eventEndDate?: string;
         } | null;
-        eventDescription: string | null;
+        eventDescription: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?:
+            | "blockquote"
+            | "h1"
+            | "h2"
+            | "h3"
+            | "h4"
+            | "h5"
+            | "h6"
+            | "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
         eventLocation: string | null;
         image: {
           imageUrl: string | null;
@@ -858,13 +901,30 @@ export type HomepageQueryResult = {
 export type EventsQueryResult = Array<{
   _id: string;
   eventTitle: string | null;
-  slug: Slug | null;
+  slug: null;
   eventDate: {
     eventStartDate?: string;
     addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
-  eventDescription: string | null;
+  eventDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;
@@ -876,13 +936,30 @@ export type EventsQueryResult = Array<{
 export type EventQueryResult = {
   _id: string;
   eventTitle: string | null;
-  slug: Slug | null;
+  slug: null;
   eventDate: {
     eventStartDate?: string;
     addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
-  eventDescription: string | null;
+  eventDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;
@@ -894,13 +971,30 @@ export type EventQueryResult = {
 export type LastEventQueryResult = Array<{
   _id: string;
   eventTitle: string | null;
-  slug: Slug | null;
+  slug: null;
   eventDate: {
     eventStartDate?: string;
     addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
-  eventDescription: string | null;
+  eventDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;

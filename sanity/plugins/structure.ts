@@ -4,13 +4,17 @@ export const structure = (S: StructureBuilder) =>
   S.list()
     .title("Content")
     .items([
-      // Make a singleton of the document with ID header”
+      // Settings
       S.documentListItem().id("settings").schemaType("settings"),
+
+      // Home
       S.divider(),
       S.documentListItem().id("homepage").schemaType("homepage"),
-      // ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
+
+      // Pages
       ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
       S.divider(),
+
       // Add the rest of the document types, but filter out the siteSettings type defined above
       ...S.documentTypeListItems().filter(
         (item) =>
@@ -41,10 +45,58 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "creativeImage" &&
           item.getId() !== "creativeRichtext",
       ),
+
+      // Blogs
       ...S.documentTypeListItems().filter((item) => item.getId() == "blogs"),
+
+      // Events
       S.divider(),
-      ...S.documentTypeListItems().filter((item) => item.getId() == "events"),
+      // ...S.documentTypeListItems().filter((item) => item.getId() == "events"),
+      S.listItem()
+        .title("Agenda")
+        .icon(() => "🗓️")
+        .child(
+          S.list()
+            .title("Events")
+            .items([
+              // All events
+              S.documentTypeListItem("events").title("Tous les événements"),
+              S.divider(),
+
+              // Upcoming events
+              S.listItem()
+                .title("Évenements à venir")
+                .icon(() => "➡️")
+                .schemaType("events")
+                .child(
+                  S.documentList()
+                    .title("Évenements à venir")
+                    .apiVersion("2024-07-20")
+                    .filter(
+                      '_type == "events" && dateTime(eventDate.eventStartDate) >= dateTime(now())',
+                    )
+                    .params({ now: new Date().toISOString() }),
+                ),
+
+              // Past events
+              S.listItem()
+                .title("Évenements passés")
+                .icon(() => "⬅️")
+                .schemaType("events")
+                .child(
+                  S.documentList()
+                    .title("Évenements passés")
+                    .apiVersion("2024-07-20")
+                    .filter(
+                      '_type == "events" && dateTime(eventDate.eventStartDate) <= dateTime(now())',
+                    )
+                    .params({ now: new Date().toISOString() }),
+                ),
+            ]),
+        ),
       S.divider(),
+
+      // Les Archives Vivantes
       S.documentListItem()
         .id("lesArchivesVivantes")
         .schemaType("lesArchivesVivantes"),

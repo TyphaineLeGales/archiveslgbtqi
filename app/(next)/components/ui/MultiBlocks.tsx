@@ -79,9 +79,8 @@ export default function MultiBlocks({ multiBlocks }: Props) {
 
         <div className="flex flex-col gap-[1rem] lg:pt-[2rem]">
           {multiBlocks?.multiBlock?.eventsBlock?.events?.map((event, index) => (
-            <Link
+            <div
               key={index}
-              href={`/agenda/${event.slug?.current || ""}`}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
               className="boxRounded group-hover/overlay:border-white-primarym group relative z-10 flex h-[3rem] w-full flex-col items-start justify-center overflow-hidden border-[1px] border-black-primary p-[.5rem] text-black-primary transition-all duration-[1s] ease-tamisitée hover:rounded-full"
@@ -89,7 +88,7 @@ export default function MultiBlocks({ multiBlocks }: Props) {
               <span className="z-10 truncate text-[.8rem] uppercase tracking-tighter">
                 {event.eventTitle}
               </span>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
