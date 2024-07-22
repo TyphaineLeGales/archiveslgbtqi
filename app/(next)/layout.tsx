@@ -74,7 +74,7 @@ export default function RootLayout({
           {draftMode().isEnabled && <BannerAlert />}
           {/* <IntroAnimation /> */}
           <Header />
-          <main className="mt-[5rem] lg:mt-[8rem]">
+          <main className="mt-[5rem] lg:mt-[7.25rem]">
             <ToastProviders>{children}</ToastProviders>
           </main>
           <Footer />
