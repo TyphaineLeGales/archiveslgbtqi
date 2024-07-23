@@ -1,9 +1,7 @@
-"use client";
-
 import React from "react";
 
 import { HomepageQueryResult } from "@/sanity.types";
-import { Hero } from "./Heroes";
+import { HeroDesktop, HeroMobile } from "./Heroes";
 
 type Props = {
   heroes: HomepageQueryResult;
@@ -12,7 +10,8 @@ type Props = {
 export default function HeroSection({ heroes }: Props) {
   return (
     <>
-      <Hero heroes={heroes} />
+      <HeroMobile heroes={heroes} />
+      <HeroDesktop heroes={heroes} />
     </>
   );
 }
