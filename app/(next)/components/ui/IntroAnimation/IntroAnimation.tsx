@@ -40,7 +40,7 @@ export default function IntroAnimation() {
     });
     gsap.to(containerRef.current, {
       yPercent: -100,
-      duration: 1.5,
+      duration: 1,
       delay: 2.75,
       ease: customEase,
     });
