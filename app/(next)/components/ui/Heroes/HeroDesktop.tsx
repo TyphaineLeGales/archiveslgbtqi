@@ -33,16 +33,16 @@ export default function HeroDesktop({ heroes }: Props) {
   }, [currentHero]);
 
   // auto slide
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-  //   }, 3500);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
+    }, 4000);
 
-  //   return () => clearInterval(interval);
-  // }, [heroes?.hero?.length]);
+    return () => clearInterval(interval);
+  }, [heroes?.hero?.length]);
 
   return (
-    <div className="relative hidden max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] min-w-[100vw] lg:flex lg:max-h-[calc(100vh-7.25rem)] lg:min-h-[calc(100vh-7.25rem)]">
+    <div className="relative hidden max-h-[calc(100vh-7.25rem)] min-h-[calc(100vh-7.25rem)] min-w-[100vw] lg:flex">
       {heroes?.hero?.map((hero) => (
         <div
           key={heroes?.hero?.indexOf(hero)}
