@@ -87,7 +87,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   }
                   className="heroCta relative z-10 h-full w-full px-[2rem]"
                 >
-                  {hero.cta?.ctaLabel}
+                  {hero.cta?.ctaLabel} [+]
                 </Link>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   alt={hero.image.alt || ""}
                   width={1920}
                   height={1080}
-                  className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover lg:min-h-[calc(100vh-8rem)]"
+                  className="h-full min-h-[calc(100vh-7.25rem)] w-full object-cover object-center"
                 />
               </>
             )}
