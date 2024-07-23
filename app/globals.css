@@ -8,7 +8,7 @@
   }
 
   .headerItem {
-    @apply lg:text-headerDesktop lg:leading-headerDesktop text-headerMobile leading-headerMobile font-tanker uppercase tracking-wide;
+    @apply font-tanker text-headerMobile uppercase leading-headerMobile tracking-wide lg:text-headerDesktop lg:leading-headerDesktop;
   }
 
   .headerMobileItem {
@@ -20,11 +20,15 @@
   }
 
   .heroTitle {
-    @apply prose text-[3rem] font-bold uppercase leading-[3.5rem] tracking-tighter text-white-primary will-change-auto lg:text-[4.5rem] lg:leading-[4rem] lg:tracking-tighter;
+    @apply font-jetbrains text-[2rem] font-bold uppercase leading-[2.25rem] tracking-tighter text-white-primary will-change-auto lg:text-[3.3rem] lg:leading-[3rem] lg:tracking-tighter;
   }
 
   .heroParagraph {
-    @apply prose text-[1rem] leading-[1.5rem] tracking-tighter text-white-primary;
+    @apply font-jetbrains text-[0.9rem] font-light leading-[1.25rem] tracking-tighter text-white;
+  }
+
+  .heroCta {
+    @apply font-jetbrains text-[.7rem] uppercase leading-[.7rem] tracking-tighter text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch;
   }
 
   .sideBarTitle {

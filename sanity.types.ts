@@ -282,6 +282,55 @@ export type Content = {
   >;
 };
 
+export type Events = {
+  _id: string;
+  _type: "events";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  eventType?: string;
+  eventTitle?: string;
+  eventEntrance?: string;
+  eventDescription?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  eventDate?: {
+    eventStartDate?: string;
+    addEndDate?: boolean;
+    eventEndDate?: string;
+  };
+  eventLocation?: string;
+  eventImage?: {
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    alt?: string;
+  };
+};
+
 export type LesArchivesVivantes = {
   _id: string;
   _type: "lesArchivesVivantes";
@@ -320,25 +369,12 @@ export type Homepage = {
       };
       cta?: {
         ctaLabel?: string;
-        ctaLink?:
-          | {
-              _ref: string;
-              _type: "reference";
-              _weak?: boolean;
-              [internalGroqTypeReferenceTo]?: "pages";
-            }
-          | {
-              _ref: string;
-              _type: "reference";
-              _weak?: boolean;
-              [internalGroqTypeReferenceTo]?: "events";
-            }
-          | {
-              _ref: string;
-              _type: "reference";
-              _weak?: boolean;
-              [internalGroqTypeReferenceTo]?: "blogs";
-            };
+        ctaLink?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "pages";
+        };
       };
       _key: string;
     }>;
@@ -443,55 +479,6 @@ export type Blogs = {
     alt?: string;
     _key: string;
   }>;
-};
-
-export type Events = {
-  _id: string;
-  _type: "events";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  eventType?: string;
-  eventTitle?: string;
-  eventEntrance?: string;
-  eventDescription?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  eventDate?: {
-    eventStartDate?: string;
-    addEndDate?: boolean;
-    eventEndDate?: string;
-  };
-  eventLocation?: string;
-  eventImage?: {
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-    alt?: string;
-  };
 };
 
 export type Settings = {
@@ -690,10 +677,10 @@ export type AllSanitySchemaTypes =
   | RichTextAndTitle
   | Richtext
   | Content
+  | Events
   | LesArchivesVivantes
   | Homepage
   | Blogs
-  | Events
   | Settings
   | Pages
   | SanityFileAsset
@@ -793,20 +780,10 @@ export type HomepageQueryResult = {
     } | null;
     cta: {
       ctaLabel: string | null;
-      ctaLink:
-        | {
-            _type: "blogs";
-            slug: string | null;
-          }
-        | {
-            _type: "events";
-            slug: null;
-          }
-        | {
-            _type: "pages";
-            slug: string | null;
-          }
-        | null;
+      ctaLink: {
+        _type: "pages";
+        slug: string | null;
+      } | null;
     } | null;
     _key: string;
     _id: null;
