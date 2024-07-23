@@ -6,6 +6,7 @@ import { visionTool } from "@sanity/vision";
 import { PluginOptions, defineConfig } from "sanity";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { codeInput } from "@sanity/code-input";
+import { media } from "sanity-plugin-media";
 
 import {
   presentationTool,
@@ -124,6 +125,8 @@ export default defineConfig({
     singletonPlugin([settings.name]),
     // Add an image asset source for Unsplash
     unsplashImageAsset(),
+    // media plugin
+    media(),
     // Sets up AI Assist with preset prompts
     // https://www.sanity.io/docs/ai-assist
     // assistWithPresets(),

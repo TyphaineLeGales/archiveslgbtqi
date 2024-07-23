@@ -58,7 +58,7 @@ export default function HeroDesktop({ heroes }: Props) {
           <div className="relative w-full">
             <div
               className={clsx(
-                "group absolute inset-x-0 top-[1rem] flex flex-col px-[1rem] text-white transition-all duration-500 ease-tamisitée",
+                "group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white transition-all duration-500 ease-tamisitée",
                 currentHero === heroes?.hero?.indexOf(hero)
                   ? "opacity-100"
                   : "opacity-0",
@@ -87,7 +87,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   }
                   className="heroCta relative z-10 h-full w-full px-[2rem]"
                 >
-                  {hero.cta?.ctaLabel}
+                  {hero.cta?.ctaLabel} [+]
                 </Link>
               </div>
             </div>
