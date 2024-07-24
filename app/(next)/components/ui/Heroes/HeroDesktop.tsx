@@ -33,13 +33,13 @@ export default function HeroDesktop({ heroes }: Props) {
   }, [currentHero]);
 
   // auto slide
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-    }, 5000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
+  //   }, 5000);
 
-    return () => clearInterval(interval);
-  }, [heroes?.hero?.length]);
+  //   return () => clearInterval(interval);
+  // }, [heroes?.hero?.length]);
 
   return (
     <div className="relative hidden max-h-[calc(100vh-7.25rem)] min-h-[calc(100vh-7.25rem)] min-w-[100vw] lg:flex">
@@ -58,7 +58,7 @@ export default function HeroDesktop({ heroes }: Props) {
           <div className="relative max-h-[calc(100dvh-5rem)] w-full lg:max-h-[calc(100vh-7.25rem)]">
             <div
               className={clsx(
-                "group absolute bottom-[3rem] left-[2rem] flex max-w-[50rem] flex-col items-end text-white transition-all duration-500 ease-tamisitée",
+                "group absolute bottom-[3rem] left-[2rem] flex max-w-[80%] flex-col items-end text-white transition-all duration-500 ease-tamisitée",
                 currentHero === heroes?.hero?.indexOf(hero)
                   ? "opacity-100"
                   : "opacity-0",
@@ -74,7 +74,7 @@ export default function HeroDesktop({ heroes }: Props) {
                 </p>
               </div>
 
-              <div className="relative w-fit translate-y-[-25%] overflow-hidden bg-black pb-[.5rem] transition-all duration-200 ease-tamisitée">
+              <div className="relative w-fit translate-y-[-25%] bg-black pb-[.5rem] transition-all duration-200 ease-tamisitée">
                 <Link
                   href={
                     hero?.cta?.ctaLink?._type === "pages"
@@ -85,7 +85,7 @@ export default function HeroDesktop({ heroes }: Props) {
                           ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
                           : "#"
                   }
-                  className="heroCta relative z-10 h-full w-full px-[2rem]"
+                  className="heroCta relative z-10 h-full w-full translate-y-[-25%] px-[2rem]"
                 >
                   {hero.cta?.ctaLabel} [+]
                 </Link>
