@@ -9,6 +9,27 @@ type Props = {
   multiBlocks: HomepageQueryResult;
 };
 
+type ScrollButtonProps = {
+  to: string;
+  targetId: string;
+  children: React.ReactNode;
+  className?: string;
+};
+
+// TODO: Scroll Button
+const ScrollButton = ({
+  to,
+  targetId,
+  children,
+  className,
+}: ScrollButtonProps) => {
+  return (
+    <Link href={`${to}#${targetId}`} passHref className={className}>
+      {children}
+    </Link>
+  );
+};
+
 export default function SecondBlock({ multiBlocks }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -42,12 +63,28 @@ export default function SecondBlock({ multiBlocks }: Props) {
               <div className="flex-1 bg-black p-[1rem]">
                 <p className="heroParagraph">{block.paragraph}</p>
               </div>
-              <Link
+              {/* <Link
                 href={block.cta?.ctaLink?.slug || ""}
                 className="heroCta h-[1.5rem] bg-black px-[1.25rem] pb-[1rem]"
               >
                 {block.cta?.ctaLabel} [+]
-              </Link>
+              </Link> */}
+              {block.cta?.ctaScrollTo ? (
+                <ScrollButton
+                  to={block.cta?.ctaLink?.slug || ""}
+                  targetId={block.cta?.ctaScrollTo || ""}
+                  className="heroCta h-[1.5rem] scroll-smooth bg-black px-[1.25rem] pb-[1rem]"
+                >
+                  {block.cta?.ctaLabel} [+]
+                </ScrollButton>
+              ) : (
+                <Link
+                  href={block.cta?.ctaLink?.slug || ""}
+                  className="heroCta h-[1.5rem] bg-black px-[1.25rem] pb-[1rem]"
+                >
+                  {block.cta?.ctaLabel} [+]
+                </Link>
+              )}
             </div>
           </div>
         );

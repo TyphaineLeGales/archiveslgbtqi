@@ -97,7 +97,8 @@ export const secondPartFields = /* groq */ `
     ctaLink->{
       _type,
       "slug": slug.current
-    }
+    },
+    ctaScrollTo
   },
 `;
 

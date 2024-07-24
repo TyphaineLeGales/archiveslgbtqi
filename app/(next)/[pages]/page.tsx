@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 import {
   EventsQueryResult,
@@ -28,6 +29,7 @@ import {
 
 import { FormSubmission } from "../components/ui";
 import DesktopNavigationBar from "../components/navbar/navbar-desktop";
+import { transformId } from "../utils/TransforId";
 
 type Props = {
   params: {
@@ -39,7 +41,11 @@ export default async function Page({ params }: Props) {
   const [content, events, lastEvent] = await Promise.all([
     sanityFetch<PagesContentQueryResult>({
       query: pagesContentQuery,
-      params,
+      // params,
+      // params can be from {transformId(item.titleBlock || "")}}
+      params: {
+        pages: params.pages,
+      },
     }),
     sanityFetch<EventsQueryResult>({
       query: eventsQuery,
@@ -53,19 +59,20 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  console.log("Pages Content:", content);
+  // console.log("Pages Content:", content);
 
   return (
-    <div className="flex h-full min-h-[calc(100%-5rem)] overflow-hidden">
+    <div className="flex h-full overflow-hidden">
       <div className="relative hidden w-[20%] md:block">
         <DesktopNavigationBar content={content} />
       </div>
       <div className="flex h-full w-full flex-col gap-[1rem] overflow-hidden p-[1rem] md:w-[80%]">
         <h1 className="text-4xl font-bold">{content.title}</h1>
-        <div className="flex min-h-screen flex-col gap-[2rem] py-[1rem]">
+        <div className="flex min-h-screen flex-col gap-[2rem] scroll-smooth py-[1rem]">
           {content.contentModulde?.map((item, index) => (
+            // when the ScrollButton is clicked, it will scroll to the id of the element here
             <div
-              id={item.titleBlock || ""}
+              id={transformId(item.titleBlock || "")}
               key={item._key}
               className="pb-[5rem]"
             >

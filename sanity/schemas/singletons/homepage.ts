@@ -173,6 +173,13 @@ export default defineType({
                       type: "reference",
                       to: [{ type: "pages" }],
                     }),
+                    defineField({
+                      name: "ctaScrollTo",
+                      title: "CTA Scroll à ➡️",
+                      type: "string",
+                      description:
+                        "L'ID de l'élément à scroller vers (Sans accent, sans espaces et sans majuscule). Ex: 'ateliers-formations', 'creation-d'archives'",
+                    }),
                   ],
                 }),
               ],
