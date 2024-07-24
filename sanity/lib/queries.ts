@@ -152,14 +152,13 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
   "secondPart": secondPart.block[]{
    ${secondPartFields}
   },
-  video {
-    videoTitle,
-    videoLink,
+  introText {
+    introTextContent[]{
+      ...,
   },
-  outro {
-    outroTitle,
-    outroText,
+    newsletterTextContent
   },
+ 
 }`;
 
 export const eventsQuery = groq`*[_type == "events" ] | order(eventDate.eventStartDate desc) {

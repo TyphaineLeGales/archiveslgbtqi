@@ -16,8 +16,8 @@ export default defineType({
       name: "secondPart",
     },
     {
-      title: "Vidéo",
-      name: "video",
+      title: "Texte d'introduction",
+      name: "introText",
     },
     {
       title: "Outro",
@@ -103,7 +103,7 @@ export default defineType({
         }),
       ],
     }),
-    // Multi-Block
+    // Second part
     defineField({
       name: "secondPart",
       title: "2️⃣ Deuxième section",
@@ -181,26 +181,27 @@ export default defineType({
         }),
       ],
     }),
-    // Vidéo
+    // Text d'intro
     defineField({
-      name: "video",
-      title: "Vidéo",
+      name: "introText",
+      title: "3️⃣ Texte d'introduction & Newsletter",
       type: "object",
-      group: "video",
+      group: "",
       options: {
         collapsible: true,
         collapsed: true,
       },
       fields: [
         defineField({
-          name: "videoTitle",
-          title: "Title",
-          type: "string",
+          name: "introTextContent",
+          title: "Texte d'introduction",
+          type: "array",
+          of: [{ type: "block" }],
         }),
         defineField({
-          name: "videoLink",
-          title: "Video Link",
-          type: "url",
+          name: "newsletterTextContent",
+          title: "Titre de la newsletter",
+          type: "string",
         }),
       ],
     }),

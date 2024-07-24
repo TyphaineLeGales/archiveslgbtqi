@@ -8,7 +8,7 @@ type Props = {
 export default function Video({ video }: Props) {
   return (
     <div className="min-h-full">
-      {video?.video?.videoLink && (
+      {/* {video?.video?.videoLink && (
         <div className="relative h-[56.25vw] max-h-[100vh]">
           <iframe
             className="absolute inset-0"
@@ -19,7 +19,7 @@ export default function Video({ video }: Props) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           ></iframe>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
