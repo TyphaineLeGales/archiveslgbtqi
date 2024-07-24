@@ -42,7 +42,7 @@ export default function HeroDesktop({ heroes }: Props) {
   }, [heroes?.hero?.length]);
 
   return (
-    <div className="relative flex max-h-[calc(100vh-5rem)] min-h-[calc(100vh-5rem)] w-full flex-col lg:hidden">
+    <div className="relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full flex-col lg:hidden">
       {heroes?.hero?.map((hero) => (
         <div
           key={heroes?.hero?.indexOf(hero)}

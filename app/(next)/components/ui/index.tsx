@@ -7,7 +7,7 @@ export { default as DateHourFormat } from "./DateHourFormat";
 export { default as CustomEmail } from "./CustomEmail";
 export { default as HeroSection } from "./HeroSection";
 export { default as TextMarquee } from "./TextMarquee";
-export { default as MultiBlocks } from "./MultiBlocks";
+export { default as SecondBlock } from "./SecondBlock";
 export { default as Outro } from "./Outro";
 export { default as Video } from "./Video";
 export { default as TextSplitting } from "./TextSplitting";

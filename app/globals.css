@@ -20,7 +20,7 @@
   }
 
   .heroTitle {
-    @apply font-jetbrains text-[2rem] font-bold uppercase leading-[2.25rem] tracking-tighter text-white-primary will-change-auto lg:text-[3.3rem] lg:leading-[3rem] lg:tracking-tighter;
+    @apply font-tanker text-[2rem] uppercase leading-[2.25rem] tracking-wide text-white-primary will-change-auto lg:text-[3.3rem] lg:leading-[3rem];
   }
 
   .heroParagraph {
