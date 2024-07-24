@@ -41,6 +41,9 @@ export default {
         headerMobile: "1.8rem",
         headerDesktop: "1.5rem",
       },
+      margin: {
+        arch: "19.25rem",
+      },
     },
   },
   future: {

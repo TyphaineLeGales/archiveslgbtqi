@@ -452,9 +452,26 @@ export type Homepage = {
       _key: string;
     }>;
   };
-  video?: {
-    videoTitle?: string;
-    videoLink?: string;
+  introText?: {
+    introTextContent?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    newsletterTextContent?: string;
   };
   outro?: {
     outroTitle?: string;
@@ -772,7 +789,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  video {    videoTitle,    videoLink,  },  outro {    outroTitle,    outroText,  },}
+// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  introText {    introTextContent[]{      ...,  },    newsletterTextContent  }, }
 export type HomepageQueryResult = {
   _key: null;
   _id: string;
@@ -811,13 +828,8 @@ export type HomepageQueryResult = {
     _key: string;
     _id: null;
   }> | null;
-  video: {
-    videoTitle: string | null;
-    videoLink: string | null;
-  } | null;
-  outro: {
-    outroTitle: string | null;
-    outroText: Array<{
+  introText: {
+    introTextContent: Array<{
       children?: Array<{
         marks?: Array<string>;
         text?: string;
@@ -835,6 +847,7 @@ export type HomepageQueryResult = {
       _type: "block";
       _key: string;
     }> | null;
+    newsletterTextContent: string | null;
   } | null;
 } | null;
 // Variable: eventsQuery

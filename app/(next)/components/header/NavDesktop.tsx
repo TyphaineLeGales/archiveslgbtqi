@@ -31,7 +31,7 @@ export default function NavDesktop({ settings }: NavLinkProps) {
         />
       </Link>
 
-      <div className="ml-[19.25rem] flex w-full justify-between">
+      <div className="ml-arch flex w-full justify-between">
         {/* LEFT LINKS */}
         <div className="grid grid-flow-col grid-rows-3 gap-x-[3rem]">
           {settings?.header.links &&

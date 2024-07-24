@@ -24,11 +24,15 @@
   }
 
   .heroParagraph {
-    @apply font-jetbrains text-[0.9rem] font-light leading-[1.25rem] tracking-tighter text-white;
+    @apply font-jetbrains text-[0.9rem] font-light leading-[1.25rem] tracking-wide text-white;
   }
 
   .heroCta {
     @apply font-jetbrains text-[.7rem] uppercase leading-[.7rem] tracking-tighter text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch;
+  }
+
+  .newsLetterInput {
+    @apply h-[2.5rem] flex-1 bg-transparent font-cityburn text-[1.25rem] tracking-wider text-white placeholder:text-[1.25rem] placeholder:tracking-wider placeholder:text-white focus-within:placeholder-transparent focus-within:outline-none focus:ring-0 lg:text-[1.75rem] lg:placeholder:text-[1.75rem];
   }
 
   .sideBarTitle {
