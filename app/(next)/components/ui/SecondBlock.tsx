@@ -15,7 +15,7 @@ export default function SecondBlock({ multiBlocks }: Props) {
   return (
     <div
       ref={containerRef}
-      className="flex min-h-full flex-col justify-center gap-[5rem] px-[1rem] py-[5rem] lg:flex-row lg:gap-[5rem] lg:px-[3rem]"
+      className="grid min-h-full grid-cols-1 gap-[1rem] px-[1rem] py-[5rem] lg:grid-cols-2 lg:gap-[5rem] lg:px-[3rem]"
     >
       {multiBlocks?.secondPart?.map((block, index) => {
         return (
