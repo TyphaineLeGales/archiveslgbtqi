@@ -282,6 +282,49 @@ export type Content = {
   >;
 };
 
+export type Blogs = {
+  _id: string;
+  _type: "blogs";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  blogTitle?: string;
+  slug?: Slug;
+  blogContentText?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  blogImages?: Array<{
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    alt?: string;
+    _key: string;
+  }>;
+};
+
 export type Events = {
   _id: string;
   _type: "events";
@@ -379,37 +422,35 @@ export type Homepage = {
       _key: string;
     }>;
   };
-  multiBlock?: {
-    eventsBlock?: {
-      events?: Array<{
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "events";
-      }>;
-    };
-    lesArchivesVivantesBlock?: {
+  secondPart?: {
+    block?: Array<{
       title?: string;
-      podcast?: {
-        podcastTitle?: string;
-        linkToPodcast?: string;
+      paragraph?: string;
+      image?: {
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+        alt?: string;
       };
-      vimeo?: {
-        vimeoTitle?: string;
-        linkToVimeo?: string;
+      cta?: {
+        ctaLabel?: string;
+        ctaLink?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "pages";
+        };
       };
-    };
-    leBlogBlock?: {
-      title?: string;
-      linkToBlog?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "blogs";
-      };
-      blogLabel?: string;
-    };
+      _key: string;
+    }>;
   };
   video?: {
     videoTitle?: string;
@@ -436,49 +477,6 @@ export type Homepage = {
       _key: string;
     }>;
   };
-};
-
-export type Blogs = {
-  _id: string;
-  _type: "blogs";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  blogTitle?: string;
-  slug?: Slug;
-  blogContentText?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  blogImages?: Array<{
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-    alt?: string;
-    _key: string;
-  }>;
 };
 
 export type Settings = {
@@ -590,12 +588,6 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
   top?: number;
@@ -653,6 +645,21 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
 export type Code = {
   _type: "code";
   language?: string;
@@ -677,19 +684,20 @@ export type AllSanitySchemaTypes =
   | RichTextAndTitle
   | Richtext
   | Content
+  | Blogs
   | Events
   | LesArchivesVivantes
   | Homepage
-  | Blogs
   | Settings
   | Pages
   | SanityFileAsset
-  | Slug
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | MediaTag
+  | Slug
   | Code;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
@@ -764,13 +772,11 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  ...,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "multiBlock": multiBlock {    leBlogBlock {      title,      "linkToBlog": linkToBlog->_ref,      blogLabel    },    lesArchivesVivantesBlock {      title,      vimeo {        vimeoTitle,        linkToVimeo      },      podcast {        linkToPodcast,        podcastTitle      }    },    eventsBlock {      "events": events[]->{        _id,        eventTitle,        slug,        eventDate,        eventDescription,        eventLocation,        "image": eventImage{          "imageUrl": image.asset->url,          alt,        }      }    },  },  video {    videoTitle,    videoLink,  },  outro {    outroTitle,    outroText,  },}
+// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  video {    videoTitle,    videoLink,  },  outro {    outroTitle,    outroText,  },}
 export type HomepageQueryResult = {
+  _key: null;
   _id: string;
   _type: "homepage";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
   hero: Array<{
     title?: string;
     paragraph?: string;
@@ -788,67 +794,23 @@ export type HomepageQueryResult = {
     _key: string;
     _id: null;
   }> | null;
-  multiBlock: {
-    leBlogBlock: {
-      title: string | null;
-      linkToBlog: null;
-      blogLabel: string | null;
+  secondPart: Array<{
+    title?: string;
+    paragraph?: string;
+    image: {
+      imageUrl: string | null;
+      alt: string | null;
     } | null;
-    lesArchivesVivantesBlock: {
-      title: string | null;
-      vimeo: {
-        vimeoTitle: string | null;
-        linkToVimeo: string | null;
-      } | null;
-      podcast: {
-        linkToPodcast: string | null;
-        podcastTitle: string | null;
+    cta: {
+      ctaLabel: string | null;
+      ctaLink: {
+        _type: "pages";
+        slug: string | null;
       } | null;
     } | null;
-    eventsBlock: {
-      events: Array<{
-        _id: string;
-        eventTitle: string | null;
-        slug: null;
-        eventDate: {
-          eventStartDate?: string;
-          addEndDate?: boolean;
-          eventEndDate?: string;
-        } | null;
-        eventDescription: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?:
-            | "blockquote"
-            | "h1"
-            | "h2"
-            | "h3"
-            | "h4"
-            | "h5"
-            | "h6"
-            | "normal";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-            href?: string;
-            _type: "link";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }> | null;
-        eventLocation: string | null;
-        image: {
-          imageUrl: string | null;
-          alt: string | null;
-        } | null;
-      }> | null;
-    } | null;
-  } | null;
+    _key: string;
+    _id: null;
+  }> | null;
   video: {
     videoTitle: string | null;
     videoLink: string | null;

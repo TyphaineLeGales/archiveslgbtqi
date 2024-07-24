@@ -5,15 +5,15 @@ export default defineType({
   name: "homepage",
   title: "Home Page",
   type: "document",
-  icon: HomeIcon,
+  icon: () => "🏠",
   groups: [
     {
-      title: "Hero",
+      title: "Caroussel d'images",
       name: "hero",
     },
     {
-      title: "Multi Block",
-      name: "Multi-Block",
+      title: "Deuxième section",
+      name: "secondPart",
     },
     {
       title: "Vidéo",
@@ -28,9 +28,11 @@ export default defineType({
     // Hero
     defineField({
       name: "hero",
-      title: "Hero",
+      title: "1️⃣ Caroussel d'images",
       type: "object",
       group: "hero",
+      description:
+        "Cette section est dédiée aux modules du carousell d'images de la page d'accueil.",
       options: {
         collapsible: true,
         collapsed: true,
@@ -38,7 +40,7 @@ export default defineType({
       fields: [
         defineField({
           name: "hero",
-          title: "Hero",
+          title: "Block",
           type: "array",
           of: [
             defineArrayMember({
@@ -103,129 +105,77 @@ export default defineType({
     }),
     // Multi-Block
     defineField({
-      name: "multiBlock",
-      title: "Multi-Block",
+      name: "secondPart",
+      title: "2️⃣ Deuxième section",
       type: "object",
-      group: "Multi-Block",
+      description:
+        "Cette section est dédiée à la deuxième section de la page d'accueil.",
+      group: "secondPart",
       options: {
         collapsible: true,
         collapsed: true,
       },
       fields: [
         defineField({
-          name: "eventsBlock",
-          title: "Events",
-          type: "object",
-          options: {
-            collapsible: true,
-            collapsed: true,
-          },
-          fields: [
-            defineField({
-              name: "events",
-              title: "Events",
-              type: "array",
-              of: [
-                {
-                  type: "reference",
-                  preview: {
-                    select: {
-                      title: "eventTitle",
-                      subtitle: "eventLocation",
-                      media: "eventImage.image",
-                    },
-                  },
-                  options: {
-                    filter:
-                      "_type == 'events' && defined(eventDate) && eventDate.eventStartDate > now()",
-                  },
-                  description: "List of upcoming events.",
-                  to: [{ type: "events" }],
+          name: "block",
+          title: "Block",
+          type: "array",
+          of: [
+            defineArrayMember({
+              type: "object",
+              preview: {
+                select: {
+                  title: "title",
+                  media: "image.image",
                 },
-              ],
-            }),
-          ],
-        }),
-        defineField({
-          name: "lesArchivesVivantesBlock",
-          title: "Les Archives Vivantes",
-          type: "object",
-          options: {
-            collapsible: true,
-            collapsed: true,
-          },
-          fields: [
-            defineField({
-              name: "title",
-              title: "Title",
-              type: "string",
-            }),
-            defineField({
-              name: "podcast",
-              title: "Podcast",
-              type: "object",
-              fields: [
-                defineField({
-                  name: "podcastTitle",
-                  title: "Podcast Title",
-                  type: "string",
-                  description: "Use the the link label.",
-                }),
-                defineField({
-                  name: "linkToPodcast",
-                  title: "Link to Podcast",
-                  type: "url",
-                }),
-              ],
-            }),
-            defineField({
-              name: "vimeo",
-              title: "Vimeo",
-              type: "object",
-              options: {
-                collapsible: true,
-                collapsed: true,
               },
               fields: [
                 defineField({
-                  name: "vimeoTitle",
-                  title: "Vimeo Title",
+                  name: "title",
+                  title: "Title",
                   type: "string",
-                  description: "Use the the link label.",
                 }),
                 defineField({
-                  name: "linkToVimeo",
-                  title: "Link to Vimeo",
-                  type: "url",
+                  name: "paragraph",
+                  title: "Paragraph",
+                  type: "text",
+                }),
+                defineField({
+                  name: "image",
+                  title: "Image",
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "image",
+                      title: "Image",
+                      type: "image",
+                    }),
+                    defineField({
+                      name: "alt",
+                      title: "Alt Text",
+                      type: "string",
+                    }),
+                  ],
+                }),
+                defineField({
+                  name: "cta",
+                  title: "Call to Action",
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "ctaLabel",
+                      title: "CTA Label",
+                      type: "string",
+                    }),
+                    defineField({
+                      name: "ctaLink",
+                      title: "CTA Link",
+                      type: "reference",
+                      to: [{ type: "pages" }],
+                    }),
+                  ],
                 }),
               ],
-            }),
-          ],
-        }),
-        defineField({
-          name: "leBlogBlock",
-          title: "Le Blog",
-          type: "object",
-          options: {
-            collapsible: true,
-            collapsed: true,
-          },
-          fields: [
-            defineField({
-              name: "title",
-              title: "Title",
-              type: "string",
-            }),
-            defineField({
-              name: "linkToBlog",
-              title: "Link to Blog",
-              type: "reference",
-              to: [{ type: "blogs" }],
-            }),
-            defineField({
-              name: "blogLabel",
-              title: "Blog Label",
-              type: "string",
             }),
           ],
         }),

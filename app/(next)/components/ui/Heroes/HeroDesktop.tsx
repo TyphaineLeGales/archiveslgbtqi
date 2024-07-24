@@ -33,16 +33,16 @@ export default function HeroDesktop({ heroes }: Props) {
   }, [currentHero]);
 
   // auto slide
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-  //   }, 3500);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
+    }, 5000);
 
-  //   return () => clearInterval(interval);
-  // }, [heroes?.hero?.length]);
+    return () => clearInterval(interval);
+  }, [heroes?.hero?.length]);
 
   return (
-    <div className="relative hidden max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] min-w-[100vw] lg:flex lg:max-h-[calc(100vh-7.25rem)] lg:min-h-[calc(100vh-7.25rem)]">
+    <div className="relative hidden max-h-[calc(100vh-7.25rem)] min-h-[calc(100vh-7.25rem)] min-w-[100vw] lg:flex">
       {heroes?.hero?.map((hero) => (
         <div
           key={heroes?.hero?.indexOf(hero)}
@@ -87,7 +87,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   }
                   className="heroCta relative z-10 h-full w-full px-[2rem]"
                 >
-                  {hero.cta?.ctaLabel}
+                  {hero.cta?.ctaLabel} [+]
                 </Link>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   alt={hero.image.alt || ""}
                   width={1920}
                   height={1080}
-                  className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover lg:min-h-[calc(100vh-8rem)]"
+                  className="h-full min-h-[calc(100vh-7.25rem)] w-full object-cover object-center"
                 />
               </>
             )}

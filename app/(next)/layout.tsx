@@ -67,12 +67,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${cityBurn.variable} ${jetBrains.variable} ${tanker.variable} bg-white-primary text-black-primary`}
+      className={`${inter.variable} ${cityBurn.variable} ${jetBrains.variable} ${tanker.variable} bg-white`}
     >
       <body>
         <section className="relative flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
           {draftMode().isEnabled && <BannerAlert />}
-          {/* <IntroAnimation /> */}
+          <IntroAnimation />
           <Header />
           <main className="mt-[5rem] lg:mt-[7.25rem]">
             <ToastProviders>{children}</ToastProviders>

@@ -84,7 +84,7 @@ export const heroFields = /* groq */ `
   },
 `;
 
-export const multiBlocksFields = /* groq */ `
+export const secondPartFields = /* groq */ `
   ...,
   _id,
   _key,
@@ -95,11 +95,9 @@ export const multiBlocksFields = /* groq */ `
   cta {
     ctaLabel,
     ctaLink->{
+      _type,
       "slug": slug.current
     }
-  },
-  reference->{
-    ...,
   },
 `;
 
@@ -144,111 +142,15 @@ export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | orde
   ${postFields}
 }`;
 
-// export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages][0] {
-//   _id,
-//   title,
-//   slug,
-//   "navigation": navigation[]->{
-//     _id,
-//     title,
-//     slug,
-//   },
-//   "content": content[]{
-//     _type,
-
-//     // richtext
-//     "richtext": text[],
-
-//     // richtextTitle
-//     "richtextTitleText": text[],
-//     "richTextTitle": title,
-
-//     // single-image
-//     "imageTitle": title,
-//     "imageUrl": image.asset->url,
-
-//     // multi-images
-//     "multiImages": images[] {
-//       "imageUrl": image.asset->url,
-//       alt,
-//     },
-
-//     // link
-//     "linkLabel": label,
-//     // external
-//     external,
-//     // internal
-//     "internal": internal->{
-//       _id,
-//       _type,
-//       title,
-//       "slug": slug.current,
-//     },
-
-//     // lastEvent
-//     "isDisplayed": event.isDisplayed,
-//     "lastEventLabel": event.title,
-//     "goToAllEvents": event.ctaToEvents,
-
-//     // creationArchives
-//     "creationArchivesTitle": intro[],
-//     "creationArchivesArchive": archive[] {
-//       ...,
-//       title,
-//       description[],
-//       status,
-//     },
-
-//     // custom-html
-//     "customHtml": html,
-//     "codeTitle": codeTitle,
-//     "isAddFiles": isAddFiles,
-//     "fileGroup": fileGroup[] {
-//       title,
-//       files[] {
-//         asset->,
-//       },
-//     },
-//   }
-// }`;
-
-export const homepageQuery = groq`
-*[_type == "homepage"][0] {
-  ...,
+export const homepageQuery = groq`*[_type == "homepage"][0] {
+  _key,
+  _id,
+  _type,
   "hero": hero.hero[]{
     ${heroFields}
   },
-  "multiBlock": multiBlock {
-    leBlogBlock {
-      title,
-      "linkToBlog": linkToBlog->_ref,
-      blogLabel
-    },
-    lesArchivesVivantesBlock {
-      title,
-      vimeo {
-        vimeoTitle,
-        linkToVimeo
-      },
-      podcast {
-        linkToPodcast,
-        podcastTitle
-      }
-    },
-    eventsBlock {
-      "events": events[]->{
-        _id,
-        eventTitle,
-        slug,
-        eventDate,
-        eventDescription,
-        eventLocation,
-        "image": eventImage{
-          "imageUrl": image.asset->url,
-          alt,
-        }
-      }
-    },
+  "secondPart": secondPart.block[]{
+   ${secondPartFields}
   },
   video {
     videoTitle,

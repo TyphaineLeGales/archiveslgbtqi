@@ -33,16 +33,16 @@ export default function HeroDesktop({ heroes }: Props) {
   }, [currentHero]);
 
   // auto slide
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-  //   }, 3500);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
+    }, 5000);
 
-  //   return () => clearInterval(interval);
-  // }, [heroes?.hero?.length]);
+    return () => clearInterval(interval);
+  }, [heroes?.hero?.length]);
 
   return (
-    <div className="relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] min-w-[100vw] flex-col lg:hidden">
+    <div className="relative flex max-h-[calc(100vh-5rem)] min-h-[calc(100vh-5rem)] w-full flex-col lg:hidden">
       {heroes?.hero?.map((hero) => (
         <div
           key={heroes?.hero?.indexOf(hero)}
@@ -58,13 +58,13 @@ export default function HeroDesktop({ heroes }: Props) {
           <div className="relative w-full">
             <div
               className={clsx(
-                "group absolute inset-x-0 top-[1rem] flex max-w-[50rem] flex-col items-end px-[1rem] text-white transition-all duration-500 ease-tamisitée",
+                "group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white transition-all duration-500 ease-tamisitée",
                 currentHero === heroes?.hero?.indexOf(hero)
                   ? "opacity-100"
                   : "opacity-0",
               )}
             >
-              <div className="min-h-[20rem] min-w-[30rem] space-y-[.5rem] bg-black p-[2rem]">
+              <div className="min-h-[10rem] space-y-[.5rem] bg-black p-[2rem]">
                 <h1 ref={titleRef} className="heroTitle">
                   {hero.title}
                 </h1>
@@ -87,7 +87,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   }
                   className="heroCta relative z-10 h-full w-full px-[2rem]"
                 >
-                  {hero.cta?.ctaLabel}
+                  {hero.cta?.ctaLabel} [+]
                 </Link>
               </div>
             </div>
