@@ -24,11 +24,11 @@
   }
 
   .heroParagraph {
-    @apply font-jetbrains text-[0.9rem] font-light leading-[1.25rem] tracking-wide text-white;
+    @apply font-jetbrains text-[0.9rem] font-light leading-[1.25rem] tracking-widest text-white;
   }
 
   .heroCta {
-    @apply font-jetbrains text-[.7rem] uppercase leading-[.7rem] tracking-tighter text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch;
+    @apply font-jetbrains text-[.7rem] uppercase leading-[.7rem] tracking-widest text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch;
   }
 
   .newsLetterInput {

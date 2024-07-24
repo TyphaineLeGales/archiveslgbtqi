@@ -15,7 +15,7 @@ export default function SecondBlock({ multiBlocks }: Props) {
   return (
     <div
       ref={containerRef}
-      className="grid min-h-full grid-cols-1 gap-[1rem] px-[1rem] py-[5rem] lg:grid-cols-2 lg:gap-[5rem] lg:px-[3rem]"
+      className="mx-auto grid min-h-full max-w-[1440px] grid-cols-1 place-content-center place-items-center gap-[1rem] px-[1rem] py-[5rem] lg:grid-cols-2 lg:gap-[5rem] lg:px-[3rem]"
     >
       {multiBlocks?.secondPart?.map((block, index) => {
         return (
@@ -44,7 +44,7 @@ export default function SecondBlock({ multiBlocks }: Props) {
               </div>
               <Link
                 href={block.cta?.ctaLink?.slug || ""}
-                className="heroCta h-[1.5rem] bg-black px-[2rem] pb-[1rem]"
+                className="heroCta h-[1.5rem] bg-black px-[1.25rem] pb-[1rem]"
               >
                 {block.cta?.ctaLabel} [+]
               </Link>
