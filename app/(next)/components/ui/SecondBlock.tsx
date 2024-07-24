@@ -15,13 +15,13 @@ export default function SecondBlock({ multiBlocks }: Props) {
   return (
     <div
       ref={containerRef}
-      className="mx-auto grid min-h-full max-w-[1440px] grid-cols-1 place-content-center place-items-center gap-[1rem] px-[1rem] py-[5rem] lg:grid-cols-2 lg:gap-[5rem] lg:px-[3rem]"
+      className="mx-auto grid min-h-full max-w-[1440px] grid-cols-1 place-content-center place-items-center gap-[1rem] px-[1rem] py-[4rem] lg:grid-cols-2 lg:gap-[5rem] lg:px-[3rem]"
     >
       {multiBlocks?.secondPart?.map((block, index) => {
         return (
           <div
             key={block._key}
-            className="group relative flex aspect-square h-full w-full flex-col lg:max-h-[40rem] lg:max-w-[40rem]"
+            className="group relative flex aspect-square h-max max-h-[80rem] w-full flex-col lg:max-h-[50rem] lg:max-w-[50rem]"
           >
             <div className="relative min-h-[75%] min-w-full">
               <Image
