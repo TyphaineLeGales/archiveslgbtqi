@@ -448,6 +448,7 @@ export type Homepage = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "pages";
         };
+        ctaScrollTo?: string;
       };
       _key: string;
     }>;
@@ -789,7 +790,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  introText {    introTextContent[]{      ...,  },    newsletterTextContent  }, }
+// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    },    ctaScrollTo  },  },  introText {    introTextContent[]{      ...,  },    newsletterTextContent  }, }
 export type HomepageQueryResult = {
   _key: null;
   _id: string;
@@ -824,6 +825,7 @@ export type HomepageQueryResult = {
         _type: "pages";
         slug: string | null;
       } | null;
+      ctaScrollTo: string | null;
     } | null;
     _key: string;
     _id: null;
