@@ -16,7 +16,7 @@ export default async function Page() {
   // console.log("Homepage: ", homePage);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-[100vh] overflow-hidden">
       <HeroSection heroes={homePage} />
       <SecondBlock multiBlocks={homePage} />
       <IntroductionText intro={homePage} />
