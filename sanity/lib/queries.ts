@@ -159,6 +159,15 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
   },
     newsletterTextContent
   },
+
+  "upcomingEventsSection": upcomingEventsSection {
+    upcomingEventsTitle,
+    upcomingEventsCTA{
+      eventsCTATitle,
+      eventsCTA->,
+    },
+    upcomingEvents[]->
+  }
  
 }`;
 
