@@ -13,13 +13,13 @@ export default async function Page() {
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
   ]);
 
-  // console.log("Homepage: ", homePage);
+  console.log("Homepage: ", homePage);
 
   return (
     <div className="relative min-h-[100vh] overflow-hidden">
       <HeroSection heroes={homePage} />
       <SecondBlock multiBlocks={homePage} />
-      <IntroductionText intro={homePage} />
+      {/* <IntroductionText intro={homePage} /> */}
       {/* <Video video={homePage} /> */}
     </div>
   );

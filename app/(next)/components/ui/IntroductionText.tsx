@@ -11,7 +11,7 @@ type Props = {
 export default function IntroductionText({ intro }: Props) {
   return (
     <div className="min-h-full min-w-full bg-pink-arch px-[1rem] py-[5rem] lg:px-0">
-      <div className="lg:mx-arch flex min-h-full flex-col items-center justify-center gap-[3rem]">
+      <div className="flex min-h-full flex-col items-center justify-center gap-[3rem] lg:mx-arch">
         <div className="flex flex-col gap-[2rem] text-start">
           <MyCustomPortableText
             value={intro?.introText?.introTextContent as any}

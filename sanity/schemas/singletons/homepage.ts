@@ -20,8 +20,8 @@ export default defineType({
       name: "introText",
     },
     {
-      title: "Outro",
-      name: "outro",
+      title: "Prochaines dates",
+      name: "upcomingEvents",
     },
   ],
   fields: [
@@ -173,6 +173,13 @@ export default defineType({
                       type: "reference",
                       to: [{ type: "pages" }],
                     }),
+                    defineField({
+                      name: "ctaScrollTo",
+                      title: "CTA Scroll à ➡️",
+                      type: "string",
+                      description:
+                        "L'ID de l'élément à scroller vers (Sans accent, sans espaces et sans majuscule). Ex: 'ateliers-formations', 'creation-d'archives'",
+                    }),
                   ],
                 }),
               ],
@@ -205,27 +212,60 @@ export default defineType({
         }),
       ],
     }),
-    // Outro
+    // Upcoming events
     defineField({
-      name: "outro",
-      title: "Outro",
+      name: "upcomingEventsSection",
+      title: "4️⃣ Prochaines dates",
       type: "object",
-      group: "outro",
+      group: "upcomingEvents",
       options: {
         collapsible: true,
         collapsed: true,
       },
       fields: [
         defineField({
-          name: "outroTitle",
-          title: "Outro Title",
+          name: "upcomingEventsTitle",
+          title: "Titre de la section 'Prochaines dates'",
           type: "string",
         }),
         defineField({
-          name: "outroText",
-          title: "Outro Text",
+          name: "upcomingEventsCTA",
+          title: "Lien vers l'Agenda",
+          type: "object",
+          fields: [
+            defineField({
+              name: "eventsCTATitle",
+              title: "Titre du lien vers l'Agenda",
+              type: "string",
+            }),
+            defineField({
+              name: "eventsCTA",
+              title: "Lien vers l'Agenda",
+              type: "reference",
+              to: [{ type: "pages" }],
+            }),
+          ],
+        }),
+        defineField({
+          name: "upcomingEvents",
+          title: "Prochaines dates",
           type: "array",
-          of: [{ type: "block" }],
+          of: [
+            {
+              type: "reference",
+              options: {
+                // 👇🏽 filter out past events
+                filter:
+                  "(_type == 'events' && dateTime(eventDate.eventStartDate) >= dateTime(now()))",
+                filterParams: { now: new Date().toISOString() },
+              },
+              to: [
+                {
+                  type: "events",
+                },
+              ],
+            },
+          ],
         }),
       ],
     }),

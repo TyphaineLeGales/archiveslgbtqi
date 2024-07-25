@@ -448,6 +448,7 @@ export type Homepage = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "pages";
         };
+        ctaScrollTo?: string;
       };
       _key: string;
     }>;
@@ -473,25 +474,23 @@ export type Homepage = {
     }>;
     newsletterTextContent?: string;
   };
-  outro?: {
-    outroTitle?: string;
-    outroText?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-      listItem?: "bullet" | "number";
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
+  upcomingEventsSection?: {
+    upcomingEventsTitle?: string;
+    upcomingEventsCTA?: {
+      eventsCTATitle?: string;
+      eventsCTA?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "pages";
+      };
+    };
+    upcomingEvents?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
       _key: string;
+      [internalGroqTypeReferenceTo]?: "events";
     }>;
   };
 };
@@ -789,7 +788,7 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  introText {    introTextContent[]{      ...,  },    newsletterTextContent  }, }
+// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    },    ctaScrollTo  },  },  introText {    introTextContent[]{      ...,  },    newsletterTextContent  },  "upcomingEventsSection": upcomingEventsSection {    upcomingEventsTitle,    upcomingEventsCTA{      ...,    },    upcomingEvents[]->{      ...,    },  } }
 export type HomepageQueryResult = {
   _key: null;
   _id: string;
@@ -824,6 +823,7 @@ export type HomepageQueryResult = {
         _type: "pages";
         slug: string | null;
       } | null;
+      ctaScrollTo: string | null;
     } | null;
     _key: string;
     _id: null;
@@ -848,6 +848,74 @@ export type HomepageQueryResult = {
       _key: string;
     }> | null;
     newsletterTextContent: string | null;
+  } | null;
+  upcomingEventsSection: {
+    upcomingEventsTitle: string | null;
+    upcomingEventsCTA: {
+      eventsCTATitle?: string;
+      eventsCTA?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "pages";
+      };
+    } | null;
+    upcomingEvents: Array<{
+      _id: string;
+      _type: "events";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      eventType?: string;
+      eventTitle?: string;
+      eventEntrance?: string;
+      eventDescription?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          | "blockquote"
+          | "h1"
+          | "h2"
+          | "h3"
+          | "h4"
+          | "h5"
+          | "h6"
+          | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+      eventDate?: {
+        eventStartDate?: string;
+        addEndDate?: boolean;
+        eventEndDate?: string;
+      };
+      eventLocation?: string;
+      eventImage?: {
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+        alt?: string;
+      };
+    }> | null;
   } | null;
 } | null;
 // Variable: eventsQuery
