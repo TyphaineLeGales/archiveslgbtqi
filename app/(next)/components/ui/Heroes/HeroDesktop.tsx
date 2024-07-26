@@ -33,13 +33,13 @@ export default function HeroDesktop({ heroes }: Props) {
   }, [currentHero]);
 
   // 👇🏽 auto slide
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-  //   }, 5000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
+    }, 5000);
 
-  //   return () => clearInterval(interval);
-  // }, [heroes?.hero?.length]);
+    return () => clearInterval(interval);
+  }, [heroes?.hero?.length]);
 
   return (
     <div className="relative hidden max-h-[calc(100vh-7.25rem)] min-h-[calc(100vh-7.25rem)] min-w-[100vw] lg:flex">
@@ -48,7 +48,7 @@ export default function HeroDesktop({ heroes }: Props) {
           key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
           className={clsx(
-            "relative h-full overflow-hidden transition-all duration-[1s] ease-tamisitée",
+            "relative h-full overflow-hidden transition-all duration-[.75s] ease-tamisitée",
             currentHero === heroes?.hero?.indexOf(hero)
               ? `w-[100vw] mix-blend-normal`
               : `w-[3rem] cursor-pointer mix-blend-luminosity`,
@@ -67,10 +67,10 @@ export default function HeroDesktop({ heroes }: Props) {
                       : "#"
               }
               className={clsx(
-                "group absolute bottom-[3rem] left-[2rem] flex max-w-[80%] flex-col items-end text-white transition-all duration-500 ease-tamisitée",
+                "group absolute bottom-[3rem] left-[2rem] flex max-w-[80%] flex-col items-end text-white transition-[opacity,height] duration-500 ease-tamisitée will-change-transform",
                 currentHero === heroes?.hero?.indexOf(hero)
-                  ? "opacity-100"
-                  : "opacity-0",
+                  ? "block opacity-100"
+                  : "hidden opacity-0",
               )}
             >
               <div className="min-h-[20rem] min-w-[30rem] space-y-[.5rem] bg-black p-[2rem]">

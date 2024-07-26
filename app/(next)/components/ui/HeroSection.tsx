@@ -10,8 +10,12 @@ type Props = {
 export default function HeroSection({ heroes }: Props) {
   return (
     <>
-      <HeroMobile heroes={heroes} />
-      <HeroDesktop heroes={heroes} />
+      {heroes?.heroVisibility && (
+        <>
+          <HeroMobile heroes={heroes} />
+          <HeroDesktop heroes={heroes} />
+        </>
+      )}
     </>
   );
 }
