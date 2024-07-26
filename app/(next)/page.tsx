@@ -7,6 +7,7 @@ import {
   SecondBlock,
   Video,
 } from "./components/ui";
+import { UpcomingEvents } from "./components/homepage";
 
 export default async function Page() {
   const [homePage] = await Promise.all([
@@ -19,7 +20,8 @@ export default async function Page() {
     <div className="relative min-h-[100vh] overflow-hidden">
       <HeroSection heroes={homePage} />
       <SecondBlock multiBlocks={homePage} />
-      {/* <IntroductionText intro={homePage} /> */}
+      <IntroductionText intro={homePage} />
+      {/* <UpcomingEvents events={homePage} /> */}
       {/* <Video video={homePage} /> */}
     </div>
   );
