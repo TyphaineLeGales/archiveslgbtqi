@@ -9,7 +9,7 @@ type CTAMarqueeProps = {
 export default function CTAMarquee({ marquee }: CTAMarqueeProps) {
   return (
     <>
-      {marquee?.marqueeCTA?.marqueeContent && (
+      {marquee?.marqueeCTA?.marqueeCTAVisibility && (
         <Link
           href={marquee?.marqueeCTA?.marqueeLink || ""}
           className="marquee-container group flex h-[58px] w-full items-center overflow-hidden bg-pink-arch"
