@@ -32,7 +32,7 @@ export default function HeroDesktop({ heroes }: Props) {
     });
   }, [currentHero]);
 
-  // auto slide
+  // 👇🏽 auto slide
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);

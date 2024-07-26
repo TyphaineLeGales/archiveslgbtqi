@@ -32,7 +32,7 @@ export default function HeroDesktop({ heroes }: Props) {
     });
   }, [currentHero]);
 
-  // auto slide
+  // 👇🏽 auto slide
   // useEffect(() => {
   //   const interval = setInterval(() => {
   //     setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
@@ -56,7 +56,16 @@ export default function HeroDesktop({ heroes }: Props) {
           onClick={() => setCurrentHero(heroes?.hero?.indexOf(hero)!)}
         >
           <div className="relative max-h-[calc(100dvh-5rem)] w-full lg:max-h-[calc(100vh-7.25rem)]">
-            <div
+            <Link
+              href={
+                hero?.cta?.ctaLink?._type === "pages"
+                  ? `/${hero.cta?.ctaLink?.slug || ""}`
+                  : hero?.cta?.ctaLink?._type === "events"
+                    ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`
+                    : hero?.cta?.ctaLink?._type === "blogs"
+                      ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
+                      : "#"
+              }
               className={clsx(
                 "group absolute bottom-[3rem] left-[2rem] flex max-w-[80%] flex-col items-end text-white transition-all duration-500 ease-tamisitée",
                 currentHero === heroes?.hero?.indexOf(hero)
@@ -72,25 +81,11 @@ export default function HeroDesktop({ heroes }: Props) {
                 <p ref={paragraphRef} className="heroParagraph">
                   {hero.paragraph}
                 </p>
-              </div>
-
-              <div className="relative w-fit translate-y-[-25%] bg-black pb-[.5rem] transition-all duration-200 ease-tamisitée">
-                <Link
-                  href={
-                    hero?.cta?.ctaLink?._type === "pages"
-                      ? `/${hero.cta?.ctaLink?.slug || ""}`
-                      : hero?.cta?.ctaLink?._type === "events"
-                        ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`
-                        : hero?.cta?.ctaLink?._type === "blogs"
-                          ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
-                          : "#"
-                  }
-                  className="heroCta relative z-10 h-full w-full translate-y-[-25%] px-[2rem]"
-                >
+                <div className="heroCta heroButtonTransition absolute bottom-0 right-0 z-10 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
                   {hero.cta?.ctaLabel} [+]
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {hero.image && (
               <>
