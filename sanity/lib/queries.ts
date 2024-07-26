@@ -68,20 +68,20 @@ const postFields = /* groq */ `
 `;
 
 export const heroFields = /* groq */ `
-  ...,
-  _id,
-  _key,
-  "image": image{
-    "imageUrl": image.asset->url,
-    alt,
-  },
-  cta {
-    ctaLabel,
-    ctaLink->{
-      _type,
-      "slug": slug.current
+    ...,
+    _id,
+    _key,
+    "image": image{
+      "imageUrl": image.asset->url,
+      alt,
+    },
+    cta {
+      ctaLabel,
+      ctaLink->{
+        _type,
+        "slug": slug.current
+      }
     }
-  },
 `;
 
 export const secondPartFields = /* groq */ `
@@ -149,15 +149,18 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
   _id,
   _type,
 
+  "heroVisibility": hero.heroVisibility,
   "hero": hero.hero[]{
     ${heroFields}
   },
 
+  "secondPartVisibility": secondPart.secondPartVisibility,
   "secondPart": secondPart.block[]{
    ${secondPartFields}
   },
 
   introText {
+    introTextVisibility,
     introTextContent[]{
       ...,
   },
@@ -165,6 +168,7 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
   },
 
   "upcomingEventsSection": upcomingEventsSection {
+    upcomingEventsSectionVisibility,
     upcomingEventsTitle,
     upcomingEventsCTA{
       eventsCTATitle,
@@ -175,6 +179,7 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
   },
 
   marqueeCTA {
+    marqueeCTAVisibility,
     marqueeContent,
     marqueeLink,
   }

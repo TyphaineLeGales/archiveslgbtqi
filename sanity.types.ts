@@ -393,6 +393,7 @@ export type Homepage = {
   _updatedAt: string;
   _rev: string;
   hero?: {
+    heroVisibility?: boolean;
     hero?: Array<{
       title?: string;
       paragraph?: string;
@@ -423,6 +424,7 @@ export type Homepage = {
     }>;
   };
   secondPart?: {
+    secondPartVisibility?: boolean;
     block?: Array<{
       title?: string;
       paragraph?: string;
@@ -454,6 +456,7 @@ export type Homepage = {
     }>;
   };
   introText?: {
+    introTextVisibility?: boolean;
     introTextContent?: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -475,6 +478,7 @@ export type Homepage = {
     newsletterTextContent?: string;
   };
   upcomingEventsSection?: {
+    upcomingEventsSectionVisibility?: boolean;
     upcomingEventsTitle?: string;
     upcomingEventsCTA?: {
       eventsCTATitle?: string;
@@ -495,6 +499,7 @@ export type Homepage = {
     upcomingEventsCTATitle?: string;
   };
   marqueeCTA?: {
+    marqueeCTAVisibility?: boolean;
     marqueeContent?: string;
     marqueeLink?: string;
   };
@@ -793,11 +798,12 @@ export type FooterQueryResult = null;
 // Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
 export type HeroQueryResult = null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "hero": hero.hero[]{      ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    }  },  },  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    },    ctaScrollTo  },  },  introText {    introTextContent[]{      ...,  },    newsletterTextContent  },  "upcomingEventsSection": upcomingEventsSection {    upcomingEventsTitle,    upcomingEventsCTA{      eventsCTATitle,      eventsCTA->,    },    "upcomingEvents": upcomingEvents[]-> {  _id,  eventType,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },},    upcomingEventsCTATitle,  },  marqueeCTA {    marqueeContent,    marqueeLink,  } }
+// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "heroVisibility": hero.heroVisibility,  "hero": hero.hero[]{        ...,    _id,    _key,    "image": image{      "imageUrl": image.asset->url,      alt,    },    cta {      ctaLabel,      ctaLink->{        _type,        "slug": slug.current      }    }  },  "secondPartVisibility": secondPart.secondPartVisibility,  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    },    ctaScrollTo  },  },  introText {    introTextVisibility,    introTextContent[]{      ...,  },    newsletterTextContent  },  "upcomingEventsSection": upcomingEventsSection {    upcomingEventsSectionVisibility,    upcomingEventsTitle,    upcomingEventsCTA{      eventsCTATitle,      eventsCTA->,    },    "upcomingEvents": upcomingEvents[]-> {  _id,  eventType,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },},    upcomingEventsCTATitle,  },  marqueeCTA {    marqueeCTAVisibility,    marqueeContent,    marqueeLink,  } }
 export type HomepageQueryResult = {
   _key: null;
   _id: string;
   _type: "homepage";
+  heroVisibility: boolean | null;
   hero: Array<{
     title?: string;
     paragraph?: string;
@@ -815,6 +821,7 @@ export type HomepageQueryResult = {
     _key: string;
     _id: null;
   }> | null;
+  secondPartVisibility: boolean | null;
   secondPart: Array<{
     title?: string;
     paragraph?: string;
@@ -834,6 +841,7 @@ export type HomepageQueryResult = {
     _id: null;
   }> | null;
   introText: {
+    introTextVisibility: boolean | null;
     introTextContent: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -855,6 +863,7 @@ export type HomepageQueryResult = {
     newsletterTextContent: string | null;
   } | null;
   upcomingEventsSection: {
+    upcomingEventsSectionVisibility: boolean | null;
     upcomingEventsTitle: string | null;
     upcomingEventsCTA: {
       eventsCTATitle: string | null;
@@ -918,6 +927,7 @@ export type HomepageQueryResult = {
     upcomingEventsCTATitle: string | null;
   } | null;
   marqueeCTA: {
+    marqueeCTAVisibility: boolean | null;
     marqueeContent: string | null;
     marqueeLink: string | null;
   } | null;

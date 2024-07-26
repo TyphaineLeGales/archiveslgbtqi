@@ -2582,6 +2582,13 @@
         "value": {
           "type": "object",
           "attributes": {
+            "heroVisibility": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
             "hero": {
               "type": "objectAttribute",
               "value": {
@@ -2752,6 +2759,13 @@
         "value": {
           "type": "object",
           "attributes": {
+            "secondPartVisibility": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
             "block": {
               "type": "objectAttribute",
               "value": {
@@ -2929,6 +2943,13 @@
         "value": {
           "type": "object",
           "attributes": {
+            "introTextVisibility": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
             "introTextContent": {
               "type": "objectAttribute",
               "value": {
@@ -3124,6 +3145,13 @@
         "value": {
           "type": "object",
           "attributes": {
+            "upcomingEventsSectionVisibility": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
             "upcomingEventsTitle": {
               "type": "objectAttribute",
               "value": {
@@ -3237,6 +3265,13 @@
         "value": {
           "type": "object",
           "attributes": {
+            "marqueeCTAVisibility": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
             "marqueeContent": {
               "type": "objectAttribute",
               "value": {

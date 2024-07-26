@@ -43,6 +43,13 @@ export default defineType({
       },
       fields: [
         defineField({
+          name: "heroVisibility",
+          title: "Afficher sur la page d'accueil",
+          type: "boolean",
+          description:
+            "ℹ️ Désactiver pour ne pas afficher cette section sur la page d'accueil.",
+        }),
+        defineField({
           name: "hero",
           title: "Block",
           type: "array",
@@ -120,6 +127,13 @@ export default defineType({
         collapsed: true,
       },
       fields: [
+        defineField({
+          name: "secondPartVisibility",
+          title: "Afficher sur la page d'accueil",
+          type: "boolean",
+          description:
+            "ℹ️ Désactiver pour ne pas afficher cette section sur la page d'accueil.",
+        }),
         defineField({
           name: "block",
           title: "Block",
@@ -204,6 +218,13 @@ export default defineType({
       },
       fields: [
         defineField({
+          name: "introTextVisibility",
+          title: "Afficher sur la page d'accueil",
+          type: "boolean",
+          description:
+            "ℹ️ Désactiver pour ne pas afficher cette section sur la page d'accueil.",
+        }),
+        defineField({
           name: "introTextContent",
           title: "Texte d'introduction",
           type: "array",
@@ -227,6 +248,13 @@ export default defineType({
         collapsed: true,
       },
       fields: [
+        defineField({
+          name: "upcomingEventsSectionVisibility",
+          title: "Afficher sur la page d'accueil",
+          type: "boolean",
+          description:
+            "ℹ️ Désactiver pour ne pas afficher cette section sur la page d'accueil.",
+        }),
         defineField({
           name: "upcomingEventsTitle",
           title: "Titre de la section 'Prochaines dates'",
@@ -289,6 +317,13 @@ export default defineType({
         collapsed: true,
       },
       fields: [
+        defineField({
+          name: "marqueeCTAVisibility",
+          title: "Afficher sur la page d'accueil",
+          type: "boolean",
+          description:
+            "ℹ️ Désactiver pour ne pas afficher cette section sur la page d'accueil.",
+        }),
         defineField({
           name: "marqueeContent",
           title: "Contenu du bandeau",
