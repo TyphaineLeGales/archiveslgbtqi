@@ -7,7 +7,7 @@ import {
   SecondBlock,
   Video,
 } from "./components/ui";
-import { UpcomingEvents } from "./components/homepage";
+// import { UpcomingEvents } from "./components/homepage";
 
 export default async function Page() {
   const [homePage] = await Promise.all([
