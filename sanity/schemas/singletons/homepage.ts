@@ -23,6 +23,10 @@ export default defineType({
       title: "Prochaines dates",
       name: "upcomingEvents",
     },
+    {
+      title: "Bandeaux (bas de page)",
+      name: "marqueeCTA",
+    },
   ],
   fields: [
     // Hero
@@ -266,6 +270,34 @@ export default defineType({
               ],
             },
           ],
+        }),
+        defineField({
+          name: "upcomingEventsCTATitle",
+          title: "Titre du lien vers l'Événement",
+          type: "string",
+        }),
+      ],
+    }),
+    // Marquee CTA
+    defineField({
+      name: "marqueeCTA",
+      title: "5️⃣ Bandeaux (bas de page)",
+      type: "object",
+      group: "marqueeCTA",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
+        defineField({
+          name: "marqueeContent",
+          title: "Contenu du bandeau",
+          type: "string",
+        }),
+        defineField({
+          name: "marqueeLink",
+          title: "Lien du bandeau",
+          type: "url",
         }),
       ],
     }),

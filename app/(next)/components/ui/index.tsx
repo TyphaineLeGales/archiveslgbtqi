@@ -9,7 +9,6 @@ export { default as HeroSection } from "./HeroSection";
 export { default as TextMarquee } from "./TextMarquee";
 export { default as SecondBlock } from "./SecondBlock";
 export { default as IntroductionText } from "./IntroductionText";
-export { default as Video } from "./Video";
 export { default as TextSplitting } from "./TextSplitting";
 
 export { default as ToastProviders } from "./ToastProviders";

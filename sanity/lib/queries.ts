@@ -104,6 +104,7 @@ export const secondPartFields = /* groq */ `
 
 export const eventFields = /* groq */ `
   _id,
+  eventType,
   eventTitle,
   slug,
   eventDate,
@@ -147,12 +148,15 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
   _key,
   _id,
   _type,
+
   "hero": hero.hero[]{
     ${heroFields}
   },
+
   "secondPart": secondPart.block[]{
    ${secondPartFields}
   },
+
   introText {
     introTextContent[]{
       ...,
@@ -166,7 +170,13 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
       eventsCTATitle,
       eventsCTA->,
     },
-    upcomingEvents[]->
+    "upcomingEvents": upcomingEvents[]-> {${eventFields}},
+    upcomingEventsCTATitle,
+  },
+
+  marqueeCTA {
+    marqueeContent,
+    marqueeLink,
   }
  
 }`;

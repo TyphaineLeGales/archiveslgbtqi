@@ -109,7 +109,7 @@ export default async function Page({ params }: Props) {
                           item={block as any}
                         />
                       )}
-                      {block._type === "document-file" && (
+                      {block._type === "link" && (
                         <LinksModule item={block as any} />
                       )}
                       {block._type === "lastEvent" && (
