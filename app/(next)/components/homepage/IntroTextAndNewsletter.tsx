@@ -1,8 +1,7 @@
 import React from "react";
 
 import { HomepageQueryResult } from "@/sanity.types";
-
-import MyCustomPortableText from "./MyCustomPortableText";
+import { MyCustomPortableText } from "../ui";
 
 type Props = {
   intro: HomepageQueryResult;
@@ -23,19 +22,19 @@ export default function IntroductionText({ intro }: Props) {
             {intro?.introText?.newsletterTextContent}
           </p>
           <div className="prose relative h-[2.5rem] min-w-full">
-            {/* <input
+            <input
               type="email"
               id="email"
               name="email"
               placeholder="entrez-votre e-mail"
               className="newsLetterInput"
-            /> */}
-            {/* <button
+            />
+            <button
               type="submit"
               className="absolute right-0 top-0 flex aspect-square h-[2.5rem] w-[2.5rem] items-center justify-center bg-white p-[1rem] font-tanker uppercase text-pink-arch transition-colors duration-200 ease-tamisitée hover:text-black"
             >
               Ok
-            </button> */}
+            </button>
             <div className="absolute inset-x-0 bottom-[1px] h-[1px] w-[calc(100%-3.5rem)] bg-white" />
           </div>
         </div>
