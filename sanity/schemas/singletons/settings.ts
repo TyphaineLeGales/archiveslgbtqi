@@ -33,20 +33,20 @@ export default defineType({
       fields: [
         defineField({
           name: "siteTitle",
-          title: "Site Title",
+          title: "Titre du site internet",
           type: "string",
-          description: "The title of your website.",
         }),
         defineField({
           name: "ogImage",
           title: "Open Graph Image",
           type: "image",
-          description: "Displayed on social cards and search engine results.",
+          description: "Affiché lors du partage sur les réseaux sociaux.",
           fields: [
             defineField({
               name: "alt",
-              description: "Important for accessibility and SEO.",
-              title: "Alternative text",
+              title: "Balise alt",
+              description:
+                "Description de l'image pour les moteurs de recherche.",
               type: "string",
               validation: (rule) => {
                 return rule.custom((alt, context) => {
@@ -63,7 +63,7 @@ export default defineType({
     }),
     defineField({
       name: "header",
-      title: "Header",
+      title: "🔼 Header",
       type: "object",
       group: "header",
       options: {
@@ -73,14 +73,12 @@ export default defineType({
       fields: [
         defineField({
           name: "logo",
-          description: "This is the logo of your website.",
-          title: "Logo",
+          title: "Logo pour le header",
           type: "image",
         }),
         defineField({
           name: "headerLinks",
-          description: "This all the links for your header.",
-          title: "Header Links",
+          title: "Lien du header",
           type: "array",
           of: [
             {
@@ -113,14 +111,14 @@ export default defineType({
                 }),
                 defineField({
                   name: "internalLink",
-                  title: "Internal Link",
+                  title: "Lien vers une page interne",
                   type: "reference",
                   to: [{ type: "pages" }],
                   hidden: ({ parent }) => parent?.type !== "internal",
                 }),
                 defineField({
                   name: "externalLink",
-                  title: "External Link",
+                  title: "Lien vers une page externe",
                   type: "object",
                   fields: [
                     defineField({
@@ -151,13 +149,13 @@ export default defineType({
                   if (type === "internal") {
                     return {
                       title: title || "No title selected",
-                      subtitle: `Internal Link - /${slug}`,
+                      subtitle: `Lien vers une page interne - /${slug}`,
                     };
                   } else {
                     return {
                       title: externalTitle || "No URL title",
                       subtitle: externalUrl
-                        ? `External Link - URL: ${externalUrl}`
+                        ? `Lien vers une page externe - URL: ${externalUrl}`
                         : "No URL",
                     };
                   }
@@ -170,7 +168,7 @@ export default defineType({
     }),
     defineField({
       name: "footer",
-      title: "Footer",
+      title: "🔽 Footer",
       type: "object",
       group: "footer",
       options: {
@@ -179,10 +177,61 @@ export default defineType({
       },
       fields: [
         defineField({
-          name: "moduleGroups",
-          title: "Module Groups",
+          name: "logo",
+          title: "Logo pour le footer",
+          type: "image",
+        }),
+        defineField({
+          name: "addressGroup",
+          title: "Adresse",
+          type: "object",
+          fields: [
+            defineField({
+              name: "addressTitle",
+              title: "Titre de l'adresse",
+              type: "string",
+            }),
+            defineField({
+              name: "addressContent",
+              title: "Adresse",
+              type: "array",
+              of: [{ type: "block" }],
+            }),
+            defineField({
+              name: "mailAddress",
+              title: "Adresse mail",
+              type: "string",
+            }),
+          ],
+        }),
+        defineField({
+          name: "socialGroup",
+          title: "Réseaux sociaux",
           type: "array",
-          description: "Manage groups of module for the footer.",
+          of: [
+            defineField({
+              name: "socialBlock",
+              title: "Réseau social",
+              type: "object",
+              fields: [
+                defineField({
+                  name: "socialName",
+                  title: "Nom du réseau social",
+                  type: "string",
+                }),
+                defineField({
+                  name: "socialLink",
+                  title: "Lien vers le réseau social",
+                  type: "url",
+                }),
+              ],
+            }),
+          ],
+        }),
+        defineField({
+          name: "footerLinks",
+          title: "Liens du footer",
+          type: "array",
           of: [moduleGroupstructure()], // Assume moduleGroupstructure returns the defined object structure for link groups
         }),
       ],
@@ -205,12 +254,12 @@ function moduleGroupstructure() {
     fields: [
       defineField({
         name: "groupName",
-        title: "Group Name",
+        title: "Titre du lien",
         type: "string",
       }),
       defineField({
         name: "modules",
-        title: "Modules",
+        title: "Lien",
         type: "array",
         of: [
           {
@@ -219,26 +268,26 @@ function moduleGroupstructure() {
             fields: [
               defineField({
                 name: "type",
-                title: "Type of Module",
+                title: "Type de lien",
                 type: "string",
                 options: {
                   list: [
-                    { title: "Internal", value: "internal" },
-                    { title: "External", value: "external" },
+                    { title: "Interne", value: "internal" },
+                    { title: "Externe", value: "external" },
                     { title: "Text", value: "text" },
                   ],
                 },
               }),
               defineField({
                 name: "internalLink",
-                title: "Internal Link",
+                title: "Lien vers une page interne",
                 type: "reference",
                 to: [{ type: "pages" }],
                 hidden: ({ parent }) => parent?.type !== "internal",
               }),
               defineField({
                 name: "externalLink",
-                title: "External Link",
+                title: "Lien vers une page externe",
                 type: "object",
                 fields: [
                   defineField({
@@ -276,7 +325,7 @@ function moduleGroupstructure() {
                 if (type === "internal") {
                   return {
                     title: title || "No title selected",
-                    subtitle: `Internal Link - /${slug}`,
+                    subtitle: `Lien vers une page interne - /${slug}`,
                   };
                 } else if (type === "text") {
                   return {
@@ -286,7 +335,7 @@ function moduleGroupstructure() {
                   return {
                     title: externalTitle || "No URL title",
                     subtitle: externalUrl
-                      ? `External Link - URL: ${externalUrl}`
+                      ? `Lien vers une page externe - URL: ${externalUrl}`
                       : "No URL",
                   };
                 }
