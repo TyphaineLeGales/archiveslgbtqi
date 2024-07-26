@@ -11,18 +11,18 @@ type Props = {
 export default function IntroductionText({ intro }: Props) {
   return (
     <div className="min-h-full min-w-full bg-pink-arch px-[1rem] py-[5rem] lg:px-0">
-      <div className="flex min-h-full flex-col items-center justify-center gap-[3rem] lg:mx-arch">
+      <div className="min-h-full gap-[3rem] space-y-[5rem] lg:mx-arch">
         <div className="flex flex-col gap-[2rem] text-start">
           <MyCustomPortableText
             value={intro?.introText?.introTextContent as any}
-            className="font-cityburn text-[1.75rem] leading-[1.9rem] tracking-wider text-black"
+            className="min-w-full font-cityburn text-[1.75rem] leading-[1.9rem] tracking-wider text-black"
           />
         </div>
         <div className="flex flex-col gap-[2rem]">
-          <span className="font-tanker text-[1.5rem] leading-[1.5rem] tracking-wider text-white lg:text-[2.5rem] lg:leading-[2.75rem]">
+          <p className="prose max-w-[915px] font-tanker text-[1.5rem] leading-[1.5rem] tracking-wider text-white lg:text-[2.5rem] lg:leading-[2.75rem]">
             {intro?.introText?.newsletterTextContent}
-          </span>
-          <div className="relative h-[2.5rem] w-full">
+          </p>
+          <div className="prose relative h-[2.5rem] min-w-full">
             <input
               type="email"
               id="email"
