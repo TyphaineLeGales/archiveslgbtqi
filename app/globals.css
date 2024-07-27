@@ -47,6 +47,24 @@
     @apply h-[50%] max-h-[50%] w-[100%] max-w-[100%];
   }
 
+  /* 👇🏽 Footer */
+
+  .footerText {
+    @apply font-jetbrains text-[.8rem] uppercase leading-[1rem] tracking-wider;
+  }
+
+  .footerTextHover {
+    @apply transition-colors duration-300 ease-tamisitée hover:text-pink-arch;
+  }
+
+  .footerCopyright {
+    @apply font-jetbrains text-[.6rem] uppercase leading-[.8rem] tracking-wider;
+  }
+
+  .footerNewsLetterInput {
+    @apply h-[1.5rem] flex-1 bg-transparent font-jetbrains text-[1rem] tracking-wider text-white placeholder:text-[.8rem] placeholder:tracking-wider placeholder:text-white focus-within:placeholder-transparent focus-within:outline-none focus:ring-0;
+  }
+
   .sideBarTitle {
     @apply text-start text-[1rem] leading-[1.3rem] tracking-tighter;
   }
