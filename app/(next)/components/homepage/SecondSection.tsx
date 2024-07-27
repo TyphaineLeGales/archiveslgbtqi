@@ -31,7 +31,7 @@ const ScrollButton = ({
   );
 };
 
-export default function SecondBlock({ multiBlocks }: Props) {
+export default function SecondSection({ multiBlocks }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -46,9 +46,9 @@ export default function SecondBlock({ multiBlocks }: Props) {
               <>
                 {block.cta?.ctaScrollTo ? (
                   <ScrollButton
+                    key={index}
                     to={block.cta?.ctaLink?.slug || ""}
                     targetId={block.cta?.ctaScrollTo || ""}
-                    key={block._key}
                     className="group relative flex aspect-square h-max max-h-[80rem] w-full flex-col lg:max-h-[50rem] lg:max-w-[50rem]"
                   >
                     <div className="relative min-h-[75%] min-w-full">
@@ -77,7 +77,7 @@ export default function SecondBlock({ multiBlocks }: Props) {
                   </ScrollButton>
                 ) : (
                   <Link
-                    key={block._key}
+                    key={index}
                     href={block.cta?.ctaLink?.slug || ""}
                     className="group relative flex aspect-square h-max max-h-[80rem] w-full flex-col lg:max-h-[50rem] lg:max-w-[50rem]"
                   >
