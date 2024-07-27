@@ -5,7 +5,7 @@ export default defineType({
   name: "settings",
   title: "Settings",
   type: "document",
-  icon: CogIcon,
+  icon: () => "🔧",
   groups: [
     {
       title: "🔧 Global Settings",
@@ -74,7 +74,29 @@ export default defineType({
         defineField({
           name: "logo",
           title: "Logo pour le header",
-          type: "image",
+          type: "object",
+          fields: [
+            defineField({
+              name: "logoImage",
+              title: "Logo pour le header",
+              type: "image",
+            }),
+            defineField({
+              name: "alt",
+              title: "Balise alt",
+              description:
+                "Description de l'image pour les moteurs de recherche.",
+              type: "string",
+              validation: (rule) => {
+                return rule.custom((alt, context) => {
+                  if ((context.document?.logo as any)?.asset?._ref && !alt) {
+                    return "Required";
+                  }
+                  return true;
+                });
+              },
+            }),
+          ],
         }),
         defineField({
           name: "headerLinks",
@@ -179,7 +201,29 @@ export default defineType({
         defineField({
           name: "logo",
           title: "Logo pour le footer",
-          type: "image",
+          type: "object",
+          fields: [
+            defineField({
+              name: "logoImage",
+              title: "Logo pour le footer",
+              type: "image",
+            }),
+            defineField({
+              name: "alt",
+              title: "Balise alt",
+              description:
+                "Description de l'image pour les moteurs de recherche.",
+              type: "string",
+              validation: (rule) => {
+                return rule.custom((alt, context) => {
+                  if ((context.document?.logo as any)?.asset?._ref && !alt) {
+                    return "Required";
+                  }
+                  return true;
+                });
+              },
+            }),
+          ],
         }),
         defineField({
           name: "addressGroup",
@@ -223,6 +267,11 @@ export default defineType({
                   name: "socialLink",
                   title: "Lien vers le réseau social",
                   type: "url",
+                }),
+                defineField({
+                  name: "socialLinkImage",
+                  title: "Logo du réseau social",
+                  type: "image",
                 }),
               ],
             }),

@@ -43,9 +43,10 @@ export default function NavMobile({ settings }: NavLinkProps) {
         >
           <Image
             src={
-              settings?.header?.logo || "https://via.placeholder.com/100x100"
+              settings?.header?.logo?.logoImage ||
+              "https://via.placeholder.com/100x100"
             }
-            alt="logo"
+            alt={settings?.header?.logo?.alt || "Logo"}
             width={50}
             height={50}
             priority
@@ -67,7 +68,7 @@ export default function NavMobile({ settings }: NavLinkProps) {
         )}
       >
         <nav className="z-50 flex flex-col items-end justify-center gap-[1rem]">
-          {settings?.header.links &&
+          {settings?.header?.links &&
             settings.header.links.map((link, index) => {
               if (link.type === "internal") {
                 return (

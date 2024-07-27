@@ -7,9 +7,12 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
     "altText": globalSettings.ogImage.alt,
     "svg": globalSettings.svgIcon,
   },
-  "header": {
-    "logo": header.logo.asset->url,
-    "links": header.headerLinks[] {
+  "header": header{
+    "logo": logo {
+      "logoImage": logoImage.asset->url,
+      alt,
+    },
+    "links": headerLinks[] {
       _key,
       type,
       linkPosition,
@@ -27,30 +30,43 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
       }
     }
   },
-  "footer": {
-    _id,
-    "moduleGroups": footer.moduleGroups[] {
-      _id,
+  "footer": footer{
+    "logo": logo {
+      "logoImage": logoImage.asset->url,
+      alt,
+    },
+    "addressGroup": addressGroup {
+      addressTitle,
+      addressContent[]{
+        ...,
+      },
+      mailAddress,
+    },
+    "socialGroup": socialGroup[] {
+      socialName,
+      socialLink,
+      socialLinkImage{
+        "imageUrl": asset->url,
+        alt,
+      },
+    },
+    "footerLinks": footerLinks[]{
       _key,
       groupName,
-      "modules": modules[] {
-        _key,
-        _id,
+      modules[]{
         type,
-        "internalDetails": internalLink-> {
-          _key,
-          _id,
-          _type,
+        "internalLink": internalLink->{
           title,
           "slug": slug.current
         },
-        "externalDetails": {
-          "title": externalLink.title,
-          "url": externalLink.url
+        externalLink{
+          title,
+          url
         },
-        "text": text
+        text
       }
-    }
+  }
+
   }
 }`;
 
@@ -248,19 +264,6 @@ export const blogQuery = groq`*[_type == "blogs" && slug.current == $blog][0]{
 }`;
 
 export const lesArchivesVivantesQuery = groq`*[_type == "lesArchivesVivantes"][0]`;
-
-// export const eventFields = /* groq */ `
-//   _id,
-//   eventTitle,
-//   slug,
-//   eventDate,
-//   eventDescription,
-//   eventLocation,
-//   "image": eventImage{
-//       "imageUrl": image.asset->url,
-//       alt,
-//     },
-// `;
 
 export const richTextFields = /* groq */ `
   _id,
