@@ -39,7 +39,6 @@ export default function Credits() {
         Crédits
       </button>
       <div
-        // className="fixed inset-x-0 bottom-0 z-40 h-[100px] bg-pink-arch p-[1rem] text-white"
         className={clsx(
           "fixed inset-x-0 bottom-0 z-40 h-auto bg-pink-arch p-[1rem] py-[1rem] text-white transition-[transform,colors] duration-500 ease-tamisitée hover:text-black lg:h-[50px]",
           {
