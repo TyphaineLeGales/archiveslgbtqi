@@ -16,7 +16,7 @@ import { defineField, defineType } from "sanity";
 export default defineType({
   name: "pages",
   title: "Pages",
-  icon: FolderIcon,
+  icon: () => "📄",
   type: "document",
   fields: [
     defineField({
@@ -61,7 +61,7 @@ export default defineType({
           icon = () => "📝";
           break;
         default:
-          icon = FolderIcon;
+          icon = () => "📄";
           break;
       }
       return {

@@ -65,9 +65,17 @@
     @apply h-[1.5rem] flex-1 bg-transparent font-jetbrains text-[1rem] tracking-wider text-white placeholder:text-[.8rem] placeholder:tracking-wider placeholder:text-white focus-within:placeholder-transparent focus-within:outline-none focus:ring-0;
   }
 
+  /* 👇🏽 All page */
+
+  .linkButton {
+    @apply w-fit cursor-pointer bg-black px-[1rem] py-[.6rem] font-jetbrains text-[.8rem] uppercase text-white transition-colors duration-200 ease-in-out hover:text-pink-arch;
+  }
+
   .sideBarTitle {
     @apply text-start text-[1rem] leading-[1.3rem] tracking-tighter;
   }
+
+  /* 👇🏽 Events */
 
   .eventTitle {
     @apply text-start text-[4rem] font-semibold uppercase leading-[4rem] tracking-tighter lg:text-[5rem] lg:leading-[5rem];
