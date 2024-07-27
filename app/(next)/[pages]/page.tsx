@@ -27,8 +27,8 @@ import {
   CustomHtml,
 } from "../components/modules";
 
+import { DesktopSidebar } from "../components/all-pages";
 import { FormSubmission } from "../components/ui";
-import DesktopNavigationBar from "../components/navbar/navbar-desktop";
 import { transformId } from "../utils/TransforId";
 
 type Props = {
@@ -41,8 +41,6 @@ export default async function Page({ params }: Props) {
   const [content, events, lastEvent] = await Promise.all([
     sanityFetch<PagesContentQueryResult>({
       query: pagesContentQuery,
-      // params,
-      // params can be from {transformId(item.titleBlock || "")}}
       params: {
         pages: params.pages,
       },
@@ -62,25 +60,26 @@ export default async function Page({ params }: Props) {
   // console.log("Pages Content:", content);
 
   return (
-    <div className="flex h-full overflow-hidden">
-      <div className="relative hidden w-[20%] md:block">
-        <DesktopNavigationBar content={content} />
-      </div>
-      <div className="flex h-full w-full flex-col gap-[1rem] overflow-hidden p-[1rem] md:w-[80%]">
-        <h1 className="text-4xl font-bold">{content.title}</h1>
-        <div className="flex min-h-screen flex-col gap-[2rem] scroll-smooth py-[1rem]">
+    <div className="relative mx-auto flex h-full max-w-[1440px] overflow-hidden p-[1rem] lg:p-0">
+      <DesktopSidebar content={content} />
+
+      <div className="flex h-full w-full flex-col gap-[1rem] overflow-hidden pt-[3rem] lg:ml-arch">
+        <h1 className="font-tanker text-[4rem] uppercase leading-[3.2rem] tracking-wider">
+          {content.title}
+        </h1>
+        <div className="flex min-h-screen flex-col gap-[2rem]">
           {content.contentModulde?.map((item, index) => (
             // when the ScrollButton is clicked, it will scroll to the id of the element here
             <div
               id={transformId(item.titleBlock || "")}
               key={item._key}
-              className="pb-[5rem]"
+              className="relative flex h-full flex-col gap-[2rem] pb-[8rem] lg:pr-[10rem]"
             >
-              <h2 className="text-2xl font-bold uppercase">
+              <h2 className="font-tanker text-[2.8rem] uppercase leading-[2rem] tracking-wider">
                 {item.titleBlock || ""}
               </h2>
               <div>
-                <div className="flex flex-col gap-[1rem]">
+                <div className="flex flex-col gap-[2rem]">
                   {item.contenBlock?.map((block, index) => (
                     <div key={block._key}>
                       {block._type === "richtext" && (
@@ -127,6 +126,10 @@ export default async function Page({ params }: Props) {
                   ))}
                 </div>
               </div>
+              {/* // 👇🏽 Separator (hide if it's the last element) */}
+              {index !== (content?.contentModulde?.length ?? 0) - 1 && (
+                <div className="absolute bottom-0 left-0 h-[3px] w-full bg-black lg:w-[calc(100%-3rem)]" />
+              )}
             </div>
           ))}
         </div>
