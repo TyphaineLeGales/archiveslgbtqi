@@ -11,8 +11,9 @@ type Props = {
 
 export default function RichTextModule({ item }: Props) {
   return (
-    <div className="py-[1rem]">
-      <MyCustomPortableText value={item?.richtext!} />
-    </div>
+    <MyCustomPortableText
+      value={item?.richtext!}
+      className="min-w-full font-jetbrains text-[.9rem] leading-[1.5rem] tracking-wider"
+    />
   );
 }
