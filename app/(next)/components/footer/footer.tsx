@@ -8,6 +8,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { MyCustomPortableText } from "../ui";
 import { PortableTextBlock } from "next-sanity";
+import Credits from "./Credits";
 
 export default async function Footer() {
   const settings = await sanityFetch<SettingsQueryResult>({
@@ -125,7 +126,7 @@ export default async function Footer() {
               </div>
             );
           })}
-          <button className="footerText footerTextHover">Crédits</button>
+          <Credits />
         </div>
         <span className="footerCopyright bottom-[1rem] left-0 order-last block whitespace-nowrap lg:absolute lg:hidden">
           © {new Date().getFullYear()}{" "}
