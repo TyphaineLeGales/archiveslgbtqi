@@ -528,15 +528,18 @@ export type Settings = {
   };
   header?: {
     logo?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      logoImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
       };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
+      alt?: string;
     };
     headerLinks?: Array<{
       type?: "internal" | "external";
@@ -556,15 +559,18 @@ export type Settings = {
   };
   footer?: {
     logo?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      logoImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
       };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
+      alt?: string;
     };
     addressGroup?: {
       addressTitle?: string;
@@ -599,6 +605,17 @@ export type Settings = {
     socialGroup?: Array<{
       socialName?: string;
       socialLink?: string;
+      socialLinkImage?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
       _type: "socialBlock";
       _key: string;
     }>;
@@ -775,7 +792,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt,    "svg": globalSettings.svgIcon,  },  "header": {    "logo": header.logo.asset->url,    "links": header.headerLinks[] {      _key,      type,      linkPosition,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": {    _id,    "moduleGroups": footer.moduleGroups[] {      _id,      _key,      groupName,      "modules": modules[] {        _key,        _id,        type,        "internalDetails": internalLink-> {          _key,          _id,          _type,          title,          "slug": slug.current        },        "externalDetails": {          "title": externalLink.title,          "url": externalLink.url        },        "text": text      }    }  }}
+// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt,    "svg": globalSettings.svgIcon,  },  "header": header{    "logo": logo {      "logoImage": logoImage.asset->url,      alt,    },    "links": headerLinks[] {      _key,      type,      linkPosition,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": footer{    "logo": logo {      "logoImage": logoImage.asset->url,      alt,    },    "addressGroup": addressGroup {      addressTitle,      addressContent[]{        ...,      },      mailAddress,    },    "socialGroup": socialGroup[] {      socialName,      socialLink,      socialLinkImage{        "imageUrl": asset->url,        alt,      },    },    "footerLinks": footerLinks[]{      _key,      groupName,      modules[]{        type,        "internalLink": internalLink->{          title,          "slug": slug.current        },        externalLink{          title,          url        },        text      }  }  }}
 export type SettingsQueryResult = {
   globalSettings: {
     siteTitle: string | null;
@@ -784,7 +801,10 @@ export type SettingsQueryResult = {
     svg: null;
   };
   header: {
-    logo: string | null;
+    logo: {
+      logoImage: string | null;
+      alt: string | null;
+    } | null;
     links: Array<{
       _key: string;
       type: "external" | "internal" | null;
@@ -802,11 +822,67 @@ export type SettingsQueryResult = {
         url: string | null;
       };
     }> | null;
-  };
+  } | null;
   footer: {
-    _id: string;
-    moduleGroups: null;
-  };
+    logo: {
+      logoImage: string | null;
+      alt: string | null;
+    } | null;
+    addressGroup: {
+      addressTitle: string | null;
+      addressContent: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          | "blockquote"
+          | "h1"
+          | "h2"
+          | "h3"
+          | "h4"
+          | "h5"
+          | "h6"
+          | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
+      mailAddress: string | null;
+    } | null;
+    socialGroup: Array<{
+      socialName: string | null;
+      socialLink: string | null;
+      socialLinkImage: {
+        imageUrl: string | null;
+        alt: null;
+      } | null;
+    }> | null;
+    footerLinks: Array<{
+      _key: string;
+      groupName: string | null;
+      modules: Array<{
+        type: "external" | "internal" | "text" | null;
+        internalLink: {
+          title: string | null;
+          slug: string | null;
+        } | null;
+        externalLink: {
+          title: string | null;
+          url: string | null;
+        } | null;
+        text: string | null;
+      }> | null;
+    }> | null;
+  } | null;
 } | null;
 // Variable: moreStoriesQuery
 // Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
