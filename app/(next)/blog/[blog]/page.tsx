@@ -2,7 +2,7 @@ import React from "react";
 import { BlogQueryResult, EventQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { blogQuery, eventQuery } from "@/sanity/lib/queries";
-import SingleEvent from "../../components/events/SingleEvent";
+
 import Blog from "../../components/blogs/Blog";
 
 type Blogs = {
