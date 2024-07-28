@@ -52,7 +52,7 @@ export default function DesktopSidebar({ content }: Props) {
               key={item.titleBlock}
               onClick={(e) => handleClickScroll(e, index)}
               className={clsx(
-                "font-tanker text-[1rem] leading-[.7rem] tracking-wider transition-colors duration-100 ease-tamisitée hover:text-pink-arch",
+                "sidebarButton",
                 index === activeIndex ? "text-pink-arch" : "text-black",
               )}
             >

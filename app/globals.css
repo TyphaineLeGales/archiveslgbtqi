@@ -67,12 +67,20 @@
 
   /* 👇🏽 All page */
 
+  .pageTitle {
+    @apply font-tanker text-[1.5rem] uppercase leading-[.7rem] tracking-wider lg:text-[2.8rem] lg:leading-[2rem];
+  }
+
   .richText {
     @apply font-jetbrains text-[.9rem] leading-[1.5rem] tracking-wider;
   }
 
   .linkButton {
     @apply w-fit cursor-pointer bg-black px-[1rem] py-[.6rem] font-jetbrains text-[.8rem] uppercase text-white transition-colors duration-200 ease-in-out hover:text-pink-arch;
+  }
+
+  .sidebarButton {
+    @apply font-tanker text-[1rem] leading-[.7rem] tracking-wider transition-colors duration-100 ease-tamisitée hover:text-pink-arch;
   }
 
   .sideBarTitle {

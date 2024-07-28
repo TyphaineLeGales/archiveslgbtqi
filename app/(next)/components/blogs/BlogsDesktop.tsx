@@ -1,6 +1,6 @@
 "use client";
 
-import { BlogsQueryResult, EventsQueryResult } from "@/sanity.types";
+import { BlogsQueryResult } from "@/sanity.types";
 import React, { useState, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
@@ -45,7 +45,7 @@ export default function BlogsDesktop({ blog }: BlogProps) {
         {blog?.map((blogItem, index) => (
           <Link
             key={`event-${index}`}
-            className="border-black-primary bg-white-primary group relative flex items-start overflow-hidden border-b-[1px]"
+            className="group relative flex items-start overflow-hidden border-b-[1px] border-black-primary bg-white-primary"
             href={`/blog/${blogItem.slug?.current}`}
           >
             {/* {hoveredIndex === index && (

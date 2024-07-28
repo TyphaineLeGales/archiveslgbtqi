@@ -202,23 +202,27 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
  
 }`;
 
-export const eventsQuery = groq`*[_type == "events" ] | order(eventDate.eventStartDate desc) {
+export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]{
   _id,
+  eventType,
   eventTitle,
   slug,
+  eventEntrance,
   eventDate,
   eventDescription,
   eventLocation,
   "image": eventImage{
-    "imageUrl": image.asset->url,
-    alt,
-  },
+      "imageUrl": image.asset->url,
+      alt,
+    },
 }`;
 
-export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]{
+export const pastEventQuery = groq`*[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()]{
   _id,
+  eventType,
   eventTitle,
   slug,
+  eventEntrance,
   eventDate,
   eventDescription,
   eventLocation,
@@ -233,6 +237,7 @@ export const lastEventQuery = groq`*[_type == "events" && defined(eventDate) && 
   eventType,
   eventTitle,
   slug,
+  eventEntrance,
   eventDate,
   eventDescription,
   eventLocation,
