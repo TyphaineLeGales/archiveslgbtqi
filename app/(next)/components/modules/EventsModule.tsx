@@ -21,10 +21,10 @@ export default function EventsModule({ events, title, link }: Props) {
           key={event.eventTitle}
           className="border-b-[3px] border-black py-[1rem]"
         >
-          <h4 className="font-tanker text-[1rem] uppercase tracking-wider">
+          <h4 className="font-tanker text-[.8rem] uppercase tracking-wider lg:text-[1rem]">
             {event.eventType}
           </h4>
-          <h3 className="font-tanker text-[1.5rem] uppercase tracking-wider">
+          <h3 className="font-tanker text-[1.2rem] uppercase tracking-wider lg:text-[1.5rem]">
             {event.eventTitle}
           </h3>
           <div className="richText">

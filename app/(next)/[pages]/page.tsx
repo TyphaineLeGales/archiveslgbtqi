@@ -63,8 +63,8 @@ export default async function Page({ params }: Props) {
     <div className="relative mx-auto flex h-full max-w-[1440px] overflow-hidden p-[1rem] lg:p-0">
       <DesktopSidebar content={content} />
 
-      <div className="flex h-full w-full flex-col gap-[1rem] overflow-hidden pt-[3rem] lg:ml-arch">
-        <h1 className="font-tanker text-[4rem] uppercase leading-[3.2rem] tracking-wider">
+      <div className="flex h-full w-full flex-col overflow-hidden pt-[3rem] lg:ml-arch">
+        <h1 className="font-tanker text-[2rem] uppercase leading-[1.2rem] tracking-wider lg:text-[4rem] lg:leading-[3.2rem]">
           {content.title}
         </h1>
         <div className="flex min-h-screen flex-col gap-[1rem]">
@@ -75,7 +75,7 @@ export default async function Page({ params }: Props) {
               key={item._key}
               className="relative flex h-full flex-col gap-[2rem] pb-[8rem] lg:pr-[10rem]"
             >
-              <h2 className="font-tanker text-[2.8rem] uppercase leading-[2rem] tracking-wider">
+              <h2 className="font-tanker text-[1.5rem] uppercase leading-[.7rem] tracking-wider lg:text-[2.8rem] lg:leading-[2rem]">
                 {item.titleBlock || ""}
               </h2>
               <div>
@@ -97,7 +97,7 @@ export default async function Page({ params }: Props) {
                       {block._type === "multi-images" && (
                         <MultiImagesModule item={block as any} />
                       )}
-                      {block._type === "contact-form" && <FormSubmission />}
+
                       {block._type === "creationArchives" && (
                         <CreationArchivesModule
                           intro={block.creationArchivesTitle as any}
@@ -121,6 +121,7 @@ export default async function Page({ params }: Props) {
                           link={block.goToAllEvents || ""}
                         />
                       )}
+                      {block._type === "contact-form" && <FormSubmission />}
                     </div>
                   ))}
                 </div>

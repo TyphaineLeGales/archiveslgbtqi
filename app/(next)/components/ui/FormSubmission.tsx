@@ -39,7 +39,7 @@ export default function FormSubmission() {
   return (
     <form
       onSubmit={handleSubmit(processForm)}
-      className="relative flex w-[55%] flex-col gap-[1rem]"
+      className="relative flex w-full flex-col gap-[1rem] lg:w-[55%]"
     >
       <input
         placeholder="name"
