@@ -27,22 +27,22 @@ export default function EventsMap({ id, eventsMap }: FutureEventProps) {
               <div>
                 <h2 className="eventType">{event.eventType}</h2>
                 <h2 className="eventTitle">{event.eventTitle}</h2>
-                <div className="eventDate flex flex-col pt-[.5rem] lg:flex-row lg:gap-[.5rem]">
+                <div className="eventDate flex flex-col pt-[1rem] lg:flex-row lg:gap-[.5rem]">
                   <DateHourFormat
                     dateString={event.eventDate?.eventStartDate || ""}
                   />
                   {event.eventDate?.eventEndDate && (
-                    <>
+                    <div className="inline-block h-fit">
                       <br className="block lg:hidden" />
-                      <span className="">jusqu&apos;au </span>
+                      <span>jusqu&apos;au </span>
                       <DateHourFormat
                         dateString={event.eventDate?.eventEndDate || ""}
                       />
-                    </>
+                    </div>
                   )}
                 </div>
-                <div className="flex flex-col gap-[.25rem] pt-[.5rem]">
-                  <span>{event.eventLocation}</span>
+                <div className="flex flex-col gap-[.25rem] pt-[1rem]">
+                  <span className="eventLocation">{event.eventLocation}</span>
                   <span className="eventEntrance">{event.eventEntrance}</span>
                 </div>
               </div>

@@ -102,6 +102,10 @@
   }
 
   .eventDate {
+    @apply font-jetbrains text-[.8rem] uppercase leading-[.5rem];
+  }
+
+  .eventLocation {
     @apply font-jetbrains text-[.8rem] uppercase leading-[.8rem];
   }
 
