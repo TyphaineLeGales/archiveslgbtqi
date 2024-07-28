@@ -93,8 +93,12 @@
 
   /* 👇🏽 Events */
 
+  .eventType {
+    @apply font-tanker text-[1.5rem] uppercase;
+  }
+
   .eventTitle {
-    @apply text-start text-[4rem] font-semibold uppercase leading-[4rem] tracking-tighter lg:text-[5rem] lg:leading-[5rem];
+    @apply font-tanker text-[2rem] uppercase;
   }
 
   .eventDate {
