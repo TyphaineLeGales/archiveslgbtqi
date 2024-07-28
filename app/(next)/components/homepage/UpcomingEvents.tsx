@@ -64,8 +64,9 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
                     {event.eventDate?.eventEndDate && (
                       <>
                         {" "}
-                        -{" "}
+                        jusqu&apos;au{" "}
                         <DateHourFormat
+                          formatType="alternative"
                           dateString={event.eventDate?.eventEndDate || ""}
                         />
                       </>

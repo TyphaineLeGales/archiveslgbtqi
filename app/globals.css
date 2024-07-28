@@ -94,19 +94,23 @@
   /* 👇🏽 Events */
 
   .eventType {
-    @apply font-tanker text-[1.5rem] uppercase;
+    @apply font-tanker text-[1.25rem] uppercase lg:text-[1.5rem];
   }
 
   .eventTitle {
-    @apply font-tanker text-[2rem] uppercase;
+    @apply font-tanker text-[1.7rem] uppercase leading-[1.7rem] lg:text-[2rem] lg:leading-[2rem];
   }
 
   .eventDate {
-    @apply text-start text-[1rem] font-semibold uppercase leading-[1rem] tracking-tighter lg:text-[1.5rem] lg:leading-[1.5rem];
+    @apply font-jetbrains text-[.8rem] uppercase leading-[.8rem];
   }
 
-  .eventLocation {
-    @apply text-start text-[1.5rem] font-semibold leading-[1.5rem] tracking-tighter lg:text-[2rem] lg:leading-[2rem];
+  .eventEntrance {
+    @apply font-jetbrains text-[.8rem] uppercase leading-[.8rem] text-pink-arch;
+  }
+
+  .eventParagraph {
+    @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider;
   }
 }
 
