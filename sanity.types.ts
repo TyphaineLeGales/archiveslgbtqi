@@ -1034,47 +1034,14 @@ export type HomepageQueryResult = {
     marqueeLink: string | null;
   } | null;
 } | null;
-// Variable: eventsQuery
-// Query: *[_type == "events" ] | order(eventDate.eventStartDate desc) {  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
-export type EventsQueryResult = Array<{
-  _id: string;
-  eventTitle: string | null;
-  slug: null;
-  eventDate: {
-    eventStartDate?: string;
-    addEndDate?: boolean;
-    eventEndDate?: string;
-  } | null;
-  eventDescription: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }> | null;
-  eventLocation: string | null;
-  image: {
-    imageUrl: string | null;
-    alt: string | null;
-  } | null;
-}>;
 // Variable: eventQuery
-// Query: *[_type == "events" && slug.current == $event][0]{  _id,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
+// Query: *[_type == "events" && slug.current == $event][0]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type EventQueryResult = {
   _id: string;
+  eventType: string | null;
   eventTitle: string | null;
   slug: null;
+  eventEntrance: string | null;
   eventDate: {
     eventStartDate?: string;
     addEndDate?: boolean;
@@ -1104,13 +1071,51 @@ export type EventQueryResult = {
     alt: string | null;
   } | null;
 } | null;
+// Variable: pastEventQuery
+// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
+export type PastEventQueryResult = Array<{
+  _id: string;
+  eventType: string | null;
+  eventTitle: string | null;
+  slug: null;
+  eventEntrance: string | null;
+  eventDate: {
+    eventStartDate?: string;
+    addEndDate?: boolean;
+    eventEndDate?: string;
+  } | null;
+  eventDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  eventLocation: string | null;
+  image: {
+    imageUrl: string | null;
+    alt: string | null;
+  } | null;
+}>;
 // Variable: lastEventQuery
-// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {  _id,  eventType,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
+// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
 export type LastEventQueryResult = Array<{
   _id: string;
   eventType: string | null;
   eventTitle: string | null;
   slug: null;
+  eventEntrance: string | null;
   eventDate: {
     eventStartDate?: string;
     addEndDate?: boolean;
