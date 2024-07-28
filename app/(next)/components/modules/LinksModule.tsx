@@ -15,13 +15,15 @@ type Props = {
 export default function LinksModule({ item }: Props) {
   const link = item;
   return (
-    <Link
-      href={`${link.internal?.slug || link.external || `mailto:${link.mail}`}`}
-      target={link.external ? "_blank" : undefined}
-      rel={link.external ? "noopener noreferrer" : undefined}
-      className="linkButton"
-    >
-      {link.linkLabel}
-    </Link>
+    <div className="mb-[2rem]">
+      <Link
+        href={`${link.internal?.slug || link.external || `mailto:${link.mail}`}`}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noopener noreferrer" : undefined}
+        className="linkButton mt-"
+      >
+        {link.linkLabel}
+      </Link>
+    </div>
   );
 }
