@@ -39,51 +39,51 @@ export default function FormSubmission() {
   return (
     <form
       onSubmit={handleSubmit(processForm)}
-      className="mx-auto flex flex-1 flex-col gap-4 text-gray-600 sm:w-1/2 lg:w-1/3"
+      className="relative flex w-[55%] flex-col gap-[1rem]"
     >
       <input
         placeholder="name"
-        className="w-full rounded-lg"
         {...register("name")}
+        className="FormSubmitInput"
       />
       {errors.name?.message && (
-        <p className="ml-1 mt-1 text-sm text-red-400">{errors.name.message}</p>
+        <p className="FormSubmitInput">{errors.name.message}</p>
       )}
 
       <input
         placeholder="email"
-        className="w-full rounded-lg"
         {...register("email")}
+        className="FormSubmitInput"
       />
       {errors.email?.message && (
-        <p className="ml-1 mt-1 text-sm text-red-400">{errors.email.message}</p>
+        <p className="FormSubmitInput">{errors.email.message}</p>
       )}
 
       <input
         placeholder="Titre de votre archive"
-        className="w-full rounded-lg"
         {...register("title")}
+        className="FormSubmitInput"
       />
       {errors.title?.message && (
-        <p className="ml-1 mt-1 text-sm text-red-400">{errors.title.message}</p>
+        <p className="FormSubmitInput">{errors.title.message}</p>
       )}
 
       <textarea
         rows={5}
         cols={5}
         placeholder="message"
-        className="w-full rounded-lg"
         {...register("message")}
+        className="FormSubmitInput resize-none"
       />
       {errors.message?.message && (
-        <p className="ml-1 text-sm text-red-400">{errors.message.message}</p>
+        <p className="FormSubmitInput">{errors.message.message}</p>
       )}
 
       <button
         disabled={isSubmitting}
-        className="border-black-primary bg-black-primary text-white-primary rounded-lg border py-2.5 font-medium transition-colors hover:bg-black/80 disabled:cursor-not-allowed disabled:opacity-50"
+        className="absolute bottom-0 right-0 translate-y-[calc(100%+1rem)] bg-black px-[1rem] py-[.5rem] font-jetbrains text-[.8rem] tracking-wider text-white"
       >
-        {isSubmitting ? "Submitting..." : "Submit"}
+        {isSubmitting ? "..." : "Envoyer"}
       </button>
     </form>
   );

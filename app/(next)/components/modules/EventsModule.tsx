@@ -15,30 +15,35 @@ type Props = {
 
 export default function EventsModule({ events, title, link }: Props) {
   return (
-    <ul className="flex flex-col gap-[1rem]">
-      <h1>{title}</h1>
+    <ul className="flex flex-col pb-[5rem]">
       {events.map((event) => (
-        <li key={event.eventTitle}>
-          <div>
-            <h2>{event.eventTitle}</h2>
-            <div className="inline-block">
-              <DateHourFormat
-                dateString={event.eventDate?.eventStartDate || ""}
-              />
-              {event.eventDate?.eventEndDate && (
-                <>
-                  <span>&nbsp;-&nbsp;</span>
-                  <DateHourFormat
-                    dateString={event.eventDate?.eventEndDate || ""}
-                  />
-                </>
-              )}
-            </div>
-            <p>{event.eventLocation}</p>
+        <li
+          key={event.eventTitle}
+          className="border-b-[3px] border-black py-[1rem]"
+        >
+          <h4 className="font-tanker text-[1rem] uppercase tracking-wider">
+            {event.eventType}
+          </h4>
+          <h3 className="font-tanker text-[1.5rem] uppercase tracking-wider">
+            {event.eventTitle}
+          </h3>
+          <div className="richText">
+            <DateHourFormat
+              dateString={event.eventDate?.eventStartDate || ""}
+            />
+            {event.eventDate?.eventEndDate && (
+              <>
+                <span>&nbsp;-&nbsp;</span>
+                <DateHourFormat
+                  dateString={event.eventDate?.eventEndDate || ""}
+                />
+              </>
+            )}
+            <p className="">{event.eventLocation}</p>
           </div>
         </li>
       ))}
-      <Link href="/agenda" className="underline">
+      <Link href="/agenda" className="linkButton mt-[2rem]">
         {link}
       </Link>
     </ul>

@@ -67,12 +67,20 @@
 
   /* 👇🏽 All page */
 
+  .richText {
+    @apply font-jetbrains text-[.9rem] leading-[1.5rem] tracking-wider;
+  }
+
   .linkButton {
     @apply w-fit cursor-pointer bg-black px-[1rem] py-[.6rem] font-jetbrains text-[.8rem] uppercase text-white transition-colors duration-200 ease-in-out hover:text-pink-arch;
   }
 
   .sideBarTitle {
     @apply text-start text-[1rem] leading-[1.3rem] tracking-tighter;
+  }
+
+  .FormSubmitInput {
+    @apply w-full border-b-[2px] border-black font-cityburn text-[1.6rem] tracking-wider text-black placeholder:font-cityburn placeholder:text-[1.6rem] placeholder:tracking-wider placeholder:text-black focus-within:outline-none focus:ring-0;
   }
 
   /* 👇🏽 Events */

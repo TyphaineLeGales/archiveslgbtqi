@@ -230,6 +230,7 @@ export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]
 
 export const lastEventQuery = groq`*[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {
   _id,
+  eventType,
   eventTitle,
   slug,
   eventDate,
