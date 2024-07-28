@@ -67,7 +67,7 @@ export default async function Page({ params }: Props) {
         <h1 className="font-tanker text-[4rem] uppercase leading-[3.2rem] tracking-wider">
           {content.title}
         </h1>
-        <div className="flex min-h-screen flex-col gap-[2rem]">
+        <div className="flex min-h-screen flex-col gap-[1rem]">
           {content.contentModulde?.map((item, index) => (
             // when the ScrollButton is clicked, it will scroll to the id of the element here
             <div
@@ -79,7 +79,7 @@ export default async function Page({ params }: Props) {
                 {item.titleBlock || ""}
               </h2>
               <div>
-                <div className="flex flex-col gap-[2rem]">
+                <div className="flex flex-col gap-[.5rem]">
                   {item.contenBlock?.map((block, index) => (
                     <div key={block._key}>
                       {block._type === "richtext" && (
@@ -93,6 +93,9 @@ export default async function Page({ params }: Props) {
                           imageUrl={block.imageUrl || ""}
                           imageTitle={block.imageTitle || ""}
                         />
+                      )}
+                      {block._type === "multi-images" && (
+                        <MultiImagesModule item={block as any} />
                       )}
                       {block._type === "contact-form" && <FormSubmission />}
                       {block._type === "creationArchives" && (
@@ -117,10 +120,6 @@ export default async function Page({ params }: Props) {
                           title={block.lastEventLabel || ""}
                           link={block.goToAllEvents || ""}
                         />
-                      )}
-
-                      {block._type === "multi-images" && (
-                        <MultiImagesModule item={block as any} />
                       )}
                     </div>
                   ))}

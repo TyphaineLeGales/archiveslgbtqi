@@ -13,7 +13,7 @@ export default function RichTextModule({ item }: Props) {
   return (
     <MyCustomPortableText
       value={item?.richtext!}
-      className="min-w-full font-jetbrains text-[.9rem] leading-[1.5rem] tracking-wider"
+      className="richText min-w-full pb-[2rem]"
     />
   );
 }
