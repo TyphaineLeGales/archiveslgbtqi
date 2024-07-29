@@ -3,15 +3,16 @@ import React from "react";
 import Image from "next/image";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { blogsQuery } from "@/sanity/lib/queries";
-import { BlogsQueryResult } from "@/sanity.types";
+import { blogsQuery, homepageQuery } from "@/sanity/lib/queries";
+import { BlogsQueryResult, HomepageQueryResult } from "@/sanity.types";
 
 import { DateHourFormat, MyCustomPortableText } from "../components/ui";
 import { PortableTextBlock } from "next-sanity";
 import { BlogDesktopSidebar } from "../components/blog";
+import { CTAmarquee } from "../components/homepage";
 
 export default async function Page() {
-  const [blogs] = await Promise.all([
+  const [blogs, homePage] = await Promise.all([
     sanityFetch<BlogsQueryResult>({
       query: blogsQuery,
       params: {
@@ -19,12 +20,13 @@ export default async function Page() {
         minYear: new Date().getFullYear() - 4, // 5 years of blogs
       },
     }),
+    sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
   ]);
 
   // console.log("Blogs:", blogs);
 
   return (
-    <div className="relative mx-auto mt-[3rem] min-h-screen pb-[1rem] lg:max-w-[1440px]">
+    <div className="relative mx-auto mt-[3rem] min-h-screen lg:max-w-[1440px]">
       <BlogDesktopSidebar blog={blogs} />
       <div className="flex flex-col gap-[5rem] px-[1rem] lg:ml-arch lg:pr-[3rem]">
         {blogs.map((blog) => (
@@ -66,6 +68,7 @@ export default async function Page() {
           </div>
         ))}
       </div>
+      <CTAmarquee marquee={homePage} />
     </div>
   );
 }
