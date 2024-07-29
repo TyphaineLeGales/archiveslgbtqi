@@ -42,12 +42,7 @@ export default function NavDesktop({ settings }: NavLinkProps) {
               settings.header.links.map((link, index) => {
                 if (link.linkPosition === "left") {
                   if (link.type === "internal") {
-                    return (
-                      <InternalLink
-                        key={link.internalLinkDetails?._key}
-                        link={link as any}
-                      />
-                    );
+                    return <InternalLink key={link._key} link={link as any} />;
                   } else {
                     return <ExternalLink key={link._key} link={link as any} />;
                   }
