@@ -13,9 +13,7 @@ export default async function Page() {
     }),
   ]);
 
-  return (
-    <div className="min-h-[100dvh] py-[1rem]">
-      <Blogs blogs={blogs} />
-    </div>
-  );
+  console.log("Blogs:", blogs);
+
+  return <div className="relative min-h-screen">Blog</div>;
 }
