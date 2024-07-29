@@ -1,3 +1,4 @@
+import { title } from "process";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
@@ -64,7 +65,7 @@ export default defineType({
           icon: () => "🖼️",
           type: "object",
           fields: [
-            defineField({
+            {
               name: "image",
               title: "Image",
               type: "image",
@@ -72,7 +73,7 @@ export default defineType({
                 hotspot: true,
               },
               validation: (rule) => rule.required(),
-            }),
+            },
             defineField({
               name: "alt",
               title: "Balise alt",
@@ -82,6 +83,16 @@ export default defineType({
               validation: (rule) => rule.required(),
             }),
           ],
+          preview: {
+            select: {
+              title: "title",
+            },
+            prepare({ title }) {
+              return {
+                title: "Image Unique",
+              };
+            },
+          },
         },
         defineField({
           name: "multiImagesObject",
@@ -119,6 +130,16 @@ export default defineType({
               ],
             }),
           ],
+          preview: {
+            select: {
+              title: "title",
+            },
+            prepare({ title }) {
+              return {
+                title: "Multi-Images",
+              };
+            },
+          },
         }),
         defineField({
           name: "links",

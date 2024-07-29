@@ -247,26 +247,39 @@ export const lastEventQuery = groq`*[_type == "events" && defined(eventDate) && 
   },
 }`;
 
-export const blogsQuery = groq`*[_type == "blogs" ] | order(eventDate.eventStartDate desc) {
+export const blogsQuery = groq`*[_type == "blogs"  && year >= $minYear && year <= $maxYear] | order(year desc)  {
   _id,
-  blogTitle,
-  slug,
-  blogContentText,
-  "blogImages": blogImages[] {
-    "imageUrl": image.asset->url,
-    alt,
-  },
-}`;
-
-export const blogQuery = groq`*[_type == "blogs" && slug.current == $blog][0]{
-  _id,
-  blogTitle,
-  slug,
-  blogContentText,
-  "blogImages": blogImages[] {
-    "imageUrl": image.asset->url,
-    alt,
-  },
+  title,
+  subTitle,
+  author,
+  year,
+  date,
+  contentBlock[]{
+    _type == "richText" => {
+      "richText": text
+    },
+    _type == "singleImage" => {
+      "singleImage": {
+        "imageUrl": image.asset->url,
+        alt
+      }
+    },
+    _type == "multiImagesObject" => {
+      "multiImagesObject": multiImages[]{
+        "imageUrl": image.asset->url,
+        alt
+      }
+    },
+    _type == "links" => {
+      "links": {
+        label,
+        type,
+        "internalLink": internal->title,
+        external,
+        mail
+      }
+    }
+  }
 }`;
 
 export const lesArchivesVivantesQuery = groq`*[_type == "lesArchivesVivantes"][0]`;
