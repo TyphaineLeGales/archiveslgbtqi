@@ -4,7 +4,6 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 
 import { blogsQuery } from "@/sanity/lib/queries";
 import { BlogsQueryResult } from "@/sanity.types";
-import Blogs from "../components/blogs/Blogs";
 
 export default async function Page() {
   const [blogs] = await Promise.all([
