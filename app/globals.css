@@ -116,6 +116,28 @@
   .eventParagraph {
     @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider;
   }
+
+  /* 👇🏽 Blogs */
+
+  .blogTitle {
+    @apply font-tanker text-[1.7rem] uppercase leading-[1.7rem] lg:text-[2rem] lg:leading-[2rem];
+  }
+
+  .blogSubTitle {
+    @apply font-tanker text-[1.3rem] uppercase leading-[1.3rem] lg:text-[1.5rem] lg:leading-[1.5rem];
+  }
+
+  .blogAuthor {
+    @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider text-pink-arch;
+  }
+
+  .blogDate {
+    @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider;
+  }
+
+  .blogParagraph {
+    @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider;
+  }
 }
 
 @layer utilities {
