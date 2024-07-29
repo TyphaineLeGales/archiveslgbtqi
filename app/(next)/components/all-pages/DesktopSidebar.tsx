@@ -31,7 +31,7 @@ export default function DesktopSidebar({ content }: Props) {
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         // For other elements, add 5rem margin top
-        const yOffset = -165; // 5rem = 80px
+        const yOffset = -182.5; // 5rem = 80px
         const y =
           element.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
