@@ -52,7 +52,7 @@ export default async function Page({ params }: Props) {
   // console.log("Pages Content:", content);
 
   return (
-    <div className="relative mx-auto flex h-full w-auto max-w-[1440px] overflow-hidden p-[1rem] lg:p-0">
+    <div className="relative mx-auto flex h-full min-h-screen w-auto max-w-[1440px] overflow-hidden p-[1rem] lg:p-0">
       <DesktopSidebar content={content} />
 
       <div className="flex h-full w-full flex-col overflow-hidden pt-[3rem] lg:ml-arch">
