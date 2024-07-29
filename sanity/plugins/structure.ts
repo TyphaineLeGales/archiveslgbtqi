@@ -1,17 +1,20 @@
 import { StructureBuilder } from "sanity/structure";
+import { fetchYears } from "../schemas/utils/fetchYears";
 
-export const structure = (S: StructureBuilder) =>
-  S.list()
+export const structure = async (S: StructureBuilder) => {
+  const years = fetchYears();
+
+  return S.list()
     .title("Content")
     .items([
-      // Settings
+      // 👇🏽 Settings
       S.documentListItem().id("settings").schemaType("settings"),
 
-      // Home
       S.divider(),
+      // 👇🏽 Home
       S.documentListItem().id("homepage").schemaType("homepage"),
 
-      // Pages
+      // 👇🏽 Pages
       ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
       S.divider(),
 
@@ -43,15 +46,47 @@ export const structure = (S: StructureBuilder) =>
           item.getId() !== "creativeCtas" &&
           item.getId() !== "creativeIcon" &&
           item.getId() !== "creativeImage" &&
-          item.getId() !== "creativeRichtext",
+          item.getId() !== "creativeRichtext" &&
+          // hide Media from the Media Plugin
+          item.getId() !== "media.tag",
       ),
 
-      // Blogs
-      ...S.documentTypeListItems().filter((item) => item.getId() == "blogs"),
+      // 👇🏽 Blogs
+      S.listItem()
+        .title("Blogs")
+        .icon(() => "📝")
+        .child(
+          // 👇🏽 List of blogs classified and sorted by year
+          S.list()
+            .title("Blogs")
+            .items([
+              // All blogs
+              S.documentTypeListItem("blogs")
+                .title("Tous les blogs")
+                .child(
+                  S.documentList()
+                    .title("Tous les blogs")
+                    .filter('_type == "blogs"')
+                    .defaultOrdering([{ field: "year", direction: "desc" }]),
+                ),
+              S.divider(),
+              // Blogs by year
+              ...(await years).map((year) =>
+                S.listItem()
+                  .title(year.toString())
+                  .icon(() => (year >= new Date().getFullYear() ? "📅" : "📆"))
+                  .child(
+                    S.documentList()
+                      .title(`Blogs de ${year}`)
+                      .filter('_type == "blogs" && year == $year')
+                      .params({ year }),
+                  ),
+              ),
+            ]),
+        ),
 
-      // Events
+      // 👇🏽 Events
       S.divider(),
-      // ...S.documentTypeListItems().filter((item) => item.getId() == "events"),
       S.listItem()
         .title("Agenda")
         .icon(() => "🗓️")
@@ -102,3 +137,4 @@ export const structure = (S: StructureBuilder) =>
         .schemaType("lesArchivesVivantes"),
       S.divider(),
     ]);
+};
