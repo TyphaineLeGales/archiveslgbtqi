@@ -425,18 +425,6 @@ export type Events = {
   };
 };
 
-export type LesArchivesVivantes = {
-  _id: string;
-  _type: "lesArchivesVivantes";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  linkToVimeo?: string;
-  linkToPodcast?: string;
-};
-
 export type Homepage = {
   _id: string;
   _type: "homepage";
@@ -827,7 +815,6 @@ export type AllSanitySchemaTypes =
   | Content
   | Blogs
   | Events
-  | LesArchivesVivantes
   | Homepage
   | Settings
   | Pages
@@ -935,21 +922,6 @@ export type SettingsQueryResult = {
     }> | null;
   } | null;
 } | null;
-// Variable: moreStoriesQuery
-// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
-export type MoreStoriesQueryResult = Array<never>;
-// Variable: postQuery
-// Query: *[_type == "post" && slug.current == $slug] [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
-export type PostQueryResult = null;
-// Variable: headerQuery
-// Query: *[_type == "header"] {  "imageUrl": logo.asset->url,  "url": links[]->{     title,     "slug": slug.current  }}
-export type HeaderQueryResult = Array<never>;
-// Variable: footerQuery
-// Query: *[_type == "footer"][0] {  title,}
-export type FooterQueryResult = null;
-// Variable: heroQuery
-// Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {  content,    _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{"name": coalesce(name, "Anonymous"), picture},}
-export type HeroQueryResult = null;
 // Variable: homepageQuery
 // Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "heroVisibility": hero.heroVisibility,  "hero": hero.hero[]{        ...,    _id,    _key,    "image": image{      "imageUrl": image.asset->url,      alt,    },    cta {      ctaLabel,      ctaLink->{        _type,        "slug": slug.current      }    }  },  "secondPartVisibility": secondPart.secondPartVisibility,  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    },    ctaScrollTo  },  },  introText {    introTextVisibility,    introTextContent[]{      ...,  },    newsletterTextContent  },  "upcomingEventsSection": upcomingEventsSection {    upcomingEventsSectionVisibility,    upcomingEventsTitle,    upcomingEventsCTA{      eventsCTATitle,      eventsCTA->,    },    "upcomingEvents": upcomingEvents[]-> {  _id,  eventType,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },},    upcomingEventsCTATitle,  },  marqueeCTA {    marqueeCTAVisibility,    marqueeContent,    marqueeLink,  } }
 export type HomepageQueryResult = {
@@ -1257,22 +1229,481 @@ export type BlogsQueryResult = Array<{
       }
   > | null;
 }>;
-// Variable: lesArchivesVivantesQuery
-// Query: *[_type == "lesArchivesVivantes"][0]
-export type LesArchivesVivantesQueryResult = {
-  _id: string;
-  _type: "lesArchivesVivantes";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  linkToVimeo?: string;
-  linkToPodcast?: string;
-} | null;
 // Variable: pagesContentQuery
 // Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  "slug": slug.current,  "contentModulde": content[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      // ...,      _type,        _id,  _key,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    },  }}
 export type PagesContentQueryResult = {
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  contentModulde: Array<{
+    _id: null;
+    _key: string;
+    _type: "content";
+    titleBlock: string | null;
+    contenBlock: Array<
+      | {
+          _type: "contact-form";
+          _id: null;
+          _key: string;
+          richtext: null;
+          richTextTitle: string | null;
+          richtextTitleText: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: string | null;
+          fileUrl: null;
+          fileName: null;
+        }
+      | {
+          _type: "creationArchives";
+          _id: null;
+          _key: string;
+          richtext: null;
+          richTextTitle: null;
+          richtextTitleText: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          creationArchivesArchive: Array<{
+            title: string | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?:
+                | "blockquote"
+                | "h1"
+                | "h2"
+                | "h3"
+                | "h4"
+                | "h5"
+                | "h6"
+                | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            status: string | null;
+          }> | null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: null;
+          fileUrl: null;
+          fileName: null;
+        }
+      | {
+          _type: "custom-html";
+          _id: null;
+          _key: string;
+          richtext: null;
+          richTextTitle: null;
+          richtextTitleText: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: Code | null;
+          codeTitle: string | null;
+          isAddFiles: boolean | null;
+          fileGroup: Array<{
+            title: string | null;
+            files: Array<{
+              asset: {
+                _id: string;
+                _type: "sanity.fileAsset";
+                _createdAt: string;
+                _updatedAt: string;
+                _rev: string;
+                originalFilename?: string;
+                label?: string;
+                title?: string;
+                description?: string;
+                altText?: string;
+                sha1hash?: string;
+                extension?: string;
+                mimeType?: string;
+                size?: number;
+                assetId?: string;
+                uploadId?: string;
+                path?: string;
+                url?: string;
+                source?: SanityAssetSourceData;
+              } | null;
+            }> | null;
+          }> | null;
+          title: null;
+          fileUrl: null;
+          fileName: null;
+        }
+      | {
+          _type: "document-file";
+          _id: null;
+          _key: string;
+          richtext: null;
+          richTextTitle: string | null;
+          richtextTitleText: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: string | null;
+          fileUrl: string | null;
+          fileName: string | null;
+        }
+      | {
+          _type: "lastEvent";
+          _id: null;
+          _key: string;
+          richtext: null;
+          richTextTitle: null;
+          richtextTitleText: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: boolean | null;
+          lastEventLabel: string | null;
+          goToAllEvents: string | null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: null;
+          fileUrl: null;
+          fileName: null;
+        }
+      | {
+          _type: "link";
+          _id: null;
+          _key: string;
+          richtext: null;
+          richTextTitle: null;
+          richtextTitleText: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: string | null;
+          external: string | null;
+          internal: {
+            _id: string;
+            _type: "pages";
+            title: string | null;
+            slug: string | null;
+          } | null;
+          mail: string | null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: null;
+          fileUrl: null;
+          fileName: null;
+        }
+      | {
+          _type: "multi-images";
+          _id: null;
+          _key: string;
+          richtext: null;
+          richTextTitle: string | null;
+          richtextTitleText: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: Array<{
+            imageUrl: string | null;
+            alt: string | null;
+          }> | null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: string | null;
+          fileUrl: null;
+          fileName: null;
+        }
+      | {
+          _type: "richtext";
+          _id: null;
+          _key: string;
+          richtext: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          richTextTitle: null;
+          richtextTitleText: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: null;
+          fileUrl: null;
+          fileName: null;
+        }
+      | {
+          _type: "richTextAndTitle";
+          _id: null;
+          _key: string;
+          richtext: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          richTextTitle: string | null;
+          richtextTitleText: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: string | null;
+          fileUrl: null;
+          fileName: null;
+        }
+      | {
+          _type: "single-image";
+          _id: null;
+          _key: string;
+          richtext: null;
+          richTextTitle: string | null;
+          richtextTitleText: null;
+          imageTitle: string | null;
+          imageUrl: string | null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+          isDisplayed: null;
+          lastEventLabel: null;
+          goToAllEvents: null;
+          creationArchivesTitle: null;
+          creationArchivesArchive: null;
+          customHtml: null;
+          codeTitle: null;
+          isAddFiles: null;
+          fileGroup: null;
+          title: string | null;
+          fileUrl: null;
+          fileName: null;
+        }
+    > | null;
+  }> | null;
+} | null;
+// Variable: listeDeFondsQuery
+// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  "contentModulde": content[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      // ...,      _type,        _id,  _key,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    },  }}
+export type ListeDeFondsQueryResult = {
   _id: string;
   title: string | null;
   slug: string | null;

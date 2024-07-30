@@ -4,7 +4,7 @@ import { defineField, defineType } from "sanity";
 export default defineType({
   name: "richtext",
   title: "Rich Text",
-  icon: TextIcon,
+  icon: () => "📝",
   type: "object",
   fields: [
     defineField({

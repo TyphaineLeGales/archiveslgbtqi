@@ -128,11 +128,11 @@
   }
 
   .blogAuthor {
-    @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider text-pink-arch;
+    @apply font-jetbrains text-[.8rem] uppercase leading-[1.2rem] tracking-wider text-pink-arch;
   }
 
   .blogDate {
-    @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider;
+    @apply font-jetbrains text-[.8rem] uppercase leading-[1.2rem] tracking-wider;
   }
 
   .blogParagraph {

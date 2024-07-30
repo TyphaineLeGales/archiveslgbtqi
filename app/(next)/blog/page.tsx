@@ -35,7 +35,7 @@ export default async function Page() {
             key={blog._id}
             className="flex flex-col justify-between border-t-[3px] border-black pb-[3rem]"
           >
-            <h2 className="blogTitle">{blog.title}</h2>
+            <h2 className="blogTitle pt-[.5rem]">{blog.title}</h2>
             <span className="blogSubTitle py-[.75rem]">{blog.subTitle}</span>
             <span className="blogAuthor">{blog.author}</span>
             <DateHourFormat
@@ -48,7 +48,7 @@ export default async function Page() {
                   <MyCustomPortableText
                     key={index}
                     value={block.richText as PortableTextBlock[]}
-                    className="blogParagraph"
+                    className="blogParagraph pb-[1rem]"
                   />
                 );
               }
@@ -60,6 +60,7 @@ export default async function Page() {
                     alt={block.singleImage.alt || ""}
                     width={1000}
                     height={1000}
+                    className="pb-[1rem]"
                   />
                 );
               }

@@ -1,11 +1,9 @@
 import { defineField, defineType } from "sanity";
-import { VscCode } from "react-icons/vsc";
-import { title } from "process";
 
 export default defineType({
   name: "custom-html",
   title: "Custom HTML",
-  icon: VscCode,
+  icon: () => "📄",
   type: "object",
   fields: [
     defineField({

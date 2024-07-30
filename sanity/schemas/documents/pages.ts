@@ -1,5 +1,5 @@
-import { FolderIcon, DocumentIcon, BookIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
+import { rule } from "postcss";
+import { defineField, defineType, validation } from "sanity";
 
 /**
  * This file is the schema definition for pages.
@@ -43,7 +43,16 @@ export default defineType({
       type: "array",
       of: [{ type: "content" }],
       hidden: ({ parent }) =>
-        parent?.slug?.current === "agenda" || parent?.slug?.current === "blog",
+        parent?.slug?.current === "agenda" ||
+        parent?.slug?.current === "blog" ||
+        parent?.slug?.current === "liste-des-fonds",
+    }),
+    defineField({
+      name: "contentFromListeDeFonds",
+      title: "Content",
+      type: "array",
+      of: [{ type: "liste-des-fonds-content" }],
+      hidden: ({ parent }) => parent?.slug?.current !== "liste-des-fonds",
     }),
   ],
   preview: {

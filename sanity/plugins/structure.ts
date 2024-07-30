@@ -37,7 +37,6 @@ export const structure = async (S: StructureBuilder) => {
           item.getId() !== "multi-images" &&
           item.getId() !== "customExternalLink" &&
           item.getId() !== "link" &&
-          item.getId() !== "lesArchivesVivantes" &&
           item.getId() !== "contact-form" &&
           item.getId() !== "lastEvent" &&
           item.getId() !== "creationArchives" &&
@@ -47,6 +46,7 @@ export const structure = async (S: StructureBuilder) => {
           item.getId() !== "creativeIcon" &&
           item.getId() !== "creativeImage" &&
           item.getId() !== "creativeRichtext" &&
+          item.getId() !== "liste-des-fonds-content" &&
           // hide Media from the Media Plugin
           item.getId() !== "media.tag",
       ),
@@ -129,12 +129,6 @@ export const structure = async (S: StructureBuilder) => {
                 ),
             ]),
         ),
-      S.divider(),
-
-      // Les Archives Vivantes
-      S.documentListItem()
-        .id("lesArchivesVivantes")
-        .schemaType("lesArchivesVivantes"),
       S.divider(),
     ]);
 };
