@@ -36,7 +36,7 @@ export default function HeroDesktop({ heroes }: Props) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [heroes?.hero?.length]);
