@@ -44,6 +44,10 @@ export default {
       margin: {
         arch: "19.25rem",
       },
+
+      padding: {
+        bottomPage: "7rem",
+      },
     },
   },
   future: {
