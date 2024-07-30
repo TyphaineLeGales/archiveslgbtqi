@@ -1,5 +1,6 @@
 import { groq } from "next-sanity";
 
+// 👇🏽 Settings Query
 export const settingsQuery = groq`*[_type == "settings"][0] {
   "globalSettings": {
     "siteTitle": globalSettings.siteTitle,
@@ -70,18 +71,7 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
   }
 }`;
 
-// Type
-
-const postFields = /* groq */ `
-  _id,
-  "status": select(_originalId in path("drafts.**") => "draft", "published"),
-  "title": coalesce(title, "Untitled"),
-  "slug": slug.current,
-  excerpt,
-  coverImage,
-  "date": coalesce(date, _updatedAt),
-  "author": author->{"name": coalesce(name, "Anonymous"), picture},
-`;
+// 👇🏽 HomePage Query
 
 export const heroFields = /* groq */ `
     ...,
@@ -132,34 +122,6 @@ export const eventFields = /* groq */ `
     },
 `;
 
-export const moreStoriesQuery = groq`*[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
-  ${postFields}
-}`;
-
-export const postQuery = groq`*[_type == "post" && slug.current == $slug] [0] {
-  content,
-  ${postFields}
-}`;
-
-/** My Query **/
-
-export const headerQuery = groq`*[_type == "header"] {
-  "imageUrl": logo.asset->url,
-  "url": links[]->{
-     title,
-     "slug": slug.current
-  }
-}`;
-
-export const footerQuery = groq`*[_type == "footer"][0] {
-  title,
-}`;
-
-export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
-  content,
-  ${postFields}
-}`;
-
 export const homepageQuery = groq`*[_type == "homepage"][0] {
   _key,
   _id,
@@ -201,6 +163,8 @@ export const homepageQuery = groq`*[_type == "homepage"][0] {
   }
  
 }`;
+
+// 👇🏽 Agenda Query
 
 export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]{
   _id,
@@ -247,6 +211,8 @@ export const lastEventQuery = groq`*[_type == "events" && defined(eventDate) && 
   },
 }`;
 
+// 👇🏽 Blogs Query
+
 export const blogsQuery = groq`*[_type == "blogs"  && year >= $minYear && year <= $maxYear] | order(year desc)  {
   _id,
   title,
@@ -282,7 +248,7 @@ export const blogsQuery = groq`*[_type == "blogs"  && year >= $minYear && year <
   }
 }`;
 
-export const lesArchivesVivantesQuery = groq`*[_type == "lesArchivesVivantes"][0]`;
+// 👇🏽 Pages Query
 
 export const richTextFields = /* groq */ `
   _id,
@@ -372,7 +338,6 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
     _type,
     titleBlock,
     "contenBlock": block[]{
-      // ...,
       _type,
       ${richTextFields}
       ${richTextAndTitleFields}
@@ -383,6 +348,26 @@ export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pag
       ${creationArchivesFields}
       ${customHtmlFields}
       ${documentFileFields}
+    },
+  }
+}
+`;
+
+export const listeDeFondsQuery = groq`*[_type == "pages" && slug.current == "liste-des-fonds"][0] {
+  _id,
+  title,
+  "slug": slug.current,
+  "contentModulde": contentFromListeDeFonds[]{
+    _id,
+    _key,
+    _type,
+    titleBlock,
+    "contenBlock": block[]{
+      _type,
+      ${richTextFields}
+      ${singleImageFields}
+      ${multiImagesFields}
+      ${linkFields}
     },
   }
 }

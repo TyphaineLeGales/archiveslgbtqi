@@ -1,10 +1,9 @@
-import { CalendarIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "lastEvent",
   title: "Last Event",
-  icon: CalendarIcon,
+  icon: () => "📅",
   type: "object",
   fields: [
     defineField({

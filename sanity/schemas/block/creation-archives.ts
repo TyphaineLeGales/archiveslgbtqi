@@ -1,12 +1,9 @@
-import { SparkleIcon } from "@sanity/icons";
-import { de } from "date-fns/locale";
-import { title } from "process";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "creationArchives",
   title: "Création d'archives",
-  icon: SparkleIcon,
+  icon: () => "📜",
   type: "object",
   fields: [
     defineField({

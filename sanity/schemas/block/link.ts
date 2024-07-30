@@ -1,10 +1,9 @@
 import { defineField, defineType } from "sanity";
-import { LinkIcon } from "@sanity/icons";
 
 export default defineType({
   name: "link",
   title: "Link",
-  icon: LinkIcon,
+  icon: () => "🔗",
   type: "object",
 
   fields: [
