@@ -35,6 +35,7 @@ export default function CreationArchivesModule({
         {archive?.map((archiveItem, index) => (
           <button
             key={index}
+            aria-label="Boutton des archives"
             onClick={() => handleClick(index)}
             className={clsx(
               "relative flex w-full flex-col items-start justify-start overflow-hidden py-[1rem] text-start transition-[max-height] duration-[.5s] ease-tamisitée",

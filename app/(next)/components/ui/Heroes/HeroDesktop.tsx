@@ -96,8 +96,13 @@ export default function HeroDesktop({ heroes }: Props) {
                     "https://via.placeholder.com/1920x1080"
                   }
                   alt={hero.image.alt || ""}
-                  width={1920}
-                  height={1080}
+                  // width={1920}
+                  width={
+                    currentHero === heroes?.hero?.indexOf(hero) ? 1920 : 480
+                  }
+                  height={
+                    currentHero === heroes?.hero?.indexOf(hero) ? 1080 : 270
+                  }
                   className="h-full min-h-[calc(100vh-7.25rem)] w-full object-cover object-center"
                 />
               </>

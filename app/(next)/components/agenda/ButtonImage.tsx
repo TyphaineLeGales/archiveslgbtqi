@@ -44,6 +44,7 @@ export default function ButtonImage({ event }: ButtonImageProps) {
         )}
       >
         <button
+          aria-label="Fermer l'image"
           onClick={handleCloseClick}
           className="absolute right-[1rem] top-[1rem] font-tanker text-black"
         >
@@ -58,7 +59,11 @@ export default function ButtonImage({ event }: ButtonImageProps) {
           className="h-full w-full object-contain"
         />
       </div>
-      <button onClick={handleImageClick} className="group relative">
+      <button
+        aria-label="Voir l'image en grand"
+        onClick={handleImageClick}
+        className="group relative"
+      >
         <div className="absolute inset-0 bg-black bg-opacity-0 transition-[background] duration-300 group-hover:bg-opacity-20"></div>
         <Image
           src={event.image?.imageUrl || ""}

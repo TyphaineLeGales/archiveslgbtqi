@@ -85,7 +85,10 @@ export default async function Footer() {
             <span>Newsletter :</span>
             <div className="relative flex min-w-full">
               <input type="email" className="footerNewsLetterInput" />
-              <button className="p-[.5rem] uppercase transition-colors duration-300 ease-tamisitée hover:bg-white hover:text-pink-arch">
+              <button
+                aria-label="S'inscrire à la newsletter"
+                className="p-[.5rem] uppercase transition-colors duration-300 ease-tamisitée hover:bg-white hover:text-pink-arch"
+              >
                 Ok
               </button>
               <div className="absolute inset-x-0 bottom-[1px] h-[1px] w-full bg-white lg:w-[calc(100%-2rem)]" />
