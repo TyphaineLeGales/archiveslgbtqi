@@ -8,7 +8,6 @@ import {
   UpcomingEvents,
   CTAmarquee,
 } from "./components/homepage";
-import { Suspense } from "react";
 
 export default async function Page() {
   const [homePage] = await Promise.all([
