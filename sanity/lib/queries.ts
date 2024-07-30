@@ -357,7 +357,7 @@ export const listeDeFondsQuery = groq`*[_type == "pages" && slug.current == "lis
   _id,
   title,
   "slug": slug.current,
-  "contentModulde": contentFromListeDeFonds[]{
+  "contentModule": contentFromListeDeFonds[]{
     _id,
     _key,
     _type,
