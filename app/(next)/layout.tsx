@@ -14,6 +14,7 @@ import Footer from "./components/footer/footer";
 import { BannerAlert, ToastProviders } from "./components/ui";
 import { IntroAnimation } from "./components/ui/IntroAnimation";
 import { Font } from "@react-email/components";
+import CookieBanner from "./components/ui/CookieBanner";
 
 // TODO: Delete Inter Font
 const inter = Inter({
@@ -72,12 +73,13 @@ export default function RootLayout({
       <body>
         <section className="relative flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
           {draftMode().isEnabled && <BannerAlert />}
-          <IntroAnimation />
+          {/* <IntroAnimation /> */}
           <Header />
           <main className="mt-[5rem] lg:mt-[7.25rem]">
             <ToastProviders>{children}</ToastProviders>
           </main>
           <Footer />
+          <CookieBanner />
         </section>
         {draftMode().isEnabled && <VisualEditing />}
         <SpeedInsights />
