@@ -1,10 +1,9 @@
-import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "document-file",
   title: "Document | File",
-  icon: DocumentIcon,
+  icon: () => "🌐",
   type: "object",
   fields: [
     defineField({

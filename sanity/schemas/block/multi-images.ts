@@ -1,10 +1,9 @@
-import { ImagesIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "multi-images",
   title: "Multi Images",
-  icon: ImagesIcon,
+  icon: () => "🖼️",
   type: "object",
   fields: [
     defineField({

@@ -1,10 +1,9 @@
 import { defineField, defineType } from "sanity";
-import { ComposeIcon } from "@sanity/icons";
 
 export default defineType({
   name: "contact-form",
   title: "Contact Form",
-  icon: ComposeIcon,
+  icon: () => "📧",
   type: "object",
   fields: [
     defineField({

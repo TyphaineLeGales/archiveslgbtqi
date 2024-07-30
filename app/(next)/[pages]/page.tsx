@@ -1,14 +1,10 @@
 import React from "react";
 
-import {
-  LastEventQueryResult,
-  PagesContentQueryResult,
-  RichTextAndTitle,
-} from "@/sanity.types"; // Ensure this path is correct
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { lastEventQuery, pagesContentQuery } from "@/sanity/lib/queries";
-
 import { notFound } from "next/navigation";
+
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { LastEventQueryResult, PagesContentQueryResult } from "@/sanity.types"; // Ensure this path is correct
+import { lastEventQuery, pagesContentQuery } from "@/sanity/lib/queries";
 
 import {
   EventsModule,
