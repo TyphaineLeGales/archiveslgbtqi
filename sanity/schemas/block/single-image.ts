@@ -7,16 +7,16 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      description: "Use as alt text.",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: "image",
       title: "Image",
       type: "image",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "title",
+      title: "Balise alt",
+      type: "string",
+      description: "Balise alt de l'image",
       validation: (rule) => rule.required(),
     }),
   ],

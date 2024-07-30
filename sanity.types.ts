@@ -46,6 +46,25 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type ListeDesFondsContent = {
+  _type: "liste-des-fonds-content";
+  titleBlock?: string;
+  block?: Array<
+    | ({
+        _key: string;
+      } & Link)
+    | ({
+        _key: string;
+      } & MultiImages)
+    | ({
+        _key: string;
+      } & SingleImage)
+    | ({
+        _key: string;
+      } & Richtext)
+  >;
+};
+
 export type CustomHtml = {
   _type: "custom-html";
   codeTitle?: string;
@@ -171,7 +190,6 @@ export type MultiImages = {
 
 export type SingleImage = {
   _type: "single-image";
-  title?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -183,6 +201,7 @@ export type SingleImage = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  title?: string;
 };
 
 export type DocumentFile = {
@@ -693,6 +712,11 @@ export type Pages = {
       _key: string;
     } & Content
   >;
+  contentFromListeDeFonds?: Array<
+    {
+      _key: string;
+    } & ListeDesFondsContent
+  >;
 };
 
 export type SanityFileAsset = {
@@ -802,6 +826,7 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | Geopoint
+  | ListeDesFondsContent
   | CustomHtml
   | CreationArchives
   | LastEvent
@@ -1004,6 +1029,11 @@ export type HomepageQueryResult = {
           {
             _key: string;
           } & Content
+        >;
+        contentFromListeDeFonds?: Array<
+          {
+            _key: string;
+          } & ListeDesFondsContent
         >;
       } | null;
     } | null;
@@ -1230,7 +1260,7 @@ export type BlogsQueryResult = Array<{
   > | null;
 }>;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  "slug": slug.current,  "contentModulde": content[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      // ...,      _type,        _id,  _key,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    },  }}
+// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  "slug": slug.current,  "contentModulde": content[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -1702,238 +1732,22 @@ export type PagesContentQueryResult = {
   }> | null;
 } | null;
 // Variable: listeDeFondsQuery
-// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  "contentModulde": content[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      // ...,      _type,        _id,  _key,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    },  }}
+// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  "contentModule": contentFromListeDeFonds[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }}
 export type ListeDeFondsQueryResult = {
   _id: string;
   title: string | null;
   slug: string | null;
-  contentModulde: Array<{
+  contentModule: Array<{
     _id: null;
     _key: string;
-    _type: "content";
+    _type: "liste-des-fonds-content";
     titleBlock: string | null;
     contenBlock: Array<
-      | {
-          _type: "contact-form";
-          _id: null;
-          _key: string;
-          richtext: null;
-          richTextTitle: string | null;
-          richtextTitleText: null;
-          imageTitle: string | null;
-          imageUrl: null;
-          multiImages: null;
-          linkLabel: null;
-          external: null;
-          internal: null;
-          mail: null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: string | null;
-          fileUrl: null;
-          fileName: null;
-        }
-      | {
-          _type: "creationArchives";
-          _id: null;
-          _key: string;
-          richtext: null;
-          richTextTitle: null;
-          richtextTitleText: null;
-          imageTitle: null;
-          imageUrl: null;
-          multiImages: null;
-          linkLabel: null;
-          external: null;
-          internal: null;
-          mail: null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
-              _key: string;
-            }>;
-            style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
-            listItem?: "bullet" | "number";
-            markDefs?: Array<{
-              href?: string;
-              _type: "link";
-              _key: string;
-            }>;
-            level?: number;
-            _type: "block";
-            _key: string;
-          }> | null;
-          creationArchivesArchive: Array<{
-            title: string | null;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?:
-                | "blockquote"
-                | "h1"
-                | "h2"
-                | "h3"
-                | "h4"
-                | "h5"
-                | "h6"
-                | "normal";
-              listItem?: "bullet" | "number";
-              markDefs?: Array<{
-                href?: string;
-                _type: "link";
-                _key: string;
-              }>;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            status: string | null;
-          }> | null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: null;
-          fileUrl: null;
-          fileName: null;
-        }
-      | {
-          _type: "custom-html";
-          _id: null;
-          _key: string;
-          richtext: null;
-          richTextTitle: null;
-          richtextTitleText: null;
-          imageTitle: null;
-          imageUrl: null;
-          multiImages: null;
-          linkLabel: null;
-          external: null;
-          internal: null;
-          mail: null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: Code | null;
-          codeTitle: string | null;
-          isAddFiles: boolean | null;
-          fileGroup: Array<{
-            title: string | null;
-            files: Array<{
-              asset: {
-                _id: string;
-                _type: "sanity.fileAsset";
-                _createdAt: string;
-                _updatedAt: string;
-                _rev: string;
-                originalFilename?: string;
-                label?: string;
-                title?: string;
-                description?: string;
-                altText?: string;
-                sha1hash?: string;
-                extension?: string;
-                mimeType?: string;
-                size?: number;
-                assetId?: string;
-                uploadId?: string;
-                path?: string;
-                url?: string;
-                source?: SanityAssetSourceData;
-              } | null;
-            }> | null;
-          }> | null;
-          title: null;
-          fileUrl: null;
-          fileName: null;
-        }
-      | {
-          _type: "document-file";
-          _id: null;
-          _key: string;
-          richtext: null;
-          richTextTitle: string | null;
-          richtextTitleText: null;
-          imageTitle: string | null;
-          imageUrl: null;
-          multiImages: null;
-          linkLabel: null;
-          external: null;
-          internal: null;
-          mail: null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: string | null;
-          fileUrl: string | null;
-          fileName: string | null;
-        }
-      | {
-          _type: "lastEvent";
-          _id: null;
-          _key: string;
-          richtext: null;
-          richTextTitle: null;
-          richtextTitleText: null;
-          imageTitle: null;
-          imageUrl: null;
-          multiImages: null;
-          linkLabel: null;
-          external: null;
-          internal: null;
-          mail: null;
-          isDisplayed: boolean | null;
-          lastEventLabel: string | null;
-          goToAllEvents: string | null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: null;
-          fileUrl: null;
-          fileName: null;
-        }
       | {
           _type: "link";
           _id: null;
           _key: string;
           richtext: null;
-          richTextTitle: null;
-          richtextTitleText: null;
           imageTitle: null;
           imageUrl: null;
           multiImages: null;
@@ -1946,26 +1760,12 @@ export type ListeDeFondsQueryResult = {
             slug: string | null;
           } | null;
           mail: string | null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: null;
-          fileUrl: null;
-          fileName: null;
         }
       | {
           _type: "multi-images";
           _id: null;
           _key: string;
           richtext: null;
-          richTextTitle: string | null;
-          richtextTitleText: null;
           imageTitle: string | null;
           imageUrl: null;
           multiImages: Array<{
@@ -1976,18 +1776,6 @@ export type ListeDeFondsQueryResult = {
           external: null;
           internal: null;
           mail: null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: string | null;
-          fileUrl: null;
-          fileName: null;
         }
       | {
           _type: "richtext";
@@ -2019,33 +1807,6 @@ export type ListeDeFondsQueryResult = {
             _type: "block";
             _key: string;
           }> | null;
-          richTextTitle: null;
-          richtextTitleText: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
-              _key: string;
-            }>;
-            style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
-            listItem?: "bullet" | "number";
-            markDefs?: Array<{
-              href?: string;
-              _type: "link";
-              _key: string;
-            }>;
-            level?: number;
-            _type: "block";
-            _key: string;
-          }> | null;
           imageTitle: null;
           imageUrl: null;
           multiImages: null;
@@ -2053,103 +1814,12 @@ export type ListeDeFondsQueryResult = {
           external: null;
           internal: null;
           mail: null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: null;
-          fileUrl: null;
-          fileName: null;
-        }
-      | {
-          _type: "richTextAndTitle";
-          _id: null;
-          _key: string;
-          richtext: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
-              _key: string;
-            }>;
-            style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
-            listItem?: "bullet" | "number";
-            markDefs?: Array<{
-              href?: string;
-              _type: "link";
-              _key: string;
-            }>;
-            level?: number;
-            _type: "block";
-            _key: string;
-          }> | null;
-          richTextTitle: string | null;
-          richtextTitleText: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
-              _key: string;
-            }>;
-            style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
-            listItem?: "bullet" | "number";
-            markDefs?: Array<{
-              href?: string;
-              _type: "link";
-              _key: string;
-            }>;
-            level?: number;
-            _type: "block";
-            _key: string;
-          }> | null;
-          imageTitle: string | null;
-          imageUrl: null;
-          multiImages: null;
-          linkLabel: null;
-          external: null;
-          internal: null;
-          mail: null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: string | null;
-          fileUrl: null;
-          fileName: null;
         }
       | {
           _type: "single-image";
           _id: null;
           _key: string;
           richtext: null;
-          richTextTitle: string | null;
-          richtextTitleText: null;
           imageTitle: string | null;
           imageUrl: string | null;
           multiImages: null;
@@ -2157,18 +1827,6 @@ export type ListeDeFondsQueryResult = {
           external: null;
           internal: null;
           mail: null;
-          isDisplayed: null;
-          lastEventLabel: null;
-          goToAllEvents: null;
-          creationArchivesTitle: null;
-          creationArchivesArchive: null;
-          customHtml: null;
-          codeTitle: null;
-          isAddFiles: null;
-          fileGroup: null;
-          title: string | null;
-          fileUrl: null;
-          fileName: null;
         }
     > | null;
   }> | null;
