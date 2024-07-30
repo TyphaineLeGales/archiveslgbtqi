@@ -56,7 +56,7 @@ export default async function Footer() {
 
         {/* 👇🏽 Socials */}
         <div className="footerText flex h-[75%] w-full flex-col justify-start gap-[3rem] lg:w-auto">
-          <div className="order-last flex flex-col gap-[1rem] lg:gap-[.5rem]">
+          <div className="order-last flex flex-col gap-[1rem] lg:order-none lg:gap-[.5rem]">
             <span>Suivez-nous :</span>
             <div className="flex justify-between gap-[1rem] lg:justify-start">
               {settings?.footer?.socialGroup?.map((social) => (

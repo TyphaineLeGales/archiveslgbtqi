@@ -51,17 +51,17 @@ export default async function Page({ params }: Props) {
     <div className="relative mx-auto flex h-full min-h-screen w-auto max-w-[1440px] overflow-hidden p-[1rem] lg:p-0">
       <DesktopSidebar content={content} />
 
-      <div className="flex h-full w-full flex-col overflow-hidden pt-[3rem] lg:ml-arch">
+      <div className="pb-bottomPage flex h-full w-full flex-col overflow-hidden pt-[3rem] lg:ml-arch">
         <h1 className="font-tanker text-[2rem] uppercase leading-[1.2rem] tracking-wider lg:text-[4rem] lg:leading-[3.2rem]">
           {content.title}
         </h1>
-        <div className="flex min-h-screen flex-col gap-[1rem]">
+        <div className="mt-[.5rem] flex min-h-screen flex-col gap-[1rem]">
           {content.contentModulde?.map((item, index) => (
             // when the ScrollButton is clicked, it will scroll to the id of the element here
             <div
               id={transformId(item.titleBlock || "")}
               key={item._key}
-              className="relative flex h-full flex-col gap-[2rem] pb-[8rem] lg:pr-[10rem]"
+              className="relative flex h-full flex-col gap-[2rem] pb-[5rem] lg:pr-[10rem]"
             >
               <h2 className="pageTitle">{item.titleBlock || ""}</h2>
               <div>

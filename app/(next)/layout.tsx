@@ -14,6 +14,7 @@ import Footer from "./components/footer/footer";
 import { BannerAlert, ToastProviders } from "./components/ui";
 import { IntroAnimation } from "./components/ui/IntroAnimation";
 import { Font } from "@react-email/components";
+import CookieBanner from "./components/ui/CookieBanner";
 
 // TODO: Delete Inter Font
 const inter = Inter({
@@ -78,6 +79,7 @@ export default function RootLayout({
             <ToastProviders>{children}</ToastProviders>
           </main>
           <Footer />
+          <CookieBanner />
         </section>
         {draftMode().isEnabled && <VisualEditing />}
         <SpeedInsights />

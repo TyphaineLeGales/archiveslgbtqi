@@ -17,7 +17,7 @@ export default async function Page() {
 
   return (
     <div className="relative mx-auto flex h-full min-h-screen w-auto max-w-[1440px] overflow-hidden lg:p-0">
-      <div className="flex h-full w-full flex-col overflow-hidden px-[1rem] pt-[3rem] lg:ml-arch lg:pl-0 lg:pr-[3rem]">
+      <div className="pb-bottomPage flex h-full w-full flex-col overflow-hidden px-[1rem] pt-[3rem] lg:ml-arch lg:pl-0 lg:pr-[3rem]">
         <h1 className="font-tanker text-[2rem] uppercase leading-[1.2rem] tracking-wider lg:text-[4rem] lg:leading-[3.2rem]">
           {list?.title}
         </h1>
