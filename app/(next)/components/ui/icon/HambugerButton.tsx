@@ -14,7 +14,7 @@ export default function HambugerButton({
   className,
 }: HambugerButtonProps) {
   return (
-    <button onClick={onclick} className={className}>
+    <button aria-label="Menu" onClick={onclick} className={className}>
       <div
         className={clsx(
           "h-[1px] w-[30px] bg-white transition-transform duration-200 ease-tamisitée",

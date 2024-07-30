@@ -80,6 +80,7 @@ export default function FormSubmission() {
       )}
 
       <button
+        aria-label="Envoyer"
         disabled={isSubmitting}
         className="absolute bottom-0 right-0 translate-y-[calc(100%+1rem)] bg-black px-[1rem] py-[.5rem] font-jetbrains text-[.8rem] tracking-wider text-white"
       >

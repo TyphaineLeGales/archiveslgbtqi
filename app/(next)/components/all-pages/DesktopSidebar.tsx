@@ -50,6 +50,7 @@ export default function DesktopSidebar({ content }: Props) {
           {item.titleBlock && (
             <button
               key={item.titleBlock}
+              aria-label="Sidebar button"
               onClick={(e) => handleClickScroll(e, index)}
               className={clsx(
                 "sidebarButton",

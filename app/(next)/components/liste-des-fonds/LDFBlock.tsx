@@ -32,6 +32,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
       {list?.contentModule?.map((item, index) => (
         <div key={item._key}>
           <button
+            aria-label="Boutton des Liste des fonds"
             onClick={() => handleClick(index)}
             className={clsx(
               "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden border-t-[3px] border-black py-[1rem] text-start transition-[max-height] duration-[.5s] ease-tamisitée",
