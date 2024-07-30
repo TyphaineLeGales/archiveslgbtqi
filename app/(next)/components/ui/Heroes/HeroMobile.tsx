@@ -32,38 +32,18 @@ export default function HeroDesktop({ heroes }: Props) {
     });
   }, [currentHero]);
 
-  // 👇🏽 auto slide
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, [heroes?.hero?.length]);
+  // 👇🏽 create a function that auto slide horizontally
 
   return (
-    <div className="relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full flex-col lg:hidden">
+    <div className="relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-y-hidden overflow-x-visible lg:hidden">
       {heroes?.hero?.map((hero) => (
         <div
           key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
-          className={clsx(
-            "relative overflow-hidden transition-all duration-[1s] ease-tamisitée",
-            currentHero === heroes?.hero?.indexOf(hero)
-              ? `h-[100vh] mix-blend-normal`
-              : `h-[3rem] cursor-pointer mix-blend-luminosity`,
-          )}
-          onClick={() => setCurrentHero(heroes?.hero?.indexOf(hero)!)}
+          className="relative h-[100vh] min-w-[100vw] snap-center snap-always overflow-hidden mix-blend-normal"
         >
           <div className="relative w-full">
-            <div
-              className={clsx(
-                "group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white transition-all duration-500 ease-tamisitée",
-                currentHero === heroes?.hero?.indexOf(hero)
-                  ? "opacity-100"
-                  : "opacity-0",
-              )}
-            >
+            <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
               <div className="min-h-[10rem] space-y-[.5rem] bg-black p-[2rem]">
                 <h1 ref={titleRef} className="heroTitle">
                   {hero.title}
