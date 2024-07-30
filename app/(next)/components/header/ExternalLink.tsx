@@ -17,6 +17,7 @@ export default function ExternalLink({ link }: ExternalLinkProps) {
       href={link.externalLinkDetails?.url || ""}
       target="_blank"
       rel="noreferrer"
+      aria-label="Lien externe"
       className="headerItem group relative flex h-headerMobile w-fit flex-col overflow-hidden lg:h-headerDesktop"
     >
       <span className="transition-transform duration-500 ease-tamisitée group-hover:translate-y-[-100%]">

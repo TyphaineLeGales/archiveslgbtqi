@@ -43,6 +43,7 @@ export default async function Footer() {
           />
           <a
             href={`mailto:${settings?.footer?.addressGroup?.mailAddress}`}
+            aria-label="Envoyer un mail"
             className="w-fit transition-colors duration-300 ease-tamisitée hover:text-pink-arch"
           >
             {settings?.footer?.addressGroup?.mailAddress}
@@ -66,6 +67,7 @@ export default async function Footer() {
                 >
                   <a
                     href={social.socialLink || ""}
+                    aria-label="Lien vers le réseau social"
                     className="flex h-full w-full items-center justify-center rounded-full"
                   >
                     <Image
@@ -119,6 +121,7 @@ export default async function Footer() {
                         href={module.externalLink?.url || ""}
                         target="_blank"
                         rel="noreferrer"
+                        aria-label="Lien externe"
                         className="footerTextHover"
                       >
                         {module.externalLink?.title}

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import clsx from "clsx";
+import Link from "next/link";
 
 export default function CookieBanner() {
   const [isFirstVisit, setIsFirstVisit] = React.useState(false);
@@ -40,12 +41,13 @@ export default function CookieBanner() {
               cookies. Pour modifier vos préférences ou retirer votre
               consentement, vous devez mettre à jour vos Préférences de cookies.
               En savoir plus sur nos
-              <a
+              <Link
                 href="/mentions-legales"
+                aria-label="Mentions légales et Politique de confidentialité"
                 className="px-[.6rem] uppercase text-pink-arch underline hover:no-underline"
               >
                 Mentions légales et Politique de confidentialité
-              </a>
+              </Link>
               .
             </p>
             <button
