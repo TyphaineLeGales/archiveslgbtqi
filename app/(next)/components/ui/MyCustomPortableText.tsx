@@ -27,7 +27,9 @@ export default function MyCustomPortableText({
         <h5 className="mb-2 text-sm font-semibold">{children}</h5>
       ),
       h6: ({ children }) => (
-        <h6 className="mb-1 text-xs font-semibold">{children}</h6>
+        <h6 className="font-tanker text-[1.4rem] uppercase text-black">
+          {children}
+        </h6>
       ),
     },
     marks: {
