@@ -35,6 +35,7 @@ export default function CustomHtml({ title, html, item }: Props) {
                       href={file.asset?.url!}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Lien externe"
                     >
                       {fileGroup.title}
                     </a>

@@ -39,6 +39,7 @@ export default function MyCustomPortableText({
             href={value?.href}
             rel="noreferrer noopener"
             target="_blank"
+            aria-label="Lien externe"
             className="uppercase text-pink-arch"
           >
             {children}

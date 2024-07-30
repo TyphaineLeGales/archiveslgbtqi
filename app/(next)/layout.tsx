@@ -67,7 +67,8 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      title="Centre Archives LGBTQI+"
+      lang="fr"
       className={`${inter.variable} ${cityBurn.variable} ${jetBrains.variable} ${tanker.variable} bg-white`}
     >
       <body>
