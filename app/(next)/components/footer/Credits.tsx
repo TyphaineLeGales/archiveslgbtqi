@@ -33,6 +33,7 @@ export default function Credits() {
   return (
     <div ref={ref}>
       <button
+        aria-label="Crédits"
         onClick={handleCreditsOpen}
         className="footerText footerTextHover"
       >

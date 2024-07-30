@@ -32,14 +32,14 @@ export default function AgendaDesktopSidebar() {
   return (
     <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col gap-[1rem] lg:flex">
       <button
+        aria-label="Événements à venir"
         onClick={scrollToFuture}
-        // className="sidebarButton"
-        // className={clsx("sidebarButton)}
         className={clsx("sidebarButton", { "text-pink-arch": !isPast })}
       >
         Événements à venir
       </button>
       <button
+        aria-label="Événements passés"
         onClick={scrollToPast}
         // className="sidebarButton"
         className={clsx("sidebarButton", { "text-pink-arch": isPast })}

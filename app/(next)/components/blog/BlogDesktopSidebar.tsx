@@ -63,7 +63,9 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
             activeYear === blog.year && "text-pink-arch",
           )}
         >
-          <button onClick={handleBlogScroll}>{blog.year}</button>
+          <button aria-label="Blog year" onClick={handleBlogScroll}>
+            {blog.year}
+          </button>
         </div>
       ))}
     </div>
