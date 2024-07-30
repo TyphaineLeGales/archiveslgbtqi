@@ -50,7 +50,7 @@ export default function NavDesktop({ settings }: NavLinkProps) {
               })}
           </div>
           {/* Right LINKS */}
-          <div className="grid grid-rows-3 gap-[.3rem]">
+          <div className="grid grid-rows-3 place-items-end gap-[.3rem]">
             {settings?.header?.links &&
               settings.header.links.map((link, index) => {
                 if (link.linkPosition === "right") {

@@ -55,6 +55,7 @@ export default function Credits() {
             href="https://www.instagram.com/affaireasuivre_studio/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Studio Affaire à Suivre"
             className="underline"
           >
             Studio Affaire à Suivre
