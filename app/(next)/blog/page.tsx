@@ -48,7 +48,7 @@ export default async function Page() {
                   <MyCustomPortableText
                     key={index}
                     value={block.richText as PortableTextBlock[]}
-                    className="blogParagraph"
+                    className="blogParagraph pb-[1rem]"
                   />
                 );
               }
@@ -60,6 +60,7 @@ export default async function Page() {
                     alt={block.singleImage.alt || ""}
                     width={1000}
                     height={1000}
+                    className="pb-[1rem]"
                   />
                 );
               }
