@@ -138,6 +138,12 @@
   .blogParagraph {
     @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider;
   }
+
+  /* 👇🏽 Liste des fonds */
+
+  .ldfTitle {
+    @apply font-cityburn text-[1.2rem] leading-[1.2rem] tracking-wider lg:text-[1.6rem] lg:leading-[1rem];
+  }
 }
 
 @layer utilities {
