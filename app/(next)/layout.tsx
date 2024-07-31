@@ -79,7 +79,9 @@ export default function RootLayout({
           <main className="mt-[5rem] lg:mt-[7.25rem]">
             <ToastProviders>{children}</ToastProviders>
           </main>
-          <Footer />
+          <Suspense>
+            <Footer />
+          </Suspense>
           <CookieBanner />
         </section>
         {draftMode().isEnabled && <VisualEditing />}
