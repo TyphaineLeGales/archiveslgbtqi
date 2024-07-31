@@ -10,9 +10,8 @@ import {
 } from "./components/homepage";
 
 import { Metadata } from "next";
-import { PortableTextBlock } from "next-sanity";
 
-export async function generatMetadata() {
+export async function generateMetadata() {
   const [settings] = await Promise.all([
     sanityFetch<SettingsQueryResult>({ query: settingsQuery }),
   ]);
