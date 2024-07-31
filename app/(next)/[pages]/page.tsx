@@ -41,7 +41,7 @@ export async function generateStaticParams() {
     stega: false,
   });
 
-  return params.map(({ slug }) => ({ params: { pages: slug } }));
+  return params.map(({ slug }) => ({ slug: slug?.current }));
 }
 
 export default async function Page({ params }: Props) {
