@@ -3,8 +3,13 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { LastEventQueryResult, PagesContentQueryResult } from "@/sanity.types"; // Ensure this path is correct
+import {
+  LastEventQueryResult,
+  PagesContentQueryResult,
+  PageSlugsResult,
+} from "@/sanity.types";
 import { lastEventQuery, pagesContentQuery } from "@/sanity/lib/queries";
+import { groq } from "next-sanity";
 
 import {
   EventsModule,
@@ -26,6 +31,18 @@ type Props = {
     pages: string;
   };
 };
+
+const pageSlugs = groq`*[_type == "pages"]{slug}`;
+
+export async function generateStaticParams() {
+  const params = await sanityFetch<PageSlugsResult>({
+    query: pageSlugs,
+    perspective: "published",
+    stega: false,
+  });
+
+  return params.map(({ slug }) => ({ params: { pages: slug } }));
+}
 
 export default async function Page({ params }: Props) {
   const [content, lastEvent] = await Promise.all([
@@ -51,7 +68,7 @@ export default async function Page({ params }: Props) {
     <div className="relative mx-auto flex h-full min-h-screen w-auto max-w-[1440px] overflow-hidden p-[1rem] lg:p-0">
       <DesktopSidebar content={content} />
 
-      <div className="pb-bottomPage flex h-full w-full flex-col overflow-hidden pt-[3rem] lg:ml-arch">
+      <div className="flex h-full w-full flex-col overflow-hidden pb-bottomPage pt-[3rem] lg:ml-arch">
         <h1 className="font-tanker text-[2rem] uppercase leading-[1.2rem] tracking-wider lg:text-[4rem] lg:leading-[3.2rem]">
           {content.title}
         </h1>
