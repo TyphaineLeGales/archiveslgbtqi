@@ -28,7 +28,7 @@ import { transformId } from "../utils/TransforId";
 
 type Props = {
   params: {
-    pages: string;
+    slug: string;
   };
 };
 
@@ -49,7 +49,7 @@ export default async function Page({ params }: Props) {
     sanityFetch<PagesContentQueryResult>({
       query: pagesContentQuery,
       params: {
-        pages: params.pages,
+        slug: params.slug,
       },
     }),
 

@@ -10,6 +10,7 @@ import {
   IntroTextAndNewsLetter,
   UpcomingEvents,
   CTAmarquee,
+  Homepage,
 } from "./components/homepage";
 
 export async function generateMetadata() {
