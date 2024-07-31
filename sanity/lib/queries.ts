@@ -4,9 +4,9 @@ import { groq } from "next-sanity";
 export const settingsQuery = groq`*[_type == "settings"][0] {
   "globalSettings": {
     "siteTitle": globalSettings.siteTitle,
+    "siteDescription": globalSettings.siteDescription,
     "ogImage": globalSettings.ogImage.asset->url,
     "altText": globalSettings.ogImage.alt,
-    "svg": globalSettings.svgIcon,
   },
   "header": header{
     "logo": logo {

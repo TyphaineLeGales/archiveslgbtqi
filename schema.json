@@ -3633,6 +3633,13 @@
               },
               "optional": true
             },
+            "siteDescription": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
             "ogImage": {
               "type": "objectAttribute",
               "value": {

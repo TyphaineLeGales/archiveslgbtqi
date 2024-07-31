@@ -1,6 +1,9 @@
-import { HomepageQueryResult } from "@/sanity.types";
+import { Metadata } from "next";
+
+import { HomepageQueryResult, SettingsQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { homepageQuery } from "@/sanity/lib/queries";
+import { homepageQuery, settingsQuery } from "@/sanity/lib/queries";
+
 import {
   HeroCarousel,
   SecondSection,
@@ -8,6 +11,24 @@ import {
   UpcomingEvents,
   CTAmarquee,
 } from "./components/homepage";
+
+export async function generateMetadata() {
+  const [settings] = await Promise.all([
+    sanityFetch<SettingsQueryResult>({ query: settingsQuery }),
+  ]);
+  return {
+    title: settings?.globalSettings.siteTitle,
+    description: settings?.globalSettings.siteDescription as any,
+    openGraph: {
+      images: [
+        {
+          url: settings?.globalSettings.ogImage || "",
+          alt: settings?.globalSettings.altText || "",
+        },
+      ],
+    },
+  } satisfies Metadata;
+}
 
 export default async function Page() {
   const [homePage] = await Promise.all([

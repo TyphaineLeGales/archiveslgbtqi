@@ -26,6 +26,7 @@ export default defineType({
       title: "🔧 Global Settings",
       type: "object",
       group: "globalSettings",
+      description: "Cette section contient les paramètres globaux du site.",
       options: {
         collapsible: true,
         collapsed: true,
@@ -35,6 +36,13 @@ export default defineType({
           name: "siteTitle",
           title: "Titre du site internet",
           type: "string",
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: "siteDescription",
+          title: "Description du site internet",
+          type: "text",
+          validation: (rule) => rule.required(),
         }),
         defineField({
           name: "ogImage",
@@ -66,6 +74,7 @@ export default defineType({
       title: "🔼 Header",
       type: "object",
       group: "header",
+      description: "Cette section contient les paramètres du Haut de page.",
       options: {
         collapsible: true,
         collapsed: true,
@@ -193,6 +202,7 @@ export default defineType({
       title: "🔽 Footer",
       type: "object",
       group: "footer",
+      description: "Cette section contient les paramètres du Bas de page.",
       options: {
         collapsible: true,
         collapsed: true,
