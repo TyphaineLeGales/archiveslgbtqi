@@ -328,7 +328,7 @@ export const documentFileFields = /* groq */ `
   "fileName": file.asset->originalFilename,
 `;
 
-export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $pages][0] {
+export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $slug][0] {
   _id,
   title,
   "slug": slug.current,
