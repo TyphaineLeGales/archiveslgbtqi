@@ -571,6 +571,24 @@ export type Settings = {
   _rev: string;
   globalSettings?: {
     siteTitle?: string;
+    siteDescription?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     ogImage?: {
       asset?: {
         _ref: string;
@@ -855,13 +873,30 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt,    "svg": globalSettings.svgIcon,  },  "header": header{    "logo": logo {      "logoImage": logoImage.asset->url,      alt,    },    "links": headerLinks[] {      _key,      type,      linkPosition,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": footer{    "logo": logo {      "logoImage": logoImage.asset->url,      alt,    },    "addressGroup": addressGroup {      addressTitle,      addressContent[]{        ...,      },      mailAddress,    },    "socialGroup": socialGroup[] {      socialName,      socialLink,      socialLinkImage{        "imageUrl": asset->url,        alt,      },    },    "footerLinks": footerLinks[]{      _key,      groupName,      modules[]{        type,        "internalLink": internalLink->{          title,          "slug": slug.current        },        externalLink{          title,          url        },        text      }  }  }}
+// Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "siteDescription": globalSettings.siteDescription[],    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt,  },  "header": header{    "logo": logo {      "logoImage": logoImage.asset->url,      alt,    },    "links": headerLinks[] {      _key,      type,      linkPosition,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": footer{    "logo": logo {      "logoImage": logoImage.asset->url,      alt,    },    "addressGroup": addressGroup {      addressTitle,      addressContent[]{        ...,      },      mailAddress,    },    "socialGroup": socialGroup[] {      socialName,      socialLink,      socialLinkImage{        "imageUrl": asset->url,        alt,      },    },    "footerLinks": footerLinks[]{      _key,      groupName,      modules[]{        type,        "internalLink": internalLink->{          title,          "slug": slug.current        },        externalLink{          title,          url        },        text      }  }  }}
 export type SettingsQueryResult = {
   globalSettings: {
     siteTitle: string | null;
+    siteDescription: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
     ogImage: string | null;
     altText: string | null;
-    svg: null;
   };
   header: {
     logo: {
