@@ -1261,7 +1261,7 @@ export type BlogsQueryResult = Array<{
   > | null;
 }>;
 // Variable: pagesContentQuery
-// Query: *[_type == "pages" && slug.current == $pages][0] {  _id,  title,  "slug": slug.current,  "contentModulde": content[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    },  }}
+// Query: *[_type == "pages" && slug.current == $slug][0] {  _id,  title,  "slug": slug.current,  "contentModulde": content[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    },  }}
 export type PagesContentQueryResult = {
   _id: string;
   title: string | null;
@@ -1832,3 +1832,9 @@ export type ListeDeFondsQueryResult = {
     > | null;
   }> | null;
 } | null;
+// Source: ./app/(next)/[slug]/page.tsx
+// Variable: pageSlugs
+// Query: *[_type == "pages"]{slug}
+export type PageSlugsResult = Array<{
+  slug: Slug | null;
+}>;

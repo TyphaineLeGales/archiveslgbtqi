@@ -28,7 +28,7 @@ import { transformId } from "../utils/TransforId";
 
 type Props = {
   params: {
-    pages: string;
+    slug: string;
   };
 };
 
@@ -41,7 +41,7 @@ export async function generateStaticParams() {
     stega: false,
   });
 
-  return params.map(({ slug }) => ({ params: { pages: slug } }));
+  return params.map(({ slug }) => ({ slug: slug?.current }));
 }
 
 export default async function Page({ params }: Props) {
@@ -49,7 +49,7 @@ export default async function Page({ params }: Props) {
     sanityFetch<PagesContentQueryResult>({
       query: pagesContentQuery,
       params: {
-        pages: params.pages,
+        slug: params.slug,
       },
     }),
 
