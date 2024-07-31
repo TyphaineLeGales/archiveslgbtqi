@@ -1,6 +1,9 @@
+import { Metadata } from "next";
+
 import { HomepageQueryResult, SettingsQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { homepageQuery, settingsQuery } from "@/sanity/lib/queries";
+
 import {
   HeroCarousel,
   SecondSection,
@@ -8,8 +11,6 @@ import {
   UpcomingEvents,
   CTAmarquee,
 } from "./components/homepage";
-
-import { Metadata } from "next";
 
 export async function generateMetadata() {
   const [settings] = await Promise.all([

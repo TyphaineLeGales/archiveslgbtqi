@@ -41,8 +41,7 @@ export default defineType({
         defineField({
           name: "siteDescription",
           title: "Description du site internet",
-          type: "array",
-          of: [{ type: "block" }],
+          type: "text",
           validation: (rule) => rule.required(),
         }),
         defineField({
