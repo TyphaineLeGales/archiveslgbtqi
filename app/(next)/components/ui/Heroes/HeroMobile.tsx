@@ -17,7 +17,7 @@ export default function HeroDesktop({ heroes }: Props) {
       setCurrentIndex(
         (prevIndex) => (prevIndex + 1) % (heroes?.hero?.length || 0),
       );
-    }, 5000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [heroes]);
@@ -28,6 +28,29 @@ export default function HeroDesktop({ heroes }: Props) {
       containerRef.current.style.transition = "transform 0.5s ease-in-out";
     }
   }, [currentIndex]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (containerRef.current) {
+        const scrollLeft = containerRef.current.scrollLeft;
+        const newIndex = Math.round(scrollLeft / window.innerWidth);
+        setCurrentIndex(newIndex);
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  // console.log("currentIndex: ", currentIndex);
 
   return (
     <div className="no-scrollbar relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden lg:hidden">
