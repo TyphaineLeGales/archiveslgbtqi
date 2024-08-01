@@ -35,7 +35,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
             aria-label="Boutton des Liste des fonds"
             onClick={() => handleClick(index)}
             className={clsx(
-              "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden border-t-[3px] border-black py-[1rem] text-start transition-[max-height] duration-[.5s] ease-tamisitée",
+              "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden border-t-[3px] border-black py-[1rem] text-start transition-[colors,max-height] duration-[.5s] ease-tamisitée hover:bg-pink-arch",
               listIndex === index
                 ? "max-h-[70rem] pb-[1rem] hover:bg-white hover:text-black lg:max-h-[100rem]"
                 : "max-h-[4rem] hover:bg-pink-arch hover:text-white lg:max-h-[3rem]",
