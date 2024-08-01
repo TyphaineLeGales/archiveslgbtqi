@@ -15,7 +15,7 @@ export default function HeroDesktop({ heroes }: Props) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex(
-        (prevIndex) => (prevIndex + 1) % (heroes?.hero?.length || 1),
+        (prevIndex) => (prevIndex + 1) % (heroes?.hero?.length || 0),
       );
     }, 5000);
 
