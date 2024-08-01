@@ -13,23 +13,21 @@ export default function HeroDesktop({ heroes }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const updateTransform = () => {
-      if (containerRef.current) {
-        containerRef.current.style.transform = `translateX(-${currentIndex * 100}vw)`;
-        containerRef.current.style.transition = "transform 0.5s ease-in-out";
-      }
-    };
-
     const interval = setInterval(() => {
       setCurrentIndex(
-        (prevIndex) => (prevIndex + 1) % (heroes?.hero?.length || 1),
+        (prevIndex) => (prevIndex + 1) % (heroes?.hero?.length || 0),
       );
     }, 5000);
 
-    updateTransform(); // Initial call to set the transform
-
     return () => clearInterval(interval);
-  }, [currentIndex, heroes]);
+  }, [heroes]);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.style.transform = `translateX(-${currentIndex * 100}vw)`;
+      containerRef.current.style.transition = "transform 0.5s ease-in-out";
+    }
+  }, [currentIndex]);
 
   return (
     <div className="no-scrollbar relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden lg:hidden">
