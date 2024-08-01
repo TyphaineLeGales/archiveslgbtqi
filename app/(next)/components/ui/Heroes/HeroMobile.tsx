@@ -10,55 +10,55 @@ type Props = {
 
 export default function HeroDesktop({ heroes }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex(
-        (prevIndex) => (prevIndex + 1) % (heroes?.hero?.length || 0),
-      );
-    }, 2000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex(
+  //       (prevIndex) => (prevIndex + 1) % (heroes?.hero?.length || 0),
+  //     );
+  //   }, 2000);
 
-    return () => clearInterval(interval);
-  }, [heroes]);
+  //   return () => clearInterval(interval);
+  // }, [heroes]);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.style.transform = `translateX(-${currentIndex * 100}vw)`;
-      containerRef.current.style.transition = "transform 0.5s ease-in-out";
-    }
-  }, [currentIndex]);
+  // useEffect(() => {
+  //   if (containerRef.current) {
+  //     containerRef.current.style.transform = `translateX(-${currentIndex * 100}vw)`;
+  //     containerRef.current.style.transition = "transform 0.5s ease-in-out";
+  //   }
+  // }, [currentIndex]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (containerRef.current) {
-        const scrollLeft = containerRef.current.scrollLeft;
-        const newIndex = Math.round(scrollLeft / window.innerWidth);
-        setCurrentIndex(newIndex);
-      }
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (containerRef.current) {
+  //       const scrollLeft = containerRef.current.scrollLeft;
+  //       const newIndex = Math.round(scrollLeft / window.innerWidth);
+  //       setCurrentIndex(newIndex);
+  //     }
+  //   };
 
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-    }
+  //   const container = containerRef.current;
+  //   if (container) {
+  //     container.addEventListener("scroll", handleScroll);
+  //   }
 
-    return () => {
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (container) {
+  //       container.removeEventListener("scroll", handleScroll);
+  //     }
+  //   };
+  // }, []);
 
   // console.log("currentIndex: ", currentIndex);
 
   return (
-    <div className="no-scrollbar relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden lg:hidden">
-      <div ref={containerRef} className="flex h-full w-full">
+    <div className="relative flex min-h-[calc(100vh-5rem)] w-full lg:hidden">
+      <div ref={containerRef} className="flex flex-col">
         {heroes?.hero?.map((hero, index) => (
           <div
             key={index}
-            className="relative h-[100vh] min-w-[100vw] snap-center snap-always overflow-y-hidden overflow-x-scroll"
+            className="relative min-h-[calc(100vh-5rem)] min-w-[100vw] overflow-x-scroll"
           >
             <div className="relative w-full">
               <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
@@ -94,7 +94,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   alt={hero.image.alt || ""}
                   width={400}
                   height={400}
-                  className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover"
+                  className="h-full min-h-[calc(100vh-5rem)] w-full object-cover"
                 />
               )}
             </div>
