@@ -46,13 +46,9 @@ import customHtml from "./sanity/schemas/block/custom-html";
 import pages from "./sanity/schemas/documents/pages";
 import listeDesFondsContent from "./sanity/schemas/contents/liste-des-fonds-content";
 
-const homeLocation = {
-  title: "Home",
-  href: "/",
-} satisfies DocumentLocation;
-
 export default defineConfig({
   basePath: studioUrl,
+  title: "LGBTQ+ Archives Project",
   projectId,
   dataset,
   schema: {
@@ -82,36 +78,6 @@ export default defineConfig({
   },
   plugins: [
     presentationTool({
-      resolve: {
-        mainDocuments: defineDocuments([
-          {
-            route: "/posts/:slug",
-            filter: `_type == "post" && slug.current == $slug`,
-          },
-        ]),
-        locations: {
-          settings: defineLocations({
-            locations: [homeLocation],
-            message: "This document is used on all pages",
-            tone: "caution",
-          }),
-          post: defineLocations({
-            select: {
-              title: "title",
-              slug: "slug.current",
-            },
-            resolve: (doc) => ({
-              locations: [
-                {
-                  title: doc?.title || "Untitled",
-                  href: resolveHref("post", doc?.slug)!,
-                },
-                homeLocation,
-              ],
-            }),
-          }),
-        },
-      },
       previewUrl: { previewMode: { enable: "/api/draft" } },
     }),
     // structureTool({
