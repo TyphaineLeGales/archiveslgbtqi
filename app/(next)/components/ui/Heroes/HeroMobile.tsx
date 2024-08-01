@@ -10,86 +10,76 @@ type Props = {
 
 export default function HeroDesktop({ heroes }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  // const [scrollMessage, setScrollMessage] = useState("Glisser vers la gauche");
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (containerRef.current) {
-  //       const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-  //       if (scrollLeft === 0) {
-  //         setScrollMessage("Glisser vers la gauche");
-  //       } else if (scrollLeft + clientWidth >= scrollWidth) {
-  //         setScrollMessage("Glisser vers la droite");
-  //       } else {
-  //         setScrollMessage("◀︎  Glisser  ▶︎");
-  //       }
-  //       console.log("scrollLeft: ", scrollLeft);
-  //     }
-  //   };
+  useEffect(() => {
+    const updateTransform = () => {
+      if (containerRef.current) {
+        containerRef.current.style.transform = `translateX(-${currentIndex * 100}vw)`;
+        containerRef.current.style.transition = "transform 0.5s ease-in-out";
+      }
+    };
 
-  //   const container = containerRef.current;
-  //   container?.addEventListener("scroll", handleScroll);
+    const interval = setInterval(() => {
+      setCurrentIndex(
+        (prevIndex) => (prevIndex + 1) % (heroes?.hero?.length || 1),
+      );
+    }, 5000);
 
-  //   return () => {
-  //     container?.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
+    updateTransform(); // Initial call to set the transform
+
+    return () => clearInterval(interval);
+  }, [currentIndex, heroes]);
 
   return (
-    <div
-      ref={containerRef}
-      className="no-scrollbar relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden lg:hidden"
-    >
-      {heroes?.hero?.map((hero, index) => (
-        <div
-          key={index}
-          className="relative h-[100vh] min-w-[100vw] snap-center snap-always overflow-hidden"
-        >
-          <div className="relative w-full">
-            {/* <div className="pointer-events-none fixed inset-x-0 bottom-[1rem] flex max-h-[100vh] items-center justify-center p-[1rem] font-tanker text-[1rem] tracking-wider text-white">
-              <span className="flex w-full items-center justify-center bg-black px-[1rem] py-[.5rem]">
-                {scrollMessage}
-              </span>
-            </div> */}
+    <div className="no-scrollbar relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden lg:hidden">
+      <div ref={containerRef} className="flex h-full w-full">
+        {heroes?.hero?.map((hero, index) => (
+          <div
+            key={index}
+            className="relative h-[100vh] min-w-[100vw] snap-center snap-always overflow-y-hidden overflow-x-scroll"
+          >
+            <div className="relative w-full">
+              <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
+                <div className="min-h-[10rem] space-y-[.5rem] bg-black p-[2rem]">
+                  <h1 className="heroTitle">{hero.title}</h1>
+                  <p className="heroParagraph">{hero.paragraph}</p>
+                </div>
 
-            <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
-              <div className="min-h-[10rem] space-y-[.5rem] bg-black p-[2rem]">
-                <h1 className="heroTitle">{hero.title}</h1>
-                <p className="heroParagraph">{hero.paragraph}</p>
+                <div className="relative w-fit translate-y-[-25%] overflow-hidden bg-black pb-[.5rem] transition-all duration-200 ease-tamisitée">
+                  <Link
+                    href={
+                      hero?.cta?.ctaLink?._type === "pages"
+                        ? `/${hero.cta?.ctaLink?.slug || ""}`
+                        : hero?.cta?.ctaLink?._type === "events"
+                          ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`
+                          : hero?.cta?.ctaLink?._type === "blogs"
+                            ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
+                            : "#"
+                    }
+                    className="heroCta relative z-10 h-full w-full px-[2rem]"
+                  >
+                    {hero.cta?.ctaLabel} [+]
+                  </Link>
+                </div>
               </div>
 
-              <div className="relative w-fit translate-y-[-25%] overflow-hidden bg-black pb-[.5rem] transition-all duration-200 ease-tamisitée">
-                <Link
-                  href={
-                    hero?.cta?.ctaLink?._type === "pages"
-                      ? `/${hero.cta?.ctaLink?.slug || ""}`
-                      : hero?.cta?.ctaLink?._type === "events"
-                        ? `/agenda/${hero.cta?.ctaLink?.slug || ""}`
-                        : hero?.cta?.ctaLink?._type === "blogs"
-                          ? `/blog/${hero.cta?.ctaLink?.slug || ""}`
-                          : "#"
+              {hero.image && (
+                <Image
+                  src={
+                    hero.image.imageUrl ||
+                    "https://via.placeholder.com/1920x1080"
                   }
-                  className="heroCta relative z-10 h-full w-full px-[2rem]"
-                >
-                  {hero.cta?.ctaLabel} [+]
-                </Link>
-              </div>
+                  alt={hero.image.alt || ""}
+                  width={400}
+                  height={400}
+                  className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover"
+                />
+              )}
             </div>
-
-            {hero.image && (
-              <Image
-                src={
-                  hero.image.imageUrl || "https://via.placeholder.com/1920x1080"
-                }
-                alt={hero.image.alt || ""}
-                width={400}
-                height={400}
-                className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover"
-              />
-            )}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
