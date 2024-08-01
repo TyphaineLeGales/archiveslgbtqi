@@ -10,34 +10,35 @@ type Props = {
 
 export default function HeroDesktop({ heroes }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scrollMessage, setScrollMessage] = useState("⬅︎ Scroll ➡︎");
+  // const [scrollMessage, setScrollMessage] = useState("Glisser vers la gauche");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (containerRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-        if (scrollLeft === 0) {
-          setScrollMessage("◀︎  Scroll");
-        } else if (scrollLeft + clientWidth >= scrollWidth) {
-          setScrollMessage("Scroller  ▶︎");
-        } else {
-          setScrollMessage("◀︎  Scroller  ▶︎");
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (containerRef.current) {
+  //       const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+  //       if (scrollLeft === 0) {
+  //         setScrollMessage("Glisser vers la gauche");
+  //       } else if (scrollLeft + clientWidth >= scrollWidth) {
+  //         setScrollMessage("Glisser vers la droite");
+  //       } else {
+  //         setScrollMessage("◀︎  Glisser  ▶︎");
+  //       }
+  //       console.log("scrollLeft: ", scrollLeft);
+  //     }
+  //   };
 
-    const container = containerRef.current;
-    container?.addEventListener("scroll", handleScroll);
+  //   const container = containerRef.current;
+  //   container?.addEventListener("scroll", handleScroll);
 
-    return () => {
-      container?.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     container?.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <div
       ref={containerRef}
-      className="relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden lg:hidden"
+      className="no-scrollbar relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden lg:hidden"
     >
       {heroes?.hero?.map((hero, index) => (
         <div
@@ -45,9 +46,12 @@ export default function HeroDesktop({ heroes }: Props) {
           className="relative h-[100vh] min-w-[100vw] snap-center snap-always overflow-hidden"
         >
           <div className="relative w-full">
-            <div className="fixed inset-x-0 bottom-[1rem] z-30 flex items-center justify-center p-[1rem] font-tanker text-[1rem] tracking-wider text-white">
-              {scrollMessage}
-            </div>
+            {/* <div className="pointer-events-none fixed inset-x-0 bottom-[1rem] flex max-h-[100vh] items-center justify-center p-[1rem] font-tanker text-[1rem] tracking-wider text-white">
+              <span className="flex w-full items-center justify-center bg-black px-[1rem] py-[.5rem]">
+                {scrollMessage}
+              </span>
+            </div> */}
+
             <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
               <div className="min-h-[10rem] space-y-[.5rem] bg-black p-[2rem]">
                 <h1 className="heroTitle">{hero.title}</h1>

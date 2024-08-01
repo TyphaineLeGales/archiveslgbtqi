@@ -14,15 +14,25 @@ export default {
       transitionTimingFunction: {
         tamisitée: "cubic-bezier(0.6, 0.01, 0.05, 0.95)",
       },
+      animation: {
+        marquee: "marquee 10s linear infinite",
+        "slow-pulse": "slow-pulse 3s ease-in-out infinite",
+        "translate-squeezed":
+          "translate-squeezed 0.5s 5s infinite running slidein",
+      },
       keyframes: {
         marquee: {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-100%)" },
-          // "100%": { transform: "translateX(calc(-100% + 6rem))" },
         },
-      },
-      animation: {
-        marquee: "marquee 10s linear infinite",
+        "slow-pulse": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
+        "translate-squeezed": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-10%) " },
+        },
       },
       colors: {
         "white-primary": "#F7F7F7",
