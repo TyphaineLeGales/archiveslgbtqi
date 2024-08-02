@@ -39,7 +39,7 @@ export default async function Page() {
   // console.log("Homepage: ", homePage);
 
   return (
-    <div className="relative min-h-[100vh] overflow-hidden">
+    <div className="relative min-h-[100vh] overflow-hidden scroll-auto">
       <HeroCarousel heroes={homePage} />
       <SecondSection multiBlocks={homePage} />
       <IntroTextAndNewsLetter intro={homePage} />
