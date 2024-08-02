@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { HomepageQueryResult } from "@/sanity.types";
@@ -9,54 +9,14 @@ type Props = {
 };
 
 export default function HeroDesktop({ heroes }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const swipeRef = useRef<HTMLDivElement>(null);
-  const [isSwiping, setIsSwiping] = useState(false);
-
-  useEffect(() => {
-    if (!containerRef.current || !swipeRef.current) return;
-
-    const container = containerRef.current;
-    const swipe = swipeRef.current;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      setIsSwiping(true);
-      swipe.style.opacity = "0";
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      setIsSwiping(false);
-      swipe.style.opacity = "100";
-    };
-
-    container.addEventListener("touchstart", handleTouchStart);
-    container.addEventListener("touchend", handleTouchEnd);
-
-    return () => {
-      container.removeEventListener("touchstart", handleTouchStart);
-      container.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, []);
-
   return (
-    <div
-      ref={containerRef}
-      className="no-scrollbar relative flex max-h-[calc(100dvh-5rem)] min-h-[calc(100dvh-5rem)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden lg:hidden"
-    >
-      <div className="flex h-full w-full">
+    <div className="relative flex w-full lg:hidden">
+      <div className="relative flex max-h-[100svh] min-w-full snap-y snap-mandatory flex-col overflow-y-auto overflow-x-hidden">
         {heroes?.hero?.map((hero, index) => (
           <div
             key={index}
-            className="relative h-[100vh] min-w-[100vw] snap-center snap-always overflow-y-hidden overflow-x-scroll"
+            className="sticky top-0 h-full min-h-[100svh] min-w-[100vw] snap-start scroll-auto"
           >
-            {/* <div
-              ref={swipeRef}
-              className="pointer-events-none fixed left-1/2 top-1/2 flex items-center justify-center font-tanker text-[2.5rem] uppercase tracking-wider"
-            >
-              <span className="animate-pulse bg-white px-[.5rem] py-[.25rem] text-black">
-                Glisser
-              </span>
-            </div> */}
             <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
               <div className="min-h-[10rem] space-y-[.5rem] bg-black p-[2rem]">
                 <h1 className="heroTitle">{hero.title}</h1>
@@ -89,7 +49,9 @@ export default function HeroDesktop({ heroes }: Props) {
                 alt={hero.image.alt || ""}
                 width={400}
                 height={400}
-                className="h-full min-h-[calc(100dvh-5rem)] w-full object-cover"
+                priority={index === 0}
+                loading="eager"
+                className="h-full min-h-full w-full object-cover"
               />
             )}
           </div>
