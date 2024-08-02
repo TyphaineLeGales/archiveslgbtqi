@@ -45,6 +45,7 @@ export default defineType({
       hidden: ({ parent }) =>
         parent?.slug?.current === "agenda" ||
         parent?.slug?.current === "blog" ||
+        parent?.slug?.current === "404" ||
         parent?.slug?.current === "liste-des-fonds",
     }),
     defineField({
