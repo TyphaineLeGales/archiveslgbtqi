@@ -44,7 +44,7 @@ export default function DesktopSidebar({ content }: Props) {
   const firstTitleBlock = content?.contentModulde?.[0]?.titleBlock;
 
   return (
-    <div className="fixed left-0 top-[7.25rem] ml-[3rem] mt-[3rem] hidden h-auto flex-col items-start justify-start gap-[1rem] lg:flex">
+    <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col items-start gap-[1rem] lg:flex">
       {content?.contentModulde?.map((item, index) => (
         <>
           {item.titleBlock && (
