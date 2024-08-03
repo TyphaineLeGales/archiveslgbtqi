@@ -79,8 +79,8 @@ export const structure = async (S: StructureBuilder) => {
               // Blogs by year
               ...(await years).map((year) =>
                 S.listItem()
-                  .title(year.toString())
-                  .icon(() => (year >= new Date().getFullYear() ? "📅" : "📆"))
+                  .title(year)
+                  .icon(() => "📅")
                   .child(
                     S.documentList()
                       .title(`Blogs de ${year}`)

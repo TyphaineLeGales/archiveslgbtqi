@@ -40,11 +40,11 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
 
   // Filter to get only one blog per year
   const uniqueYears = blog.reduce<Blog[]>((acc, current) => {
-    const x = acc.find((item) => item.year === current.year);
+    const x = acc.find((item) => item.year === parseInt(current.year || ""));
     if (!x) {
       const newBlog: Blog = {
         _id: "",
-        year: current.year || 0,
+        year: parseInt(current.year || ""),
         // other properties
       };
       return acc.concat([newBlog]);
