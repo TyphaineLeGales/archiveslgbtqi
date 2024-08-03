@@ -12,12 +12,15 @@ import { BlogDesktopSidebar } from "../components/blog";
 import { CTAmarquee } from "../components/homepage";
 
 export default async function Page() {
+  const currentYear = new Date().getFullYear().toString();
+  const minYear = (new Date().getFullYear() - 4).toString(); // 5 years of blogs
+
   const [blogs, homePage] = await Promise.all([
     sanityFetch<BlogsQueryResult>({
       query: blogsQuery,
       params: {
-        maxYear: new Date().getFullYear(),
-        minYear: new Date().getFullYear() - 4, // 5 years of blogs
+        maxYear: currentYear,
+        minYear: minYear,
       },
     }),
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
@@ -28,12 +31,12 @@ export default async function Page() {
   return (
     <div className="relative mx-auto mt-[3rem] min-h-screen lg:max-w-[1440px]">
       <BlogDesktopSidebar blog={blogs} />
-      <div className="pb-bottomPage flex flex-col gap-[5rem] px-[1rem] lg:ml-arch lg:pr-[3rem]">
+      <div className="flex flex-col gap-[5rem] px-[1rem] pb-bottomPage lg:ml-arch lg:pr-[3rem]">
         {blogs.map((blog) => (
           <div
-            id={blog.year?.toString()}
-            key={blog._id}
-            className="flex flex-col justify-between border-t-[3px] border-black pb-[3rem]"
+            id={blog.year || ""}
+            key={blog.title}
+            className="flex h-full flex-col justify-between border-t-[3px] border-black pb-[3rem]"
           >
             <h2 className="blogTitle pt-[.5rem]">{blog.title}</h2>
             <span className="blogSubTitle py-[.75rem]">{blog.subTitle}</span>

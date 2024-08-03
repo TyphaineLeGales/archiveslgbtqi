@@ -310,7 +310,7 @@ export type Blogs = {
   title?: string;
   subTitle?: string;
   author?: string;
-  year?: number;
+  year?: string;
   date?: string;
   contentBlock?: Array<
     | {
@@ -1206,7 +1206,7 @@ export type BlogsQueryResult = Array<{
   title: string | null;
   subTitle: string | null;
   author: string | null;
-  year: number | null;
+  year: string | null;
   date: string | null;
   contentBlock: Array<
     | {
