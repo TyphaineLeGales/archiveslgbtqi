@@ -47,9 +47,9 @@ export default function HeroDesktop({ heroes }: Props) {
                   hero.image.imageUrl || "https://via.placeholder.com/1920x1080"
                 }
                 alt={hero.image.alt || ""}
-                width={400}
-                height={400}
-                priority={index === 0}
+                width={350}
+                height={350}
+                priority={true}
                 loading="eager"
                 className="h-full min-h-full w-full object-cover"
               />
