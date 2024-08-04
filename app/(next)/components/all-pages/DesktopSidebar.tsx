@@ -21,30 +21,6 @@ export default function DesktopSidebar({ content }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const buttonsRef = useRef<HTMLButtonElement[]>([]);
 
-  useGSAP(() => {
-    const triggers = content?.contentModulde?.map((item, index) => {
-      if (item.titleBlock) {
-        const transformedId = transformId(item.titleBlock);
-        const element = document.getElementById(transformedId);
-
-        if (element) {
-          return ScrollTrigger.create({
-            trigger: element,
-            start: "-16px 165px",
-            end: "bottom center",
-            // markers: true,
-            onEnter: () => setActiveIndex(index),
-            onLeaveBack: () => setActiveIndex(index - 1),
-          });
-        }
-      }
-    });
-
-    return () => {
-      triggers?.forEach((trigger) => trigger?.kill());
-    };
-  }, [content]);
-
   const handleClickScroll = (
     e: React.MouseEvent<HTMLButtonElement>,
     index: number,
