@@ -27,9 +27,10 @@ export default defineType({
       name: "year",
       title: "Année",
       description: "Année de publication. (Sert à naviguer dans les archives)",
-      type: "number",
+      type: "string",
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: "date",
       title: "Date de publication",

@@ -1,11 +1,17 @@
 "use client";
 
 import { PagesContentQueryResult } from "@/sanity.types";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import clsx from "clsx";
 
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
 import { transformId } from "../../utils/TransforId";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
   content: PagesContentQueryResult;
@@ -13,6 +19,31 @@ type Props = {
 
 export default function DesktopSidebar({ content }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const buttonsRef = useRef<HTMLButtonElement[]>([]);
+
+  useGSAP(() => {
+    const triggers = content?.contentModulde?.map((item, index) => {
+      if (item.titleBlock) {
+        const transformedId = transformId(item.titleBlock);
+        const element = document.getElementById(transformedId);
+
+        if (element) {
+          return ScrollTrigger.create({
+            trigger: element,
+            start: "-16px 165px",
+            end: "bottom center",
+            // markers: true,
+            onEnter: () => setActiveIndex(index),
+            onLeaveBack: () => setActiveIndex(index - 1),
+          });
+        }
+      }
+    });
+
+    return () => {
+      triggers?.forEach((trigger) => trigger?.kill());
+    };
+  }, [content]);
 
   const handleClickScroll = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -41,14 +72,17 @@ export default function DesktopSidebar({ content }: Props) {
     // console.log("Clicked on:", transformedId);
   };
 
-  const firstTitleBlock = content?.contentModulde?.[0]?.titleBlock;
-
   return (
-    <div className="fixed left-0 top-[7.25rem] ml-[3rem] mt-[3rem] hidden h-auto flex-col items-start justify-start gap-[1rem] lg:flex">
+    <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col items-start gap-[1rem] lg:flex">
       {content?.contentModulde?.map((item, index) => (
         <>
           {item.titleBlock && (
             <button
+              ref={(el) => {
+                if (el) {
+                  buttonsRef.current[index] = el;
+                }
+              }}
               key={item.titleBlock}
               aria-label="Sidebar button"
               onClick={(e) => handleClickScroll(e, index)}
