@@ -18,7 +18,7 @@ export default function HeroDesktop({ heroes }: Props) {
             className="sticky top-0 h-full min-h-[100svh] min-w-[100vw] snap-start scroll-auto"
           >
             <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
-              <div className="min-h-[10rem] space-y-[.5rem] bg-black p-[2rem]">
+              <div className="min-h-[10rem] min-w-full space-y-[.5rem] bg-black p-[2rem]">
                 <h1 className="heroTitle">{hero.title}</h1>
                 <p className="heroParagraph">{hero.paragraph}</p>
               </div>
