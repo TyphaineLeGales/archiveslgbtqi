@@ -17,7 +17,6 @@ type ScrollButtonProps = {
   className?: string;
 };
 
-// TODO: Scroll Button
 const ScrollButton = ({
   to,
   targetId,
