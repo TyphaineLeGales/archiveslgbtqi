@@ -16,13 +16,6 @@ import { IntroAnimation } from "./components/ui/IntroAnimation";
 import { Font } from "@react-email/components";
 import CookieBanner from "./components/ui/CookieBanner";
 
-// TODO: Delete Inter Font
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 const cityBurn = localFont({
   src: "./fonts/cityburn/cityburn.ttf",
   variable: "--font-cityburn",
@@ -69,7 +62,7 @@ export default function RootLayout({
     <html
       title="Centre Archives LGBTQI+"
       lang="fr"
-      className={`${inter.variable} ${cityBurn.variable} ${jetBrains.variable} ${tanker.variable} bg-white`}
+      className={`${cityBurn.variable} ${jetBrains.variable} ${tanker.variable} bg-white`}
     >
       <body>
         <section className="relative flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
