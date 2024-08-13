@@ -40,16 +40,17 @@ export default {
         "pink-arch": "#FC5F8C",
       },
       fontSize: {
-        headerMobile: "1.5rem",
-        headerDesktop: "1.1875rem",
+        "header-mobile": "1.5rem",
+        "header-desktop": "1.2rem",
       },
       height: {
-        headerMobile: "1.5rem",
-        headerDesktop: "1.1875rem",
+        "header-mobile": "1.5rem",
+        "header-desktop": "1.1875rem",
+        "header-size-desktop": "6rem",
       },
       lineHeight: {
-        headerMobile: "1.8rem",
-        headerDesktop: "1.5rem",
+        "header-mobile": "1.8rem",
+        "header-desktop": "1.2rem",
       },
       margin: {
         arch: "19.25rem",

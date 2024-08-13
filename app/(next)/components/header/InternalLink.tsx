@@ -26,18 +26,13 @@ export default function InternalLink({ link, onclick }: InternalLinkProps) {
       href={`/${link.internalLinkDetails?.slug || ""}`}
       onClick={onclick}
       className={clsx(
-        "headerItem group relative flex h-headerMobile w-fit flex-col overflow-hidden lg:h-headerDesktop",
+        "headerItem",
         pathname === `/${link.internalLinkDetails?.slug}`
           ? "text-pink-arch"
           : "",
       )}
     >
-      <span className="transition-transform duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
-        {link.internalLinkDetails?.title || ""}
-      </span>
-      <span className="transition-transform duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
-        {link.internalLinkDetails?.title || ""}
-      </span>
+      {link.internalLinkDetails?.title || ""}
     </Link>
   );
 }

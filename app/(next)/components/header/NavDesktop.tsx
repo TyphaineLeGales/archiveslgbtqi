@@ -16,11 +16,11 @@ export default function NavDesktop({ settings }: NavLinkProps) {
   const router = useRouter();
 
   return (
-    <div className="fixed inset-x-0 top-0 z-40 hidden h-[8rem] max-h-[7.25rem] min-w-[100vw] bg-black lg:flex">
-      <nav className="fixed inset-x-0 top-0 z-40 mx-auto hidden h-[8rem] max-h-[7.25rem] w-full max-w-[1440px] items-center overflow-hidden bg-black pr-[3rem] text-white lg:flex">
+    <div className="h-header-size-desktop fixed inset-x-0 top-0 z-40 hidden min-w-[100vw] bg-black lg:flex">
+      <nav className="h-header-size-desktop fixed inset-x-0 top-0 z-40 mx-auto hidden w-full max-w-[1440px] items-center overflow-hidden bg-black pr-[3rem] text-white lg:flex">
         <Link
           href="/"
-          className="absolute inset-y-0 left-[3rem] my-auto flex aspect-square h-headerDesktop w-[8rem] select-none items-center justify-center"
+          className="h-header-desktop absolute inset-y-0 left-[3rem] my-auto flex aspect-square w-[8rem] select-none items-center justify-center"
         >
           <Image
             src={
