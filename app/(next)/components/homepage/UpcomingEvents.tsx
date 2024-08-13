@@ -26,7 +26,7 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
                 events?.upcomingEventsSection?.upcomingEventsCTA?.eventsCTA
                   ?.slug?.current || ""
               }
-              className="font-tanker text-[1rem] lg:text-[1.12rem]"
+              className="font-tanker text-[1rem] duration-200 ease-tamisitée hover:text-pink-arch lg:text-[1.12rem]"
             >
               {events?.upcomingEventsSection?.upcomingEventsCTA
                 ?.eventsCTATitle || "Voir l'agenda"}{" "}
