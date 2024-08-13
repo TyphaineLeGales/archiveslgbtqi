@@ -12,7 +12,7 @@
   /* 👇🏽 HomePage */
 
   .headerItem {
-    @apply font-tanker text-headerMobile uppercase leading-headerMobile tracking-wide lg:text-headerDesktop lg:leading-headerDesktop;
+    @apply text-header-mobile leading-header-mobile lg:text-header-desktop lg:leading-header-desktop font-tanker uppercase tracking-wide hover:text-pink-arch;
   }
 
   .headerMobileItem {

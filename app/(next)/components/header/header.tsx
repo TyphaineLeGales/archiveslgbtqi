@@ -14,6 +14,7 @@ export default async function Header() {
 
   return (
     <>
+      {/*  TODO: FIX CSS */}
       <NavMobile settings={settings} />
 
       <NavDesktop settings={settings} />

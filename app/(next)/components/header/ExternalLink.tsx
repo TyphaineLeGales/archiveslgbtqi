@@ -18,14 +18,9 @@ export default function ExternalLink({ link }: ExternalLinkProps) {
       target="_blank"
       rel="noreferrer"
       aria-label="Lien externe"
-      className="headerItem group relative flex h-headerMobile w-fit flex-col overflow-hidden lg:h-headerDesktop"
+      className="headerItem"
     >
-      <span className="transition-transform duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
-        {link.externalLinkDetails?.title}
-      </span>
-      <span className="transition-transform duration-500 ease-tamisitée group-hover:translate-y-[-100%]">
-        {link.externalLinkDetails?.title}
-      </span>
+      {link.externalLinkDetails?.title}
     </a>
   );
 }
