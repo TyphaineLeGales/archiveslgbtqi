@@ -41,7 +41,7 @@ export default {
       },
       fontSize: {
         "header-mobile": "1.5rem",
-        "header-desktop": "1.2rem",
+        "header-desktop": "1rem",
       },
       height: {
         "header-mobile": "1.5rem",
@@ -50,12 +50,11 @@ export default {
       },
       lineHeight: {
         "header-mobile": "1.8rem",
-        "header-desktop": "1.2rem",
+        "header-desktop": "1rem",
       },
       margin: {
-        arch: "19.25rem",
+        arch: "17rem",
       },
-
       padding: {
         bottomPage: "7rem",
       },
