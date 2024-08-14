@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function HeroDesktop({ heroes }: Props) {
-  const [currentHero, setCurrentHero] = React.useState(0);
+  const [currentHero, setCurrentHero] = React.useState(1);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const imageRef = React.useRef<HTMLImageElement>(null);
@@ -27,7 +27,7 @@ export default function HeroDesktop({ heroes }: Props) {
   useGSAP(() => {
     gsap.from(paragraphRef.current, {
       translateY: "100%",
-      duration: 1,
+      duration: 2,
       ease: "power4.inOut",
     });
   }, [currentHero]);
@@ -36,13 +36,13 @@ export default function HeroDesktop({ heroes }: Props) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-    }, 6000);
+    }, 20000);
 
     return () => clearInterval(interval);
   }, [heroes?.hero?.length]);
 
   return (
-    <div className="relative hidden max-h-[calc(100vh-7.25rem)] min-h-[calc(100vh-7.25rem)] min-w-[100vw] lg:flex">
+    <div className="relative hidden max-h-[calc(100vh-6rem)] min-h-[calc(100vh-6rem)] min-w-[100vw] lg:flex">
       {heroes?.hero?.map((hero) => (
         <div
           key={heroes?.hero?.indexOf(hero)}
@@ -55,7 +55,7 @@ export default function HeroDesktop({ heroes }: Props) {
           )}
           onClick={() => setCurrentHero(heroes?.hero?.indexOf(hero)!)}
         >
-          <div className="relative max-h-[calc(100dvh-5rem)] w-full lg:max-h-[calc(100vh-7.25rem)]">
+          <div className="relative max-h-[calc(100dvh-5rem)] w-full lg:max-h-[calc(100vh-6rem)]">
             <Link
               href={
                 hero?.cta?.ctaLink?._type === "pages"
@@ -73,7 +73,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   : "hidden opacity-0",
               )}
             >
-              <div className="min-h-[20rem] min-w-[30rem] space-y-[.5rem] bg-black p-[2rem]">
+              <div className="min-h-[10rem] min-w-[30rem] space-y-[.5rem] bg-black p-[2rem]">
                 <h1 ref={titleRef} className="heroTitle">
                   {hero.title}
                 </h1>
@@ -102,7 +102,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   height={
                     currentHero === heroes?.hero?.indexOf(hero) ? 540 : 270
                   }
-                  className="h-full min-h-[calc(100vh-7.25rem)] w-full object-cover object-center"
+                  className="h-full min-h-[calc(100vh-6rem)] w-full object-cover object-center"
                 />
               </>
             )}
