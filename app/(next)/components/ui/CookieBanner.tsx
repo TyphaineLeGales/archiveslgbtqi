@@ -30,7 +30,7 @@ export default function CookieBanner() {
       {isFirstVisit && isVisible && (
         <div
           className={clsx(
-            "fixed bottom-0 left-0 right-0 flex h-auto items-center justify-between bg-white p-[1rem] transition-transform duration-300 ease-tamisitée",
+            "fixed bottom-0 left-0 right-0 z-50 flex h-auto items-center justify-between bg-white p-[1rem] transition-transform duration-300 ease-tamisitée",
             isVisible ? "translate-y-[0%]" : "translate-y-[100%]",
           )}
         >

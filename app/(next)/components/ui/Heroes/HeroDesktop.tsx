@@ -87,7 +87,7 @@ export default function HeroDesktop({ heroes }: Props) {
                 >
                   {hero.paragraph}
                 </p>
-                <div className="heroCta absolute bottom-0 right-0 z-10 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
+                <div className="heroCta absolute bottom-0 right-0 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
                   {hero.cta?.ctaLabel} [+]
                 </div>
               </div>
