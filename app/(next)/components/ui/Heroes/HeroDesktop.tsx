@@ -67,21 +67,27 @@ export default function HeroDesktop({ heroes }: Props) {
                       : "#"
               }
               className={clsx(
-                "group absolute bottom-[3rem] left-[2rem] flex max-w-[80%] flex-col items-end text-white transition-[opacity,height] duration-500 ease-tamisitée will-change-transform",
+                "group absolute bottom-[3rem] left-[2rem] flex max-h-[15rem] min-h-[15rem] w-[80%] min-w-[80%] max-w-[80%] flex-col items-start transition-[opacity] duration-300 ease-tamisitée",
                 currentHero === heroes?.hero?.indexOf(hero)
                   ? "block opacity-100"
                   : "hidden opacity-0",
               )}
             >
-              <div className="min-h-[10rem] min-w-[30rem] space-y-[.5rem] bg-black p-[2rem]">
-                <h1 ref={titleRef} className="heroTitle">
+              <div className="relative max-h-[15rem] min-h-[15rem] space-y-[.5rem] bg-black p-[2rem] text-white-primary transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
+                <h1
+                  ref={titleRef}
+                  className="heroTitle transition-none will-change-transform"
+                >
                   {hero.title}
                 </h1>
 
-                <p ref={paragraphRef} className="heroParagraph">
+                <p
+                  ref={paragraphRef}
+                  className="heroParagraph transition-none will-change-transform"
+                >
                   {hero.paragraph}
                 </p>
-                <div className="heroCta heroButtonTransition absolute bottom-0 right-0 z-10 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
+                <div className="heroCta absolute bottom-0 right-0 z-10 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
                   {hero.cta?.ctaLabel} [+]
                 </div>
               </div>
