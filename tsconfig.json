@@ -25,7 +25,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "sanity/plugins/structure.ts"
+    "sanity/plugins/structure.ts",
+    "sanity/plugins/CustomStringInputWithLimits.jsx"
   ],
   "exclude": ["node_modules"]
 }
