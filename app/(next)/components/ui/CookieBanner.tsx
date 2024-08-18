@@ -52,7 +52,7 @@ export default function CookieBanner() {
             </p>
             <button
               aria-label="Ok"
-              className="heroCta aspect-auto w-full bg-black p-[1rem] hover:text-pink-arch lg:aspect-square lg:w-auto"
+              className="heroCta aspect-auto w-full bg-black p-[1rem] text-white hover:text-pink-arch lg:aspect-square lg:w-auto"
               onClick={handleClose}
             >
               Ok
