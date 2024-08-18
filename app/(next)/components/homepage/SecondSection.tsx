@@ -58,18 +58,18 @@ export default function SecondSection({ multiBlocks }: Props) {
                         height={300}
                         className="absolute inset-0 z-0 h-full w-full object-cover"
                       />
-                      <div className="absolute inset-0 z-0 h-full w-full bg-black bg-opacity-40 transition-opacity duration-300 ease-tamisitée group-hover:opacity-0" />
+                      <div className="absolute inset-0 z-0 h-full w-full bg-black bg-opacity-20 transition-[background] duration-300 ease-tamisitée group-hover:bg-opacity-10" />
                       <div className="] absolute bottom-[1rem] left-[1rem]">
-                        <h2 className="heroTitle group-hover:mix-blend-difference">
+                        <h2 className="heroTitle text-white-primary">
                           {block.title}
                         </h2>
                       </div>
                     </div>
-                    <div className="relative flex min-h-[25%] flex-col items-end justify-start text-white">
-                      <div className="flex-1 bg-black p-[1rem] pb-[2rem]">
+                    <div className="relative flex min-h-[25%] flex-col items-end justify-start text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
+                      <div className="flex-1 bg-black p-[1rem]">
                         <p className="heroParagraph">{block.paragraph}</p>
                       </div>
-                      <div className="heroCta heroButtonTransition absolute bottom-0 right-0 z-10 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
+                      <div className="heroCta absolute bottom-0 right-0 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
                         {block.cta?.ctaLabel} [+]
                       </div>
                     </div>
@@ -88,18 +88,18 @@ export default function SecondSection({ multiBlocks }: Props) {
                         height={300}
                         className="absolute inset-0 z-0 h-full w-full object-cover"
                       />
-                      <div className="absolute inset-0 z-0 h-full w-full bg-black bg-opacity-40 transition-opacity duration-300 ease-tamisitée group-hover:opacity-0" />
+                      <div className="absolute inset-0 z-0 h-full w-full bg-black bg-opacity-20 transition-[background] duration-300 ease-tamisitée group-hover:bg-opacity-10" />
                       <div className="] absolute bottom-[1rem] left-[1rem]">
-                        <h2 className="heroTitle group-hover:mix-blend-difference">
+                        <h2 className="heroTitle text-white-primary">
                           {block.title}
                         </h2>
                       </div>
                     </div>
-                    <div className="relative flex min-h-[25%] flex-col items-end justify-start text-white">
-                      <div className="flex-1 bg-black p-[1rem] pb-[2rem]">
+                    <div className="relative flex min-h-[25%] flex-col items-end justify-start text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
+                      <div className="flex-1 bg-black p-[1rem]">
                         <p className="heroParagraph">{block.paragraph}</p>
                       </div>
-                      <div className="heroCta heroButtonTransition absolute bottom-0 right-0 z-10 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
+                      <div className="heroCta absolute bottom-0 right-0 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
                         {block.cta?.ctaLabel} [+]
                       </div>
                     </div>

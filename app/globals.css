@@ -12,7 +12,7 @@
   /* 👇🏽 HomePage */
 
   .headerItem {
-    @apply text-header-mobile leading-header-mobile lg:text-header-desktop lg:leading-header-desktop font-tanker uppercase tracking-wide hover:text-pink-arch;
+    @apply font-tanker text-header-mobile uppercase leading-header-mobile tracking-wide hover:text-pink-arch lg:text-header-desktop lg:leading-header-desktop;
   }
 
   .headerMobileItem {
@@ -24,19 +24,19 @@
   }
 
   .heroTitle {
-    @apply font-tanker text-[2rem] uppercase leading-[2.25rem] tracking-wide text-white-primary will-change-auto lg:text-[3.3rem] lg:leading-[3rem];
+    @apply font-tanker text-[2rem] uppercase leading-[2.25rem] tracking-wide lg:text-[3.3rem] lg:leading-[3rem];
   }
 
   .heroParagraph {
-    @apply font-jetbrains text-[0.9rem] font-light leading-[1.25rem] tracking-widest text-white;
+    @apply font-jetbrains text-[0.9rem] font-light leading-[1.25rem] tracking-widest;
   }
 
   .heroCta {
-    @apply font-jetbrains text-[.7rem] uppercase leading-[.7rem] tracking-widest text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch;
+    @apply font-jetbrains text-[.7rem] uppercase leading-[.7rem] tracking-widest;
   }
 
   .heroButtonTransition {
-    @apply transition-[transform,padding] duration-300 ease-tamisitée group-hover:translate-y-0 group-hover:py-[1rem];
+    @apply transition-[transform,padding] duration-300 ease-tamisitée hover:translate-y-0 group-hover:translate-y-0 group-hover:py-[1rem];
   }
 
   .newsLetterInput {
@@ -157,12 +157,13 @@
 
   /* 👇🏽 Marquee */
   .marquee-container {
+    position: relative;
     overflow: hidden;
   }
 
   .marquee {
     display: inline-block;
-    padding-left: 100%;
+    padding-left: 10rem;
     animation: marquee 10s linear infinite;
   }
 
@@ -172,7 +173,7 @@
 
   @keyframes marquee {
     0% {
-      transform: translateX(100%);
+      transform: translateX(0);
     }
     100% {
       transform: translateX(-100%);

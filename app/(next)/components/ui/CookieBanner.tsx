@@ -30,7 +30,7 @@ export default function CookieBanner() {
       {isFirstVisit && isVisible && (
         <div
           className={clsx(
-            "fixed bottom-0 left-0 right-0 flex h-auto items-center justify-between bg-white p-[1rem] transition-transform duration-300 ease-tamisitée",
+            "fixed bottom-0 left-0 right-0 z-50 flex h-auto items-center justify-between bg-white p-[1rem] transition-transform duration-300 ease-tamisitée",
             isVisible ? "translate-y-[0%]" : "translate-y-[100%]",
           )}
         >
@@ -52,7 +52,7 @@ export default function CookieBanner() {
             </p>
             <button
               aria-label="Ok"
-              className="heroCta aspect-auto w-full bg-black p-[1rem] hover:text-pink-arch lg:aspect-square lg:w-auto"
+              className="heroCta aspect-auto w-full bg-black p-[1rem] text-white hover:text-pink-arch lg:aspect-square lg:w-auto"
               onClick={handleClose}
             >
               Ok

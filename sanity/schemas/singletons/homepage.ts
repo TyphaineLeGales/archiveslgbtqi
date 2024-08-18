@@ -1,4 +1,4 @@
-import { HomeIcon } from "@sanity/icons";
+import CustomStringInputWithLimits from "@/sanity/plugins/CustomStringInputWithLimits";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
@@ -53,6 +53,9 @@ export default defineType({
           name: "hero",
           title: "Block",
           type: "array",
+          description: "💡 3 slides maximum",
+          validation: (Rule) =>
+            Rule.max(3).warning("3 slides maximum").error("3 slides maximum"),
           of: [
             defineArrayMember({
               type: "object",
@@ -72,6 +75,13 @@ export default defineType({
                   name: "paragraph",
                   title: "Paragraph",
                   type: "text",
+                  validation: (Rule) =>
+                    Rule.max(150).warning(
+                      "100 letters maximum, (il sera tronqué)",
+                    ),
+                  components: {
+                    input: CustomStringInputWithLimits,
+                  },
                 }),
                 defineField({
                   name: "image",
