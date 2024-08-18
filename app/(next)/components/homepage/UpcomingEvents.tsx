@@ -38,7 +38,7 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
               <Link
                 href="/agenda"
                 key={event._id}
-                className="group relative aspect-square min-h-[80%] min-w-full"
+                className="group relative aspect-square min-h-[80%] min-w-full text-white hover:text-pink-arch"
               >
                 <div className="upcomingEventsBoxSize">
                   <Image
@@ -49,7 +49,7 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
                     className="upcomingEventsBoxSize absolute inset-0"
                   />
                 </div>
-                <div className="upcomingEventsBoxSize bg-black p-[1rem] text-white">
+                <div className="upcomingEventsBoxSize bg-black p-[1rem]">
                   <span className="font-jetbrains text-[.8rem] uppercase">
                     {event.eventType}
                   </span>
@@ -64,7 +64,7 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
                     {event.eventDate?.eventEndDate && (
                       <>
                         {" "}
-                        jusqu&apos;au{" "}
+                        -{" "}
                         <DateHourFormat
                           formatType="alternative"
                           dateString={event.eventDate?.eventEndDate || ""}
@@ -73,7 +73,7 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
                     )}
                   </h4>
                 </div>
-                <div className="heroCta heroButtonTransition absolute bottom-0 right-0 z-10 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
+                <div className="heroCta absolute bottom-0 right-0 z-10 translate-y-[99%] bg-black px-[1.25rem] pb-[.75rem]">
                   {events.upcomingEventsSection?.upcomingEventsCTATitle || ""}{" "}
                   [+]
                 </div>
