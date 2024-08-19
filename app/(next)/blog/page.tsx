@@ -51,7 +51,7 @@ export default async function Page() {
                   <MyCustomPortableText
                     key={index}
                     value={block.richText as PortableTextBlock[]}
-                    className="blogParagraph pb-[1rem]"
+                    className="blogParagraph min-w-full pb-[1rem] pr-[5.5rem]"
                   />
                 );
               }
