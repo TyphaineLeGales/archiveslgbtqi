@@ -181,7 +181,7 @@ export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]
     },
 }`;
 
-export const pastEventQuery = groq`*[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()]{
+export const pastEventQuery = groq`*[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()] | order(eventDate.eventStartDate desc)[0...3]{
   _id,
   eventType,
   eventTitle,

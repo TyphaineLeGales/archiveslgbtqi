@@ -1126,7 +1126,7 @@ export type EventQueryResult = {
   } | null;
 } | null;
 // Variable: pastEventQuery
-// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
+// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()] | order(eventDate.eventStartDate desc)[0...3]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type PastEventQueryResult = Array<{
   _id: string;
   eventType: string | null;

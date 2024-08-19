@@ -13,7 +13,12 @@ export default function CustomStringInputWithLimits(props) {
   );
   return (
     <Stack space={3}>
-      <TextArea {...elementProps} value={value} onChange={handleChange} />
+      <TextArea
+        {...elementProps}
+        padding={4}
+        value={value}
+        onChange={handleChange}
+      />
       <Text size={1}>{value.length || 0} / 150 Lettres</Text>
     </Stack>
   );
