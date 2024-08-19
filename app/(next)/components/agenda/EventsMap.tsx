@@ -1,6 +1,5 @@
 import React from "react";
 
-import Image from "next/image";
 import { PortableTextBlock } from "next-sanity";
 
 import { LastEventQueryResult, PastEventQueryResult } from "@/sanity.types";
@@ -8,12 +7,21 @@ import { LastEventQueryResult, PastEventQueryResult } from "@/sanity.types";
 import { DateHourFormat, MyCustomPortableText } from "../ui";
 import ButtonImage from "./ButtonImage";
 
+import clsx from "clsx";
+
 type FutureEventProps = {
   id: string;
   eventsMap: LastEventQueryResult | PastEventQueryResult;
+  status?: string;
+  entry?: string;
 };
 
-export default function EventsMap({ id, eventsMap }: FutureEventProps) {
+export default function EventsMap({
+  id,
+  eventsMap,
+  status,
+  entry,
+}: FutureEventProps) {
   return (
     <div id={id} className="flex flex-col gap-[1rem]">
       <h1 className="pageTitle">{id === "future" ? "À venir" : "Passés"}</h1>
@@ -43,7 +51,15 @@ export default function EventsMap({ id, eventsMap }: FutureEventProps) {
                 </div>
                 <div className="flex flex-col gap-[.25rem] pt-[1rem]">
                   <span className="eventLocation">{event.eventLocation}</span>
-                  <span className="eventEntrance">{event.eventEntrance}</span>
+                  <span
+                    // className="eventEntrance"
+                    className={clsx(
+                      "eventEntrance text-black",
+                      entry === "future" && "text-pink-arch",
+                    )}
+                  >
+                    {event.eventEntrance}
+                  </span>
                 </div>
               </div>
               <div className="pt-[3rem] lg:pt-0">
@@ -54,7 +70,7 @@ export default function EventsMap({ id, eventsMap }: FutureEventProps) {
               </div>
             </div>
             <div>
-              <ButtonImage event={event as any} />
+              <ButtonImage status={status} event={event as any} />
             </div>
           </div>
         ))}

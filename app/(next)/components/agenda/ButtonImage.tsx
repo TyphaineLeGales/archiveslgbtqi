@@ -1,20 +1,21 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import Image from "next/image";
 
 import clsx from "clsx";
 
-type ButtonImageProps = {
+export type ButtonImageProps = {
   event: {
     image: {
       imageUrl: string;
       alt: string;
     };
   };
+  status?: string;
 };
 
-export default function ButtonImage({ event }: ButtonImageProps) {
+export default function ButtonImage({ event, status }: ButtonImageProps) {
   const imageContainerRef = React.useRef<HTMLImageElement>(null);
 
   const [isImageClicked, setIsImageClicked] = React.useState(false);
@@ -70,7 +71,10 @@ export default function ButtonImage({ event }: ButtonImageProps) {
           alt={event.image?.alt || ""}
           width={450}
           height={400}
-          className="object-contain lg:h-[400px] lg:w-[450px] lg:object-cover"
+          className={clsx(
+            "object-contain lg:h-[400px] lg:w-[450px] lg:object-cover",
+            status === "past" && "grayscale",
+          )}
         />
       </button>
     </>
