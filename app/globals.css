@@ -110,7 +110,7 @@
   }
 
   .eventEntrance {
-    @apply font-jetbrains text-[.8rem] uppercase leading-[.8rem] text-pink-arch;
+    @apply font-jetbrains text-[.8rem] uppercase leading-[.8rem];
   }
 
   .eventParagraph {
