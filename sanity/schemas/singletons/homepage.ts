@@ -77,7 +77,7 @@ export default defineType({
                   type: "text",
                   validation: (Rule) =>
                     Rule.max(150).warning(
-                      "100 letters maximum, (il sera tronqué)",
+                      "100 caractères maximum, (il sera tronqué)",
                     ),
                   components: {
                     input: CustomStringInputWithLimits,

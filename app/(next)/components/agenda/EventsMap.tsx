@@ -52,7 +52,6 @@ export default function EventsMap({
                 <div className="flex flex-col gap-[.25rem] pt-[1rem]">
                   <span className="eventLocation">{event.eventLocation}</span>
                   <span
-                    // className="eventEntrance"
                     className={clsx(
                       "eventEntrance text-black",
                       entry === "future" && "text-pink-arch",
@@ -65,7 +64,7 @@ export default function EventsMap({
               <div className="pt-[3rem] lg:pt-0">
                 <MyCustomPortableText
                   value={event.eventDescription as PortableTextBlock[]}
-                  className="eventParagraph"
+                  className="eventParagraph pb-[.12.5rem]"
                 />
               </div>
             </div>
