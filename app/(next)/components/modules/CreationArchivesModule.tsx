@@ -63,7 +63,7 @@ export default function CreationArchivesModule({
               </div>
             </div>
             <li className="w-full py-[2rem] lg:max-w-[80%] lg:py-[2.5rem]">
-              <span className="block pb-[1rem] font-tanker text-[.6rem] uppercase leading-[1rem] tracking-wider lg:hidden">
+              <span className="block pb-[1rem] font-jetbrains text-[.6rem] uppercase leading-[1rem] tracking-wider lg:hidden">
                 {archiveItem.status}
               </span>
               <MyCustomPortableText
