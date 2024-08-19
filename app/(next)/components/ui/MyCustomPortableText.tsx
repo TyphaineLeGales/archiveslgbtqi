@@ -40,7 +40,7 @@ export default function MyCustomPortableText({
             rel="noreferrer noopener"
             target="_blank"
             aria-label="Lien externe"
-            className="uppercase text-pink-arch"
+            className="uppercase text-pink-arch hover:text-black hover:no-underline"
           >
             {children}
           </a>
