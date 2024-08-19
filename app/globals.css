@@ -72,7 +72,7 @@
   }
 
   .richText {
-    @apply font-jetbrains text-[.9rem] leading-[1.5rem] tracking-wider;
+    @apply font-jetbrains text-[.8rem] leading-[1.2rem] tracking-wider;
   }
 
   .linkButton {
