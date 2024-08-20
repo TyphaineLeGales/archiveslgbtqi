@@ -3,9 +3,9 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { transformId } from "../../utils/TransforId";
 import { PagesContentQueryResult } from "@/sanity.types";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +13,7 @@ type Props = {
   content: PagesContentQueryResult;
 };
 
-const DesktopSidebar: React.FC<Props> = ({ content }) => {
+export default function DesktopSidebar({ content }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const buttonsRef = useRef<HTMLButtonElement[]>([]);
 
@@ -36,7 +36,7 @@ const DesktopSidebar: React.FC<Props> = ({ content }) => {
     [],
   );
 
-  useEffect(() => {
+  useGSAP(() => {
     buttonsRef.current.forEach((button, index) => {
       const id = transformId(button.textContent || "");
       const element = document.getElementById(id);
@@ -44,16 +44,18 @@ const DesktopSidebar: React.FC<Props> = ({ content }) => {
       if (element) {
         ScrollTrigger.create({
           // markers: true,
-          refreshPriority: 0,
           trigger: element,
-          start: "-19px 162px",
-          end: "bottom 162px",
+          start: "-19px center",
+          end: "bottom center",
           onEnter: () => setActiveIndex(index),
           onLeaveBack: () => setActiveIndex(index - 1),
         });
       }
     });
-  }, [content]);
+
+    // Refresh ScrollTrigger after setting up all instances
+    ScrollTrigger.refresh(true);
+  });
 
   return (
     <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col items-start gap-[1rem] lg:flex">
@@ -78,6 +80,4 @@ const DesktopSidebar: React.FC<Props> = ({ content }) => {
       )}
     </div>
   );
-};
-
-export default DesktopSidebar;
+}
