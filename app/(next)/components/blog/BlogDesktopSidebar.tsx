@@ -1,17 +1,17 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { BlogsQueryResult } from "@/sanity.types";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 type Blog = {
   _id: string;
   year: number;
-  // other properties
 };
 
 type BlogDesktopSidebarProps = {
@@ -24,26 +24,6 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
   );
   const buttonsRef = useRef<HTMLButtonElement[]>([]);
 
-  const handleBlogScroll = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // step 1: set the active year
-    setActiveYear(parseInt(e.currentTarget.textContent || ""));
-
-    // step 2: scroll to the year
-    const year = e.currentTarget.textContent;
-    const element = document.getElementById(year || "");
-    if (element) {
-      const offset = 164; // Adjust this value to set the margin
-      const elementPosition =
-        element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
   // Filter to get only one blog per year
   const uniqueYears = blog.reduce<Blog[]>((acc, current) => {
     const x = acc.find((item) => item.year === parseInt(current.year || ""));
@@ -51,7 +31,6 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
       const newBlog: Blog = {
         _id: current._id,
         year: parseInt(current.year || ""),
-        // other properties
       };
       return acc.concat([newBlog]);
     } else {
@@ -67,7 +46,6 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
 
         if (element) {
           ScrollTrigger.create({
-            // markers: true,
             trigger: element,
             start: "top center",
             end: "bottom center",
@@ -80,30 +58,37 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
       // Refresh ScrollTrigger after setting up all instances
       ScrollTrigger.refresh();
     },
-    // Cleanup function to kill all triggers on unmount
     { dependencies: [uniqueYears] },
   );
+
+  const handleBlogScroll = (year: number) => {
+    const element = document.getElementById(year.toString());
+    if (element) {
+      gsap.to(window, {
+        scrollTo: { y: element.offsetTop, offsetY: 70 }, // Adjust offsetY as needed
+        duration: 1,
+        ease: "power2.inOut",
+      });
+    }
+  };
 
   return (
     <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col gap-[1rem] lg:flex">
       {uniqueYears.map((blog, index) => (
-        <div
-          key={blog._id}
+        <button
+          key={blog.year}
+          aria-label={`Scroll to blog year ${blog.year}`}
+          onClick={() => handleBlogScroll(blog.year)}
+          ref={(el) => {
+            if (el) buttonsRef.current[index] = el;
+          }}
           className={clsx(
             "sidebarButton",
             activeYear === blog.year && "text-pink-arch",
           )}
         >
-          <button
-            aria-label="Blog year"
-            onClick={handleBlogScroll}
-            ref={(el) => {
-              if (el) buttonsRef.current[index] = el;
-            }}
-          >
-            {blog.year}
-          </button>
-        </div>
+          {blog.year}
+        </button>
       ))}
     </div>
   );
