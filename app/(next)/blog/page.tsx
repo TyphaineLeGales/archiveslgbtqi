@@ -35,7 +35,7 @@ export default async function Page() {
         {blogs.map((blog) => (
           <div
             id={blog.year || ""}
-            key={blog.title}
+            key={blog.year}
             className="flex h-full flex-col justify-between border-t-[3px] border-black pb-[3rem]"
           >
             <h2 className="blogTitle pt-[.5rem]">{blog.title}</h2>
