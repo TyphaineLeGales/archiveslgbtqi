@@ -43,7 +43,7 @@ const DesktopSidebar: React.FC<Props> = ({ content }) => {
 
       if (element) {
         ScrollTrigger.create({
-          markers: true,
+          // markers: true,
           refreshPriority: 0,
           trigger: element,
           start: "-19px 162px",
