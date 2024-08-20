@@ -78,7 +78,7 @@ export default async function Page({ params }: Props) {
             <div
               key={item._key}
               id={transformId(item.titleBlock || "")}
-              className="relative flex h-full flex-col gap-[2rem] pb-[5rem] will-change-scroll will-change-transform lg:pr-[10rem]"
+              className="relative flex h-full flex-col gap-[2rem] pb-[5rem] will-change-contents lg:pr-[10rem]"
             >
               <h2 className="pageTitle">{item.titleBlock || ""}</h2>
               <div>
