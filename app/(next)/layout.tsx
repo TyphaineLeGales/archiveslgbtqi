@@ -2,7 +2,7 @@ import "../globals.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VisualEditing } from "next-sanity";
-import { Inter } from "next/font/google";
+
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
 
@@ -10,10 +10,8 @@ import localFont from "next/font/local";
 
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
-
 import { BannerAlert, ToastProviders } from "./components/ui";
 import { IntroAnimation } from "./components/ui/IntroAnimation";
-import { Font } from "@react-email/components";
 import CookieBanner from "./components/ui/CookieBanner";
 
 const cityBurn = localFont({

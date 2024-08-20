@@ -74,11 +74,11 @@ export default async function Page({ params }: Props) {
         </h1>
         <div className="mt-[.5rem] flex min-h-screen flex-col gap-[1rem]">
           {content.contentModulde?.map((item, index) => (
-            // when the ScrollButton is clicked, it will scroll to the id of the element here
+            // start of each section
             <div
-              id={transformId(item.titleBlock || "")}
               key={item._key}
-              className="relative flex h-full flex-col gap-[2rem] pb-[5rem] lg:pr-[10rem]"
+              id={transformId(item.titleBlock || "")}
+              className="relative flex h-full flex-col gap-[2rem] pb-[5rem] will-change-scroll will-change-transform lg:pr-[10rem]"
             >
               <h2 className="pageTitle">{item.titleBlock || ""}</h2>
               <div>
