@@ -1,8 +1,12 @@
 "use client";
-import React from "react";
+import React, { useState, useRef } from "react";
 import clsx from "clsx";
-
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { BlogsQueryResult } from "@/sanity.types";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Blog = {
   _id: string;
@@ -15,9 +19,11 @@ type BlogDesktopSidebarProps = {
 };
 
 export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
-  const [activeYear, setActiveYear] = React.useState<number | null>(
+  const [activeYear, setActiveYear] = useState<number | null>(
     new Date().getFullYear(),
   );
+  const buttonsRef = useRef<HTMLButtonElement[]>([]);
+
   const handleBlogScroll = (e: React.MouseEvent<HTMLButtonElement>) => {
     // step 1: set the active year
     setActiveYear(parseInt(e.currentTarget.textContent || ""));
@@ -43,7 +49,7 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
     const x = acc.find((item) => item.year === parseInt(current.year || ""));
     if (!x) {
       const newBlog: Blog = {
-        _id: "",
+        _id: current._id,
         year: parseInt(current.year || ""),
         // other properties
       };
@@ -53,9 +59,34 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
     }
   }, []);
 
+  useGSAP(
+    () => {
+      // Set up ScrollTrigger for each unique year
+      uniqueYears.forEach((blog) => {
+        const element = document.getElementById(blog.year.toString());
+
+        if (element) {
+          ScrollTrigger.create({
+            // markers: true,
+            trigger: element,
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => setActiveYear(blog.year),
+            onLeaveBack: () => setActiveYear(blog.year - 1),
+          });
+        }
+      });
+
+      // Refresh ScrollTrigger after setting up all instances
+      ScrollTrigger.refresh();
+    },
+    // Cleanup function to kill all triggers on unmount
+    { dependencies: [uniqueYears] },
+  );
+
   return (
     <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col gap-[1rem] lg:flex">
-      {uniqueYears.map((blog) => (
+      {uniqueYears.map((blog, index) => (
         <div
           key={blog._id}
           className={clsx(
@@ -63,7 +94,13 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
             activeYear === blog.year && "text-pink-arch",
           )}
         >
-          <button aria-label="Blog year" onClick={handleBlogScroll}>
+          <button
+            aria-label="Blog year"
+            onClick={handleBlogScroll}
+            ref={(el) => {
+              if (el) buttonsRef.current[index] = el;
+            }}
+          >
             {blog.year}
           </button>
         </div>
