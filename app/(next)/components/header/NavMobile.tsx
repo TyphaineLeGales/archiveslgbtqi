@@ -69,7 +69,7 @@ export default function NavMobile({ settings }: NavLinkProps) {
       >
         <nav className="z-50 flex flex-col items-end justify-center gap-[1rem]">
           {settings?.header?.links &&
-            settings.header.links.map((link, index) => {
+            settings.header.links.map((link) => {
               if (link.type === "internal") {
                 return (
                   <InternalLink
@@ -78,6 +78,7 @@ export default function NavMobile({ settings }: NavLinkProps) {
                     onclick={() => {
                       setMenu(false);
                     }}
+                    device="mobile"
                   />
                 );
               } else {
