@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import HeaderTransitionLink from "./HeaderTransitionLink";
 
 type InternalLinkProps = {
   link: {
@@ -18,13 +19,12 @@ type InternalLinkProps = {
   onclick?: () => void;
 };
 
-export default function InternalLink({ link, onclick }: InternalLinkProps) {
+export default function InternalLink({ link }: InternalLinkProps) {
   const pathname = usePathname();
   return (
-    <Link
+    <HeaderTransitionLink
       key={link._key}
       href={`/${link.internalLinkDetails?.slug || ""}`}
-      onClick={onclick}
       className={clsx(
         "headerItem",
         pathname === `/${link.internalLinkDetails?.slug}`
@@ -33,6 +33,6 @@ export default function InternalLink({ link, onclick }: InternalLinkProps) {
       )}
     >
       {link.internalLinkDetails?.title || ""}
-    </Link>
+    </HeaderTransitionLink>
   );
 }
