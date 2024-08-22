@@ -1,8 +1,12 @@
 "use client";
-import Link from "next/link";
+
 import React from "react";
+
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import clsx from "clsx";
+
 import HeaderTransitionLink from "./HeaderTransitionLink";
 
 type InternalLinkProps = {
@@ -17,22 +21,46 @@ type InternalLinkProps = {
     } | null;
   };
   onclick?: () => void;
+  device?: "mobile" | "desktop";
 };
 
-export default function InternalLink({ link }: InternalLinkProps) {
+export default function InternalLink({
+  link,
+  device,
+  onclick,
+}: InternalLinkProps) {
   const pathname = usePathname();
   return (
-    <HeaderTransitionLink
-      key={link._key}
-      href={`/${link.internalLinkDetails?.slug || ""}`}
-      className={clsx(
-        "headerItem",
-        pathname === `/${link.internalLinkDetails?.slug}`
-          ? "text-pink-arch"
-          : "",
+    <>
+      {device === "mobile" && (
+        <Link
+          key={link._key}
+          href={`/${link.internalLinkDetails?.slug || ""}`}
+          onClick={onclick}
+          className={clsx(
+            "headerItem",
+            pathname === `/${link.internalLinkDetails?.slug}`
+              ? "text-pink-arch"
+              : "",
+          )}
+        >
+          {link.internalLinkDetails?.title || ""}
+        </Link>
       )}
-    >
-      {link.internalLinkDetails?.title || ""}
-    </HeaderTransitionLink>
+      {device === "desktop" && (
+        <HeaderTransitionLink
+          key={link._key}
+          href={`/${link.internalLinkDetails?.slug || ""}`}
+          className={clsx(
+            "headerItem",
+            pathname === `/${link.internalLinkDetails?.slug}`
+              ? "text-pink-arch"
+              : "",
+          )}
+        >
+          {link.internalLinkDetails?.title || ""}
+        </HeaderTransitionLink>
+      )}
+    </>
   );
 }
