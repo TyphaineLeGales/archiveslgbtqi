@@ -3,7 +3,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
   name: "homepage",
-  title: "Home Page",
+  title: "Page d'accueil",
   type: "document",
   icon: () => "🏠",
   groups: [
@@ -32,7 +32,7 @@ export default defineType({
     // Hero
     defineField({
       name: "hero",
-      title: "1️⃣ Caroussel d'images",
+      title: "Caroussel d'images",
       type: "object",
       group: "hero",
       description:
@@ -127,7 +127,7 @@ export default defineType({
     // Second part
     defineField({
       name: "secondPart",
-      title: "2️⃣ Deuxième section",
+      title: "Deuxième section",
       type: "object",
       description:
         "Cette section est dédiée à la deuxième section de la page d'accueil.",
@@ -219,7 +219,7 @@ export default defineType({
     // Text d'intro
     defineField({
       name: "introText",
-      title: "3️⃣ Texte d'introduction & Newsletter",
+      title: "Texte d'introduction & Newsletter",
       type: "object",
       group: "",
       options: {
@@ -250,7 +250,7 @@ export default defineType({
     // Upcoming events
     defineField({
       name: "upcomingEventsSection",
-      title: "4️⃣ Prochaines dates",
+      title: "Prochaines dates",
       type: "object",
       group: "upcomingEvents",
       options: {
@@ -319,7 +319,7 @@ export default defineType({
     // Marquee CTA
     defineField({
       name: "marqueeCTA",
-      title: "5️⃣ Bandeaux (bas de page)",
+      title: "Bandeaux (bas de page)",
       type: "object",
       group: "marqueeCTA",
       options: {
@@ -350,7 +350,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: "Home Page",
+        title: "Page d'accueil",
       };
     },
   },
