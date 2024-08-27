@@ -6,6 +6,7 @@ import Link from "next/link";
 import { HomepageQueryResult } from "@/sanity.types";
 
 import { DateHourFormat } from "../ui";
+import HeaderTransitionLink from "../header/HeaderTransitionLink";
 
 type UpcomingEventsProps = {
   events: HomepageQueryResult;
@@ -21,7 +22,7 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
               {events?.upcomingEventsSection?.upcomingEventsTitle ||
                 "Prochaines dates"}
             </h2>
-            <Link
+            <HeaderTransitionLink
               href={
                 events?.upcomingEventsSection?.upcomingEventsCTA?.eventsCTA
                   ?.slug?.current || ""
@@ -31,11 +32,11 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
               {events?.upcomingEventsSection?.upcomingEventsCTA
                 ?.eventsCTATitle || "Voir l'agenda"}{" "}
               [+]
-            </Link>
+            </HeaderTransitionLink>
           </div>
           <div className="grid min-h-full w-full grid-cols-1 place-content-between place-items-start gap-[5rem] lg:grid-cols-3 lg:gap-[1.5rem]">
             {events?.upcomingEventsSection?.upcomingEvents?.map((event) => (
-              <Link
+              <HeaderTransitionLink
                 href="/agenda"
                 key={event._id}
                 className="group relative aspect-square min-h-[80%] min-w-full text-white hover:text-pink-arch"
@@ -77,7 +78,7 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
                   {events.upcomingEventsSection?.upcomingEventsCTATitle || ""}{" "}
                   [+]
                 </div>
-              </Link>
+              </HeaderTransitionLink>
             ))}
           </div>
         </section>

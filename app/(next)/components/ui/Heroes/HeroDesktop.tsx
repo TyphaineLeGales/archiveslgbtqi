@@ -9,6 +9,7 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { Observer } from "gsap/Observer";
 import { useGSAP } from "@gsap/react";
+import HeaderTransitionLink from "../../header/HeaderTransitionLink";
 
 type Props = {
   heroes: HomepageQueryResult;
@@ -56,7 +57,7 @@ export default function HeroDesktop({ heroes }: Props) {
           onClick={() => setCurrentHero(heroes?.hero?.indexOf(hero)!)}
         >
           <div className="relative max-h-[calc(100dvh-5rem)] w-full lg:max-h-[calc(100vh-6rem)]">
-            <Link
+            <HeaderTransitionLink
               href={
                 hero?.cta?.ctaLink?._type === "pages"
                   ? `/${hero.cta?.ctaLink?.slug || ""}`
@@ -91,7 +92,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   {hero.cta?.ctaLabel} [+]
                 </div>
               </div>
-            </Link>
+            </HeaderTransitionLink>
 
             {hero.image && (
               <>
