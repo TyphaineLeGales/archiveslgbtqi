@@ -8,18 +8,13 @@ import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { codeInput } from "@sanity/code-input";
 import { media } from "sanity-plugin-media";
 
-import {
-  presentationTool,
-  defineDocuments,
-  defineLocations,
-  type DocumentLocation,
-} from "sanity/presentation";
+import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 
 import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
 import { singletonPlugin } from "@/sanity/plugins/settings";
 import settings from "@/sanity/schemas/singletons/settings";
-import { resolveHref } from "@/sanity/lib/utils";
+
 import { structure } from "./sanity/plugins/structure";
 
 // Singletons
