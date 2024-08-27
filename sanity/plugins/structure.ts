@@ -14,11 +14,20 @@ export const structure = async (S: StructureBuilder) => {
     .title("Content")
     .items([
       // 👇🏽 Settings
-      S.documentListItem().id("settings").schemaType("settings"),
+      S.documentListItem()
+        .id("settings")
+        .schemaType("settings")
+        .title("Paramètres"),
 
       S.divider(),
+
       // 👇🏽 Home
-      S.documentListItem().id("homepage").schemaType("homepage"),
+      S.documentListItem()
+        .id("homepage")
+        .schemaType("homepage")
+        .title("Page d'accueil"),
+
+      S.divider(),
 
       // 👇🏽 Pages
       ...S.documentTypeListItems().filter((item) => item.getId() == "pages"),
@@ -98,7 +107,7 @@ export const structure = async (S: StructureBuilder) => {
         .icon(() => "🗓️")
         .child(
           S.list()
-            .title("Events")
+            .title("Evénements")
             .items([
               // All events
               S.documentTypeListItem("events").title("Tous les événements"),

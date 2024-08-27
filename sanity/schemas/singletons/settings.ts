@@ -1,29 +1,28 @@
-import { CogIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "settings",
-  title: "Settings",
+  title: "Paramètres",
   type: "document",
   icon: () => "🔧",
   groups: [
     {
-      title: "🔧 Global Settings",
+      title: "🔧 Paramètres du site",
       name: "globalSettings",
     },
     {
-      title: "Header",
+      title: "Haut de page",
       name: "header",
     },
     {
-      title: "Footer",
+      title: "Bas de page",
       name: "footer",
     },
   ],
   fields: [
     defineField({
       name: "globalSettings",
-      title: "🔧 Global Settings",
+      title: "🔧 Paramètres du site",
       type: "object",
       group: "globalSettings",
       description: "Cette section contient les paramètres globaux du site.",
@@ -71,7 +70,7 @@ export default defineType({
     }),
     defineField({
       name: "header",
-      title: "🔼 Header",
+      title: "🔼 Haut de page",
       type: "object",
       group: "header",
       description: "Cette section contient les paramètres du Haut de page.",
@@ -199,7 +198,7 @@ export default defineType({
     }),
     defineField({
       name: "footer",
-      title: "🔽 Footer",
+      title: "🔽 Bas de page",
       type: "object",
       group: "footer",
       description: "Cette section contient les paramètres du Bas de page.",
@@ -215,7 +214,7 @@ export default defineType({
           fields: [
             defineField({
               name: "logoImage",
-              title: "Logo pour le footer",
+              title: "Image",
               type: "image",
             }),
             defineField({
@@ -291,7 +290,7 @@ export default defineType({
           name: "footerLinks",
           title: "Liens du footer",
           type: "array",
-          of: [moduleGroupstructure()], // Assume moduleGroupstructure returns the defined object structure for link groups
+          of: [moduleGroupstructure()],
         }),
       ],
     }),
@@ -299,8 +298,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: "Settings",
-        description: "Header, Footer, and other global settings.",
+        title: "Paramètres",
       };
     },
   },
