@@ -108,6 +108,7 @@ export default function HeroDesktop({ heroes }: Props) {
                   height={
                     currentHero === heroes?.hero?.indexOf(hero) ? 540 : 270
                   }
+                  priority
                   className="h-full min-h-[calc(100vh-6rem)] w-full object-cover object-center"
                 />
               </>
