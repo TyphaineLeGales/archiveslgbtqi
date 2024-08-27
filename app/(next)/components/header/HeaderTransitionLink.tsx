@@ -26,11 +26,18 @@ export default function HeaderTransitionLink({
   const handleTransition = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const headerRef = document.getElementById("nav-desktop");
+    const footerRef = document.getElementById("footer");
     const mainContentRef = document.getElementById("main-content");
 
     // Intro animation
     gsap.to(headerRef, {
       y: "-100%",
+      delay: 0.25,
+      duration: 0.75,
+      ease: "power2.inOut",
+    });
+    gsap.to(footerRef, {
+      y: "100%",
       delay: 0.25,
       duration: 0.75,
       ease: "power2.inOut",
@@ -46,6 +53,7 @@ export default function HeaderTransitionLink({
     // Outro animation
     await sleep(750);
     gsap.to(headerRef, { y: 0, duration: 0.75, ease: "power2.inOut" });
+    gsap.to(footerRef, { y: 0, duration: 0.75, ease: "power2.inOut" });
     gsap.to(mainContentRef, {
       opacity: 1,
       duration: 0.75,

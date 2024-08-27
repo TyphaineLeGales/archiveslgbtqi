@@ -9,6 +9,7 @@ import { settingsQuery } from "@/sanity/lib/queries";
 import { MyCustomPortableText } from "../ui";
 import { PortableTextBlock } from "next-sanity";
 import Credits from "./Credits";
+import HeaderTransitionLink from "../header/HeaderTransitionLink";
 
 export default async function Footer() {
   const settings = await sanityFetch<SettingsQueryResult>({
@@ -18,7 +19,7 @@ export default async function Footer() {
   // console.log("Settings: ", settings);
 
   return (
-    <div className="bg-black">
+    <footer id="footer" className="bg-black">
       <div className="relative mx-auto flex min-h-full w-full max-w-[1440px] flex-col items-start justify-between gap-[3rem] overflow-hidden px-[1rem] py-[3rem] text-white lg:h-[390px] lg:flex-row lg:items-end lg:gap-0 lg:px-[3rem] lg:py-0">
         {/* 👇🏽 Logo */}
         <div className="order-3 flex items-start justify-start lg:order-none lg:h-[75%]">
@@ -110,13 +111,13 @@ export default async function Footer() {
                 {modules.modules?.map((module) => {
                   if (module.type === "internal") {
                     return (
-                      <Link
+                      <HeaderTransitionLink
                         key={module.internalLink?.slug}
                         href={`/${module.internalLink?.slug}`}
                         className="footerTextHover"
                       >
                         {module.internalLink?.title}
-                      </Link>
+                      </HeaderTransitionLink>
                     );
                   } else {
                     return (
@@ -143,6 +144,6 @@ export default async function Footer() {
           {settings?.footer?.addressGroup?.addressTitle}
         </span>
       </div>
-    </div>
+    </footer>
   );
 }
