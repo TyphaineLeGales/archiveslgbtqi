@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { HomepageQueryResult } from "@/sanity.types";
+import HeaderTransitionLink from "../header/HeaderTransitionLink";
 
 type Props = {
   multiBlocks: HomepageQueryResult;
@@ -75,7 +76,7 @@ export default function SecondSection({ multiBlocks }: Props) {
                     </div>
                   </ScrollButton>
                 ) : (
-                  <Link
+                  <HeaderTransitionLink
                     key={index}
                     href={block.cta?.ctaLink?.slug || ""}
                     className="group relative flex aspect-square h-max max-h-[80rem] w-full flex-col lg:max-h-[50rem] lg:max-w-[50rem]"
@@ -103,7 +104,7 @@ export default function SecondSection({ multiBlocks }: Props) {
                         {block.cta?.ctaLabel} [+]
                       </div>
                     </div>
-                  </Link>
+                  </HeaderTransitionLink>
                 )}
               </>
             );
