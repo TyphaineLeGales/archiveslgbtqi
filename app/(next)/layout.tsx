@@ -64,11 +64,11 @@ export default function RootLayout({
       className={`${cityBurn.variable} ${jetBrains.variable} ${tanker.variable} bg-white`}
     >
       <body>
-        <section className="relative flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
+        <section className="flex min-h-screen flex-grow flex-col">
           {draftMode().isEnabled && <BannerAlert />}
           {/* <IntroAnimation /> */}
           <Header />
-          <main id="main-content" className="mt-[5rem] lg:mt-[6rem]">
+          <main id="main-content">
             <ToastProviders>{children}</ToastProviders>
           </main>
           <Suspense>

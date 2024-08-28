@@ -30,7 +30,6 @@ import {
 import { DesktopSidebar } from "../components/all-pages";
 import { FormSubmission } from "../components/ui";
 import { transformId } from "../utils/TransforId";
-import { CTAmarquee } from "../components/homepage";
 
 type Props = {
   params: {
@@ -71,70 +70,69 @@ export default async function Page({ params }: Props) {
   // console.log("Pages Content:", content);
 
   return (
-    <div className="relative mx-auto flex h-full min-h-screen w-auto max-w-[1440px] overflow-hidden p-[1rem] lg:p-0">
+    <div className="relative mx-auto flex min-h-screen w-auto max-w-[1440px] p-[1rem] lg:p-0">
       <DesktopSidebar content={content} />
-
-      <div className="flex h-full w-full flex-col overflow-hidden pb-bottomPage pt-[3rem] lg:ml-arch">
-        <h1 className="font-tanker text-[2rem] uppercase leading-[1.2rem] tracking-wider lg:text-[4rem] lg:leading-[3.2rem]">
+      <div className="flex h-full w-full flex-col overflow-hidden pt-[3rem]">
+        <h1 className="font-tanker text-[2rem] uppercase leading-[1.2rem] tracking-wide lg:text-[4.5rem] lg:leading-[3.7rem]">
           {content.title}
         </h1>
-        <div className="mt-[.5rem] flex min-h-screen flex-col gap-[1rem]">
+        <div className="mt-[.5rem] flex min-h-screen min-w-full flex-col gap-[1rem]">
           {content.contentModulde?.map((item, index) => (
             // start of each section
             <div
               key={item._key}
               id={transformId(item.titleBlock || "")}
-              className="relative flex h-full flex-col gap-[2rem] pb-[5rem] will-change-contents lg:pr-[10rem]"
+              className="relative flex flex-col gap-[2rem] pb-[5rem] will-change-contents lg:pr-[10rem]"
             >
               <h2 className="pageTitle">{item.titleBlock || ""}</h2>
-              <div>
-                <div className="flex flex-col gap-[.5rem]">
-                  {item.contenBlock?.map((block, index) => (
-                    <div key={block._key}>
-                      {block._type === "richtext" && (
-                        <RichTextModule item={block} />
-                      )}
-                      {block._type === "richTextAndTitle" && (
-                        <RichTextAndTitleModule item={block as any} />
-                      )}
-                      {block._type === "single-image" && (
-                        <SingleImageModule
-                          imageUrl={block.imageUrl || ""}
-                          imageTitle={block.imageTitle || ""}
-                        />
-                      )}
-                      {block._type === "multi-images" && (
-                        <MultiImagesModule item={block as any} />
-                      )}
 
-                      {block._type === "creationArchives" && (
-                        <CreationArchivesModule
-                          intro={block.creationArchivesTitle as any}
-                          archive={block.creationArchivesArchive as any}
-                        />
-                      )}
-                      {block._type === "custom-html" && (
-                        <CustomHtml
-                          title={block.codeTitle || ""}
-                          html={block.customHtml?.code as any}
-                          item={block as any}
-                        />
-                      )}
-                      {block._type === "link" && (
-                        <LinksModule item={block as any} />
-                      )}
-                      {block._type === "lastEvent" && (
-                        <EventsModule
-                          events={lastEvent}
-                          title={block.lastEventLabel || ""}
-                          link={block.goToAllEvents || ""}
-                        />
-                      )}
-                      {block._type === "contact-form" && <FormSubmission />}
-                    </div>
-                  ))}
-                </div>
+              <div className="flex flex-col gap-[.5rem]">
+                {item.contenBlock?.map((block, index) => (
+                  <div key={block._key}>
+                    {block._type === "richtext" && (
+                      <RichTextModule item={block} />
+                    )}
+                    {block._type === "richTextAndTitle" && (
+                      <RichTextAndTitleModule item={block as any} />
+                    )}
+                    {block._type === "single-image" && (
+                      <SingleImageModule
+                        imageUrl={block.imageUrl || ""}
+                        imageTitle={block.imageTitle || ""}
+                      />
+                    )}
+                    {block._type === "multi-images" && (
+                      <MultiImagesModule item={block as any} />
+                    )}
+
+                    {block._type === "creationArchives" && (
+                      <CreationArchivesModule
+                        intro={block.creationArchivesTitle as any}
+                        archive={block.creationArchivesArchive as any}
+                      />
+                    )}
+                    {block._type === "custom-html" && (
+                      <CustomHtml
+                        title={block.codeTitle || ""}
+                        html={block.customHtml?.code as any}
+                        item={block as any}
+                      />
+                    )}
+                    {block._type === "link" && (
+                      <LinksModule item={block as any} />
+                    )}
+                    {block._type === "lastEvent" && (
+                      <EventsModule
+                        events={lastEvent}
+                        title={block.lastEventLabel || ""}
+                        link={block.goToAllEvents || ""}
+                      />
+                    )}
+                    {block._type === "contact-form" && <FormSubmission />}
+                  </div>
+                ))}
               </div>
+
               {/* // 👇🏽 Separator (hide if it's the last element) */}
               {index !== (content?.contentModulde?.length ?? 0) - 1 && (
                 <div className="absolute bottom-0 left-0 h-[3px] w-full bg-black lg:w-[calc(100%-3rem)]" />

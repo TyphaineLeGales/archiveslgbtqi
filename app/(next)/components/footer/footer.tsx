@@ -1,7 +1,6 @@
 import React from "react";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { HomepageQueryResult, SettingsQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
@@ -24,7 +23,7 @@ export default async function Footer() {
   // console.log("Settings: ", settings);
 
   return (
-    <footer id="footer">
+    <footer id="footer" className="mt-[4rem]">
       <CTAMarquee marquee={homePage} />
       <div className="bg-black">
         <div className="relative mx-auto flex min-h-full w-full max-w-[1440px] flex-col items-start justify-between gap-[3rem] overflow-hidden px-[1rem] py-[3rem] text-white lg:h-[390px] lg:flex-row lg:items-end lg:gap-0 lg:px-[3rem] lg:py-0">

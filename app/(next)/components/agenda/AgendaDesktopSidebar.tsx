@@ -14,19 +14,24 @@ export default function AgendaDesktopSidebar() {
   const scrollToElement = (elementId: string, marginTop = 0) => {
     const element = document.getElementById(elementId);
     if (element) {
-      const elementPosition =
-        element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - marginTop;
+      // const elementPosition =
+      //   element.getBoundingClientRect().top + window.pageYOffset;
+      // const offsetPosition = elementPosition - marginTop;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
+      // window.scrollTo({
+      //   top: offsetPosition,
+      //   behavior: "smooth",
+      // });
+      gsap.to(window, {
+        scrollTo: { y: `#${elementId}`, offsetY: marginTop },
+        duration: 1,
+        ease: "power2.inOut",
       });
     }
   };
 
   const scrollToPast = () => {
-    scrollToElement("past", 164); // Adjust the margin as needed
+    scrollToElement("past", 144); // Adjust the margin as needed
     setIsPast(true);
   };
 
@@ -56,21 +61,23 @@ export default function AgendaDesktopSidebar() {
   });
 
   return (
-    <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col gap-[1rem] lg:flex">
-      <button
-        aria-label="Événements à venir"
-        onClick={scrollToFuture}
-        className={clsx("sidebarButton", { "text-pink-arch": !isPast })}
-      >
-        Événements à venir
-      </button>
-      <button
-        aria-label="Événements passés"
-        onClick={scrollToPast}
-        className={clsx("sidebarButton", { "text-pink-arch": isPast })}
-      >
-        Événements passés
-      </button>
+    <div className="relative hidden lg:block">
+      <div className="sticky left-[calc(50%-720px)] top-[145px] ml-[3.5rem] flex w-full min-w-[13.5rem] max-w-[13.5rem] flex-col items-start gap-[1rem]">
+        <button
+          aria-label="Événements à venir"
+          onClick={scrollToFuture}
+          className={clsx("sidebarButton", { "text-pink-arch": !isPast })}
+        >
+          Événements à venir
+        </button>
+        <button
+          aria-label="Événements passés"
+          onClick={scrollToPast}
+          className={clsx("sidebarButton", { "text-pink-arch": isPast })}
+        >
+          Événements passés
+        </button>
+      </div>
     </div>
   );
 }

@@ -64,11 +64,11 @@ export default function EventsMap({
               <div className="pt-[3rem] lg:pt-0">
                 <MyCustomPortableText
                   value={event.eventDescription as PortableTextBlock[]}
-                  className="eventParagraph pb-[.12.5rem]"
+                  className="eventParagraph min-w-full pb-[.12.5rem]"
                 />
               </div>
             </div>
-            <div>
+            <div className="flex cursor-pointer items-start justify-center">
               <ButtonImage status={status} event={event as any} />
             </div>
           </div>

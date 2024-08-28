@@ -65,7 +65,7 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
     const element = document.getElementById(year.toString());
     if (element) {
       gsap.to(window, {
-        scrollTo: { y: element.offsetTop, offsetY: 70 }, // Adjust offsetY as needed
+        scrollTo: { y: element.offsetTop, offsetY: 48 }, // Adjust offsetY as needed
         duration: 1,
         ease: "power2.inOut",
       });
@@ -73,23 +73,25 @@ export default function BlogDesktopSidebar({ blog }: BlogDesktopSidebarProps) {
   };
 
   return (
-    <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col gap-[1rem] lg:flex">
-      {uniqueYears.map((blog, index) => (
-        <button
-          key={blog.year}
-          aria-label={`Scroll to blog year ${blog.year}`}
-          onClick={() => handleBlogScroll(blog.year)}
-          ref={(el) => {
-            if (el) buttonsRef.current[index] = el;
-          }}
-          className={clsx(
-            "sidebarButton",
-            activeYear === blog.year && "text-pink-arch",
-          )}
-        >
-          {blog.year}
-        </button>
-      ))}
+    <div className="relative hidden lg:block">
+      <div className="sticky left-[calc(50%-720px)] top-[145px] ml-[3.5rem] flex w-full min-w-[13.5rem] max-w-[13.5rem] flex-col items-start gap-[1rem]">
+        {uniqueYears.map((blog, index) => (
+          <button
+            key={blog.year}
+            aria-label={`Scroll to blog year ${blog.year}`}
+            onClick={() => handleBlogScroll(blog.year)}
+            ref={(el) => {
+              if (el) buttonsRef.current[index] = el;
+            }}
+            className={clsx(
+              "sidebarButton",
+              activeYear === blog.year && "text-pink-arch",
+            )}
+          >
+            {blog.year}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

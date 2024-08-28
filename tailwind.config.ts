@@ -55,6 +55,7 @@ export default {
       margin: {
         arch: "17rem",
       },
+
       padding: {
         bottomPage: "7rem",
       },
