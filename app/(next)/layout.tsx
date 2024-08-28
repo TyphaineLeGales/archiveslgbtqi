@@ -13,6 +13,7 @@ import Footer from "./components/footer/footer";
 import { BannerAlert, ToastProviders } from "./components/ui";
 import { IntroAnimation } from "./components/ui/IntroAnimation";
 import CookieBanner from "./components/ui/CookieBanner";
+import { CTAmarquee } from "./components/homepage";
 
 const cityBurn = localFont({
   src: "./fonts/cityburn/cityburn.ttf",
@@ -65,7 +66,7 @@ export default function RootLayout({
       <body>
         <section className="relative flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
           {draftMode().isEnabled && <BannerAlert />}
-          <IntroAnimation />
+          {/* <IntroAnimation /> */}
           <Header />
           <main id="main-content" className="mt-[5rem] lg:mt-[6rem]">
             <ToastProviders>{children}</ToastProviders>

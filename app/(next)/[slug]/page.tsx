@@ -4,11 +4,16 @@ import { notFound } from "next/navigation";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
+  HomepageQueryResult,
   LastEventQueryResult,
   PagesContentQueryResult,
   PageSlugsResult,
 } from "@/sanity.types";
-import { lastEventQuery, pagesContentQuery } from "@/sanity/lib/queries";
+import {
+  homepageQuery,
+  lastEventQuery,
+  pagesContentQuery,
+} from "@/sanity/lib/queries";
 import { groq } from "next-sanity";
 
 import {
@@ -25,6 +30,7 @@ import {
 import { DesktopSidebar } from "../components/all-pages";
 import { FormSubmission } from "../components/ui";
 import { transformId } from "../utils/TransforId";
+import { CTAmarquee } from "../components/homepage";
 
 type Props = {
   params: {

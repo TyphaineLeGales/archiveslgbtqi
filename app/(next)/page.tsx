@@ -44,7 +44,6 @@ export default async function Page() {
       <SecondSection multiBlocks={homePage} />
       <IntroTextAndNewsLetter intro={homePage} />
       <UpcomingEvents events={homePage} />
-      <CTAmarquee marquee={homePage} />
     </div>
   );
 }

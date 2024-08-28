@@ -72,7 +72,6 @@ export default async function Page() {
           </div>
         ))}
       </div>
-      <CTAmarquee marquee={homePage} />
     </div>
   );
 }
