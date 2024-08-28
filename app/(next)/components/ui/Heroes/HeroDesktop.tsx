@@ -49,21 +49,13 @@ export default function HeroDesktop({ heroes }: Props) {
           key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
           className={clsx(
-            "relative h-full overflow-hidden transition-all duration-[.75s] ease-tamisitée",
+            "relative h-full overflow-hidden transition-all duration-[.75s] ease-in-out",
             currentHero === heroes?.hero?.indexOf(hero)
-              ? `w-[100vw] mix-blend-normal`
-              : `w-[3rem] cursor-pointer mix-blend-luminosity hover:mix-blend-normal`,
+              ? "w-[100vw] mix-blend-normal"
+              : "w-[3rem] mix-blend-luminosity hover:mix-blend-normal",
           )}
           onClick={() => setCurrentHero(heroes?.hero?.indexOf(hero)!)}
         >
-          <div
-            className={clsx(
-              "absolute inset-0 z-10 h-full w-full bg-pink-arch",
-              currentHero === heroes?.hero?.indexOf(hero)
-                ? "opacity-0"
-                : "opacity-50",
-            )}
-          />
           <div className="relative max-h-[calc(100dvh-5rem)] w-full lg:max-h-[calc(100vh-6rem)]">
             <HeaderTransitionLink
               href={
