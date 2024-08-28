@@ -64,7 +64,7 @@ export default function RootLayout({
     >
       <body>
         <section className="relative flex min-h-screen w-screen flex-grow flex-col overflow-hidden">
-          {/* {draftMode().isEnabled && <BannerAlert />} */}
+          {draftMode().isEnabled && <BannerAlert />}
           <IntroAnimation />
           <Header />
           <main id="main-content" className="mt-[5rem] lg:mt-[6rem]">
@@ -75,7 +75,7 @@ export default function RootLayout({
           </Suspense>
           <CookieBanner />
         </section>
-        {/* {draftMode().isEnabled && <VisualEditing />} */}
+        {draftMode().isEnabled && <VisualEditing />}
         <SpeedInsights />
       </body>
     </html>
