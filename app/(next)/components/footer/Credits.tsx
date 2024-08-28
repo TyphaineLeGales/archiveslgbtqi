@@ -50,7 +50,7 @@ export default function Credits() {
       <div
         ref={creditsRef}
         className={clsx(
-          "min-w-screen fixed inset-x-0 bottom-0 z-40 h-auto bg-pink-arch p-[1rem] py-[1rem] text-white transition-[transform,colors] duration-500 ease-tamisitée hover:text-black lg:h-[50px]",
+          "min-w-screen fixed inset-x-0 bottom-0 z-40 h-auto translate-y-[100%] bg-pink-arch p-[1rem] py-[1rem] text-white transition-[transform,colors] duration-500 ease-tamisitée hover:text-black lg:h-[50px]",
           open ? "translate-y-0" : "translate-y-[100%]",
         )}
       >

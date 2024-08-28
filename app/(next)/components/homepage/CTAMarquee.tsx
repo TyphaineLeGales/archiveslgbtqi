@@ -26,6 +26,12 @@ export default function CTAMarquee({ marquee }: CTAMarqueeProps) {
           <div className="marquee mt-[.5rem] whitespace-nowrap font-cityburn text-[1.5rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
             {marquee?.marqueeCTA?.marqueeContent}
           </div>
+          <div className="marquee mt-[.5rem] whitespace-nowrap font-cityburn text-[1.5rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
+            {marquee?.marqueeCTA?.marqueeContent}
+          </div>
+          <div className="marquee mt-[.5rem] whitespace-nowrap font-cityburn text-[1.5rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
+            {marquee?.marqueeCTA?.marqueeContent}
+          </div>
         </Link>
       )}
     </>
