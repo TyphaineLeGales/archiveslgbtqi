@@ -27,15 +27,17 @@ export default function DesktopSidebar({ content }: Props) {
       const element = document.getElementById(transformedId);
 
       if (element) {
-        // const yOffset = index === 0 ? 0 : -164; // 5rem = 80px for all except the first element
-        // const y =
-        //   element.getBoundingClientRect().top + window.scrollY + yOffset;
-        // window.scrollTo({ top: y, behavior: "smooth" });
-        gsap.to(window, {
-          scrollTo: { y: `#${transformedId}`, offsetY: 164 },
-          duration: 1,
-          ease: "power2.inOut",
-        });
+        const yOffset = index === 0 ? 0 : -164; // 5rem = 80px for all except the first element
+        const y =
+          element.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+
+        // TODO:
+        // gsap.to(window, {
+        //   scrollTo: { y: element, autoKill: false },
+        //   duration: 1,
+        //   ease: "power2.inOut",
+        // });
       }
     },
     [],
