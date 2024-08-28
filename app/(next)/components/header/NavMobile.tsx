@@ -56,14 +56,14 @@ export default function NavMobile({ settings }: NavLinkProps) {
         <HambugerButton
           onclick={handleMenu}
           menu={menu}
-          className="z-50 flex flex-col gap-[.5rem] lg:hidden"
+          className="z-40 flex flex-col gap-[.5rem] lg:hidden"
         />
       </nav>
 
       <div
         ref={menuRef}
         className={clsx(
-          "fixed inset-0 z-50 mt-[5rem] h-screen w-full flex-col gap-[1rem] overflow-hidden bg-white-primary p-[1rem] transition-transform duration-500 ease-tamisitée lg:hidden",
+          "fixed inset-0 z-40 mt-[5rem] h-screen w-full flex-col gap-[1rem] overflow-hidden bg-white-primary p-[1rem] transition-transform duration-500 ease-tamisitée lg:hidden",
           menu ? "translate-x-0" : "translate-x-[100%]",
         )}
       >

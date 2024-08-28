@@ -65,7 +65,7 @@ export default function RootLayout({
       <body>
         <section className="flex min-h-screen flex-grow flex-col">
           {draftMode().isEnabled && <BannerAlert />}
-          {/* <IntroAnimation /> */}
+          <IntroAnimation />
           <Header />
           <main id="main-content">
             <ToastProviders>{children}</ToastProviders>
