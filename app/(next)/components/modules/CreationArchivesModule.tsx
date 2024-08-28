@@ -41,7 +41,7 @@ export default function CreationArchivesModule({
             aria-label="Boutton des archives"
             onClick={() => handleClick(index)}
             className={clsx(
-              "relative flex w-full flex-col items-start justify-start overflow-hidden py-[1rem] text-start transition-[max-height] duration-[.5s] ease-tamisitée",
+              "relative flex w-full flex-col items-start justify-start overflow-hidden py-[1rem] text-start transition-[max-height] duration-[.75s] ease-in-out",
               archiveIndex === index
                 ? "max-h-[30rem] hover:bg-white hover:text-black lg:max-h-[15rem]"
                 : "max-h-[2.15rem] hover:bg-pink-arch hover:text-white lg:max-h-[2.75rem]",
