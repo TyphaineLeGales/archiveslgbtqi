@@ -49,10 +49,10 @@ export default function HeroDesktop({ heroes }: Props) {
           key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
           className={clsx(
-            "relative h-full overflow-hidden transition-all duration-[.75s] ease-tamisitée",
+            "relative h-full overflow-hidden transition-all duration-[.75s] ease-in-out",
             currentHero === heroes?.hero?.indexOf(hero)
-              ? `w-[100vw] mix-blend-normal`
-              : `w-[3rem] cursor-pointer mix-blend-luminosity`,
+              ? "w-[100vw] mix-blend-normal"
+              : "w-[3rem] mix-blend-luminosity hover:mix-blend-normal",
           )}
           onClick={() => setCurrentHero(heroes?.hero?.indexOf(hero)!)}
         >

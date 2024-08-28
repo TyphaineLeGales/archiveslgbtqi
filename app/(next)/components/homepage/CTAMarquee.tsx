@@ -12,15 +12,18 @@ export default function CTAMarquee({ marquee }: CTAMarqueeProps) {
       {marquee?.marqueeCTA?.marqueeCTAVisibility && (
         <Link
           href={marquee?.marqueeCTA?.marqueeLink || ""}
-          className="marquee-container group flex h-[58px] w-full items-center bg-pink-arch"
+          className="marquee-container group flex h-[40px] w-full items-center bg-pink-arch"
         >
-          <div className="marquee mt-[.75rem] whitespace-nowrap font-cityburn text-[2.75rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
+          <div className="marquee mt-[.5rem] whitespace-nowrap font-cityburn text-[1.5rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
             {marquee?.marqueeCTA?.marqueeContent}
           </div>
-          <div className="marquee mt-[.75rem] whitespace-nowrap font-cityburn text-[2.75rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
+          <div className="marquee mt-[.5rem] whitespace-nowrap font-cityburn text-[1.5rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
             {marquee?.marqueeCTA?.marqueeContent}
           </div>
-          <div className="marquee mt-[.75rem] whitespace-nowrap font-cityburn text-[2.75rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
+          <div className="marquee mt-[.5rem] whitespace-nowrap font-cityburn text-[1.5rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
+            {marquee?.marqueeCTA?.marqueeContent}
+          </div>
+          <div className="marquee mt-[.5rem] whitespace-nowrap font-cityburn text-[1.5rem] leading-[1rem] tracking-wider text-white transition-colors duration-100 ease-tamisitée group-hover:text-black">
             {marquee?.marqueeCTA?.marqueeContent}
           </div>
         </Link>

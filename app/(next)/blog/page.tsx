@@ -29,9 +29,9 @@ export default async function Page() {
   // console.log("Blogs:", blogs);
 
   return (
-    <div className="relative mx-auto mt-[3rem] min-h-screen lg:max-w-[1440px]">
+    <div className="relative mx-auto flex min-h-screen w-auto max-w-[1440px] p-[1rem] lg:p-0">
       <BlogDesktopSidebar blog={blogs} />
-      <div className="flex flex-col gap-[5rem] px-[1rem] pb-bottomPage lg:ml-arch lg:pr-[3rem]">
+      <div className="flex h-full w-full flex-col overflow-hidden pt-[3rem]">
         {blogs.map((blog) => (
           <div
             id={blog.year || ""}
@@ -72,7 +72,6 @@ export default async function Page() {
           </div>
         ))}
       </div>
-      <CTAmarquee marquee={homePage} />
     </div>
   );
 }
