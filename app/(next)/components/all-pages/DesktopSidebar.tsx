@@ -27,10 +27,15 @@ export default function DesktopSidebar({ content }: Props) {
       const element = document.getElementById(transformedId);
 
       if (element) {
-        const yOffset = index === 0 ? 0 : -182.5; // 5rem = 80px for all except the first element
-        const y =
-          element.getBoundingClientRect().top + window.scrollY + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
+        // const yOffset = index === 0 ? 0 : -164; // 5rem = 80px for all except the first element
+        // const y =
+        //   element.getBoundingClientRect().top + window.scrollY + yOffset;
+        // window.scrollTo({ top: y, behavior: "smooth" });
+        gsap.to(window, {
+          scrollTo: { y: `#${transformedId}`, offsetY: 164 },
+          duration: 1,
+          ease: "power2.inOut",
+        });
       }
     },
     [],
@@ -58,26 +63,28 @@ export default function DesktopSidebar({ content }: Props) {
   });
 
   return (
-    <div className="fixed left-[calc(50%-720px)] top-[7.25rem] ml-[3.5rem] mt-[3rem] hidden flex-col items-start gap-[1rem] lg:flex">
-      {content?.contentModulde?.map(
-        (item, index) =>
-          item.titleBlock && (
-            <button
-              key={item.titleBlock}
-              ref={(el) => {
-                if (el) buttonsRef.current[index] = el;
-              }}
-              aria-label="Sidebar button"
-              onClick={(e) => handleClickScroll(e, index)}
-              className={clsx(
-                "sidebarButton will-change-auto",
-                index === activeIndex ? "text-pink-arch" : "text-black",
-              )}
-            >
-              {item.titleBlock}
-            </button>
-          ),
-      )}
+    <div className="relative hidden lg:block">
+      <div className="sticky left-[calc(50%-720px)] top-[145px] ml-[3.5rem] flex w-full min-w-[13.5rem] max-w-[13.5rem] flex-col items-start gap-[1rem]">
+        {content?.contentModulde?.map(
+          (item, index) =>
+            item.titleBlock && (
+              <button
+                key={item.titleBlock}
+                ref={(el) => {
+                  if (el) buttonsRef.current[index] = el;
+                }}
+                aria-label="Sidebar button"
+                onClick={(e) => handleClickScroll(e, index)}
+                className={clsx(
+                  "sidebarButton whitespace-nowrap text-start",
+                  index === activeIndex ? "text-pink-arch" : "text-black",
+                )}
+              >
+                {item.titleBlock}
+              </button>
+            ),
+        )}
+      </div>
     </div>
   );
 }

@@ -23,11 +23,18 @@ export default function MyCustomPortableText({
 }) {
   const components: PortableTextComponents = {
     block: {
+      h4: ({ children }) => (
+        <h4 className="font-tanker text-[1.2rem] uppercase tracking-wider">
+          {children}
+        </h4>
+      ),
       h5: ({ children }) => (
-        <h5 className="mb-2 text-sm font-semibold">{children}</h5>
+        <h5 className="font-tanker text-[1.1rem] uppercase tracking-wider">
+          {children}
+        </h5>
       ),
       h6: ({ children }) => (
-        <h6 className="font-tanker text-[1.4rem] uppercase text-black">
+        <h6 className="font-tanker text-[1rem] uppercase tracking-wider">
           {children}
         </h6>
       ),

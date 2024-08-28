@@ -1,24 +1,23 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-type CreditsProps = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
 export default function Credits() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const creditsRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleCreditsOpen = () => {
     setOpen(!open);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (ref.current && !ref.current.contains(event.target as Node)) {
+    if (
+      creditsRef.current &&
+      !creditsRef.current.contains(event.target as Node) &&
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target as Node)
+    ) {
       setOpen(false);
     }
   };
@@ -30,22 +29,29 @@ export default function Credits() {
     };
   }, []);
 
+  // Ensure the credits are closed when the component unmounts
+  useEffect(() => {
+    return () => {
+      setOpen(false);
+    };
+  }, []);
+
   return (
-    <div ref={ref}>
+    <>
       <button
         aria-label="Crédits"
         onClick={handleCreditsOpen}
         className="footerText footerTextHover"
+        ref={buttonRef}
       >
         Crédits
       </button>
+
       <div
+        ref={creditsRef}
         className={clsx(
-          "fixed inset-x-0 bottom-0 z-40 h-auto bg-pink-arch p-[1rem] py-[1rem] text-white transition-[transform,colors] duration-500 ease-tamisitée hover:text-black lg:h-[50px]",
-          {
-            "translate-y-[0%]": open,
-          },
-          { "translate-y-[100%]": !open },
+          "min-w-screen fixed inset-x-0 bottom-0 z-40 h-auto translate-y-[100%] bg-pink-arch p-[1rem] py-[1rem] text-white transition-[transform,colors] duration-500 ease-tamisitée hover:text-black lg:h-[50px]",
+          open ? "translate-y-0" : "translate-y-[100%]",
         )}
       >
         <p>
@@ -62,6 +68,6 @@ export default function Credits() {
           </a>
         </p>
       </div>
-    </div>
+    </>
   );
 }

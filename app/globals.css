@@ -163,7 +163,7 @@
 
   .marquee {
     display: inline-block;
-    padding-left: 10rem;
+    padding-left: 5rem;
     animation: marquee 10s linear infinite;
   }
 

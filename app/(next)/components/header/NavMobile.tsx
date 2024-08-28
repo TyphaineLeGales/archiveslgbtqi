@@ -33,8 +33,8 @@ export default function NavMobile({ settings }: NavLinkProps) {
   };
 
   return (
-    <nav className="relative z-40 block lg:hidden">
-      <div className="fixed top-0 flex h-[5rem] w-full items-center justify-between bg-black px-[1rem] text-white">
+    <>
+      <nav className="sticky inset-x-0 top-0 z-40 flex h-[5rem] w-full items-center justify-between bg-black px-[1rem] text-white lg:hidden">
         <Link
           href="/"
           onClick={() => {
@@ -58,7 +58,7 @@ export default function NavMobile({ settings }: NavLinkProps) {
           menu={menu}
           className="z-50 flex flex-col gap-[.5rem] lg:hidden"
         />
-      </div>
+      </nav>
 
       <div
         ref={menuRef}
@@ -87,6 +87,6 @@ export default function NavMobile({ settings }: NavLinkProps) {
             })}
         </nav>
       </div>
-    </nav>
+    </>
   );
 }

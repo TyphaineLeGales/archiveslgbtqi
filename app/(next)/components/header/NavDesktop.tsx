@@ -32,7 +32,7 @@ export default function NavDesktop({ settings }: NavLinkProps) {
     <div
       id="nav-desktop"
       ref={headerContainerRef}
-      className="fixed inset-x-0 top-0 z-40 hidden h-header-size-desktop min-w-[100vw] bg-black lg:flex"
+      className="sticky inset-x-0 top-0 z-40 hidden h-header-size-desktop min-w-[100vw] bg-black lg:flex"
     >
       <nav className="fixed inset-x-0 top-0 z-40 mx-auto hidden h-header-size-desktop w-full max-w-[1440px] items-center overflow-hidden bg-black pr-[3rem] text-white lg:flex">
         <HeaderTransitionLink

@@ -42,7 +42,7 @@ export default function FormSubmission() {
       className="relative flex w-full flex-col gap-[1rem] lg:w-[55%]"
     >
       <input
-        placeholder="name"
+        placeholder="Nom"
         {...register("name")}
         className="FormSubmitInput"
       />
@@ -51,7 +51,7 @@ export default function FormSubmission() {
       )}
 
       <input
-        placeholder="email"
+        placeholder="Adresse email"
         {...register("email")}
         className="FormSubmitInput"
       />
@@ -71,7 +71,7 @@ export default function FormSubmission() {
       <textarea
         rows={5}
         cols={5}
-        placeholder="message"
+        placeholder="Message"
         {...register("message")}
         className="FormSubmitInput resize-none"
       />
@@ -82,7 +82,7 @@ export default function FormSubmission() {
       <button
         aria-label="Envoyer"
         disabled={isSubmitting}
-        className="absolute bottom-0 right-0 translate-y-[calc(100%+1rem)] bg-black px-[1rem] py-[.5rem] font-jetbrains text-[.8rem] tracking-wider text-white"
+        className="absolute bottom-0 right-0 translate-y-[calc(100%+1rem)] bg-black px-[1rem] py-[.5rem] font-jetbrains text-[.8rem] uppercase tracking-wider text-white hover:text-pink-arch"
       >
         {isSubmitting ? "..." : "Envoyer"}
       </button>

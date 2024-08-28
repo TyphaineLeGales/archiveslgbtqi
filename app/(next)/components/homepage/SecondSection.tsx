@@ -61,7 +61,7 @@ export default function SecondSection({ multiBlocks }: Props) {
                       />
                       <div className="absolute inset-0 z-0 h-full w-full bg-black bg-opacity-20 transition-[background] duration-300 ease-tamisitée group-hover:bg-opacity-10" />
                       <div className="] absolute bottom-[1rem] left-[1rem]">
-                        <h2 className="heroTitle text-white-primary">
+                        <h2 className="heroTitle text-white-primary transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
                           {block.title}
                         </h2>
                       </div>
@@ -91,7 +91,7 @@ export default function SecondSection({ multiBlocks }: Props) {
                       />
                       <div className="absolute inset-0 z-0 h-full w-full bg-black bg-opacity-20 transition-[background] duration-300 ease-tamisitée group-hover:bg-opacity-10" />
                       <div className="] absolute bottom-[1rem] left-[1rem]">
-                        <h2 className="heroTitle text-white-primary">
+                        <h2 className="heroTitle text-white-primary transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
                           {block.title}
                         </h2>
                       </div>

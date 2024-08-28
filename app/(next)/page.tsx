@@ -9,8 +9,6 @@ import {
   SecondSection,
   IntroTextAndNewsLetter,
   UpcomingEvents,
-  CTAmarquee,
-  Homepage,
 } from "./components/homepage";
 
 export async function generateMetadata() {
@@ -44,7 +42,6 @@ export default async function Page() {
       <SecondSection multiBlocks={homePage} />
       <IntroTextAndNewsLetter intro={homePage} />
       <UpcomingEvents events={homePage} />
-      <CTAmarquee marquee={homePage} />
     </div>
   );
 }

@@ -30,7 +30,10 @@ export default function CreationArchivesModule({
   };
   return (
     <div className="flex min-w-full flex-col gap-[1rem] py-[1rem]">
-      <MyCustomPortableText value={intro} className="richText min-w-full" />
+      <MyCustomPortableText
+        value={intro}
+        className="richText min-w-full pb-[1.5rem]"
+      />
       <ul className="divide-y-[1px] divide-black border-t-[1px] border-black will-change-transform">
         {archive?.map((archiveItem, index) => (
           <button
