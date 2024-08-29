@@ -49,10 +49,28 @@ export default function HeroDesktop({ heroes }: Props) {
           key={heroes?.hero?.indexOf(hero)}
           ref={containerRef}
           className={clsx(
-            "relative h-full overflow-hidden transition-all duration-[.75s] ease-in-out",
+            "relative h-full overflow-hidden bg-pink-arch transition-all duration-[.75s] ease-in-out",
             currentHero === heroes?.hero?.indexOf(hero)
-              ? "w-[100vw] mix-blend-normal"
+              ? "w-[100vw] !cursor-auto mix-blend-normal"
               : "w-[3rem] mix-blend-luminosity hover:mix-blend-normal",
+            currentHero === 0 &&
+              heroes?.hero?.indexOf(hero) === 1 &&
+              "cursor-w-resize",
+            currentHero === 0 &&
+              heroes?.hero?.indexOf(hero) === 2 &&
+              "cursor-w-resize",
+            currentHero === 1 &&
+              heroes?.hero?.indexOf(hero) === 0 &&
+              "cursor-e-resize",
+            currentHero === 1 &&
+              heroes?.hero?.indexOf(hero) === 2 &&
+              "cursor-w-resize",
+            currentHero === 2 &&
+              heroes?.hero?.indexOf(hero) === 0 &&
+              "cursor-e-resize",
+            currentHero === 2 &&
+              heroes?.hero?.indexOf(hero) === 1 &&
+              "cursor-e-resize",
           )}
           onClick={() => setCurrentHero(heroes?.hero?.indexOf(hero)!)}
         >
@@ -110,7 +128,12 @@ export default function HeroDesktop({ heroes }: Props) {
                     currentHero === heroes?.hero?.indexOf(hero) ? 540 : 270
                   }
                   priority
-                  className="h-full min-h-[calc(100vh-6rem)] w-full object-cover object-center"
+                  className={clsx(
+                    "h-full min-h-[calc(100vh-6rem)] w-full object-cover object-center transition-opacity duration-200 ease-in-out",
+                    currentHero === heroes?.hero?.indexOf(hero)
+                      ? ""
+                      : "hover:opacity-50",
+                  )}
                 />
               </>
             )}

@@ -14,19 +14,20 @@ export default function AgendaDesktopSidebar() {
   const scrollToElement = (elementId: string, marginTop = 0) => {
     const element = document.getElementById(elementId);
     if (element) {
-      // const elementPosition =
-      //   element.getBoundingClientRect().top + window.pageYOffset;
-      // const offsetPosition = elementPosition - marginTop;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - marginTop;
 
-      // window.scrollTo({
-      //   top: offsetPosition,
-      //   behavior: "smooth",
-      // });
-      gsap.to(window, {
-        scrollTo: { y: `#${elementId}`, offsetY: marginTop },
-        duration: 1,
-        ease: "power2.inOut",
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
       });
+      // TODO:
+      // gsap.to(window, {
+      //   scrollTo: { y: `#${elementId}`, offsetY: marginTop },
+      //   duration: 1,
+      //   ease: "power2.inOut",
+      // });
     }
   };
 

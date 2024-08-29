@@ -35,7 +35,7 @@ export default function IntroductionText({ intro }: Props) {
                   <button
                     aria-label="Ok"
                     type="submit"
-                    className="absolute right-0 top-0 flex aspect-square h-[2.5rem] w-[2.5rem] items-center justify-center bg-white p-[1rem] font-tanker uppercase text-pink-arch transition-colors duration-200 ease-tamisitée hover:bg-black hover:text-pink-arch"
+                    className="absolute right-0 top-0 flex aspect-square h-[2.5rem] w-[2.5rem] items-center justify-center bg-white p-[1rem] font-tanker uppercase text-pink-arch transition-colors duration-200 ease-tamisitée hover:bg-black hover:text-white"
                   >
                     Ok
                   </button>
