@@ -37,31 +37,39 @@ export default defineType({
       type: "object",
       fields: [
         defineField({
+          name: "eventDateType",
+          title: "Type de date",
+          type: "string",
+          options: {
+            list: [
+              { title: "Date unique", value: "singleDate" },
+              { title: "Période", value: "dateRange" },
+            ],
+            layout: "radio",
+          },
+        }),
+        defineField({
           name: "eventStartDate",
-          title: "Commence le",
+          title: "Date de début",
           type: "datetime",
           options: {
             dateFormat: "DD-MM-YYYY",
             timeStep: 15,
           },
-          validation: (rule) => rule.required(),
+          // validation: (rule) => rule.required(),
+          // if the eventType is "dateRange" or "singleDate" , the eventEndDate field will be displayed
+          hidden: ({ parent }) => !parent?.eventDateType,
         }),
-        defineField({
-          name: "addEndDate",
-          title: "Ajouter une date de fin",
-          type: "boolean",
-          description:
-            "Ajouter une date de fin si la fin n'est pas le même jour.",
-        }),
+
         defineField({
           name: "eventEndDate",
-          title: "Termine le",
+          title: "Date de fin",
           type: "datetime",
           options: {
             dateFormat: "DD-MM-YYYY",
             timeStep: 15,
           },
-          hidden: ({ parent }) => !(parent && parent.addEndDate),
+          hidden: ({ parent }) => !parent?.eventDateType,
         }),
       ],
     }),
@@ -109,9 +117,8 @@ export default defineType({
       media: "eventImage.image",
       startDate: "eventDate.eventStartDate",
       endDate: "eventDate.eventEndDate",
-      addEndDate: "eventDate.addEndDate",
     },
-    prepare({ title, media, startDate, endDate, addEndDate }) {
+    prepare({ title, media, startDate, endDate }) {
       const formattedStartDate = new Date(startDate).toLocaleDateString(
         "fr-FR",
         {
@@ -122,7 +129,7 @@ export default defineType({
       );
 
       let formattedEndDate = null;
-      if (addEndDate && endDate) {
+      if (endDate) {
         formattedEndDate = new Date(endDate).toLocaleDateString("fr-Fr", {
           year: "numeric",
           month: "long",

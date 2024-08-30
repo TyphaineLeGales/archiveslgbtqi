@@ -28,12 +28,14 @@ export default function EventsModule({ events, title, link }: Props) {
               </h3>
               <div className="richText">
                 <DateHourFormat
+                  formatType="fullDate"
                   dateString={event.eventDate?.eventStartDate || ""}
                 />
                 {event.eventDate?.eventEndDate && (
                   <>
                     <span>&nbsp;-&nbsp;</span>
                     <DateHourFormat
+                      formatType="fullDate"
                       dateString={event.eventDate?.eventEndDate || ""}
                     />
                   </>

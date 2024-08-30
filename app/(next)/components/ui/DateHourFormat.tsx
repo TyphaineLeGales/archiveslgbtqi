@@ -1,22 +1,42 @@
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
+type DateHourFormatProps = {
+  dateString: string;
+  formatType:
+    | "default"
+    | "shortDate"
+    | "shortDateWithYear"
+    | "shortHour"
+    | "fullDate"
+    | "fullDateWithYear"
+    | (string & {});
+  className?: string;
+};
+
 export default function DateHourFormat({
   dateString,
-  formatType = "default", // Add a formatType parameter
+  formatType = "default",
   className,
-}: {
-  dateString: string;
-  formatType?: "default" | "alternative"; // Define the possible formats
-  className?: string;
-}) {
+}: DateHourFormatProps) {
   const date = new Date(dateString);
 
-  // Define the two formats
-  const formattedDate =
-    formatType === "alternative"
-      ? `${format(date, "dd/MM/yyyy", { locale: fr })} à ${format(date, "HH'H'mm", { locale: fr })}`
-      : `${format(date, "d MMMM yyyy", { locale: fr })} à ${format(date, "HH'H'", { locale: fr })}`;
+  const formattedDate = (() => {
+    switch (formatType) {
+      case "fullDate":
+        return `${format(date, "d MMMM", { locale: fr })}`;
+      case "fullDateWithYear":
+        return `${format(date, "d MMMM yyyy", { locale: fr })}`;
+      case "shortHour":
+        return `${format(date, "HH'H'", { locale: fr })}`;
+      case "shortDateWithYear":
+        return `${format(date, "dd/MM yyyy", { locale: fr })}`;
+      case "shortDate":
+        return `${format(date, "dd/MM", { locale: fr })}`;
+      default:
+        return `${format(date, "d MMMM yyyy", { locale: fr })} à ${format(date, "HH'H'", { locale: fr })}`;
+    }
+  })();
 
   return (
     <time dateTime={dateString} className={className}>
@@ -24,3 +44,5 @@ export default function DateHourFormat({
     </time>
   );
 }
+
+// 12/12/2021 ENTRE 14h30 15h40
