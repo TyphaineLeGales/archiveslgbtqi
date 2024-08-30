@@ -1,3 +1,4 @@
+import CustomTitleInputWithLimits from "@/sanity/plugins/CustomTitleInputWithLimits";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
@@ -25,7 +26,13 @@ export default defineType({
               name: "title",
               title: "Titre de l'archive",
               type: "string",
-              validation: (rule) => rule.required(),
+              validation: (Rule) =>
+                Rule.max(35).warning(
+                  "35 caractères maximum, (il sera tronqué)",
+                ),
+              components: {
+                input: CustomTitleInputWithLimits,
+              },
             }),
             defineField({
               name: "description",

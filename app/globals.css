@@ -68,7 +68,7 @@
   /* 👇🏽 All page */
 
   .pageTitle {
-    @apply font-tanker text-[1.5rem] uppercase leading-[.7rem] tracking-wider lg:text-[2.8rem] lg:leading-[2rem];
+    @apply font-tanker text-[2rem] uppercase leading-[1.5rem] tracking-wider lg:text-[2.8rem] lg:leading-[2rem];
   }
 
   .richText {
@@ -88,7 +88,7 @@
   }
 
   .FormSubmitInput {
-    @apply w-full border-b-[2px] border-black font-cityburn text-[1.6rem] tracking-wider text-black placeholder:font-cityburn placeholder:text-[1.6rem] placeholder:tracking-wider placeholder:text-black focus-within:outline-none focus:ring-0;
+    @apply w-full rounded-none border-b-[2px] border-black font-cityburn text-[1.6rem] tracking-wider text-black placeholder:font-cityburn placeholder:text-[1.6rem] placeholder:tracking-wider placeholder:text-black focus-within:outline-none focus:ring-0;
   }
 
   /* 👇🏽 Events */
