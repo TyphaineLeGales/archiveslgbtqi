@@ -42,6 +42,7 @@ export default async function Page() {
             <span className="blogSubTitle py-[.75rem]">{blog.subTitle}</span>
             <span className="blogAuthor">{blog.author}</span>
             <DateHourFormat
+              formatType="fullDateWithYear"
               dateString={blog.date || ""}
               className="blogDate pb-[2.5rem]"
             />

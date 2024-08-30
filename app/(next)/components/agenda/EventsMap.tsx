@@ -36,17 +36,57 @@ export default function EventsMap({
                 <h2 className="eventType">{event.eventType}</h2>
                 <h2 className="eventTitle">{event.eventTitle}</h2>
                 <div className="eventDate flex flex-col pt-[1rem] lg:flex-row lg:gap-[.5rem]">
-                  <DateHourFormat
-                    dateString={event.eventDate?.eventStartDate || ""}
-                  />
-                  {event.eventDate?.eventEndDate && (
-                    <div className="inline-block h-fit">
-                      <br className="block lg:hidden" />
-                      <span>jusqu&apos;au </span>
+                  {(event.eventDate?.eventDateType as String) ===
+                  "dateRange" ? (
+                    <>
                       <DateHourFormat
-                        dateString={event.eventDate?.eventEndDate || ""}
+                        formatType="fullDate"
+                        dateString={event.eventDate?.eventStartDate || ""}
                       />
-                    </div>
+                      {event.eventDate?.eventEndDate && (
+                        <>
+                          {" - "}
+                          <DateHourFormat
+                            formatType="fullDateWithYear"
+                            dateString={event.eventDate?.eventEndDate || ""}
+                          />
+                        </>
+                      )}
+                      {" - "}
+                      <DateHourFormat
+                        formatType="shortHour"
+                        dateString={event.eventDate?.eventStartDate || ""}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <DateHourFormat
+                        formatType="fullDateWithYear"
+                        dateString={event.eventDate?.eventStartDate || ""}
+                      />
+                      {event.eventDate?.eventEndDate ? (
+                        <>
+                          {" - Entre"}
+                          <DateHourFormat
+                            formatType="shortHour"
+                            dateString={event.eventDate?.eventStartDate || ""}
+                          />
+                          -
+                          <DateHourFormat
+                            formatType="shortHour"
+                            dateString={event.eventDate?.eventEndDate || ""}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          {" - "}
+                          <DateHourFormat
+                            formatType="shortHour"
+                            dateString={event.eventDate?.eventStartDate || ""}
+                          />
+                        </>
+                      )}
+                    </>
                   )}
                 </div>
                 <div className="flex flex-col gap-[.25rem] pt-[1rem]">
