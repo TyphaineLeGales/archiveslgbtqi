@@ -58,18 +58,65 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
                     {event.eventTitle}
                   </h3>
                   <h4 className="absolute bottom-[1rem] left-[1rem] font-jetbrains text-[.8rem] uppercase leading-[1rem]">
-                    <DateHourFormat
-                      formatType="alternative"
-                      dateString={event.eventDate?.eventStartDate || ""}
-                    />
-                    {event.eventDate?.eventEndDate && (
+                    {(event.eventDate?.eventDateType as String) ===
+                    "dateRange" ? (
                       <>
-                        {" "}
-                        -{" "}
+                        {/* start date */}
                         <DateHourFormat
-                          formatType="alternative"
+                          formatType="shortDate"
+                          dateString={event.eventDate?.eventStartDate || ""}
+                        />
+                        {/* end date */}
+                        {" - "}
+                        <DateHourFormat
+                          formatType="shortDateWithYear"
                           dateString={event.eventDate?.eventEndDate || ""}
                         />
+                        {/* start hour */}
+                        {" - "}
+                        <DateHourFormat
+                          formatType="shortHour"
+                          dateString={event.eventDate?.eventStartDate || ""}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        {event.eventDate?.eventEndDate ? (
+                          <>
+                            {/* start date */}
+                            <DateHourFormat
+                              formatType="shortDateWithYear"
+                              dateString={event.eventDate?.eventStartDate || ""}
+                            />
+                            {/* hour "Entre 20h00 - 23h00" */}
+                            {" - Entre "}
+                            <DateHourFormat
+                              formatType="shortHour"
+                              dateString={event.eventDate?.eventStartDate || ""}
+                            />
+                            <>
+                              {" Et "}
+                              <DateHourFormat
+                                formatType="shortHour"
+                                dateString={event.eventDate?.eventEndDate || ""}
+                              />
+                            </>
+                          </>
+                        ) : (
+                          <>
+                            {/* start date */}
+                            <DateHourFormat
+                              formatType="shortDateWithYear"
+                              dateString={event.eventDate?.eventStartDate || ""}
+                            />
+                            {/* hour "20h00" */}
+                            {" - "}
+                            <DateHourFormat
+                              formatType="shortHour"
+                              dateString={event.eventDate?.eventStartDate || ""}
+                            />
+                          </>
+                        )}
                       </>
                     )}
                   </h4>

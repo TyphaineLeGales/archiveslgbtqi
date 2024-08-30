@@ -423,8 +423,8 @@ export type Events = {
     _key: string;
   }>;
   eventDate?: {
+    eventDateType?: "singleDate" | "dateRange";
     eventStartDate?: string;
-    addEndDate?: boolean;
     eventEndDate?: string;
   };
   eventLocation?: string;
@@ -1044,8 +1044,8 @@ export type HomepageQueryResult = {
       eventTitle: string | null;
       slug: null;
       eventDate: {
+        eventDateType?: "dateRange" | "singleDate";
         eventStartDate?: string;
-        addEndDate?: boolean;
         eventEndDate?: string;
       } | null;
       eventDescription: Array<{
@@ -1097,8 +1097,8 @@ export type EventQueryResult = {
   slug: null;
   eventEntrance: string | null;
   eventDate: {
+    eventDateType?: "dateRange" | "singleDate";
     eventStartDate?: string;
-    addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
   eventDescription: Array<{
@@ -1134,8 +1134,8 @@ export type PastEventQueryResult = Array<{
   slug: null;
   eventEntrance: string | null;
   eventDate: {
+    eventDateType?: "dateRange" | "singleDate";
     eventStartDate?: string;
-    addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
   eventDescription: Array<{
@@ -1171,8 +1171,8 @@ export type LastEventQueryResult = Array<{
   slug: null;
   eventEntrance: string | null;
   eventDate: {
+    eventDateType?: "dateRange" | "singleDate";
     eventStartDate?: string;
-    addEndDate?: boolean;
     eventEndDate?: string;
   } | null;
   eventDescription: Array<{

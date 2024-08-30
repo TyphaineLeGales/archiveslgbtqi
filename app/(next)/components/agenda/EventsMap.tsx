@@ -36,7 +36,60 @@ export default function EventsMap({
                 <h2 className="eventType">{event.eventType}</h2>
                 <h2 className="eventTitle">{event.eventTitle}</h2>
                 <div className="eventDate flex flex-col pt-[1rem] lg:flex-row lg:gap-[.5rem]">
-                  <DateHourFormat
+                  {(event.eventDate?.eventDateType as String) ===
+                  "dateRange" ? (
+                    <>
+                      <DateHourFormat
+                        formatType="fullDate"
+                        dateString={event.eventDate?.eventStartDate || ""}
+                      />
+                      {event.eventDate?.eventEndDate && (
+                        <>
+                          {" - "}
+                          <DateHourFormat
+                            formatType="fullDateWithYear"
+                            dateString={event.eventDate?.eventEndDate || ""}
+                          />
+                        </>
+                      )}
+                      {" - "}
+                      <DateHourFormat
+                        formatType="shortHour"
+                        dateString={event.eventDate?.eventStartDate || ""}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <DateHourFormat
+                        formatType="fullDateWithYear"
+                        dateString={event.eventDate?.eventStartDate || ""}
+                      />
+                      {event.eventDate?.eventEndDate ? (
+                        <>
+                          {" - Entre"}
+                          <DateHourFormat
+                            formatType="shortHour"
+                            dateString={event.eventDate?.eventStartDate || ""}
+                          />
+                          -
+                          <DateHourFormat
+                            formatType="shortHour"
+                            dateString={event.eventDate?.eventEndDate || ""}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          {" - "}
+                          <DateHourFormat
+                            formatType="shortHour"
+                            dateString={event.eventDate?.eventStartDate || ""}
+                          />
+                        </>
+                      )}
+                    </>
+                  )}
+                  {/* <DateHourFormat
+                    formatType="default"
                     dateString={event.eventDate?.eventStartDate || ""}
                   />
                   {event.eventDate?.eventEndDate && (
@@ -44,10 +97,11 @@ export default function EventsMap({
                       <br className="block lg:hidden" />
                       <span>jusqu&apos;au </span>
                       <DateHourFormat
+                        formatType="default"
                         dateString={event.eventDate?.eventEndDate || ""}
                       />
                     </div>
-                  )}
+                  )} */}
                 </div>
                 <div className="flex flex-col gap-[.25rem] pt-[1rem]">
                   <span className="eventLocation">{event.eventLocation}</span>

@@ -2724,17 +2724,27 @@
         "value": {
           "type": "object",
           "attributes": {
+            "eventDateType": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "union",
+                "of": [
+                  {
+                    "type": "string",
+                    "value": "singleDate"
+                  },
+                  {
+                    "type": "string",
+                    "value": "dateRange"
+                  }
+                ]
+              },
+              "optional": true
+            },
             "eventStartDate": {
               "type": "objectAttribute",
               "value": {
                 "type": "string"
-              },
-              "optional": true
-            },
-            "addEndDate": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "boolean"
               },
               "optional": true
             },
