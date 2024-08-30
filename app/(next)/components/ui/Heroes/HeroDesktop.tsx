@@ -52,7 +52,7 @@ export default function HeroDesktop({ heroes }: Props) {
             "relative h-full overflow-hidden bg-pink-arch transition-all duration-[.75s] ease-in-out",
             currentHero === heroes?.hero?.indexOf(hero)
               ? "w-[100vw] !cursor-auto mix-blend-normal"
-              : "w-[3rem] mix-blend-luminosity hover:mix-blend-normal",
+              : "w-[3rem] mix-blend-luminosity hover:mix-blend-hard-light",
             currentHero === 0 &&
               heroes?.hero?.indexOf(hero) === 1 &&
               "cursor-w-resize",

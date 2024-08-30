@@ -1,11 +1,14 @@
 "use client";
-import React, { useState, useRef, useCallback, useEffect } from "react";
-import clsx from "clsx";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { transformId } from "../../utils/TransforId";
+import React, { useState, useRef, useCallback } from "react";
 import { PagesContentQueryResult } from "@/sanity.types";
+
+import clsx from "clsx";
+
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+import { transformId } from "../../utils/TransforId";
 
 gsap.registerPlugin(ScrollTrigger);
 

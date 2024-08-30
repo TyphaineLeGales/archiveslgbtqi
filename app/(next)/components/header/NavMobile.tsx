@@ -67,7 +67,7 @@ export default function NavMobile({ settings }: NavLinkProps) {
           menu ? "translate-x-0" : "translate-x-[100%]",
         )}
       >
-        <nav className="z-50 flex flex-col items-end justify-center gap-[1rem]">
+        <nav className="z-50 flex flex-col items-end justify-center gap-[.5rem]">
           {settings?.header?.links &&
             settings.header.links.map((link) => {
               if (link.type === "internal") {
