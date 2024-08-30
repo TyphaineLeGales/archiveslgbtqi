@@ -88,20 +88,6 @@ export default function EventsMap({
                       )}
                     </>
                   )}
-                  {/* <DateHourFormat
-                    formatType="default"
-                    dateString={event.eventDate?.eventStartDate || ""}
-                  />
-                  {event.eventDate?.eventEndDate && (
-                    <div className="inline-block h-fit">
-                      <br className="block lg:hidden" />
-                      <span>jusqu&apos;au </span>
-                      <DateHourFormat
-                        formatType="default"
-                        dateString={event.eventDate?.eventEndDate || ""}
-                      />
-                    </div>
-                  )} */}
                 </div>
                 <div className="flex flex-col gap-[.25rem] pt-[1rem]">
                   <span className="eventLocation">{event.eventLocation}</span>
