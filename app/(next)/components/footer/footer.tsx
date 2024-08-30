@@ -7,7 +7,6 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { homepageQuery, settingsQuery } from "@/sanity/lib/queries";
 import { MyCustomPortableText } from "../ui";
 import { PortableTextBlock } from "next-sanity";
-import Credits from "./Credits";
 import HeaderTransitionLink from "../header/HeaderTransitionLink";
 import CTAMarquee from "../homepage/CTAMarquee";
 
@@ -66,7 +65,7 @@ export default async function Footer() {
           <div className="footerText flex h-[75%] w-full flex-col justify-start gap-[3rem] lg:w-auto">
             <div className="order-last flex flex-col gap-[1rem] lg:order-none lg:gap-[.5rem]">
               <span>Suivez-nous :</span>
-              <div className="flex justify-between gap-[1rem] lg:justify-start">
+              <div className="flex justify-center gap-[4rem] lg:justify-start lg:gap-[1rem]">
                 {settings?.footer?.socialGroup?.map((social) => (
                   <div
                     key={social.socialName}
@@ -104,7 +103,7 @@ export default async function Footer() {
                 >
                   Ok
                 </button>
-                <div className="absolute inset-x-0 bottom-[1px] h-[1px] w-full bg-white lg:w-[calc(100%-2rem)]" />
+                <div className="absolute inset-x-0 bottom-[1px] h-[2px] w-full bg-white lg:w-[calc(100%-2rem)]" />
               </div>
             </div>
           </div>
@@ -143,7 +142,6 @@ export default async function Footer() {
                 </div>
               );
             })}
-            <Credits />
           </div>
           <span className="footerCopyright bottom-[1rem] left-0 order-last block whitespace-nowrap lg:absolute lg:hidden">
             © {new Date().getFullYear()}{" "}

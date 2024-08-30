@@ -11,11 +11,11 @@ type Props = {
 export default function HeroDesktop({ heroes }: Props) {
   return (
     <div className="relative flex w-full lg:hidden">
-      <div className="relative flex max-h-[100svh] min-w-full snap-y snap-mandatory flex-col overflow-y-auto overflow-x-hidden">
+      <div className="relative flex min-w-full snap-y snap-mandatory flex-col overflow-y-auto overflow-x-hidden">
         {heroes?.hero?.map((hero, index) => (
           <div
             key={index}
-            className="sticky top-0 h-full min-h-[100svh] min-w-[100vw] snap-start scroll-auto"
+            className="relative h-full min-h-[100svh] min-w-[100vw] snap-start scroll-auto"
           >
             <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
               <div className="min-h-[10rem] min-w-full space-y-[.5rem] bg-black p-[2rem]">

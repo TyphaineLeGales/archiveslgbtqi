@@ -72,8 +72,8 @@ export default async function Page({ params }: Props) {
   return (
     <div className="relative mx-auto flex min-h-screen w-auto max-w-[1440px] p-[1rem] lg:p-0">
       <DesktopSidebar content={content} />
-      <div className="flex h-full w-full flex-col overflow-hidden pt-[3rem]">
-        <h1 className="font-tanker text-[2rem] uppercase leading-[1.2rem] tracking-wide lg:text-[4.5rem] lg:leading-[3.7rem]">
+      <div className="flex h-full w-full flex-col overflow-hidden pt-[2rem] lg:pt-[3rem]">
+        <h1 className="font-tanker text-[3rem] uppercase leading-[2.5rem] tracking-wide lg:text-[4.5rem] lg:leading-[3.7rem]">
           {content.title}
         </h1>
         <div className="mt-[.5rem] flex min-h-screen min-w-full flex-col gap-[1rem]">
