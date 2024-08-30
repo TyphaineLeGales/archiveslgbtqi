@@ -115,18 +115,6 @@ export const eventFields = /* groq */ `
   slug,
   eventDate,
   eventDescription,
-  dateType,
-  "singleDateGroup": singleDateGroup {
-    singleDate,
-    singleStartTime,
-    singleEndTime
-  },
-  "rangeDateGroup": rangeDateGroup {
-    rangeStartDate,
-    rangeStartTime,
-    rangeEndDate,
-    rangeEndTime
-  },
   eventLocation,
   "image": eventImage{
       "imageUrl": image.asset->url,
@@ -186,18 +174,6 @@ export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]
   eventEntrance,
   eventDate,
   eventDescription,
-  dateType,
-  "singleDateGroup": singleDateGroup {
-    singleDate,
-    singleStartTime,
-    singleEndTime
-  },
-  "rangeDateGroup": rangeDateGroup {
-    rangeStartDate,
-    rangeStartTime,
-    rangeEndDate,
-    rangeEndTime
-  },
   eventLocation,
   "image": eventImage{
       "imageUrl": image.asset->url,
@@ -213,18 +189,6 @@ export const pastEventQuery = groq`*[_type == "events" && defined(eventDate) && 
   eventEntrance,
   eventDate,
   eventDescription,
-  dateType,
-  "singleDateGroup": singleDateGroup {
-    singleDate,
-    singleStartTime,
-    singleEndTime
-  },
-  "rangeDateGroup": rangeDateGroup {
-    rangeStartDate,
-    rangeStartTime,
-    rangeEndDate,
-    rangeEndTime
-  },
   eventLocation,
   "image": eventImage{
       "imageUrl": image.asset->url,
@@ -240,18 +204,6 @@ export const lastEventQuery = groq`*[_type == "events" && defined(eventDate) && 
   eventEntrance,
   eventDate,
   eventDescription,
-  dateType,
-  "singleDateGroup": singleDateGroup {
-    singleDate,
-    singleStartTime,
-    singleEndTime
-  },
-  "rangeDateGroup": rangeDateGroup {
-    rangeStartDate,
-    rangeStartTime,
-    rangeEndDate,
-    rangeEndTime
-  },
   eventLocation,
   "image": eventImage{
     "imageUrl": image.asset->url,

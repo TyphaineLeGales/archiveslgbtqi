@@ -31,102 +31,37 @@ export default defineType({
       type: "array",
       of: [{ type: "block" }],
     }),
-
     defineField({
-      name: "dateType",
-      title: "Type de date",
-      type: "string",
-      options: {
-        list: [
-          { title: "Date unique", value: "single" },
-          { title: "Plage de dates", value: "range" },
-        ],
-        layout: "radio",
-      },
-    }),
-    defineField({
-      name: "singleDateGroup",
-      title: "Date unique",
+      name: "eventDate",
+      title: "Date",
       type: "object",
-      hidden: ({ parent }) => parent && parent.dateType !== "single",
       fields: [
         defineField({
-          name: "singleDate",
-          title: "Date",
-          type: "date",
-          options: {
-            dateFormat: "dd-mm-yyyy",
-          },
-        }),
-        defineField({
-          name: "singleStartTime",
+          name: "eventStartDate",
           title: "Commence le",
-          type: "string",
-          description: "Heure de début de l'événement.",
-          placeholder: "ex: 20h30",
-        }),
-        defineField({
-          name: "addSingleEndTime",
-          title: "Ajouter une heure de fin?",
-          type: "boolean",
-        }),
-        defineField({
-          name: "singleEndTime",
-          title: "Termine le",
-          type: "string",
-          description: "Heure de fin de l'événement.",
-          placeholder: "ex: 22h30",
-          hidden: ({ parent }) => !(parent && parent.addSingleEndTime),
-        }),
-      ],
-    }),
-    defineField({
-      name: "rangeDateGroup",
-      title: "Plage de dates",
-      type: "object",
-      hidden: ({ parent }) => parent && parent.dateType !== "range",
-      fields: [
-        defineField({
-          name: "rangeStartDate",
-          title: "Commence le",
-          type: "date",
+          type: "datetime",
           options: {
             dateFormat: "DD-MM-YYYY",
+            timeStep: 15,
           },
+          validation: (rule) => rule.required(),
         }),
         defineField({
-          name: "addRangeStartTime",
-          title: "Ajouter une heure de début?",
+          name: "addEndDate",
+          title: "Ajouter une date de fin",
           type: "boolean",
+          description:
+            "Ajouter une date de fin si la fin n'est pas le même jour.",
         }),
         defineField({
-          name: "rangeStartTime",
-          title: "Heure de début",
-          type: "string",
-          description: "Heure de début de l'événement.",
-          placeholder: "ex: 20h30",
-          hidden: ({ parent }) => !(parent && parent.addRangeStartTime),
-        }),
-        defineField({
-          name: "rangeEndDate",
+          name: "eventEndDate",
           title: "Termine le",
-          type: "date",
+          type: "datetime",
           options: {
-            dateFormat: "DD/MM/YYYY",
+            dateFormat: "DD-MM-YYYY",
+            timeStep: 15,
           },
-        }),
-        defineField({
-          name: "addRangeEndTime",
-          title: "Ajouter une heure de fin?",
-          type: "boolean",
-        }),
-        defineField({
-          name: "rangeEndTime",
-          title: "Termine le",
-          type: "string",
-          description: "Heure de fin de l'événement.",
-          placeholder: "ex: 22h30",
-          hidden: ({ parent }) => !(parent && parent.addRangeEndTime),
+          hidden: ({ parent }) => !(parent && parent.addEndDate),
         }),
       ],
     }),

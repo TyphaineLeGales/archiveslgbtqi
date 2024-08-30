@@ -2719,101 +2719,26 @@
         },
         "optional": true
       },
-      "dateType": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "union",
-          "of": [
-            {
-              "type": "string",
-              "value": "single"
-            },
-            {
-              "type": "string",
-              "value": "range"
-            }
-          ]
-        },
-        "optional": true
-      },
-      "singleDateGroup": {
+      "eventDate": {
         "type": "objectAttribute",
         "value": {
           "type": "object",
           "attributes": {
-            "singleDate": {
+            "eventStartDate": {
               "type": "objectAttribute",
               "value": {
                 "type": "string"
               },
               "optional": true
             },
-            "singleStartTime": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
-            "addSingleEndTime": {
+            "addEndDate": {
               "type": "objectAttribute",
               "value": {
                 "type": "boolean"
               },
               "optional": true
             },
-            "singleEndTime": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            }
-          }
-        },
-        "optional": true
-      },
-      "rangeDateGroup": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "object",
-          "attributes": {
-            "rangeStartDate": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
-            "addRangeStartTime": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "boolean"
-              },
-              "optional": true
-            },
-            "rangeStartTime": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
-            "rangeEndDate": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
-            "addRangeEndTime": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "boolean"
-              },
-              "optional": true
-            },
-            "rangeEndTime": {
+            "eventEndDate": {
               "type": "objectAttribute",
               "value": {
                 "type": "string"

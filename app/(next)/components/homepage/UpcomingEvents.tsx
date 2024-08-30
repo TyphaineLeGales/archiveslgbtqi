@@ -7,8 +7,6 @@ import { HomepageQueryResult } from "@/sanity.types";
 
 import { DateHourFormat } from "../ui";
 import HeaderTransitionLink from "../header/HeaderTransitionLink";
-import DateFormat from "../ui/DateAndHourFormat/DateFormat";
-import { EventEmitter } from "stream";
 
 type UpcomingEventsProps = {
   events: HomepageQueryResult;
@@ -60,44 +58,18 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
                     {event.eventTitle}
                   </h3>
                   <h4 className="absolute bottom-[1rem] left-[1rem] font-jetbrains text-[.8rem] uppercase leading-[1rem]">
-                    {(event.dateType as String) === "single" && (
+                    <DateHourFormat
+                      formatType="alternative"
+                      dateString={event.eventDate?.eventStartDate || ""}
+                    />
+                    {event.eventDate?.eventEndDate && (
                       <>
-                        <DateFormat
-                          formatType="default"
-                          dateString={event.singleDateGroup?.singleDate || ""}
-                        />{" "}
+                        {" "}
                         -{" "}
-                        {event.singleDateGroup?.singleEndTime ? (
-                          <>
-                            <>entre {event.singleDateGroup?.singleStartTime}</>
-                            <> et {event.singleDateGroup?.singleEndTime}</>
-                          </>
-                        ) : (
-                          <>{event.singleDateGroup?.singleStartTime}</>
-                        )}
-                      </>
-                    )}
-                    {(event.dateType as String) === "range" && (
-                      <>
-                        <DateFormat
-                          formatType="noYear"
-                          dateString={
-                            event.rangeDateGroup?.rangeStartDate || ""
-                          }
-                        />{" "}
-                        -{" "}
-                        <DateFormat
-                          formatType="default"
-                          dateString={event.rangeDateGroup?.rangeEndDate || ""}
-                        />{" "}
-                        -{" "}
-                        {event.rangeDateGroup?.rangeEndDate ? (
-                          <>
-                            <>{event.rangeDateGroup?.rangeStartTime}</>
-                          </>
-                        ) : (
-                          <>{event.rangeDateGroup?.rangeStartTime}</>
-                        )}
+                        <DateHourFormat
+                          formatType="alternative"
+                          dateString={event.eventDate?.eventEndDate || ""}
+                        />
                       </>
                     )}
                   </h4>

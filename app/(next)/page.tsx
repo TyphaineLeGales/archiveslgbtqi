@@ -34,7 +34,7 @@ export default async function Page() {
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
   ]);
 
-  console.log("Homepage: ", homePage?.upcomingEventsSection?.upcomingEvents);
+  // console.log("Homepage: ", homePage);
 
   return (
     <div className="relative min-h-[100vh] overflow-hidden scroll-auto">
