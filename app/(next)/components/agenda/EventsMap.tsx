@@ -8,6 +8,7 @@ import { DateHourFormat, MyCustomPortableText } from "../ui";
 import ButtonImage from "./ButtonImage";
 
 import clsx from "clsx";
+import DateFormat from "../ui/DateAndHourFormat/DateFormat";
 
 type FutureEventProps = {
   id: string;
@@ -36,17 +37,43 @@ export default function EventsMap({
                 <h2 className="eventType">{event.eventType}</h2>
                 <h2 className="eventTitle">{event.eventTitle}</h2>
                 <div className="eventDate flex flex-col pt-[1rem] lg:flex-row lg:gap-[.5rem]">
-                  <DateHourFormat
-                    dateString={event.eventDate?.eventStartDate || ""}
-                  />
-                  {event.eventDate?.eventEndDate && (
-                    <div className="inline-block h-fit">
-                      <br className="block lg:hidden" />
-                      <span>jusqu&apos;au </span>
-                      <DateHourFormat
-                        dateString={event.eventDate?.eventEndDate || ""}
-                      />
-                    </div>
+                  {(event.dateType as String) === "single" && (
+                    <>
+                      <DateFormat
+                        formatType="full"
+                        dateString={event.singleDateGroup?.singleDate || ""}
+                      />{" "}
+                      -{" "}
+                      {event.singleDateGroup?.singleEndTime ? (
+                        <>
+                          <>entre {event.singleDateGroup?.singleStartTime}</>
+                          <> et {event.singleDateGroup?.singleEndTime}</>
+                        </>
+                      ) : (
+                        <>{event.singleDateGroup?.singleStartTime}</>
+                      )}
+                    </>
+                  )}
+                  {(event.dateType as String) === "range" && (
+                    <>
+                      <DateFormat
+                        formatType="fullNoYear"
+                        dateString={event.rangeDateGroup?.rangeStartDate || ""}
+                      />{" "}
+                      -{" "}
+                      <DateFormat
+                        formatType="full"
+                        dateString={event.rangeDateGroup?.rangeEndDate || ""}
+                      />{" "}
+                      -{" "}
+                      {event.rangeDateGroup?.rangeEndDate ? (
+                        <>
+                          <>{event.rangeDateGroup?.rangeStartTime}</>
+                        </>
+                      ) : (
+                        <>{event.rangeDateGroup?.rangeStartTime}</>
+                      )}
+                    </>
                   )}
                 </div>
                 <div className="flex flex-col gap-[.25rem] pt-[1rem]">

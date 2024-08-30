@@ -2719,26 +2719,101 @@
         },
         "optional": true
       },
-      "eventDate": {
+      "dateType": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "single"
+            },
+            {
+              "type": "string",
+              "value": "range"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "singleDateGroup": {
         "type": "objectAttribute",
         "value": {
           "type": "object",
           "attributes": {
-            "eventStartDate": {
+            "singleDate": {
               "type": "objectAttribute",
               "value": {
                 "type": "string"
               },
               "optional": true
             },
-            "addEndDate": {
+            "singleStartTime": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "addSingleEndTime": {
               "type": "objectAttribute",
               "value": {
                 "type": "boolean"
               },
               "optional": true
             },
-            "eventEndDate": {
+            "singleEndTime": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            }
+          }
+        },
+        "optional": true
+      },
+      "rangeDateGroup": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "object",
+          "attributes": {
+            "rangeStartDate": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "addRangeStartTime": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
+            "rangeStartTime": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "rangeEndDate": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "addRangeEndTime": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
+            "rangeEndTime": {
               "type": "objectAttribute",
               "value": {
                 "type": "string"

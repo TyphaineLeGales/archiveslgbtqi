@@ -422,10 +422,20 @@ export type Events = {
     _type: "block";
     _key: string;
   }>;
-  eventDate?: {
-    eventStartDate?: string;
-    addEndDate?: boolean;
-    eventEndDate?: string;
+  dateType?: "single" | "range";
+  singleDateGroup?: {
+    singleDate?: string;
+    singleStartTime?: string;
+    addSingleEndTime?: boolean;
+    singleEndTime?: string;
+  };
+  rangeDateGroup?: {
+    rangeStartDate?: string;
+    addRangeStartTime?: boolean;
+    rangeStartTime?: string;
+    rangeEndDate?: string;
+    addRangeEndTime?: boolean;
+    rangeEndTime?: string;
   };
   eventLocation?: string;
   eventImage?: {
@@ -949,7 +959,7 @@ export type SettingsQueryResult = {
   } | null;
 } | null;
 // Variable: homepageQuery
-// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "heroVisibility": hero.heroVisibility,  "hero": hero.hero[]{        ...,    _id,    _key,    "image": image{      "imageUrl": image.asset->url,      alt,    },    cta {      ctaLabel,      ctaLink->{        _type,        "slug": slug.current      }    }  },  "secondPartVisibility": secondPart.secondPartVisibility,  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    },    ctaScrollTo  },  },  introText {    introTextVisibility,    introTextContent[]{      ...,  },    newsletterTextContent  },  "upcomingEventsSection": upcomingEventsSection {    upcomingEventsSectionVisibility,    upcomingEventsTitle,    upcomingEventsCTA{      eventsCTATitle,      eventsCTA->,    },    "upcomingEvents": upcomingEvents[]-> {  _id,  eventType,  eventTitle,  slug,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },},    upcomingEventsCTATitle,  },  marqueeCTA {    marqueeCTAVisibility,    marqueeContent,    marqueeLink,  } }
+// Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "heroVisibility": hero.heroVisibility,  "hero": hero.hero[]{        ...,    _id,    _key,    "image": image{      "imageUrl": image.asset->url,      alt,    },    cta {      ctaLabel,      ctaLink->{        _type,        "slug": slug.current      }    }  },  "secondPartVisibility": secondPart.secondPartVisibility,  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    },    ctaScrollTo  },  },  introText {    introTextVisibility,    introTextContent[]{      ...,  },    newsletterTextContent  },  "upcomingEventsSection": upcomingEventsSection {    upcomingEventsSectionVisibility,    upcomingEventsTitle,    upcomingEventsCTA{      eventsCTATitle,      eventsCTA->,    },    "upcomingEvents": upcomingEvents[]-> {  _id,  eventType,  eventTitle,  slug,  eventDate,  eventDescription,  dateType,  "singleDateGroup": singleDateGroup {    singleDate,    singleStartTime,    singleEndTime  },  "rangeDateGroup": rangeDateGroup {    rangeStartDate,    rangeStartTime,    rangeEndDate,    rangeEndTime  },  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },},    upcomingEventsCTATitle,  },  marqueeCTA {    marqueeCTAVisibility,    marqueeContent,    marqueeLink,  } }
 export type HomepageQueryResult = {
   _key: null;
   _id: string;
@@ -1043,11 +1053,7 @@ export type HomepageQueryResult = {
       eventType: string | null;
       eventTitle: string | null;
       slug: null;
-      eventDate: {
-        eventStartDate?: string;
-        addEndDate?: boolean;
-        eventEndDate?: string;
-      } | null;
+      eventDate: null;
       eventDescription: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -1074,6 +1080,18 @@ export type HomepageQueryResult = {
         _type: "block";
         _key: string;
       }> | null;
+      dateType: "range" | "single" | null;
+      singleDateGroup: {
+        singleDate: string | null;
+        singleStartTime: string | null;
+        singleEndTime: string | null;
+      } | null;
+      rangeDateGroup: {
+        rangeStartDate: string | null;
+        rangeStartTime: string | null;
+        rangeEndDate: string | null;
+        rangeEndTime: string | null;
+      } | null;
       eventLocation: string | null;
       image: {
         imageUrl: string | null;
@@ -1089,18 +1107,14 @@ export type HomepageQueryResult = {
   } | null;
 } | null;
 // Variable: eventQuery
-// Query: *[_type == "events" && slug.current == $event][0]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
+// Query: *[_type == "events" && slug.current == $event][0]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  dateType,  "singleDateGroup": singleDateGroup {    singleDate,    singleStartTime,    singleEndTime  },  "rangeDateGroup": rangeDateGroup {    rangeStartDate,    rangeStartTime,    rangeEndDate,    rangeEndTime  },  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type EventQueryResult = {
   _id: string;
   eventType: string | null;
   eventTitle: string | null;
   slug: null;
   eventEntrance: string | null;
-  eventDate: {
-    eventStartDate?: string;
-    addEndDate?: boolean;
-    eventEndDate?: string;
-  } | null;
+  eventDate: null;
   eventDescription: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1119,6 +1133,18 @@ export type EventQueryResult = {
     _type: "block";
     _key: string;
   }> | null;
+  dateType: "range" | "single" | null;
+  singleDateGroup: {
+    singleDate: string | null;
+    singleStartTime: string | null;
+    singleEndTime: string | null;
+  } | null;
+  rangeDateGroup: {
+    rangeStartDate: string | null;
+    rangeStartTime: string | null;
+    rangeEndDate: string | null;
+    rangeEndTime: string | null;
+  } | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;
@@ -1126,18 +1152,14 @@ export type EventQueryResult = {
   } | null;
 } | null;
 // Variable: pastEventQuery
-// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()] | order(eventDate.eventStartDate desc)[0...3]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
+// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()] | order(eventDate.eventStartDate desc)[0...3]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  dateType,  "singleDateGroup": singleDateGroup {    singleDate,    singleStartTime,    singleEndTime  },  "rangeDateGroup": rangeDateGroup {    rangeStartDate,    rangeStartTime,    rangeEndDate,    rangeEndTime  },  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type PastEventQueryResult = Array<{
   _id: string;
   eventType: string | null;
   eventTitle: string | null;
   slug: null;
   eventEntrance: string | null;
-  eventDate: {
-    eventStartDate?: string;
-    addEndDate?: boolean;
-    eventEndDate?: string;
-  } | null;
+  eventDate: null;
   eventDescription: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1156,6 +1178,18 @@ export type PastEventQueryResult = Array<{
     _type: "block";
     _key: string;
   }> | null;
+  dateType: "range" | "single" | null;
+  singleDateGroup: {
+    singleDate: string | null;
+    singleStartTime: string | null;
+    singleEndTime: string | null;
+  } | null;
+  rangeDateGroup: {
+    rangeStartDate: string | null;
+    rangeStartTime: string | null;
+    rangeEndDate: string | null;
+    rangeEndTime: string | null;
+  } | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;
@@ -1163,18 +1197,14 @@ export type PastEventQueryResult = Array<{
   } | null;
 }>;
 // Variable: lastEventQuery
-// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
+// Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription,  dateType,  "singleDateGroup": singleDateGroup {    singleDate,    singleStartTime,    singleEndTime  },  "rangeDateGroup": rangeDateGroup {    rangeStartDate,    rangeStartTime,    rangeEndDate,    rangeEndTime  },  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
 export type LastEventQueryResult = Array<{
   _id: string;
   eventType: string | null;
   eventTitle: string | null;
   slug: null;
   eventEntrance: string | null;
-  eventDate: {
-    eventStartDate?: string;
-    addEndDate?: boolean;
-    eventEndDate?: string;
-  } | null;
+  eventDate: null;
   eventDescription: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1193,6 +1223,18 @@ export type LastEventQueryResult = Array<{
     _type: "block";
     _key: string;
   }> | null;
+  dateType: "range" | "single" | null;
+  singleDateGroup: {
+    singleDate: string | null;
+    singleStartTime: string | null;
+    singleEndTime: string | null;
+  } | null;
+  rangeDateGroup: {
+    rangeStartDate: string | null;
+    rangeStartTime: string | null;
+    rangeEndDate: string | null;
+    rangeEndTime: string | null;
+  } | null;
   eventLocation: string | null;
   image: {
     imageUrl: string | null;

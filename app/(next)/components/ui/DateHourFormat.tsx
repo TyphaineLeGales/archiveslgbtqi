@@ -15,7 +15,7 @@ export default function DateHourFormat({
   // Define the two formats
   const formattedDate =
     formatType === "alternative"
-      ? `${format(date, "dd/MM/yyyy", { locale: fr })} à ${format(date, "HH'H'mm", { locale: fr })}`
+      ? `${format(date, "dd/MM yyyy", { locale: fr })} `
       : `${format(date, "d MMMM yyyy", { locale: fr })} à ${format(date, "HH'H'", { locale: fr })}`;
 
   return (
