@@ -9,6 +9,7 @@ import {
   SecondSection,
   IntroTextAndNewsLetter,
   UpcomingEvents,
+  Homepage,
 } from "./components/homepage";
 
 export async function generateMetadata() {
@@ -38,10 +39,11 @@ export default async function Page() {
 
   return (
     <div className="relative min-h-[100vh] overflow-hidden scroll-auto">
-      <HeroCarousel heroes={homePage} />
+      <Homepage homePage={homePage} />
+      {/* <HeroCarousel heroes={homePage} />
       <SecondSection multiBlocks={homePage} />
       <IntroTextAndNewsLetter intro={homePage} />
-      <UpcomingEvents events={homePage} />
+      <UpcomingEvents events={homePage} /> */}
     </div>
   );
 }
