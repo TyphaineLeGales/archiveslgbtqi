@@ -36,9 +36,10 @@ export default function Homepage({ homePage }: HomePageProps) {
           start: "top bottom",
           end: "top top",
           scrub: 1,
-          markers: true,
-          onEnter: () => console.log("HeroCarousel entered view"),
-          onLeave: () => console.log("HeroCarousel left view"),
+          once: true,
+          // markers: true,
+          // onEnter: () => console.log("HeroCarousel entered view"),
+          // onLeave: () => console.log("HeroCarousel left view"),
         },
         opacity: 0,
       });
@@ -53,9 +54,10 @@ export default function Homepage({ homePage }: HomePageProps) {
           start: "top bottom",
           end: "top top",
           scrub: 1,
-          markers: true,
-          onEnter: () => console.log("SecondSection entered view"),
-          onLeave: () => console.log("SecondSection left view"),
+          once: true,
+          // markers: true,
+          // onEnter: () => console.log("SecondSection entered view"),
+          // onLeave: () => console.log("SecondSection left view"),
         },
         opacity: 0,
       });
@@ -70,9 +72,10 @@ export default function Homepage({ homePage }: HomePageProps) {
           start: "top bottom",
           end: "top top",
           scrub: 1,
-          markers: true,
-          onEnter: () => console.log("IntroTextAndNewsLetter entered view"),
-          onLeave: () => console.log("IntroTextAndNewsLetter left view"),
+          once: true,
+          // markers: true,
+          // onEnter: () => console.log("IntroTextAndNewsLetter entered view"),
+          // onLeave: () => console.log("IntroTextAndNewsLetter left view"),
         },
         opacity: 0,
       });
@@ -87,9 +90,10 @@ export default function Homepage({ homePage }: HomePageProps) {
           start: "top bottom",
           end: "top top",
           scrub: 1,
-          markers: true,
-          onEnter: () => console.log("UpcomingEvents entered view"),
-          onLeave: () => console.log("UpcomingEvents left view"),
+          once: true,
+          // markers: true,
+          // onEnter: () => console.log("UpcomingEvents entered view"),
+          // onLeave: () => console.log("UpcomingEvents left view"),
         },
         opacity: 0,
       });
@@ -97,7 +101,7 @@ export default function Homepage({ homePage }: HomePageProps) {
   });
 
   return (
-    <div>
+    <>
       <div ref={heroRef}>
         <HeroCarousel heroes={homePage} />
       </div>
@@ -110,9 +114,6 @@ export default function Homepage({ homePage }: HomePageProps) {
       <div ref={eventsRef}>
         <UpcomingEvents events={homePage} />
       </div>
-      <div ref={ctaRef}>
-        <CTAmarquee marquee={homePage} />
-      </div>
-    </div>
+    </>
   );
 }

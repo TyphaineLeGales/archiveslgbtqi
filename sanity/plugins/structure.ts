@@ -1,7 +1,7 @@
 /**
- *  What is this page for?
  *
- * This page is used to define the structure of the Sanity Studio.
+ * 💡 This page is used to define the structure of the Sanity Studio.
+ *
  **/
 
 import { StructureBuilder } from "sanity/structure";
