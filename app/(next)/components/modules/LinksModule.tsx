@@ -20,7 +20,7 @@ export default function LinksModule({ item }: Props) {
         href={`${link.internal?.slug || link.external || `mailto:${link.mail}`}`}
         target={link.external ? "_blank" : undefined}
         rel={link.external ? "noopener noreferrer" : undefined}
-        className="linkButton mt-"
+        className="linkButton"
       >
         {link.linkLabel}
       </Link>
