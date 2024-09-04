@@ -63,7 +63,7 @@ export default function RootLayout({
       className={`${cityBurn.variable} ${jetBrains.variable} ${tanker.variable} bg-white`}
     >
       <body>
-        <section className="flex min-h-screen flex-grow flex-col">
+        <section className="flex min-h-screen flex-grow flex-col selection:bg-pink-arch">
           {draftMode().isEnabled && <BannerAlert />}
           <IntroAnimation />
           <Suspense>
