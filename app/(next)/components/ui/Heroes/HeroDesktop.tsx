@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
 
@@ -17,11 +17,11 @@ type Props = {
 };
 
 export default function HeroDesktop({ heroes }: Props) {
-  const [currentHero, setCurrentHero] = React.useState(1);
+  const [currentHero, setCurrentHero] = useState(1);
 
-  const containerRefs = React.useRef<HTMLDivElement[]>([]);
-  const boxRefs = React.useRef<HTMLAnchorElement[]>([]);
-  const imageRefs = React.useRef<HTMLImageElement[]>([]);
+  const containerRefs = useRef<HTMLDivElement[]>([]);
+  const boxRefs = useRef<HTMLAnchorElement[]>([]);
+  const imageRefs = useRef<HTMLImageElement[]>([]);
 
   gsap.registerPlugin(Observer);
 
@@ -36,16 +36,28 @@ export default function HeroDesktop({ heroes }: Props) {
       duration: 0.25,
       delay: 0.25,
     });
-  }, [currentHero]);
+  }, [heroes, currentHero]);
 
   // 👇🏽 auto slide
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
-    }, 20000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
+  //   }, 20000);
 
-    return () => clearInterval(interval);
-  }, [heroes?.hero?.length]);
+  //   return () => clearInterval(interval);
+  // }, [heroes]);
+
+  useEffect(() => {
+    if (heroes && heroes.hero && heroes.hero.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentHero((prevHero) => (prevHero + 1) % heroes?.hero?.length!);
+      }, 20000);
+
+      return () => clearInterval(interval);
+    }
+  }, [heroes]);
+
+  console.log("currentHero: ", currentHero);
 
   return (
     <div className="relative hidden max-h-[calc(100vh-6rem)] min-h-[calc(100vh-6rem)] min-w-[100vw] lg:flex">
