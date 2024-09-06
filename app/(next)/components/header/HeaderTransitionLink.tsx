@@ -12,6 +12,7 @@ interface HeaderTransitionLinkProps extends LinkProps {
   children: React.ReactNode;
   href: string;
   className?: string;
+  ref: React.Ref<HTMLAnchorElement>;
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
