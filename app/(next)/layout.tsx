@@ -13,7 +13,6 @@ import Footer from "./components/footer/footer";
 import { BannerAlert, ToastProviders } from "./components/ui";
 import { IntroAnimation } from "./components/ui/IntroAnimation";
 import CookieBanner from "./components/ui/CookieBanner";
-import { CTAmarquee } from "./components/homepage";
 
 const cityBurn = localFont({
   src: "./fonts/cityburn/cityburn.ttf",

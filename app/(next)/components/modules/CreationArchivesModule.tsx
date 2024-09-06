@@ -52,7 +52,7 @@ export default function CreationArchivesModule({
                 {archiveItem.title}
               </h3>
               <div className="relative flex translate-y-[-.1rem] items-center lg:gap-[1rem]">
-                <span className="hidden font-tanker text-[.6rem] uppercase leading-[1rem] tracking-wider lg:block">
+                <span className="hidden font-jetbrains text-[.6rem] uppercase leading-[1rem] tracking-wider lg:block">
                   {archiveItem.status}
                 </span>
                 <div
