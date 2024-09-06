@@ -23,7 +23,7 @@ export default function BannerAlert() {
     <div
       className={`${
         pending ? "animate-pulse" : ""
-      } fixed left-0 top-0 z-50 w-full border-b bg-white/95 text-black-primary backdrop-blur`}
+      } fixed left-0 top-0 z-50 w-full border-b bg-white/95 font-jetbrains text-black-primary backdrop-blur`}
     >
       <div className="z-50 py-2 text-center text-sm">
         {pending ? (
