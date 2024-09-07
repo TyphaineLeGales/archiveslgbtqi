@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 
 import { HomepageQueryResult } from "@/sanity.types";
 import { MyCustomPortableText } from "../ui";
+import Newsletters from "../ui/NewsLetters";
 
 type Props = {
   intro: HomepageQueryResult;
@@ -24,21 +26,8 @@ export default function IntroductionText({ intro }: Props) {
                 <p className="prose font-tanker text-[1.5rem] leading-[1.5rem] tracking-wider text-white lg:text-[2.5rem] lg:leading-[2.75rem]">
                   {intro?.introText?.newsletterTextContent}
                 </p>
-                <div className="prose relative h-[2.5rem] min-w-full">
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="entrez-votre e-mail"
-                    className="newsLetterInput"
-                  />
-                  <button
-                    aria-label="Ok"
-                    type="submit"
-                    className="absolute right-0 top-0 flex aspect-square h-[2.5rem] w-[2.5rem] items-center justify-center bg-white p-[1rem] font-tanker uppercase text-pink-arch transition-colors duration-200 ease-tamisitée hover:bg-black hover:text-white"
-                  >
-                    Ok
-                  </button>
+                <div className="relative h-[2.5rem] min-w-full">
+                  <Newsletters />
                   <div className="absolute inset-x-0 bottom-[1px] h-[2px] w-[calc(100%-3.5rem)] bg-white" />
                 </div>
               </div>

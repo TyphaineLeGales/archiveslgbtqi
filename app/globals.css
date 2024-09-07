@@ -40,7 +40,7 @@
   }
 
   .newsLetterInput {
-    @apply h-[2.5rem] flex-1 bg-transparent font-cityburn text-[1.25rem] tracking-wider text-white placeholder:text-[1.25rem] placeholder:tracking-wider placeholder:text-white focus-within:placeholder-transparent focus-within:outline-none focus:ring-0 lg:text-[1.75rem] lg:placeholder:text-[1.75rem];
+    @apply h-[2.5rem] w-full flex-1 bg-transparent font-cityburn text-[1.25rem] tracking-wider text-white placeholder:text-[1.25rem] placeholder:tracking-wider placeholder:text-white focus-within:placeholder-transparent focus-within:outline-none focus:ring-0 lg:text-[1.75rem] lg:placeholder:text-[1.75rem];
   }
 
   .upcomingEventsBoxSize {
@@ -62,7 +62,7 @@
   }
 
   .footerNewsLetterInput {
-    @apply h-[1.5rem] flex-1 bg-transparent font-jetbrains text-[1rem] tracking-wider text-white placeholder:text-[.8rem] placeholder:tracking-wider placeholder:text-white focus-within:placeholder-transparent focus-within:outline-none focus:ring-0;
+    @apply h-[1.5rem] flex-1 bg-transparent font-jetbrains text-[.8rem] tracking-wider text-white placeholder:text-[.8rem] placeholder:tracking-wider placeholder:text-white focus-within:placeholder-transparent focus-within:outline-none focus:ring-0;
   }
 
   /* 👇🏽 All page */
