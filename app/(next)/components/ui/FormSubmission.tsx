@@ -39,7 +39,7 @@ export default function FormSubmission() {
   return (
     <form
       onSubmit={handleSubmit(processForm)}
-      className="relative flex w-full flex-col gap-[1rem] lg:w-[55%]"
+      className="relative flex h-full w-full flex-col gap-[1rem] lg:w-[55%]"
     >
       <input
         placeholder="Nom"
@@ -78,14 +78,15 @@ export default function FormSubmission() {
       {errors.message?.message && (
         <p className="FormSubmitInput">{errors.message.message}</p>
       )}
-
-      <button
-        aria-label="Envoyer"
-        disabled={isSubmitting}
-        className="absolute bottom-0 right-0 translate-y-[calc(100%+1rem)] bg-black px-[1rem] py-[.5rem] font-jetbrains text-[.8rem] uppercase tracking-wider text-white hover:text-pink-arch"
-      >
-        {isSubmitting ? "..." : "Envoyer"}
-      </button>
+      <div className="flex w-full items-center justify-end">
+        <button
+          aria-label="Envoyer"
+          disabled={isSubmitting}
+          className="w-auto bg-black px-[1rem] py-[.5rem] font-jetbrains text-[.8rem] uppercase tracking-wider text-white hover:text-pink-arch"
+        >
+          {isSubmitting ? "..." : "Envoyer"}
+        </button>
+      </div>
     </form>
   );
 }

@@ -30,7 +30,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
   return (
     <div className="mt-[2rem]">
       {list?.contentModule?.map((item, index) => (
-        <div key={item._key}>
+        <div key={item.category} id={item.category || ""}>
           <button
             aria-label="Boutton des Liste des fonds"
             onClick={() => handleClick(index)}
@@ -45,7 +45,6 @@ export default function LDFBlock({ list }: LDFBlockProps) {
           >
             <div className="flex h-[4rem] w-full items-center justify-between gap-[1rem] lg:h-auto lg:px-[1rem]">
               <div className="ldfTitle flex items-center gap-[2rem] lg:mb-[.75rem]">
-                <span>{index + 1}</span>
                 <h2>{item.titleBlock}</h2>
               </div>
               <div
@@ -57,7 +56,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
                 +
               </div>
             </div>
-            <div>
+            <div className="flex min-w-full flex-col space-y-[1rem]">
               {item.contenBlock?.map((block, index) => (
                 <div key={block._key}>
                   {block._type === "richtext" && (

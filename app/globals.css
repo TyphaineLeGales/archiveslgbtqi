@@ -83,6 +83,10 @@
     @apply font-tanker text-[1rem] leading-[.7rem] tracking-wider transition-colors duration-100 ease-tamisitée hover:text-pink-arch;
   }
 
+  .sidebarLDFButton {
+    @apply font-tanker text-[1rem] leading-[.7rem] tracking-[.25rem] transition-colors duration-100 ease-tamisitée hover:text-pink-arch;
+  }
+
   .sideBarTitle {
     @apply text-start text-[1rem] leading-[1.3rem] tracking-tighter;
   }

@@ -9,12 +9,9 @@ import {
   PagesContentQueryResult,
   PageSlugsResult,
 } from "@/sanity.types";
-import {
-  homepageQuery,
-  lastEventQuery,
-  pagesContentQuery,
-} from "@/sanity/lib/queries";
+import { lastEventQuery, pagesContentQuery } from "@/sanity/lib/queries";
 import { groq } from "next-sanity";
+import clsx from "clsx";
 
 import {
   EventsModule,
@@ -70,19 +67,23 @@ export default async function Page({ params }: Props) {
   // console.log("Pages Content:", content);
 
   return (
-    <div className="relative mx-auto flex min-h-screen w-auto max-w-[1440px] p-[1rem] lg:p-0">
+    <div className="relative mx-auto flex min-h-full w-auto max-w-[1440px] p-[1rem] lg:p-0">
       <DesktopSidebar content={content} />
-      <div className="flex h-full w-full flex-col overflow-hidden pt-[2rem] lg:pt-[3rem]">
+      <div className="flex w-full flex-col overflow-hidden pt-[2rem] lg:pt-[3rem]">
         <h1 className="font-tanker text-[3rem] uppercase leading-[2.5rem] tracking-wide lg:text-[4.5rem] lg:leading-[3.7rem]">
           {content.title}
         </h1>
-        <div className="mt-[.5rem] flex min-h-screen min-w-full flex-col gap-[1rem]">
+        <div className="mt-[.5rem] flex flex-col gap-[1rem]">
           {content.contentModulde?.map((item, index) => (
             // start of each section
             <div
               key={item._key}
               id={transformId(item.titleBlock || "")}
-              className="relative flex flex-col gap-[2rem] pb-[5rem] will-change-contents lg:pr-[10rem]"
+              className={clsx(
+                "relative flex flex-col gap-[2rem] will-change-contents lg:pr-[10rem]",
+                index !== (content?.contentModulde?.length ?? 0) - 1 &&
+                  "pb-[5rem]",
+              )}
             >
               <h2 className="pageTitle">{item.titleBlock || ""}</h2>
 
