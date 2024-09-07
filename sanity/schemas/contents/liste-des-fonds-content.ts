@@ -26,6 +26,24 @@ export default defineType({
       description: "Titre de la liste.",
     }),
     defineField({
+      name: "category",
+      title: "Categorie de la liste",
+      type: "string",
+      validation: (rule) => rule.required(),
+      options: {
+        list: [
+          { title: "A-D", value: "a-d" },
+          { title: "E-H", value: "e-h" },
+          { title: "I-M", value: "i-m" },
+          { title: "N-Q", value: "n-q" },
+          { title: "R-U", value: "r-u" },
+          { title: "V-Z", value: "v-z" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
+      },
+    }),
+    defineField({
       name: "block",
       title: "Block",
       type: "array",
