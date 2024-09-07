@@ -5,6 +5,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { listeDeFondsQuery } from "@/sanity/lib/queries";
 
 import { LDFBlock } from "../components/liste-des-fonds";
+import LDFDesktopSidebar from "../components/liste-des-fonds/LDFDesktopSidebar";
 
 export default async function Page() {
   const [list] = await Promise.all([
@@ -13,11 +14,12 @@ export default async function Page() {
     }),
   ]);
 
-  // console.log("list", list);
+  console.log("list", list);
 
   return (
-    <div className="relative mx-auto flex h-full min-h-screen w-auto max-w-[1440px] overflow-hidden lg:p-0">
-      <div className="flex h-full w-full flex-col overflow-hidden px-[1rem] pb-bottomPage pt-[3rem] lg:ml-arch lg:pl-0 lg:pr-[3rem]">
+    <div className="relative mx-auto flex h-full min-h-full w-auto max-w-[1440px] lg:p-0">
+      <LDFDesktopSidebar content={list} />
+      <div className="flex h-full w-full flex-col overflow-hidden pt-[2rem] lg:pr-[3rem] lg:pt-[3rem]">
         <h1 className="font-tanker text-[2rem] uppercase leading-[1.2rem] tracking-wider lg:text-[4rem] lg:leading-[3.2rem]">
           {list?.title}
         </h1>

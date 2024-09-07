@@ -49,6 +49,7 @@ export type Geopoint = {
 export type ListeDesFondsContent = {
   _type: "liste-des-fonds-content";
   titleBlock?: string;
+  category?: "a-d" | "e-h" | "i-m" | "n-q" | "r-u" | "v-z";
   block?: Array<
     | ({
         _key: string;
@@ -1733,7 +1734,7 @@ export type PagesContentQueryResult = {
   }> | null;
 } | null;
 // Variable: listeDeFondsQuery
-// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  "contentModule": contentFromListeDeFonds[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }}
+// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  "contentModule": contentFromListeDeFonds[]{    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }}
 export type ListeDeFondsQueryResult = {
   _id: string;
   title: string | null;
@@ -1743,6 +1744,7 @@ export type ListeDeFondsQueryResult = {
     _key: string;
     _type: "liste-des-fonds-content";
     titleBlock: string | null;
+    category: "a-d" | "e-h" | "i-m" | "n-q" | "r-u" | "v-z" | null;
     contenBlock: Array<
       | {
           _type: "link";
@@ -1832,9 +1834,26 @@ export type ListeDeFondsQueryResult = {
     > | null;
   }> | null;
 } | null;
+
 // Source: ./app/(next)/[slug]/page.tsx
 // Variable: pageSlugs
 // Query: *[_type == "pages"]{slug}
 export type PageSlugsResult = Array<{
   slug: Slug | null;
 }>;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    '*[_type == "settings"][0] {\n  "globalSettings": {\n    "siteTitle": globalSettings.siteTitle,\n    "siteDescription": globalSettings.siteDescription,\n    "ogImage": globalSettings.ogImage.asset->url,\n    "altText": globalSettings.ogImage.alt,\n  },\n  "header": header{\n    "logo": logo {\n      "logoImage": logoImage.asset->url,\n      alt,\n    },\n    "links": headerLinks[] {\n      _key,\n      type,\n      linkPosition,\n      "internalLinkDetails": internalLink-> {\n        _id,\n        _key,\n        _type,\n        title,\n        "slug": slug.current\n      },\n      "externalLinkDetails": {\n        _key,\n        "title": externalLink.title,\n        "url": externalLink.url\n      }\n    }\n  },\n  "footer": footer{\n    "logo": logo {\n      "logoImage": logoImage.asset->url,\n      alt,\n    },\n    "addressGroup": addressGroup {\n      addressTitle,\n      addressContent[]{\n        ...,\n      },\n      mailAddress,\n    },\n    "socialGroup": socialGroup[] {\n      socialName,\n      socialLink,\n      socialLinkImage{\n        "imageUrl": asset->url,\n        alt,\n      },\n    },\n    "footerLinks": footerLinks[]{\n      _key,\n      groupName,\n      modules[]{\n        type,\n        "internalLink": internalLink->{\n          title,\n          "slug": slug.current\n        },\n        externalLink{\n          title,\n          url\n        },\n        text\n      }\n  }\n\n  }\n}': SettingsQueryResult;
+    '*[_type == "homepage"][0] {\n  _key,\n  _id,\n  _type,\n\n  "heroVisibility": hero.heroVisibility,\n  "hero": hero.hero[]{\n    \n    ...,\n    _id,\n    _key,\n    "image": image{\n      "imageUrl": image.asset->url,\n      alt,\n    },\n    cta {\n      ctaLabel,\n      ctaLink->{\n        _type,\n        "slug": slug.current\n      }\n    }\n\n  },\n\n  "secondPartVisibility": secondPart.secondPartVisibility,\n  "secondPart": secondPart.block[]{\n   \n  ...,\n  _id,\n  _key,\n  "image": image{\n    "imageUrl": image.asset->url,\n    alt,\n  },\n  cta {\n    ctaLabel,\n    ctaLink->{\n      _type,\n      "slug": slug.current\n    },\n    ctaScrollTo\n  },\n\n  },\n\n  introText {\n    introTextVisibility,\n    introTextContent[]{\n      ...,\n  },\n    newsletterTextContent\n  },\n\n  "upcomingEventsSection": upcomingEventsSection {\n    upcomingEventsSectionVisibility,\n    upcomingEventsTitle,\n    upcomingEventsCTA{\n      eventsCTATitle,\n      eventsCTA->,\n    },\n    "upcomingEvents": upcomingEvents[]-> {\n  _id,\n  eventType,\n  eventTitle,\n  slug,\n  eventDate,\n  eventDescription,\n  eventLocation,\n  "image": eventImage{\n      "imageUrl": image.asset->url,\n      alt,\n    },\n},\n    upcomingEventsCTATitle,\n  },\n\n  marqueeCTA {\n    marqueeCTAVisibility,\n    marqueeContent,\n    marqueeLink,\n  }\n \n}': HomepageQueryResult;
+    '*[_type == "events" && slug.current == $event][0]{\n  _id,\n  eventType,\n  eventTitle,\n  slug,\n  eventEntrance,\n  eventDate,\n  eventDescription,\n  eventLocation,\n  "image": eventImage{\n      "imageUrl": image.asset->url,\n      alt,\n    },\n}': EventQueryResult;
+    '*[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()] | order(eventDate.eventStartDate desc)[0...3]{\n  _id,\n  eventType,\n  eventTitle,\n  slug,\n  eventEntrance,\n  eventDate,\n  eventDescription,\n  eventLocation,\n  "image": eventImage{\n      "imageUrl": image.asset->url,\n      alt,\n    },\n}': PastEventQueryResult;
+    '*[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {\n  _id,\n  eventType,\n  eventTitle,\n  slug,\n  eventEntrance,\n  eventDate,\n  eventDescription,\n  eventLocation,\n  "image": eventImage{\n    "imageUrl": image.asset->url,\n    alt,\n  },\n}': LastEventQueryResult;
+    '*[_type == "blogs"  && year >= $minYear && year <= $maxYear] | order(year desc)  {\n  _id,\n  title,\n  subTitle,\n  author,\n  year,\n  date,\n  contentBlock[]{\n    _type == "richText" => {\n      "richText": text\n    },\n    _type == "singleImage" => {\n      "singleImage": {\n        "imageUrl": image.asset->url,\n        alt\n      }\n    },\n    _type == "multiImagesObject" => {\n      "multiImagesObject": multiImages[]{\n        "imageUrl": image.asset->url,\n        alt\n      }\n    },\n    _type == "links" => {\n      "links": {\n        label,\n        type,\n        "internalLink": internal->title,\n        external,\n        mail\n      }\n    }\n  }\n}': BlogsQueryResult;
+    '*[_type == "pages" && slug.current == $slug][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  "contentModulde": content[]{\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "richTextTitle": title,\n  "richtextTitleText": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n      \n  _id,\n  "isDisplayed": event.isDisplayed,\n  "lastEventLabel": event.title,\n  "goToAllEvents": event.ctaToEvents,\n\n      \n  _id,\n  "creationArchivesTitle": intro[],\n  "creationArchivesArchive": archive[] {\n    title,\n    description[],\n    status,\n    },\n\n      \n  _id,\n  "customHtml": html,\n  "codeTitle": codeTitle,\n  "isAddFiles": isAddFiles,\n  "fileGroup": fileGroup[] {\n    title,\n    files[] {\n      asset->,\n      },\n      },\n\n      \n  _id,\n  title,\n  "fileUrl": file.asset->url,\n  "fileName": file.asset->originalFilename,\n\n    },\n  }\n}\n': PagesContentQueryResult;
+    '*[_type == "pages" && slug.current == "liste-des-fonds"][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  "contentModule": contentFromListeDeFonds[]{\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }\n}\n': ListeDeFondsQueryResult;
+    '*[_type == "pages"]{slug}': PageSlugsResult;
+  }
+}

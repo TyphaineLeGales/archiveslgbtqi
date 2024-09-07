@@ -357,11 +357,12 @@ export const listeDeFondsQuery = groq`*[_type == "pages" && slug.current == "lis
   _id,
   title,
   "slug": slug.current,
-  "contentModule": contentFromListeDeFonds[]{
+  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){
     _id,
     _key,
     _type,
     titleBlock,
+    category,
     "contenBlock": block[]{
       _type,
       ${richTextFields}
