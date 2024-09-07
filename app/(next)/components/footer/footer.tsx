@@ -10,6 +10,8 @@ import { PortableTextBlock } from "next-sanity";
 import HeaderTransitionLink from "../header/HeaderTransitionLink";
 import CTAMarquee from "../homepage/CTAMarquee";
 
+import FooterNewsLetters from "../ui/FooterNewsLetters";
+
 export default async function Footer() {
   const settings = await sanityFetch<SettingsQueryResult>({
     query: settingsQuery,
@@ -92,17 +94,7 @@ export default async function Footer() {
             <div>
               <span>Newsletter :</span>
               <div className="relative flex min-w-full">
-                <input
-                  type="email"
-                  className="footerNewsLetterInput"
-                  aria-label="Adresse mail pour la newsletter"
-                />
-                <button
-                  aria-label="S'inscrire à la newsletter"
-                  className="p-[.5rem] uppercase transition-colors duration-300 ease-tamisitée hover:text-pink-arch"
-                >
-                  Ok
-                </button>
+                <FooterNewsLetters />
                 <div className="absolute inset-x-0 bottom-[1px] h-[2px] w-full bg-white lg:w-[calc(100%-2rem)]" />
               </div>
             </div>

@@ -30,7 +30,6 @@ export default function LDFDesktopSidebar({ content }: Props) {
           element.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
-      console.log("id", id);
     },
     [],
   );
