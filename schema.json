@@ -209,6 +209,39 @@
           },
           "optional": true
         },
+        "category": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "a-d"
+              },
+              {
+                "type": "string",
+                "value": "e-h"
+              },
+              {
+                "type": "string",
+                "value": "i-m"
+              },
+              {
+                "type": "string",
+                "value": "n-q"
+              },
+              {
+                "type": "string",
+                "value": "r-u"
+              },
+              {
+                "type": "string",
+                "value": "v-z"
+              }
+            ]
+          },
+          "optional": true
+        },
         "block": {
           "type": "objectAttribute",
           "value": {

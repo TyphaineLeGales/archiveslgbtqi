@@ -2,12 +2,12 @@ import React from "react";
 
 import { PortableTextBlock } from "next-sanity";
 
+import clsx from "clsx";
+
 import { LastEventQueryResult, PastEventQueryResult } from "@/sanity.types";
 
 import { DateHourFormat, MyCustomPortableText } from "../ui";
 import ButtonImage from "./ButtonImage";
-
-import clsx from "clsx";
 
 type FutureEventProps = {
   id: string;
@@ -29,7 +29,10 @@ export default function EventsMap({
         {eventsMap.map((event) => (
           <div
             key={event._id}
-            className="flex flex-col justify-between gap-[1rem] border-t-[3px] border-black pb-[3rem] lg:flex-row lg:gap-[5rem]"
+            className={clsx(
+              "flex flex-col justify-between gap-[1rem] border-t-[3px] border-black lg:flex-row lg:gap-[5rem]",
+              event !== eventsMap[eventsMap.length - 1] && "pb-[3rem]",
+            )}
           >
             <div className="flex flex-col lg:justify-between">
               <div>
