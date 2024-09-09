@@ -26,7 +26,7 @@ export default async function Page() {
   return (
     <div className="relative mx-auto flex min-h-full w-auto max-w-[1440px] p-[1rem] lg:p-0">
       <AgendaDesktopSidebar />
-      <div className="flex w-full flex-col gap-[7rem] overflow-hidden pt-[3rem]">
+      <div className="flex w-full flex-col gap-[7rem] overflow-hidden pr-[3rem] pt-[3rem]">
         <EventsMap
           id="future"
           status="future"
