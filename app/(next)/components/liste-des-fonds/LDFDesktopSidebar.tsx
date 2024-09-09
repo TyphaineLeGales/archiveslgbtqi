@@ -25,7 +25,7 @@ export default function LDFDesktopSidebar({ content }: Props) {
       const element = document.getElementById(id);
 
       if (element) {
-        const yOffset = index === 0 ? 0 : -164; // 5rem = 80px for all except the first element
+        const yOffset = index === 0 ? 0 : -145; // 5rem = 80px for all except the first element
         const y =
           element.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
@@ -61,28 +61,34 @@ export default function LDFDesktopSidebar({ content }: Props) {
     }
   }, [content]);
 
+  const uniqueCategories: { [key: string]: boolean } = {};
+  const filteredContent = content?.contentModule?.filter((item) => {
+    if (item.category && !uniqueCategories[item.category]) {
+      uniqueCategories[item.category] = true;
+      return true;
+    }
+    return false;
+  });
+
   return (
     <div className="relative hidden lg:block">
-      <div className="sticky left-[calc(50%-720px)] top-[230px] ml-[3.5rem] flex w-full min-w-[13.5rem] max-w-[13.5rem] flex-col items-start gap-[1rem]">
-        {content?.contentModule?.map(
-          (item, index) =>
-            item.category && (
-              <button
-                key={item.category}
-                ref={(el) => {
-                  if (el) buttonsRef.current[index] = el;
-                }}
-                aria-label="Sidebar button"
-                onClick={(e) => handleClickScroll(e, index)}
-                className={clsx(
-                  "sidebarLDFButton whitespace-nowrap text-start",
-                  index === activeIndex ? "text-pink-arch" : "text-black",
-                )}
-              >
-                {item.category}
-              </button>
-            ),
-        )}
+      <div className="sticky left-[calc(50%-720px)] top-[145px] ml-[3.5rem] flex w-full min-w-[13.5rem] max-w-[13.5rem] flex-col items-start gap-[1rem]">
+        {filteredContent?.map((item, index) => (
+          <button
+            key={item.category}
+            ref={(el) => {
+              if (el) buttonsRef.current[index] = el;
+            }}
+            aria-label="Sidebar button"
+            onClick={(e) => handleClickScroll(e, index)}
+            className={clsx(
+              "sidebarLDFButton whitespace-nowrap text-start",
+              index === activeIndex ? "text-pink-arch" : "text-black",
+            )}
+          >
+            {item.category}
+          </button>
+        ))}
       </div>
     </div>
   );
