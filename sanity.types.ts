@@ -709,6 +709,24 @@ export type Pages = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  introduction?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   content?: Array<
     {
       _key: string;
@@ -1027,6 +1045,32 @@ export type HomepageQueryResult = {
         _rev: string;
         title?: string;
         slug?: Slug;
+        introduction?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?:
+            | "blockquote"
+            | "h1"
+            | "h2"
+            | "h3"
+            | "h4"
+            | "h5"
+            | "h6"
+            | "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
         content?: Array<
           {
             _key: string;
@@ -1734,11 +1778,29 @@ export type PagesContentQueryResult = {
   }> | null;
 } | null;
 // Variable: listeDeFondsQuery
-// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  "contentModule": contentFromListeDeFonds[]{    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }}
+// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  introduction[]{    ...,  },  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }}
 export type ListeDeFondsQueryResult = {
   _id: string;
   title: string | null;
   slug: string | null;
+  introduction: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   contentModule: Array<{
     _id: null;
     _key: string;
@@ -1853,7 +1915,7 @@ declare module "@sanity/client" {
     '*[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {\n  _id,\n  eventType,\n  eventTitle,\n  slug,\n  eventEntrance,\n  eventDate,\n  eventDescription,\n  eventLocation,\n  "image": eventImage{\n    "imageUrl": image.asset->url,\n    alt,\n  },\n}': LastEventQueryResult;
     '*[_type == "blogs"  && year >= $minYear && year <= $maxYear] | order(year desc)  {\n  _id,\n  title,\n  subTitle,\n  author,\n  year,\n  date,\n  contentBlock[]{\n    _type == "richText" => {\n      "richText": text\n    },\n    _type == "singleImage" => {\n      "singleImage": {\n        "imageUrl": image.asset->url,\n        alt\n      }\n    },\n    _type == "multiImagesObject" => {\n      "multiImagesObject": multiImages[]{\n        "imageUrl": image.asset->url,\n        alt\n      }\n    },\n    _type == "links" => {\n      "links": {\n        label,\n        type,\n        "internalLink": internal->title,\n        external,\n        mail\n      }\n    }\n  }\n}': BlogsQueryResult;
     '*[_type == "pages" && slug.current == $slug][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  "contentModulde": content[]{\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "richTextTitle": title,\n  "richtextTitleText": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n      \n  _id,\n  "isDisplayed": event.isDisplayed,\n  "lastEventLabel": event.title,\n  "goToAllEvents": event.ctaToEvents,\n\n      \n  _id,\n  "creationArchivesTitle": intro[],\n  "creationArchivesArchive": archive[] {\n    title,\n    description[],\n    status,\n    },\n\n      \n  _id,\n  "customHtml": html,\n  "codeTitle": codeTitle,\n  "isAddFiles": isAddFiles,\n  "fileGroup": fileGroup[] {\n    title,\n    files[] {\n      asset->,\n      },\n      },\n\n      \n  _id,\n  title,\n  "fileUrl": file.asset->url,\n  "fileName": file.asset->originalFilename,\n\n    },\n  }\n}\n': PagesContentQueryResult;
-    '*[_type == "pages" && slug.current == "liste-des-fonds"][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  "contentModule": contentFromListeDeFonds[]{\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }\n}\n': ListeDeFondsQueryResult;
+    '*[_type == "pages" && slug.current == "liste-des-fonds"][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  introduction[]{\n    ...,\n  },\n  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }\n}\n': ListeDeFondsQueryResult;
     '*[_type == "pages"]{slug}': PageSlugsResult;
   }
 }

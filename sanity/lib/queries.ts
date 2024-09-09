@@ -357,6 +357,9 @@ export const listeDeFondsQuery = groq`*[_type == "pages" && slug.current == "lis
   _id,
   title,
   "slug": slug.current,
+  introduction[]{
+    ...,
+  },
   "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){
     _id,
     _key,

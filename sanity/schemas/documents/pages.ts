@@ -38,6 +38,13 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "introduction",
+      title: "Introduction",
+      type: "array",
+      of: [{ type: "block" }],
+      hidden: ({ parent }) => parent?.slug?.current !== "liste-des-fonds",
+    }),
+    defineField({
       name: "content",
       title: "Content",
       type: "array",
