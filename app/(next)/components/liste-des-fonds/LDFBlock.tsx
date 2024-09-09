@@ -48,8 +48,6 @@ export default function LDFBlock({ list }: LDFBlockProps) {
                 listIndex === index
                   ? "max-h-[70rem] pb-[1rem] hover:bg-white hover:text-black lg:max-h-[100rem]"
                   : "max-h-[4rem] hover:bg-pink-arch hover:text-white lg:max-h-[3rem]",
-                // index === (list?.contentModule?.length ?? 0) - 1 &&
-                //   "border-b-[3px] border-black",
               )}
             >
               <div className="flex h-[4rem] w-full items-center justify-between gap-[1rem] lg:h-auto lg:px-[1rem]">
