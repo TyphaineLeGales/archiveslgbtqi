@@ -25,11 +25,12 @@ export default function LDFDesktopSidebar({ content }: Props) {
       const element = document.getElementById(id);
 
       if (element) {
-        const yOffset = index === 0 ? 0 : -145; // 5rem = 80px for all except the first element
+        const yOffset = index === 0 ? -145 : -145; // 5rem = 80px for all except the first element
         const y =
           element.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
+      console.log("clicked", index);
     },
     [],
   );
@@ -54,12 +55,6 @@ export default function LDFDesktopSidebar({ content }: Props) {
     // Refresh ScrollTrigger after setting up all instances
     ScrollTrigger.refresh(true);
   });
-
-  useEffect(() => {
-    if (content && content.contentModule && content.contentModule.length > 0) {
-      setActiveIndex(0); // Open the first element by default
-    }
-  }, [content]);
 
   const uniqueCategories: { [key: string]: boolean } = {};
   const filteredContent = content?.contentModule?.filter((item) => {
