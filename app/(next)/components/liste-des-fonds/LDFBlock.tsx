@@ -47,12 +47,21 @@ export default function LDFBlock({ list }: LDFBlockProps) {
                 "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden py-[1rem] text-start transition-[colors,max-height] duration-[.5s] ease-tamisitée hover:bg-pink-arch",
                 listIndex === index
                   ? "max-h-[70rem] pb-[1rem] hover:bg-white hover:text-black lg:max-h-[100rem]"
-                  : "max-h-[4rem] hover:bg-pink-arch hover:text-white lg:max-h-[3rem]",
+                  : "max-h-[3rem] hover:bg-pink-arch hover:text-white lg:max-h-[3rem]",
               )}
             >
               <div className="flex h-[4rem] w-full items-center justify-between gap-[1rem] lg:h-auto lg:px-[1rem]">
                 <div className="ldfTitle flex items-center gap-[2rem] lg:mb-[.75rem]">
-                  <h2>{item.titleBlock}</h2>
+                  <h2
+                    // className="whitespace-nowrap"
+                    className={clsx(
+                      listIndex === index
+                        ? "whitespace-normal"
+                        : "whitespace-nowrap",
+                    )}
+                  >
+                    {item.titleBlock}
+                  </h2>
                 </div>
                 <div
                   className={clsx(
