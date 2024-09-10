@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "document-file",
-  title: "Document | File",
+  title: "Document | Fichier",
   icon: () => "🌐",
   type: "object",
   fields: [

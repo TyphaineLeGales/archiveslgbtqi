@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "custom-html",
-  title: "Custom HTML",
+  title: "HTML personnalisé",
   icon: () => "📄",
   type: "object",
   fields: [

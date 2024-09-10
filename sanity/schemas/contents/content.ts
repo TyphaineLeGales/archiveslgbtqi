@@ -15,7 +15,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "content",
-  title: "Page Blocks",
+  title: "Block de contenu",
   icon: FolderIcon,
   type: "object",
   fields: [

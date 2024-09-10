@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "link",
-  title: "Link",
+  title: "Lien",
   icon: () => "🔗",
   type: "object",
 

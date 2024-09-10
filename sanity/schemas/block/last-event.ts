@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "lastEvent",
-  title: "Last Event",
+  title: "Dernier événement",
   icon: () => "📅",
   type: "object",
   fields: [
