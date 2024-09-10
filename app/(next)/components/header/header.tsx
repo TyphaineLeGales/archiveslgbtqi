@@ -15,7 +15,6 @@ export default async function Header() {
   return (
     <>
       <NavMobile settings={settings} />
-
       <NavDesktop settings={settings} />
     </>
   );
