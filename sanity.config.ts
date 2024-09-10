@@ -40,13 +40,20 @@ import creationArchives from "./sanity/schemas/block/creation-archives";
 import richtextAndTitle from "./sanity/schemas/block/richtext-title";
 import customHtml from "./sanity/schemas/block/custom-html";
 import listeDesFondsContent from "./sanity/schemas/contents/liste-des-fonds-content";
-import { defaultComponents } from "next-sanity";
+import { MyEnhancedNavbar } from "./app/(sanity)/components/EnhancedNavbar";
+import Logo from "./app/(sanity)/components/Logo";
 
 export default defineConfig({
   basePath: studioUrl,
   title: "LGBTQ+ Archives Project",
   projectId,
   dataset,
+  icon: Logo as any,
+  // studio: {
+  //   components: {
+  //     navbar: MyEnhancedNavbar,
+  //   },
+  // },
   schema: {
     types: [
       // Singletons

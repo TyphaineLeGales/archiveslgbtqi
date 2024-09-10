@@ -15,6 +15,7 @@ import ExternalLink from "./ExternalLink";
 
 import HeaderTransitionLink from "./HeaderTransitionLink";
 import Link from "next/link";
+import Logo from "../ui/icon/Logo";
 
 type NavLinkProps = {
   settings: SettingsQueryResult;
