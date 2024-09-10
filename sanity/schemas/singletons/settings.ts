@@ -117,12 +117,12 @@ export default defineType({
               fields: [
                 defineField({
                   name: "type",
-                  title: "Type of Link",
+                  title: "Type de lien",
                   type: "string",
                   options: {
                     list: [
-                      { title: "Internal", value: "internal" },
-                      { title: "External", value: "external" },
+                      { title: "Interne", value: "internal" },
+                      { title: "Externe", value: "external" },
                     ],
                   },
                 }),
@@ -132,10 +132,9 @@ export default defineType({
                   type: "string",
                   options: {
                     list: [
-                      { title: "Left", value: "left" },
-                      { title: "Right", value: "right" },
+                      { title: "Gauche", value: "left" },
+                      { title: "Droite", value: "right" },
                     ],
-                    layout: "radio",
                   },
                   validation: (Rule) => Rule.required(),
                 }),

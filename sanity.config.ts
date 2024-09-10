@@ -8,20 +8,22 @@ import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { codeInput } from "@sanity/code-input";
 import { media } from "sanity-plugin-media";
 
-import { presentationTool } from "sanity/presentation";
+import { defineDocuments, presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 
 import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
 import { singletonPlugin } from "@/sanity/plugins/settings";
-import settings from "@/sanity/schemas/singletons/settings";
 
 import { structure } from "./sanity/plugins/structure";
 
 // Singletons
+import settings from "./sanity/schemas/singletons/settings";
 import homepage from "./sanity/schemas/singletons/homepage";
 
 // Documents
+import pages from "./sanity/schemas/documents/pages";
 import events from "./sanity/schemas/documents/events";
+import blogs from "./sanity/schemas/documents/blogs";
 
 // Content
 import content from "./sanity/schemas/contents/content";
@@ -32,14 +34,13 @@ import documentFile from "./sanity/schemas/block/document-file";
 import singleImage from "./sanity/schemas/block/single-image";
 import multiImages from "./sanity/schemas/block/multi-images";
 import link from "./sanity/schemas/block/link";
-import blogs from "./sanity/schemas/documents/blogs";
 import contactForm from "./sanity/schemas/block/contact-form";
 import lastEvent from "./sanity/schemas/block/last-event";
 import creationArchives from "./sanity/schemas/block/creation-archives";
 import richtextAndTitle from "./sanity/schemas/block/richtext-title";
 import customHtml from "./sanity/schemas/block/custom-html";
-import pages from "./sanity/schemas/documents/pages";
 import listeDesFondsContent from "./sanity/schemas/contents/liste-des-fonds-content";
+import { defaultComponents } from "next-sanity";
 
 export default defineConfig({
   basePath: studioUrl,

@@ -14,7 +14,7 @@ import {
 
 export async function generateMetadata() {
   const [settings] = await Promise.all([
-    sanityFetch<SettingsQueryResult>({ query: settingsQuery }),
+    sanityFetch<SettingsQueryResult>({ query: settingsQuery, stega: false }),
   ]);
   return {
     title: settings?.globalSettings.siteTitle,
