@@ -20,7 +20,7 @@ export default async function Page() {
   // console.log(list);
 
   return (
-    <div className="relative mx-auto flex h-full min-h-full w-auto max-w-[1440px] lg:p-0">
+    <div className="relative mx-auto flex h-full min-h-full w-auto max-w-[1440px] p-[1rem] lg:p-0">
       <LDFDesktopSidebar content={list} />
       <div className="flex h-full w-full flex-col overflow-hidden pt-[2rem] lg:pr-[3rem] lg:pt-[3rem]">
         <div className="space-y-[3rem]">
