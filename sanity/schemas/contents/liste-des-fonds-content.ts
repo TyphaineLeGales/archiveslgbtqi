@@ -15,7 +15,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "liste-des-fonds-content",
-  title: "Page Blocks",
+  title: "Liste des fonds",
   icon: FolderIcon,
   type: "object",
   fields: [

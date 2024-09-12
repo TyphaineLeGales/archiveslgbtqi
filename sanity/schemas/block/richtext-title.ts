@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "richTextAndTitle",
-  title: "Rich Text & Title",
+  title: "Titre et texte",
   icon: () => "📝",
   type: "object",
   fields: [

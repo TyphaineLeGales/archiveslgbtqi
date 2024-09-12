@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "contact-form",
-  title: "Contact Form",
+  title: "Formulaire de contact",
   icon: () => "📧",
   type: "object",
   fields: [

@@ -80,15 +80,15 @@ export default defineConfig({
     ],
   },
   plugins: [
+    structureTool({
+      structure,
+    }),
     presentationTool({
       previewUrl: { previewMode: { enable: "/api/draft" } },
     }),
     // structureTool({
     //   structure: pageStructure([settings, header, homepage, footer]),
     // }),
-    structureTool({
-      structure,
-    }),
     codeInput(),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([settings.name]),

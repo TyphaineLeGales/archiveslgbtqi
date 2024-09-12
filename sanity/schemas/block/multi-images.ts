@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "multi-images",
-  title: "Multi Images",
+  title: "Plusieurs images",
   icon: () => "🖼️",
   type: "object",
   fields: [

@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "single-image",
-  title: "Single Image",
+  title: "Image unique",
   icon: () => "🖼️",
   type: "object",
   fields: [
