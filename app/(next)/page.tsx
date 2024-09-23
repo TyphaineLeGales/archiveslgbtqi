@@ -38,7 +38,7 @@ export default async function Page() {
   // console.log("Homepage: ", homePage?.upcomingEventsSection?.upcomingEvents);
 
   return (
-    <div className="relative min-h-[100vh] overflow-hidden scroll-auto">
+    <div className="relative min-h-[100svh] overflow-hidden scroll-auto">
       <Homepage homePage={homePage} />
       {/* <HeroCarousel heroes={homePage} />
       <SecondSection multiBlocks={homePage} />

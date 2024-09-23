@@ -67,7 +67,7 @@ export default async function Page({ params }: Props) {
   // console.log("Pages Content:", content);
 
   return (
-    <div className="relative mx-auto flex min-h-full w-auto max-w-[1440px] p-[1rem] lg:p-0">
+    <div className="relative mx-auto flex min-h-[65svh] w-auto max-w-[1440px] p-[1rem] lg:min-h-[70vh] lg:p-0">
       <DesktopSidebar content={content} />
       <div className="flex w-full flex-col overflow-hidden pt-[2rem] lg:pt-[3rem]">
         <h1 className="font-tanker text-[3rem] uppercase leading-[2.5rem] tracking-wide lg:text-[4.5rem] lg:leading-[3.7rem]">
