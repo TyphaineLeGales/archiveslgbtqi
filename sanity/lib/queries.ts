@@ -373,6 +373,90 @@ export const listeDeFondsQuery = groq`*[_type == "pages" && slug.current == "lis
       ${multiImagesFields}
       ${linkFields}
     },
-  }
+  },
+  "contentModuleAD": contentFromListeDeFonds[] | order(titleBlock asc){
+    _id,
+    _key,
+    _type,
+    titleBlock,
+    category,
+    "contenBlock": block[]{
+      _type,
+      ${richTextFields}
+      ${singleImageFields}
+      ${multiImagesFields}
+      ${linkFields}
+    },
+  }[category in ["a-d"]],
+  "contentModuleEH": contentFromListeDeFonds[] | order(titleBlock asc){
+    _id,
+    _key,
+    _type,
+    titleBlock,
+    category,
+    "contenBlock": block[]{
+      _type,
+      ${richTextFields}
+      ${singleImageFields}
+      ${multiImagesFields}
+      ${linkFields}
+    },
+  }[category in ["e-h"]],
+  "contentModuleIM": contentFromListeDeFonds[] | order(titleBlock asc){
+    _id,
+    _key,
+    _type,
+    titleBlock,
+    category,
+    "contenBlock": block[]{
+      _type,
+      ${richTextFields}
+      ${singleImageFields}
+      ${multiImagesFields}
+      ${linkFields}
+    },
+  }[category in ["i-m"]],
+  "contentModuleNQ": contentFromListeDeFonds[] | order(titleBlock asc){
+    _id,
+    _key,
+    _type,
+    titleBlock,
+    category,
+    "contenBlock": block[]{
+      _type,
+      ${richTextFields}
+      ${singleImageFields}
+      ${multiImagesFields}
+      ${linkFields}
+    },
+  }[category in ["n-q"]],
+  "contentModuleRU": contentFromListeDeFonds[] | order(titleBlock asc){
+    _id,
+    _key,
+    _type,
+    titleBlock,
+    category,
+    "contenBlock": block[]{
+      _type,
+      ${richTextFields}
+      ${singleImageFields}
+      ${multiImagesFields}
+      ${linkFields}
+    },
+  }[category in ["r-u"]],
+  "contentModuleVZ": contentFromListeDeFonds[] | order(titleBlock asc){
+    _id,
+    _key,
+    _type,
+    titleBlock,
+    category,
+    "contenBlock": block[]{
+      _type,
+      ${richTextFields}
+      ${singleImageFields}
+      ${multiImagesFields}
+      ${linkFields}
+    },
+  }[category in ["v-z"]],
 }
 `;

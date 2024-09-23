@@ -56,13 +56,15 @@ export default function LDFDesktopSidebar({ content }: Props) {
   });
 
   const uniqueCategories: { [key: string]: boolean } = {};
-  const filteredContent = content?.contentModule?.filter((item) => {
-    if (item.category && !uniqueCategories[item.category]) {
-      uniqueCategories[item.category] = true;
-      return true;
-    }
-    return false;
-  });
+  const filteredContent = content?.contentModule
+    ?.filter((item) => {
+      if (item.category && !uniqueCategories[item.category]) {
+        uniqueCategories[item.category] = true;
+        return true;
+      }
+      return false;
+    })
+    .sort((a, b) => (a.category || "").localeCompare(b.category || "")); // Sort alphabetically by category
 
   return (
     <div className="relative hidden lg:block">
