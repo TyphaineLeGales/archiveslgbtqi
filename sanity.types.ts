@@ -1778,7 +1778,7 @@ export type PagesContentQueryResult = {
   }> | null;
 } | null;
 // Variable: listeDeFondsQuery
-// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  introduction[]{    ...,  },  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }}
+// Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  introduction[]{    ...,  },  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  },  "contentModuleAD": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["a-d"]],  "contentModuleEH": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["e-h"]],  "contentModuleIM": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["i-m"]],  "contentModuleNQ": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["n-q"]],  "contentModuleRU": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["r-u"]],  "contentModuleVZ": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,        _id,  "multiImages": images[] {        "imageUrl": image.asset->url,        alt,      },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["v-z"]],}
 export type ListeDeFondsQueryResult = {
   _id: string;
   title: string | null;
@@ -1895,6 +1895,570 @@ export type ListeDeFondsQueryResult = {
         }
     > | null;
   }> | null;
+  contentModuleAD: Array<{
+    _id: null;
+    _key: string;
+    _type: "liste-des-fonds-content";
+    titleBlock: string | null;
+    category: "a-d" | "e-h" | "i-m" | "n-q" | "r-u" | "v-z" | null;
+    contenBlock: Array<
+      | {
+          _type: "link";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: string | null;
+          external: string | null;
+          internal: {
+            _id: string;
+            _type: "pages";
+            title: string | null;
+            slug: string | null;
+          } | null;
+          mail: string | null;
+        }
+      | {
+          _type: "multi-images";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: Array<{
+            imageUrl: string | null;
+            alt: string | null;
+          }> | null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "richtext";
+          _id: null;
+          _key: string;
+          richtext: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "single-image";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: string | null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+    > | null;
+  }> | null;
+  contentModuleEH: Array<{
+    _id: null;
+    _key: string;
+    _type: "liste-des-fonds-content";
+    titleBlock: string | null;
+    category: "a-d" | "e-h" | "i-m" | "n-q" | "r-u" | "v-z" | null;
+    contenBlock: Array<
+      | {
+          _type: "link";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: string | null;
+          external: string | null;
+          internal: {
+            _id: string;
+            _type: "pages";
+            title: string | null;
+            slug: string | null;
+          } | null;
+          mail: string | null;
+        }
+      | {
+          _type: "multi-images";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: Array<{
+            imageUrl: string | null;
+            alt: string | null;
+          }> | null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "richtext";
+          _id: null;
+          _key: string;
+          richtext: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "single-image";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: string | null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+    > | null;
+  }> | null;
+  contentModuleIM: Array<{
+    _id: null;
+    _key: string;
+    _type: "liste-des-fonds-content";
+    titleBlock: string | null;
+    category: "a-d" | "e-h" | "i-m" | "n-q" | "r-u" | "v-z" | null;
+    contenBlock: Array<
+      | {
+          _type: "link";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: string | null;
+          external: string | null;
+          internal: {
+            _id: string;
+            _type: "pages";
+            title: string | null;
+            slug: string | null;
+          } | null;
+          mail: string | null;
+        }
+      | {
+          _type: "multi-images";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: Array<{
+            imageUrl: string | null;
+            alt: string | null;
+          }> | null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "richtext";
+          _id: null;
+          _key: string;
+          richtext: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "single-image";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: string | null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+    > | null;
+  }> | null;
+  contentModuleNQ: Array<{
+    _id: null;
+    _key: string;
+    _type: "liste-des-fonds-content";
+    titleBlock: string | null;
+    category: "a-d" | "e-h" | "i-m" | "n-q" | "r-u" | "v-z" | null;
+    contenBlock: Array<
+      | {
+          _type: "link";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: string | null;
+          external: string | null;
+          internal: {
+            _id: string;
+            _type: "pages";
+            title: string | null;
+            slug: string | null;
+          } | null;
+          mail: string | null;
+        }
+      | {
+          _type: "multi-images";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: Array<{
+            imageUrl: string | null;
+            alt: string | null;
+          }> | null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "richtext";
+          _id: null;
+          _key: string;
+          richtext: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "single-image";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: string | null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+    > | null;
+  }> | null;
+  contentModuleRU: Array<{
+    _id: null;
+    _key: string;
+    _type: "liste-des-fonds-content";
+    titleBlock: string | null;
+    category: "a-d" | "e-h" | "i-m" | "n-q" | "r-u" | "v-z" | null;
+    contenBlock: Array<
+      | {
+          _type: "link";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: string | null;
+          external: string | null;
+          internal: {
+            _id: string;
+            _type: "pages";
+            title: string | null;
+            slug: string | null;
+          } | null;
+          mail: string | null;
+        }
+      | {
+          _type: "multi-images";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: Array<{
+            imageUrl: string | null;
+            alt: string | null;
+          }> | null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "richtext";
+          _id: null;
+          _key: string;
+          richtext: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "single-image";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: string | null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+    > | null;
+  }> | null;
+  contentModuleVZ: Array<{
+    _id: null;
+    _key: string;
+    _type: "liste-des-fonds-content";
+    titleBlock: string | null;
+    category: "a-d" | "e-h" | "i-m" | "n-q" | "r-u" | "v-z" | null;
+    contenBlock: Array<
+      | {
+          _type: "link";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: string | null;
+          external: string | null;
+          internal: {
+            _id: string;
+            _type: "pages";
+            title: string | null;
+            slug: string | null;
+          } | null;
+          mail: string | null;
+        }
+      | {
+          _type: "multi-images";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: null;
+          multiImages: Array<{
+            imageUrl: string | null;
+            alt: string | null;
+          }> | null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "richtext";
+          _id: null;
+          _key: string;
+          richtext: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "blockquote"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }> | null;
+          imageTitle: null;
+          imageUrl: null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+      | {
+          _type: "single-image";
+          _id: null;
+          _key: string;
+          richtext: null;
+          imageTitle: string | null;
+          imageUrl: string | null;
+          multiImages: null;
+          linkLabel: null;
+          external: null;
+          internal: null;
+          mail: null;
+        }
+    > | null;
+  }> | null;
 } | null;
 
 // Source: ./app/(next)/[slug]/page.tsx
@@ -1915,7 +2479,7 @@ declare module "@sanity/client" {
     '*[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventDateStart asc) [0...5] {\n  _id,\n  eventType,\n  eventTitle,\n  slug,\n  eventEntrance,\n  eventDate,\n  eventDescription,\n  eventLocation,\n  "image": eventImage{\n    "imageUrl": image.asset->url,\n    alt,\n  },\n}': LastEventQueryResult;
     '*[_type == "blogs"  && year >= $minYear && year <= $maxYear] | order(year desc)  {\n  _id,\n  title,\n  subTitle,\n  author,\n  year,\n  date,\n  contentBlock[]{\n    _type == "richText" => {\n      "richText": text\n    },\n    _type == "singleImage" => {\n      "singleImage": {\n        "imageUrl": image.asset->url,\n        alt\n      }\n    },\n    _type == "multiImagesObject" => {\n      "multiImagesObject": multiImages[]{\n        "imageUrl": image.asset->url,\n        alt\n      }\n    },\n    _type == "links" => {\n      "links": {\n        label,\n        type,\n        "internalLink": internal->title,\n        external,\n        mail\n      }\n    }\n  }\n}': BlogsQueryResult;
     '*[_type == "pages" && slug.current == $slug][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  "contentModulde": content[]{\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "richTextTitle": title,\n  "richtextTitleText": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n      \n  _id,\n  "isDisplayed": event.isDisplayed,\n  "lastEventLabel": event.title,\n  "goToAllEvents": event.ctaToEvents,\n\n      \n  _id,\n  "creationArchivesTitle": intro[],\n  "creationArchivesArchive": archive[] {\n    title,\n    description[],\n    status,\n    },\n\n      \n  _id,\n  "customHtml": html,\n  "codeTitle": codeTitle,\n  "isAddFiles": isAddFiles,\n  "fileGroup": fileGroup[] {\n    title,\n    files[] {\n      asset->,\n      },\n      },\n\n      \n  _id,\n  title,\n  "fileUrl": file.asset->url,\n  "fileName": file.asset->originalFilename,\n\n    },\n  }\n}\n': PagesContentQueryResult;
-    '*[_type == "pages" && slug.current == "liste-des-fonds"][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  introduction[]{\n    ...,\n  },\n  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }\n}\n': ListeDeFondsQueryResult;
+    '*[_type == "pages" && slug.current == "liste-des-fonds"][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  introduction[]{\n    ...,\n  },\n  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  },\n  "contentModuleAD": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["a-d"]],\n  "contentModuleEH": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["e-h"]],\n  "contentModuleIM": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["i-m"]],\n  "contentModuleNQ": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["n-q"]],\n  "contentModuleRU": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["r-u"]],\n  "contentModuleVZ": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n\n      \n  _id,\n  "multiImages": images[] {\n        "imageUrl": image.asset->url,\n        alt,\n      },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["v-z"]],\n}\n': ListeDeFondsQueryResult;
     '*[_type == "pages"]{slug}': PageSlugsResult;
   }
 }

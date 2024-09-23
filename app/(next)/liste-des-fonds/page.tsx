@@ -6,7 +6,6 @@ import { listeDeFondsQuery } from "@/sanity/lib/queries";
 
 import { LDFBlock } from "../components/liste-des-fonds";
 import LDFDesktopSidebar from "../components/liste-des-fonds/LDFDesktopSidebar";
-import { RichTextModule } from "../components/modules";
 import { MyCustomPortableText } from "../components/ui";
 import { PortableTextBlock } from "next-sanity";
 
