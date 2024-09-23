@@ -32,7 +32,7 @@ export default async function Page() {
   return (
     <div className="relative mx-auto flex min-h-full w-auto max-w-[1440px] p-[1rem] lg:p-0">
       <BlogDesktopSidebar blog={blogs} />
-      <div className="flex w-full flex-col overflow-hidden pr-[3rem] pt-[3rem]">
+      <div className="flex w-full flex-col overflow-hidden pt-[3rem] lg:pr-[3rem]">
         {blogs.map((blog) => (
           <div
             id={blog.year || ""}
