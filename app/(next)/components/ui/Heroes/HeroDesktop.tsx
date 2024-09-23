@@ -57,7 +57,7 @@ export default function HeroDesktop({ heroes }: Props) {
     }
   }, [heroes]);
 
-  console.log("currentHero: ", currentHero);
+  // console.log("currentHero: ", currentHero);
 
   return (
     <div className="relative hidden max-h-[calc(100vh-6rem)] min-h-[calc(100vh-6rem)] min-w-[100vw] lg:flex">
