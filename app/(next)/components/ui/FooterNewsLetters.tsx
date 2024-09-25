@@ -92,7 +92,7 @@ export default function FooterNewsLetters({}: Props) {
           }}
         >
           <Form>
-            <div className="flex items-center space-x-2">
+            <div className="flex min-w-[calc(100vw-2rem)] items-center space-x-2 lg:min-w-full">
               <Field
                 type="email"
                 name="email"

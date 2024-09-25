@@ -114,7 +114,7 @@ export const eventFields = /* groq */ `
   eventTitle,
   slug,
   eventDate,
-  eventDescription,
+  eventDescription2,
   eventLocation,
   "image": eventImage{
       "imageUrl": image.asset->url,
@@ -173,7 +173,7 @@ export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]
   slug,
   eventEntrance,
   eventDate,
-  eventDescription,
+  eventDescription2,
   eventLocation,
   "image": eventImage{
       "imageUrl": image.asset->url,
@@ -181,14 +181,14 @@ export const eventQuery = groq`*[_type == "events" && slug.current == $event][0]
     },
 }`;
 
-export const pastEventQuery = groq`*[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()] | order(eventDate.eventStartDate desc){
+export const pastEventQuery = groq`*[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()] | order(eventDate.eventStartDate desc) [0..3] {
   _id,
   eventType,
   eventTitle,
   slug,
   eventEntrance,
   eventDate,
-  eventDescription,
+  eventDescription2,
   eventLocation,
   "image": eventImage{
       "imageUrl": image.asset->url,
@@ -203,7 +203,7 @@ export const lastEventQuery = groq`*[_type == "events" && defined(eventDate) && 
   slug,
   eventEntrance,
   eventDate,
-  eventDescription,
+  eventDescription2,
   eventLocation,
   "image": eventImage{
     "imageUrl": image.asset->url,

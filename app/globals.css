@@ -92,7 +92,7 @@
   }
 
   .FormSubmitInput {
-    @apply w-full rounded-none border-b-[2px] border-black font-cityburn text-[1.6rem] tracking-wider text-black placeholder:font-cityburn placeholder:text-[1.6rem] placeholder:tracking-wider placeholder:text-black focus-within:outline-none focus:ring-0;
+    @apply flex w-full rounded-none border-b-[3px] border-black font-cityburn text-[1.6rem] tracking-wider text-black placeholder:font-cityburn placeholder:text-[1.6rem] placeholder:leading-[1.5rem] placeholder:tracking-wider placeholder:text-black focus-within:outline-none focus:ring-0;
   }
 
   /* 👇🏽 Events */
@@ -146,7 +146,7 @@
   /* 👇🏽 Liste des fonds */
 
   .ldfTitle {
-    @apply font-cityburn text-[1.2rem] leading-[1.2rem] tracking-wider lg:text-[1.6rem] lg:leading-[1rem];
+    @apply font-cityburn text-[1.2rem] leading-[1rem] tracking-wider lg:text-[1.6rem] lg:leading-[1.4rem];
   }
 }
 

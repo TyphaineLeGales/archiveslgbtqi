@@ -38,7 +38,7 @@ export default function EventsMap({
               <div>
                 <h2 className="eventType">{event.eventType}</h2>
                 <h2 className="eventTitle">{event.eventTitle}</h2>
-                <div className="eventDate flex flex-col pt-[1rem] lg:flex-row lg:gap-[.5rem]">
+                <div className="eventDate flex flex-row pt-[1rem] lg:gap-[.5rem]">
                   {(event.eventDate?.eventDateType as String) ===
                   "dateRange" ? (
                     <>
@@ -67,14 +67,16 @@ export default function EventsMap({
                         formatType="fullDateWithYear"
                         dateString={event.eventDate?.eventStartDate || ""}
                       />
+                      &nbsp;
                       {event.eventDate?.eventEndDate ? (
                         <>
-                          {" - Entre"}
+                          {"- Entre"}
+                          &nbsp;
                           <DateHourFormat
                             formatType="shortHour"
                             dateString={event.eventDate?.eventStartDate || ""}
                           />
-                          -
+                          {"- "}
                           <DateHourFormat
                             formatType="shortHour"
                             dateString={event.eventDate?.eventEndDate || ""}
@@ -82,7 +84,8 @@ export default function EventsMap({
                         </>
                       ) : (
                         <>
-                          {" - "}
+                          {"-"}
+                          &nbsp;
                           <DateHourFormat
                             formatType="shortHour"
                             dateString={event.eventDate?.eventStartDate || ""}
@@ -105,10 +108,9 @@ export default function EventsMap({
                 </div>
               </div>
               <div className="pt-[3rem] lg:pt-0">
-                <MyCustomPortableText
-                  value={event.eventDescription as PortableTextBlock[]}
-                  className="eventParagraph min-w-full pb-[.12.5rem]"
-                />
+                <p className="eventParagraph min-w-full pb-[.12.5rem]">
+                  {event.eventDescription2}
+                </p>
               </div>
             </div>
             <div className="flex cursor-pointer items-start justify-center">

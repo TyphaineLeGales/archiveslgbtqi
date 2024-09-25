@@ -34,7 +34,7 @@ export default function CreationArchivesModule({
         value={intro}
         className="richText min-w-full pb-[1.5rem]"
       />
-      <ul className="divide-y-[2px] divide-black border-y-[2px] border-black will-change-transform">
+      <ul className="divide-y-[3px] divide-black border-y-[3px] border-black will-change-transform">
         {archive?.map((archiveItem, index) => (
           <button
             key={index}
