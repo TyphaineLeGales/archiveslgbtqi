@@ -1,3 +1,4 @@
+import CustomStringInputWithLimits300 from "@/sanity/plugins/CustomStringInputWithLimits300";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
@@ -26,10 +27,13 @@ export default defineType({
         'ℹ️ Ajoutez des informations sur l\'entrée. (ex: "Entrée libre", "Réservé aux adhérents"...)',
     }),
     defineField({
-      name: "eventDescription",
-      title: "Description de l'événement",
-      type: "array",
-      of: [{ type: "block" }],
+      name: "eventDescription2",
+      title: "Paragraph",
+      description: "Maximum 300 caractères",
+      type: "text",
+      components: {
+        input: CustomStringInputWithLimits300,
+      },
     }),
     defineField({
       name: "eventDate",

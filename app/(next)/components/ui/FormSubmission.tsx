@@ -39,30 +39,34 @@ export default function FormSubmission() {
   return (
     <form
       onSubmit={handleSubmit(processForm)}
-      className="relative flex h-full w-full flex-col gap-[1rem] lg:w-[55%]"
+      className="relative flex h-full w-full flex-col gap-[.5rem] lg:w-[55%]"
     >
       <input
         placeholder="Nom"
         {...register("name")}
-        className="FormSubmitInput"
+        className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]"
       />
       {errors.name?.message && (
-        <p className="FormSubmitInput">{errors.name.message}</p>
+        <p className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]">
+          {errors.name.message}
+        </p>
       )}
 
       <input
         placeholder="Adresse email"
         {...register("email")}
-        className="FormSubmitInput"
+        className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]"
       />
       {errors.email?.message && (
-        <p className="FormSubmitInput">{errors.email.message}</p>
+        <p className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]">
+          {errors.email.message}
+        </p>
       )}
 
       <input
         placeholder="Titre de votre archive"
         {...register("title")}
-        className="FormSubmitInput"
+        className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]"
       />
       {errors.title?.message && (
         <p className="FormSubmitInput">{errors.title.message}</p>

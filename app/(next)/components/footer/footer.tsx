@@ -52,7 +52,7 @@ export default async function Footer() {
             <a
               href={`mailto:${settings?.footer?.addressGroup?.mailAddress}`}
               aria-label="Envoyer un mail"
-              className="w-fit transition-colors duration-300 ease-tamisitée hover:text-pink-arch"
+              className="hidden w-fit transition-colors duration-300 ease-tamisitée hover:text-pink-arch lg:block"
             >
               {settings?.footer?.addressGroup?.mailAddress}
             </a>
@@ -67,7 +67,7 @@ export default async function Footer() {
           <div className="footerText flex h-[75%] w-full flex-col justify-start gap-[3rem] lg:w-auto">
             <div className="order-last flex flex-col gap-[1rem] lg:order-none lg:gap-[.5rem]">
               <span>Suivez-nous :</span>
-              <div className="flex justify-center gap-[4rem] lg:justify-start lg:gap-[1rem]">
+              <div className="flex justify-start gap-[4rem] lg:gap-[1rem]">
                 {settings?.footer?.socialGroup?.map((social) => (
                   <div
                     key={social.socialName}
@@ -83,7 +83,7 @@ export default async function Footer() {
                         alt={social.socialLinkImage?.alt || ""}
                         width={50}
                         height={50}
-                        className="h-[2rem] w-[2rem] lg:h-[1.25rem] lg:w-[1.25rem]"
+                        className="h-[2rem] w-[2rem] antialiased lg:h-[1.25rem] lg:w-[1.25rem]"
                       />
                     </a>
                     <div className="absolute inset-0 rounded-full bg-pink-arch opacity-0 mix-blend-multiply transition-opacity duration-300 ease-tamisitée group-hover:opacity-100" />
@@ -95,13 +95,13 @@ export default async function Footer() {
               <span>Newsletter :</span>
               <div className="relative flex min-w-full">
                 <FooterNewsLetters />
-                <div className="absolute inset-x-0 bottom-[1px] h-[2px] w-full bg-white lg:w-[calc(100%-2rem)]" />
+                <div className="absolute inset-x-0 bottom-[1px] h-[2px] w-[calc(100%-3rem)] bg-white lg:w-[calc(100%-2rem)]" />
               </div>
             </div>
           </div>
 
           {/* 👇🏽 Links */}
-          <div className="footerText flex h-[75%] flex-col items-start justify-start">
+          <div className="footerText flex h-[75%] flex-col items-start justify-start gap-[.5rem] lg:gap-[.25rem]">
             {settings?.footer?.footerLinks?.map((modules) => {
               return (
                 <div key={modules.groupName}>
@@ -135,6 +135,13 @@ export default async function Footer() {
               );
             })}
           </div>
+          <a
+            href={`mailto:${settings?.footer?.addressGroup?.mailAddress}`}
+            aria-label="Envoyer un mail"
+            className="footerText block w-fit transition-colors duration-300 ease-tamisitée hover:text-pink-arch lg:hidden"
+          >
+            {settings?.footer?.addressGroup?.mailAddress}
+          </a>
           <span className="footerCopyright bottom-[1rem] left-0 order-last block whitespace-nowrap lg:absolute lg:hidden">
             © {new Date().getFullYear()}{" "}
             {settings?.footer?.addressGroup?.addressTitle}

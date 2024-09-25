@@ -40,7 +40,7 @@ export default function ButtonImage({ event, status }: ButtonImageProps) {
       <div
         ref={imageContainerRef}
         className={clsx(
-          "fixed inset-0 z-50 flex items-center justify-center bg-white p-[1rem] lg:p-[5rem]",
+          "fixed inset-0 z-50 flex items-center justify-between bg-white p-[1rem] lg:p-[5rem]",
           isImageClicked ? "block" : "hidden",
         )}
       >
@@ -63,7 +63,7 @@ export default function ButtonImage({ event, status }: ButtonImageProps) {
       <button
         aria-label="Voir l'image en grand"
         onClick={handleImageClick}
-        className="group relative"
+        className="group relative aspect-square h-full w-full overflow-hidden lg:h-[300px] lg:w-[375px]"
       >
         <div className="absolute inset-0 bg-black bg-opacity-0 transition-[background] duration-300 group-hover:bg-opacity-20"></div>
         <Image
@@ -72,7 +72,7 @@ export default function ButtonImage({ event, status }: ButtonImageProps) {
           width={450}
           height={400}
           className={clsx(
-            "object-contain lg:h-[400px] lg:w-[450px] lg:object-cover",
+            "h-full w-full object-cover object-left-top transition-[filter] duration-300 lg:max-h-[300px] lg:max-w-[375px]",
             status === "past" && "grayscale",
           )}
         />

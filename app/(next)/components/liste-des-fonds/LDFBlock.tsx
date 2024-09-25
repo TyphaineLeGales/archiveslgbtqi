@@ -83,19 +83,19 @@ export default function LDFBlock({ list }: LDFBlockProps) {
               aria-label="Boutton des Liste des fonds"
               onClick={() => handleClick(categoryRange, index ?? 0)}
               className={clsx(
-                "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden py-[1rem] text-start transition-[colors,max-height] duration-[.5s] ease-tamisitée hover:bg-pink-arch",
+                "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden py-[1.25rem] text-start transition-[colors,max-height] duration-[.5s] ease-tamisitée hover:bg-pink-arch lg:py-[1rem]",
                 activeCategory === categoryRange && listIndex === index
                   ? "max-h-[70rem] pb-[1rem] hover:bg-white hover:text-black lg:max-h-[100rem]"
-                  : "max-h-[3rem] hover:bg-pink-arch hover:text-white lg:max-h-[3rem]",
+                  : "max-h-[3.25rem] hover:bg-pink-arch hover:text-white lg:max-h-[3rem]",
               )}
             >
-              <div className="flex h-[4rem] w-full items-center justify-between gap-[1rem] lg:h-auto lg:px-[1rem]">
-                <div className="ldfTitle flex items-center gap-[2rem] lg:mb-[.75rem]">
+              <div className="flex w-full items-center justify-between gap-[1rem] lg:h-auto lg:px-[1rem]">
+                <div className="ldfTitle flex items-center gap-[2rem]">
                   <h2
                     className={clsx(
                       activeCategory === categoryRange && listIndex === index
                         ? "whitespace-normal"
-                        : "whitespace-nowrap",
+                        : "whitespace-normal",
                     )}
                   >
                     {item.titleBlock}
@@ -103,7 +103,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
                 </div>
                 <div
                   className={clsx(
-                    "mb-[1.25rem] hidden text-[.8rem] leading-[.5rem] transition-transform duration-[.5s] ease-tamisitée lg:block",
+                    "mb-[.5rem] hidden text-[.8rem] leading-[.5rem] transition-transform duration-[.5s] ease-tamisitée lg:block",
                     activeCategory === categoryRange && listIndex === index
                       ? "rotate-[135deg]"
                       : "rotate-0",

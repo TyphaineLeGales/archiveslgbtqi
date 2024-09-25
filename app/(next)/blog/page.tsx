@@ -68,7 +68,7 @@ export default async function Page() {
                     alt={block.singleImage.alt || ""}
                     width={1000}
                     height={1000}
-                    className="pb-[1rem]"
+                    className="py-[1rem]"
                   />
                 );
               }
