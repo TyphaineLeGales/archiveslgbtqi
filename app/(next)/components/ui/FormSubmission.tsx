@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -25,15 +26,15 @@ export default function FormSubmission() {
     const result = await sendEmail(data);
 
     if (result?.success) {
-      console.log({ data: result.data?.data });
-      toast.success("Email sent!");
+      // console.log({ data: result.data?.data });
+      toast.success("Archive envoyée avec succès!");
       reset();
       return;
     }
 
     // toast error
-    console.log(result?.error);
-    toast.error("Something went wrong!");
+    // console.log(result?.error);
+    toast.error("Une erreur s'est produite lors de l'envoi de l'archive.");
   };
 
   return (
@@ -46,41 +47,45 @@ export default function FormSubmission() {
         {...register("name")}
         className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"
       />
-      {errors.name?.message && (
-        <p className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]">
-          {errors.name.message}
-        </p>
-      )}
 
       <input
         placeholder="Adresse email"
         {...register("email")}
         className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"
       />
-      {errors.email?.message && (
-        <p className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]">
-          {errors.email.message}
-        </p>
-      )}
 
       <input
         placeholder="Titre de votre archive"
         {...register("title")}
         className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"
       />
-      {errors.title?.message && (
-        <p className="FormSubmitInput">{errors.title.message}</p>
-      )}
 
       <textarea
         rows={5}
         cols={5}
         placeholder="Message"
         {...register("message")}
-        className="FormSubmitInput resize-none"
+        className="FormSubmitInput mt-[-.5rem] resize-none"
       />
+      {errors.name?.message && (
+        <p className="font-jetbrains text-[.7rem] leading-[.5rem] tracking-tighter">
+          Le nom est requis.
+        </p>
+      )}
+      {errors.email?.message && (
+        <p className="font-jetbrains text-[.7rem] leading-[.5rem] tracking-tighter">
+          L'adresse email est requise.
+        </p>
+      )}
+      {errors.title?.message && (
+        <p className="font-jetbrains text-[.7rem] leading-[.5rem] tracking-tighter">
+          Le titre est requis.
+        </p>
+      )}
       {errors.message?.message && (
-        <p className="FormSubmitInput">{errors.message.message}</p>
+        <p className="font-jetbrains text-[.7rem] leading-[.5rem] tracking-tighter">
+          Le message est requis.
+        </p>
       )}
       <div className="flex w-full items-center justify-end">
         <button

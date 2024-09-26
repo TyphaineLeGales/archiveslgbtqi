@@ -11,11 +11,6 @@ export async function GET() {
       to: ["thibaut.randria@gmail.com"],
       subject: "Hello world",
       react: CustomEmail({ firstName: "John" }),
-      attachments: [
-        {
-          filename: "logo.png",
-        },
-      ],
     });
 
     if (error) {

@@ -41,7 +41,7 @@ export default async function Page() {
             id={blog.year || ""}
             key={blog.year}
             className={clsx(
-              "mt-[.5rem] flex flex-col justify-between border-t-[3px] border-black",
+              "mt-[3rem] flex flex-col justify-between border-t-[3px] border-black",
               blog.year !== blogs[blogs.length - 1].year && "pb-[3rem]",
             )}
           >

@@ -31,10 +31,10 @@ export async function sendEmail(data: ContactFormInputs) {
 
     try {
       const data = await resend.emails.send({
-        from: "Salut <contact@tamisitee-experiment.com>",
+        from: "<rencensement@archiveslgbtqi.fr>",
         to: ["thibaut.randria@gmail.com"],
         subject: `Proposition d'archive: ${title}`,
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message} `,
+        text: `Nom: ${name}\Adresse mail: ${email}\nMessage: ${message} `,
         react: ContactFormEmail({ name, email, message, title }),
       });
       return { success: true, data };
