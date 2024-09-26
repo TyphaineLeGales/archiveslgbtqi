@@ -44,10 +44,10 @@ export default function FormSubmission() {
       <input
         placeholder="Nom"
         {...register("name")}
-        className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]"
+        className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"
       />
       {errors.name?.message && (
-        <p className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]">
+        <p className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]">
           {errors.name.message}
         </p>
       )}
@@ -55,10 +55,10 @@ export default function FormSubmission() {
       <input
         placeholder="Adresse email"
         {...register("email")}
-        className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]"
+        className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"
       />
       {errors.email?.message && (
-        <p className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]">
+        <p className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]">
           {errors.email.message}
         </p>
       )}
@@ -66,7 +66,7 @@ export default function FormSubmission() {
       <input
         placeholder="Titre de votre archive"
         {...register("title")}
-        className="FormSubmitInput h-[2.15rem] lg:h-[2.75rem]"
+        className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"
       />
       {errors.title?.message && (
         <p className="FormSubmitInput">{errors.title.message}</p>

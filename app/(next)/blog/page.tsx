@@ -33,12 +33,15 @@ export default async function Page() {
     <div className="relative mx-auto flex min-h-full w-auto max-w-[1440px] p-[1rem] lg:p-0">
       <BlogDesktopSidebar blog={blogs} />
       <div className="flex w-full flex-col overflow-hidden pt-[3rem] lg:pr-[3rem]">
+        <h1 className="font-tanker text-[3rem] uppercase leading-[2.5rem] tracking-wide lg:text-[4.5rem] lg:leading-[3.7rem]">
+          Blog
+        </h1>
         {blogs.map((blog) => (
           <div
             id={blog.year || ""}
             key={blog.year}
             className={clsx(
-              "flex flex-col justify-between border-t-[3px] border-black",
+              "mt-[.5rem] flex flex-col justify-between border-t-[3px] border-black",
               blog.year !== blogs[blogs.length - 1].year && "pb-[3rem]",
             )}
           >

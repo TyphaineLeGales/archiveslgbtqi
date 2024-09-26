@@ -92,7 +92,7 @@
   }
 
   .FormSubmitInput {
-    @apply flex w-full rounded-none border-b-[2px] border-black font-cityburn text-[1.6rem] tracking-wider text-black placeholder:font-cityburn placeholder:text-[1.6rem] placeholder:leading-[1.5rem] placeholder:tracking-wider placeholder:text-black focus-within:outline-none focus:ring-0;
+    @apply flex w-full rounded-none border-b-[2px] border-black py-[1rem] font-cityburn text-[1.3rem] leading-[1.7rem] tracking-wider text-black placeholder:font-cityburn placeholder:text-[1.6rem] placeholder:leading-[1.4rem] placeholder:tracking-wider placeholder:text-black focus-within:outline-none focus:ring-0 lg:text-[1.6rem] lg:leading-[2rem];
   }
 
   .deroulantTitle {

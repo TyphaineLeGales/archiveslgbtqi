@@ -114,18 +114,17 @@ export default function EventsMap({
                 </p>
               </div>
             </div>
-            <div className="flex cursor-pointer items-start justify-center">
-              <Image
-                src={event.image?.imageUrl || ""}
-                alt={event.image?.alt || ""}
-                width={450}
-                height={400}
-                className={clsx(
-                  "h-[400px] w-[400px] object-cover object-left-top transition-[filter] duration-300 lg:max-h-[400px] lg:max-w-[400px]",
-                  status === "past" && "grayscale",
-                )}
-              />
-            </div>
+
+            <Image
+              src={event.image?.imageUrl || ""}
+              alt={event.image?.alt || ""}
+              width={450}
+              height={400}
+              className={clsx(
+                "w-full object-cover object-left-top transition-[filter] duration-300 lg:h-[400px] lg:max-h-[400px] lg:w-[400px] lg:max-w-[400px]",
+                status === "past" && "grayscale",
+              )}
+            />
           </div>
         ))}
       </div>
