@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 import { PortableTextBlock } from "next-sanity";
 
@@ -114,7 +115,16 @@ export default function EventsMap({
               </div>
             </div>
             <div className="flex cursor-pointer items-start justify-center">
-              <ButtonImage status={status} event={event as any} />
+              <Image
+                src={event.image?.imageUrl || ""}
+                alt={event.image?.alt || ""}
+                width={450}
+                height={400}
+                className={clsx(
+                  "h-[400px] w-[400px] object-cover object-left-top transition-[filter] duration-300 lg:max-h-[400px] lg:max-w-[400px]",
+                  status === "past" && "grayscale",
+                )}
+              />
             </div>
           </div>
         ))}

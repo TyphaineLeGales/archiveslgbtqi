@@ -308,6 +308,10 @@ export default defineType({
               ],
             },
           ],
+          validation: (Rule) =>
+            Rule.max(3)
+              .warning("3 événements maximum")
+              .error("3 événements maximum"),
         }),
         defineField({
           name: "upcomingEventsCTATitle",

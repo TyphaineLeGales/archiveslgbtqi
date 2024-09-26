@@ -67,7 +67,7 @@ export default async function Footer() {
           <div className="footerText flex h-[75%] w-full flex-col justify-start gap-[3rem] lg:w-auto">
             <div className="order-last flex flex-col gap-[1rem] lg:order-none lg:gap-[.5rem]">
               <span>Suivez-nous :</span>
-              <div className="flex justify-start gap-[4rem] lg:gap-[1rem]">
+              <div className="flex justify-start gap-[1rem]">
                 {settings?.footer?.socialGroup?.map((social) => (
                   <div
                     key={social.socialName}
@@ -138,7 +138,7 @@ export default async function Footer() {
           <a
             href={`mailto:${settings?.footer?.addressGroup?.mailAddress}`}
             aria-label="Envoyer un mail"
-            className="footerText block w-fit transition-colors duration-300 ease-tamisitée hover:text-pink-arch lg:hidden"
+            className="footerText mb-[3.5rem] block w-fit transition-colors duration-300 ease-tamisitée hover:text-pink-arch lg:hidden"
           >
             {settings?.footer?.addressGroup?.mailAddress}
           </a>

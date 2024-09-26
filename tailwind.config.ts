@@ -19,19 +19,16 @@ export default {
         "slow-pulse": "slow-pulse 3s ease-in-out infinite",
         "translate-squeezed":
           "translate-squeezed 0.5s 5s infinite running slidein",
+        scroll: "scroll 20s linear infinite",
       },
       keyframes: {
         marquee: {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-100%)" },
         },
-        "slow-pulse": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.5" },
-        },
-        "translate-squeezed": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-10%) " },
+        scroll: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
         },
       },
       colors: {
