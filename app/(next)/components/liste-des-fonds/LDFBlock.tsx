@@ -69,7 +69,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
         return (
           <div
             key={`${item.category}-${index}`}
-            className="flex flex-col divide-y-[3px] divide-black border-b-[3px] border-black"
+            className="flex flex-col divide-y-[2px] divide-black border-b-[2px] border-black"
           >
             {showCategory && (
               <span
@@ -83,22 +83,27 @@ export default function LDFBlock({ list }: LDFBlockProps) {
               aria-label="Boutton des Liste des fonds"
               onClick={() => handleClick(categoryRange, index ?? 0)}
               className={clsx(
-                "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden py-[1.25rem] text-start transition-[colors,max-height] duration-[.5s] ease-tamisitée hover:bg-pink-arch lg:py-[1rem]",
+                "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden pb-[1.25rem] pt-[1rem] text-start transition-[colors,max-height] duration-[.5s] ease-tamisitée hover:bg-pink-arch lg:pb-[1rem] lg:pt-[.75rem]",
                 activeCategory === categoryRange && listIndex === index
                   ? "max-h-[70rem] pb-[1rem] hover:bg-white hover:text-black lg:max-h-[100rem]"
                   : "max-h-[3.25rem] hover:bg-pink-arch hover:text-white lg:max-h-[3rem]",
               )}
             >
               <div className="flex w-full items-center justify-between gap-[1rem] lg:h-auto lg:px-[1rem]">
-                <div className="ldfTitle flex items-center gap-[2rem]">
+                <div className="deroulantTitle flex items-center gap-[2rem]">
                   <h2
                     className={clsx(
+                      "overflow-hidden", // Ensure the overflow is hidden to make the scrolling effect visible
                       activeCategory === categoryRange && listIndex === index
-                        ? "whitespace-normal"
-                        : "whitespace-normal",
+                        ? "whitespace-nowrap"
+                        : "",
+                      typeof item.titleBlock === "string" &&
+                        item.titleBlock.length > 40
+                        ? "animate-scroll lg:animate-none"
+                        : "",
                     )}
                   >
-                    {item.titleBlock}
+                    <span className="inline-block">{item.titleBlock}</span>
                   </h2>
                 </div>
                 <div

@@ -17,7 +17,7 @@ export default function UpcomingEvents({ events }: UpcomingEventsProps) {
     <>
       {events?.upcomingEventsSection?.upcomingEventsSectionVisibility && (
         <section className="mx-auto max-w-[1440px] px-[1rem] pb-[10rem] pt-[2.5rem] lg:px-[3rem]">
-          <div className="flex items-center justify-between pb-[2.5rem] lg:justify-normal lg:gap-[8.75%]">
+          <div className="flex flex-col justify-between pb-[2.5rem] lg:flex-row lg:items-center lg:justify-normal lg:gap-[8.75%]">
             <h2 className="font-tanker text-[2rem] uppercase lg:text-[3.3rem]">
               {events?.upcomingEventsSection?.upcomingEventsTitle ||
                 "Prochaines dates"}

@@ -63,7 +63,7 @@ export default function ButtonImage({ event, status }: ButtonImageProps) {
       <button
         aria-label="Voir l'image en grand"
         onClick={handleImageClick}
-        className="group relative aspect-square h-full w-full overflow-hidden lg:h-[300px] lg:w-[375px]"
+        className="group relative aspect-square h-full w-full overflow-hidden lg:h-[400px] lg:w-[400px]"
       >
         <div className="absolute inset-0 bg-black bg-opacity-0 transition-[background] duration-300 group-hover:bg-opacity-20"></div>
         <Image
@@ -72,7 +72,7 @@ export default function ButtonImage({ event, status }: ButtonImageProps) {
           width={450}
           height={400}
           className={clsx(
-            "h-full w-full object-cover object-left-top transition-[filter] duration-300 lg:max-h-[300px] lg:max-w-[375px]",
+            "h-full w-full object-cover object-left-top transition-[filter] duration-300 lg:max-h-[400px] lg:max-w-[400px]",
             status === "past" && "grayscale",
           )}
         />
