@@ -2,8 +2,10 @@ import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+// Email validation schema
 const EmailSchema = z.string().email({ message: "Adresse email non valide." });
 
+// Function to send the welcome email
 async function sendWelcomeEmail(
   email: string,
   apiKey: string,
@@ -39,6 +41,7 @@ async function sendWelcomeEmail(
   }
 }
 
+// New subscriber handler
 async function newSubscriberHandler(email: string) {
   const API_KEY = process.env.BREVO_API_KEY;
   const TEMPLATE_ID = parseInt(
@@ -70,16 +73,12 @@ async function newSubscriberHandler(email: string) {
 }
 
 export async function POST(req: NextRequest) {
-  if (req.method !== "POST") {
-    return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
-  }
-
   try {
     const body = await req.json();
     const emailValidation = EmailSchema.safeParse(body.email);
     if (!emailValidation.success) {
       return NextResponse.json(
-        { error: "Adresse email non valide." },
+        { error: "Une erreur inattendue s'est produite." },
         { status: 400 },
       );
     }
@@ -112,11 +111,18 @@ export async function POST(req: NextRequest) {
     const response = await axios.post(url, data, options);
 
     if (response.status === 201) {
-      await newSubscriberHandler(emailValidation.data);
-      return NextResponse.json(
-        { message: "`Merci pour votre inscription.`" },
-        { status: 201 },
-      );
+      const handlerResult = await newSubscriberHandler(emailValidation.data);
+      if (handlerResult) {
+        return NextResponse.json(
+          { message: "Merci pour votre inscription." },
+          { status: 201 },
+        );
+      } else {
+        return NextResponse.json(
+          { message: "Merci pour votre inscription." },
+          { status: 200 },
+        );
+      }
     } else if (response.status === 204) {
       return NextResponse.json(
         { message: "Vous êtes déjà abonné." },
