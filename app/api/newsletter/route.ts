@@ -114,7 +114,7 @@ export async function POST(req: NextRequest) {
     if (response.status === 201) {
       await newSubscriberHandler(emailValidation.data);
       return NextResponse.json(
-        { message: "`Merci pour votre inscription.`" },
+        { message: "Merci pour votre inscription." },
         { status: 201 },
       );
     } else if (response.status === 204) {
