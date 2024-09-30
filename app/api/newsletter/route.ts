@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
     const response = await axios.post(url, data, options);
 
     if (response.status === 201) {
-      await newSubscriberHandler(body.email, body.name);
+      await newSubscriberHandler(body.email);
       return NextResponse.json(
         { message: "Successfully subscribed to the newsletter!" },
         { status: 201 },
