@@ -2,9 +2,7 @@ import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-const EmailSchema = z
-  .string()
-  .email({ message: "Please enter a valid email address" });
+const EmailSchema = z.string().email({ message: "Adresse email non valide." });
 
 async function sendWelcomeEmail(
   email: string,
@@ -81,7 +79,7 @@ export async function POST(req: NextRequest) {
     const emailValidation = EmailSchema.safeParse(body.email);
     if (!emailValidation.success) {
       return NextResponse.json(
-        { error: "Please enter a valid email address" },
+        { error: "Adresse email non valide." },
         { status: 400 },
       );
     }
@@ -92,7 +90,7 @@ export async function POST(req: NextRequest) {
     if (!BREVO_API_KEY || !LIST_ID) {
       console.error("Brevo API Key or List ID not configured properly");
       return NextResponse.json(
-        { error: "Server configuration error" },
+        { error: "Une erreur inattendue s'est produite." },
         { status: 500 },
       );
     }
@@ -116,25 +114,25 @@ export async function POST(req: NextRequest) {
     if (response.status === 201) {
       await newSubscriberHandler(emailValidation.data);
       return NextResponse.json(
-        { message: "Successfully subscribed to the newsletter!" },
+        { message: "`Merci pour votre inscription.`" },
         { status: 201 },
       );
     } else if (response.status === 204) {
       return NextResponse.json(
-        { message: "You're already subscribed! Thanks for your enthusiasm." },
+        { message: "Vous êtes déjà abonné." },
         { status: 200 },
       );
     } else {
       console.error("Brevo API Error:", response.status, response.data);
       return NextResponse.json(
-        { error: "An error occurred during subscription." },
+        { error: "Une erreur inattendue s'est produite." },
         { status: response.status || 500 },
       );
     }
   } catch (error) {
     console.error("Error subscribing to Brevo:", error);
     return NextResponse.json(
-      { error: "An error occurred during subscription." },
+      { error: "Une erreur inattendue s'est produite." },
       { status: 500 },
     );
   }
