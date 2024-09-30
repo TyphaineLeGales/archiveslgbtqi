@@ -46,7 +46,7 @@ async function sendWelcomeEmail(
 }
 
 // New subscriber handler
-export const newSubscriberHandler = async (
+const newSubscriberHandler = async (
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) => {
@@ -94,3 +94,5 @@ export const newSubscriberHandler = async (
       .json({ message: "Subscribed (Error sending welcome email)" });
   }
 };
+
+export default newSubscriberHandler;
