@@ -1,11 +1,75 @@
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import newSubscriberHandler from "../new-sub/route";
 
 const EmailSchema = z
   .string()
   .email({ message: "Please enter a valid email address" });
+
+async function sendWelcomeEmail(
+  email: string,
+  apiKey: string,
+  templateId: number,
+) {
+  const url = `https://api.brevo.com/v3/smtp/email`;
+  const data = {
+    to: [{ email }],
+    templateId,
+  };
+
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": apiKey,
+    },
+  };
+
+  try {
+    const response = await axios.post(url, data, options);
+    if (response.status === 201) {
+      return true;
+    } else {
+      console.error(
+        "Unexpected response status from Brevo API:",
+        response.status,
+      );
+      return false;
+    }
+  } catch (error) {
+    console.error("Error sending welcome email:", error);
+    return false;
+  }
+}
+
+async function newSubscriberHandler(email: string) {
+  const API_KEY = process.env.BREVO_API_KEY;
+  const TEMPLATE_ID = parseInt(
+    process.env.BREVO_WELCOME_EMAIL_TEMPLATE_ID || "0",
+    10,
+  );
+
+  if (!API_KEY) {
+    console.error("BREVO_API_KEY is not set");
+    return false;
+  }
+
+  if (TEMPLATE_ID === 0) {
+    console.warn(
+      "BREVO_WELCOME_EMAIL_TEMPLATE_ID is not set. Skipping welcome email.",
+    );
+    return true; // Skipping but returning true as the subscription was successful
+  }
+
+  const emailSent = await sendWelcomeEmail(email, API_KEY, TEMPLATE_ID);
+
+  if (emailSent) {
+    console.log("Welcome email sent successfully!");
+    return true;
+  } else {
+    console.error("Failed to send welcome email");
+    return false;
+  }
+}
 
 export async function POST(req: NextRequest) {
   if (req.method !== "POST") {
@@ -50,7 +114,7 @@ export async function POST(req: NextRequest) {
     const response = await axios.post(url, data, options);
 
     if (response.status === 201) {
-      await newSubscriberHandler(body.email);
+      await newSubscriberHandler(emailValidation.data);
       return NextResponse.json(
         { message: "Successfully subscribed to the newsletter!" },
         { status: 201 },
