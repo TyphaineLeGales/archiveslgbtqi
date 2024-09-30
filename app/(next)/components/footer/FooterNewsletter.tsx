@@ -35,24 +35,22 @@ const NewsletterForm: React.FC = () => {
     >
       {" "}
       {/* Add your styles! */}
-      <div className="input-group">
-        <input
-          type="email"
-          //   placeholder="Entrez votre e-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          disabled={status === "loading"}
-          className="footerNewsLetterInput"
-        />
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="p-[.5rem] uppercase transition-colors duration-300 ease-tamisitée hover:text-pink-arch"
-        >
-          {status === "loading" ? "..." : "OK"}
-        </button>
-      </div>
+      <input
+        type="email"
+        //   placeholder="Entrez votre e-mail"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        disabled={status === "loading"}
+        className="footerNewsLetterInput"
+      />
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="p-[.5rem] uppercase transition-colors duration-300 ease-tamisitée hover:text-pink-arch"
+      >
+        {status === "loading" ? "..." : "OK"}
+      </button>
       {/* <div className="fixed inset-x-0 bottom-[1rem] z-50 px-[1rem] lg:inset-x-auto lg:right-[1rem] lg:pr-[1rem]">
         <div className="flex items-center justify-center bg-pink-arch px-[1rem] py-[.5rem] font-jetbrains text-[.8rem] text-white">
           {status === "success" && <p className="success-message">{message}</p>}
