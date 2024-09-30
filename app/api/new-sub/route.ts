@@ -94,5 +94,3 @@ export const newSubscriberHandler = async (
       .json({ message: "Subscribed (Error sending welcome email)" });
   }
 };
-
-export default newSubscriberHandler;
