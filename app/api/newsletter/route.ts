@@ -1,45 +1,108 @@
-import type { NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import axios from "axios";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
-export async function POST(req: Request, res: NextApiResponse) {
+type Data = { message: string };
+
+// Email validation schema
+const EmailSchema = z.string().email({ message: "Adresse email non valide" });
+
+// Function to send the welcome email
+async function sendWelcomeEmail(
+  email: string,
+  apiKey: string,
+  templateId: number,
+) {
+  const url = `https://api.brevo.com/v3/smtp/email`;
+  const data = {
+    to: [{ email }],
+    templateId,
+  };
+
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": apiKey,
+    },
+  };
+
   try {
-    const { email } = await req.json();
-
-    if (!email) {
-      return res.status(400).json({ error: "Email is required" });
+    const response = await axios.post(url, data, options);
+    if (response.status === 201) {
+      return true;
+    } else {
+      console.error(
+        "Unexpected response status from Brevo API:",
+        response.status,
+      );
+      return false;
     }
-
-    const MailchimpKey = process.env.MAILCHIMP_API_KEY;
-    const MailchimpServer = process.env.MAILCHIMP_API_SERVER;
-    const MailchimpAudience = process.env.MAILCHIMP_LIST_ID;
-
-    if (!MailchimpKey || !MailchimpServer || !MailchimpAudience) {
-      throw new Error("Missing Mailchimp environment variables");
-    }
-
-    const customUrl = `https://${MailchimpServer}.api.mailchimp.com/3.0/lists/${MailchimpAudience}/members`;
-
-    const response = await fetch(customUrl, {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${Buffer.from(`anystring:${MailchimpKey}`).toString("base64")}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email_address: email,
-        status: "subscribed",
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      return res.status(response.status).json({ error: errorData.detail });
-    }
-
-    const received = await response.json();
-    return NextResponse.json(received);
   } catch (error) {
-    console.error("Error:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error sending welcome email:", error);
+    return false;
   }
 }
+
+// New subscriber handler
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const emailValidation = EmailSchema.safeParse(body.email);
+
+    if (!emailValidation.success) {
+      return NextResponse.json(
+        { message: emailValidation.error.errors[0].message },
+        { status: 400 },
+      );
+    }
+
+    const email = emailValidation.data;
+    const API_KEY = process.env.BREVO_API_KEY;
+    const TEMPLATE_ID = parseInt(
+      process.env.BREVO_WELCOME_EMAIL_TEMPLATE_ID || "0",
+      10,
+    );
+
+    if (!API_KEY) {
+      console.error("BREVO_API_KEY is not set");
+      return NextResponse.json(
+        { message: "Une erreure s'est produite." },
+        { status: 500 },
+      );
+    }
+
+    if (TEMPLATE_ID === 0) {
+      console.warn(
+        "BREVO_WELCOME_EMAIL_TEMPLATE_ID is not set. Skipping welcome email.",
+      );
+      return NextResponse.json(
+        { message: "Merci pour votre inscription!" },
+        { status: 200 },
+      );
+    }
+
+    const emailSent = await sendWelcomeEmail(email, API_KEY, TEMPLATE_ID);
+
+    if (emailSent) {
+      console.log("Welcome email sent successfully!");
+      return NextResponse.json(
+        { message: "Merci pour votre inscription!" },
+        { status: 200 },
+      );
+    } else {
+      console.error("Failed to send welcome email");
+      return NextResponse.json(
+        { message: "Merci pour votre inscription!" },
+        { status: 200 },
+      );
+    }
+  } catch (error) {
+    console.error("Error in new subscriber handler:", error);
+    return NextResponse.json(
+      { message: "Merci pour votre inscription!" },
+      { status: 200 },
+    );
+  }
+}
+
+export const runtime = "edge";

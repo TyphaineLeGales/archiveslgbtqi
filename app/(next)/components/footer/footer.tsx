@@ -10,7 +10,7 @@ import { PortableTextBlock } from "next-sanity";
 import HeaderTransitionLink from "../header/HeaderTransitionLink";
 import CTAMarquee from "../homepage/CTAMarquee";
 
-import FooterNewsLetters from "../ui/FooterNewsLetters";
+import FooterNewsLetter from "./FooterNewsletter";
 
 export default async function Footer() {
   const settings = await sanityFetch<SettingsQueryResult>({
@@ -94,7 +94,7 @@ export default async function Footer() {
             <div>
               <span>Newsletter :</span>
               <div className="relative flex min-w-full">
-                <FooterNewsLetters />
+                <FooterNewsLetter />
                 <div className="absolute inset-x-0 bottom-[1px] h-[2px] w-[calc(100%-3rem)] bg-white lg:w-[calc(100%-2rem)]" />
               </div>
             </div>

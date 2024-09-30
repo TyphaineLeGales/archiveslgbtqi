@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, FormEvent } from "react";
 import axios from "axios";
 
@@ -28,23 +29,26 @@ const NewsletterForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="newsletter-form">
+    <form
+      onSubmit={handleSubmit}
+      className="flex min-w-[calc(100vw-2rem)] items-center space-x-2 lg:min-w-full"
+    >
       {" "}
       {/* Add your styles! */}
       <div className="input-group">
         <input
           type="email"
-          placeholder="Entrez votre e-mail"
+          //   placeholder="Entrez votre e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           disabled={status === "loading"}
-          className="newsLetterInput"
+          className="footerNewsLetterInput"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="absolute right-0 top-0 flex aspect-square h-[2.5rem] items-center justify-center bg-white p-[1rem] px-[1rem] font-tanker uppercase text-pink-arch transition-colors duration-200 ease-tamisitée hover:bg-black hover:text-white"
+          className="p-[.5rem] uppercase transition-colors duration-300 ease-tamisitée hover:text-pink-arch"
         >
           {status === "loading" ? "..." : "OK"}
         </button>
