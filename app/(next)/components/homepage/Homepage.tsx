@@ -10,7 +10,6 @@ import { useGSAP } from "@gsap/react";
 import {
   HeroCarousel,
   SecondSection,
-  CTAmarquee,
   IntroTextAndNewsLetter,
   UpcomingEvents,
 } from ".";
@@ -26,7 +25,6 @@ export default function Homepage({ homePage }: HomePageProps) {
   const secondSectionRef = useRef<HTMLDivElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
   const eventsRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (heroRef.current) {
@@ -37,9 +35,6 @@ export default function Homepage({ homePage }: HomePageProps) {
           end: "top top",
           scrub: 1,
           once: true,
-          // markers: true,
-          // onEnter: () => console.log("HeroCarousel entered view"),
-          // onLeave: () => console.log("HeroCarousel left view"),
         },
         opacity: 0,
       });
@@ -55,9 +50,6 @@ export default function Homepage({ homePage }: HomePageProps) {
           end: "top top",
           scrub: 1,
           once: true,
-          // markers: true,
-          // onEnter: () => console.log("SecondSection entered view"),
-          // onLeave: () => console.log("SecondSection left view"),
         },
         opacity: 0,
       });
@@ -73,9 +65,6 @@ export default function Homepage({ homePage }: HomePageProps) {
           end: "top top",
           scrub: 1,
           once: true,
-          // markers: true,
-          // onEnter: () => console.log("IntroTextAndNewsLetter entered view"),
-          // onLeave: () => console.log("IntroTextAndNewsLetter left view"),
         },
         opacity: 0,
       });
@@ -91,9 +80,6 @@ export default function Homepage({ homePage }: HomePageProps) {
           end: "top top",
           scrub: 1,
           once: true,
-          // markers: true,
-          // onEnter: () => console.log("UpcomingEvents entered view"),
-          // onLeave: () => console.log("UpcomingEvents left view"),
         },
         opacity: 0,
       });
