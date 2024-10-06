@@ -1,6 +1,5 @@
 *
 
 !.next
-!dist
 !docker
 !node_modules
