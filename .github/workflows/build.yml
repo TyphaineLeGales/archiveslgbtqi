@@ -19,12 +19,29 @@ jobs:
       - name: Clean Install
         run: npm clean-install
 
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "# NextJS" >> .env
+          echo NEXT_PUBLIC_SANITY_DATASET=${{ secrets.NEXT_PUBLIC_SANITY_DATASET }} >> .env
+          echo NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }} >> .env
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }} >> .env
+
+          echo >> .env
+          echo "# Sanity" >> .env
+          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }} >> .env
+
+          echo >> .env
+          echo "# Resend Mail" >> .env
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }} >> .env
+
+          echo >> .env
+          echo "# Brevo API key (Newsletter)" >> .env
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }} >> .env
+          BREVO_LIST_ID: ${{ vars.BREVO_LIST_ID }} >> .env
+          BREVO_WELCOME_EMAIL_TEMPLATE_ID: ${{ vars.BREVO_WELCOME_EMAIL_TEMPLATE_ID }} >> .env
+
       - name: Build
-        env: # Or as an environment variable
-          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
-          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: npm run build --if-present
 
       - name: Build the Docker image
