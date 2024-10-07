@@ -15,6 +15,7 @@ ENV HOME=/var/www
 
 WORKDIR /var/www
 
+COPY next.config.js next.config.js
 COPY .next/ .next
 COPY node_modules/ node_modules
 
