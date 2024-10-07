@@ -8,5 +8,6 @@ err_report() {
 trap 'err_report $? ${LINENO}' ERR
 
 cd /var/www
+tar xfz /application.tar.gz
 
 npx next start
