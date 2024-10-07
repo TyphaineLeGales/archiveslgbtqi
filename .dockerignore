@@ -3,3 +3,4 @@
 !.next
 !docker
 !node_modules
+!next.config.js
