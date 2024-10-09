@@ -3,6 +3,7 @@
  * This config is used to set up Sanity Studio that's mounted on the `app/(sanity)/studio/[[...tool]]/page.tsx` route
  */
 import { visionTool } from "@sanity/vision";
+import { frFRLocale } from "@sanity/locale-fr-fr";
 import { PluginOptions, defineConfig } from "sanity";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { codeInput } from "@sanity/code-input";
@@ -80,6 +81,7 @@ export default defineConfig({
     ],
   },
   plugins: [
+    frFRLocale(),
     structureTool({
       structure,
     }),
@@ -96,6 +98,7 @@ export default defineConfig({
     unsplashImageAsset(),
     // media plugin
     media(),
+
     // Sets up AI Assist with preset prompts
     // https://www.sanity.io/docs/ai-assist
     // assistWithPresets(),
