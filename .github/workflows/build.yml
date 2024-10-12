@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
       packages: write
+      contents: read
       attestations: write
       id-token: write
 
@@ -82,3 +82,12 @@ jobs:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
+
+      - name: Reload Archives LGBTQI Website
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: reload-siteng.sh
