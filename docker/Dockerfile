@@ -14,8 +14,9 @@ RUN chmod 0755 /tmp/bin/*
 
 FROM base
 
+LABEL org.opencontainers.image.description="Archives LGBTQI"
+
 EXPOSE 3000/tcp
-LABEL org.opencontainers.image.description Archives LGBTQI
 
 COPY --from=builder /application.tar.gz /application.tar.gz
 COPY --from=builder /tmp/bin/entrypoint.sh /usr/local/bin/entrypoint.sh
