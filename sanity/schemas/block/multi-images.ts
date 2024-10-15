@@ -30,9 +30,17 @@ export default defineType({
               validation: (rule) => rule.required(),
             }),
             defineField({
-              name: "alt",
-              title: "Alt",
+              name: "credits",
+              title: "Légende",
               type: "string",
+              description: "Légende de l'image",
+            }),
+            defineField({
+              name: "alt",
+              title: "Balise alt",
+              type: "string",
+              description:
+                "Description de l'image pour les moteurs de recherche",
               validation: (rule) => rule.required(),
             }),
           ],

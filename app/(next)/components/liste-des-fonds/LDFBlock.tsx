@@ -58,6 +58,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
             _type: any;
             imageUrl?: any;
             imageTitle?: any;
+            credits?: any;
             richtext?: any;
           }[];
         },
@@ -125,6 +126,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
                     imageUrl?: any;
                     imageTitle?: any;
                     richtext?: any;
+                    credits?: any;
                   }) => (
                     <div key={block._key}>
                       {block._type === "richtext" && (
@@ -134,6 +136,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
                         <SingleImageModule
                           imageUrl={block.imageUrl || ""}
                           imageTitle={block.imageTitle || ""}
+                          credits={block.credits || ""}
                         />
                       )}
                       {block._type === "multi-images" && (
