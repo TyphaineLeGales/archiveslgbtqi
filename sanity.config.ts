@@ -50,6 +50,9 @@ export default defineConfig({
   projectId,
   dataset,
   icon: Logo as any,
+  scheduledPublishing: {
+    enabled: false,
+  },
   // studio: {
   //   components: {
   //     navbar: MyEnhancedNavbar,
@@ -98,7 +101,6 @@ export default defineConfig({
     unsplashImageAsset(),
     // media plugin
     media(),
-
     // Sets up AI Assist with preset prompts
     // https://www.sanity.io/docs/ai-assist
     // assistWithPresets(),
