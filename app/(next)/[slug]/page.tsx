@@ -100,6 +100,7 @@ export default async function Page({ params }: Props) {
                       <SingleImageModule
                         imageUrl={block.imageUrl || ""}
                         imageTitle={block.imageTitle || ""}
+                        credits={block.credits || ""}
                       />
                     )}
                     {block._type === "multi-images" && (

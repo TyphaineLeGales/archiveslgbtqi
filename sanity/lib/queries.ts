@@ -266,14 +266,16 @@ export const singleImageFields = /* groq */ `
   _id,
   "imageTitle": title,
   "imageUrl": image.asset->url,
+  credits,
 `;
 
 export const multiImagesFields = /* groq */ `
   _id,
   "multiImages": images[] {
-        "imageUrl": image.asset->url,
-        alt,
-      },
+    "imageUrl": image.asset->url,
+    alt,
+    credits,
+  },
 `;
 
 export const linkFields = /* groq */ `
