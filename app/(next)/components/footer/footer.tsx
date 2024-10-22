@@ -21,7 +21,7 @@ export default async function Footer() {
     query: homepageQuery,
   });
 
-  console.log("Settings: ", settings?.footer);
+  // console.log("Settings: ", settings?.footer);
 
   return (
     <footer id="footer" className="mt-[7rem] overflow-hidden">
@@ -69,25 +69,21 @@ export default async function Footer() {
               <span>Suivez-nous :</span>
               <div className="flex justify-start gap-[1rem]">
                 {settings?.footer?.socialGroup?.map((social) => (
-                  <div
+                  <a
                     key={social.socialName}
-                    className="group relative aspect-square h-[2.75rem] w-[2.75rem] cursor-pointer rounded-full border-[1px] border-white transition-colors duration-300 ease-tamisitée hover:border-pink-arch lg:h-[2rem] lg:w-[2rem]"
+                    href={social.socialLink || ""}
+                    aria-label="Lien vers le réseau social"
+                    className="group relative flex aspect-square h-[2.75rem] w-[2.75rem] cursor-pointer items-center justify-center rounded-full border-[1px] border-white transition-colors duration-300 ease-tamisitée hover:border-pink-arch lg:h-[2rem] lg:w-[2rem]"
                   >
+                    <Image
+                      src={social.socialLinkImage?.imageUrl || ""}
+                      alt={social.socialLinkImage?.alt || ""}
+                      width={50}
+                      height={50}
+                      className="h-[2rem] w-[2rem] antialiased lg:h-[1.25rem] lg:w-[1.25rem]"
+                    />
                     <div className="absolute inset-0 rounded-full bg-pink-arch opacity-0 mix-blend-multiply transition-opacity duration-300 ease-tamisitée group-hover:opacity-100" />
-                    <a
-                      href={social.socialLink || ""}
-                      aria-label="Lien vers le réseau social"
-                      className="flex h-full w-full items-center justify-center rounded-full"
-                    >
-                      <Image
-                        src={social.socialLinkImage?.imageUrl || ""}
-                        alt={social.socialLinkImage?.alt || ""}
-                        width={50}
-                        height={50}
-                        className="h-[2rem] w-[2rem] antialiased lg:h-[1.25rem] lg:w-[1.25rem]"
-                      />
-                    </a>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
