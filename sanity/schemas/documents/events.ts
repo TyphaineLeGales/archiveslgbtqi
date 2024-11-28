@@ -112,7 +112,7 @@ export default defineType({
     {
       title: "Event Date",
       name: "eventDate",
-      by: [{ field: "eventDate.eventStartDate", direction: "desc" }],
+      by: [{ field: "eventDate.eventStartDate", direction: "asc" }],
     },
   ],
   preview: {
