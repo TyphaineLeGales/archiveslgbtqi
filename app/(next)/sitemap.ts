@@ -1,16 +1,31 @@
-import { PagesContentQueryResult } from "@/sanity.types";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { MetadataRoute } from "next";
+import { client } from "@/sanity/lib/client";
+import { pagesSlugQuery } from "@/sanity/lib/queries";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const pages = await sanityFetch<PagesContentQueryResult[]>({
-    query: `*[_type == "pages"] {
-      "slug": slug.current,
-    }`,
-  });
+const siteURL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-  const routes = pages.map((page) => ({
-    route: `/pages/${page?.slug}`,
+export default async function sitemap() {
+  const baseUrl = siteURL;
+
+  // Static routes
+  const staticRoutes = [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+    },
+  ];
+
+  // Fetch your dynamic data
+  // Replace these with your actual data fetching functions
+  const pages = await client.fetch(pagesSlugQuery);
+
+  const pagesRoutes = pages.map((page: { slug: any; _updatedAt: any }) => ({
+    url: `${baseUrl}/artists/${page?.slug || ""}`,
+    lastModified: new Date(page?._updatedAt || Date.now()),
   }));
-  return [];
+
+  return [...staticRoutes, ...pagesRoutes];
 }
