@@ -17,6 +17,7 @@ import { Metadata } from "next";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { client } from "@/sanity/lib/client";
+import { SettingsQueryResult } from "@/sanity.types";
 
 const cityBurn = localFont({
   src: "./fonts/cityburn/cityburn.ttf",
@@ -55,27 +56,26 @@ const tanker = localFont({
   src: "./fonts/tanker/tanker.otf",
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const page = await client.fetch(settingsQuery);
-
+export async function generateMetadata() {
+  const [settings] = await Promise.all([
+    sanityFetch<SettingsQueryResult>({ query: settingsQuery, stega: false }),
+  ]);
   return {
-    title: page.globalSettings.siteTitle,
-    description: page.globalSettings.siteDescription,
-    openGraph: {
-      title: page.globalSettings.siteTitle,
-      description: page.globalSettings.siteDescription,
-      images: [
-        {
-          url: page.globalSettings.ogImage,
-          alt: page.globalSettings.altText,
-        },
-      ],
-    },
+    title: settings?.globalSettings.siteTitle,
+    description: settings?.globalSettings.siteDescription as any,
     icons: {
       icon: [
         {
           url: "/favicon.ico",
           sizes: "any",
+        },
+      ],
+    },
+    openGraph: {
+      images: [
+        {
+          url: settings?.globalSettings.ogImage || "",
+          alt: settings?.globalSettings.altText || "",
         },
       ],
     },
