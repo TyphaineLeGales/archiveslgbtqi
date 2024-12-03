@@ -13,6 +13,10 @@ import Footer from "./components/footer/footer";
 import { BannerAlert, ToastProviders } from "./components/ui";
 import { IntroAnimation } from "./components/ui/IntroAnimation";
 import CookieBanner from "./components/ui/CookieBanner";
+import { Metadata } from "next";
+import { settingsQuery } from "@/sanity/lib/queries";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { client } from "@/sanity/lib/client";
 
 const cityBurn = localFont({
   src: "./fonts/cityburn/cityburn.ttf",
@@ -50,6 +54,20 @@ const tanker = localFont({
   display: "swap",
   src: "./fonts/tanker/tanker.otf",
 });
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await client.fetch(settingsQuery);
+
+  console.log(page.globalSettings.ogImage);
+
+  return {
+    title: page.globalSettings.siteTitle,
+    description: page.globalSettings.siteDescription,
+    icons: {
+      icon: page.globalSettings.ogImage,
+    },
+  } satisfies Metadata;
+}
 
 export default function RootLayout({
   children,
