@@ -58,13 +58,34 @@ const tanker = localFont({
 export async function generateMetadata(): Promise<Metadata> {
   const page = await client.fetch(settingsQuery);
 
-  console.log(page.globalSettings.ogImage);
-
   return {
     title: page.globalSettings.siteTitle,
     description: page.globalSettings.siteDescription,
+    openGraph: {
+      title: page.globalSettings.siteTitle,
+      description: page.globalSettings.siteDescription,
+      images: [
+        {
+          url: page.globalSettings.ogImage,
+          alt: page.globalSettings.altText,
+        },
+      ],
+    },
     icons: {
-      icon: page.globalSettings.ogImage,
+      icon: [
+        {
+          url: "/favicon.ico",
+          sizes: "any",
+        },
+      ],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
   } satisfies Metadata;
 }
