@@ -23,7 +23,7 @@ export default async function sitemap() {
   const pages = await client.fetch(pagesSlugQuery);
 
   const pagesRoutes = pages.map((page: { slug: any; _updatedAt: any }) => ({
-    url: `${baseUrl}/artists/${page?.slug || ""}`,
+    url: `${baseUrl}/${page?.slug || ""}`,
     lastModified: new Date(page?._updatedAt || Date.now()),
   }));
 
