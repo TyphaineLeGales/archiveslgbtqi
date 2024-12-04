@@ -37,6 +37,7 @@ const NewsletterForm: React.FC = () => {
       {/* Add your styles! */}
       <input
         type="email"
+        aria-label="email"
         //   placeholder="Entrez votre e-mail"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
