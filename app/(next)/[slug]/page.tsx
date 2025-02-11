@@ -65,7 +65,7 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  console.log("Pages Content:", content);
+  //console.log("Pages Content:", content);
 
   return (
     <div className="relative mx-auto flex min-h-[65svh] w-auto max-w-[1440px] p-[1rem] lg:min-h-[70vh] lg:p-0">
