@@ -110,9 +110,14 @@ export default defineType({
   ],
   orderings: [
     {
-      title: "Event Date",
-      name: "eventDate",
+      title: "Event Date (Newest First)",
+      name: "eventDateDesc",
       by: [{ field: "eventDate.eventStartDate", direction: "desc" }],
+    },
+    {
+      title: "Event Date (Oldest First)",
+      name: "eventDateAsc",
+      by: [{ field: "eventDate.eventStartDate", direction: "asc" }],
     },
   ],
   preview: {
