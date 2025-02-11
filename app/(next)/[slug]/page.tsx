@@ -22,6 +22,7 @@ import {
   CreationArchivesModule,
   RichTextAndTitleModule,
   CustomHtml,
+  FileModule
 } from "../components/modules";
 
 import { DesktopSidebar } from "../components/all-pages";
@@ -64,7 +65,7 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  // console.log("Pages Content:", content);
+  console.log("Pages Content:", content);
 
   return (
     <div className="relative mx-auto flex min-h-[65svh] w-auto max-w-[1440px] p-[1rem] lg:min-h-[70vh] lg:p-0">
@@ -131,6 +132,7 @@ export default async function Page({ params }: Props) {
                       />
                     )}
                     {block._type === "contact-form" && <FormSubmission />}
+                    {block._type === "document-file" && <FileModule item={block as any}/>} 
                   </div>
                 ))}
               </div>
