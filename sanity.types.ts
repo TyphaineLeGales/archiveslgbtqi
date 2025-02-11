@@ -1211,6 +1211,7 @@ export type BlogsQueryResult = Array<{
         singleImage: {
           imageUrl: string | null;
           alt: string | null;
+          credits: string | null;
         };
       }
   > | null;
