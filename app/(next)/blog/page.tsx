@@ -12,6 +12,13 @@ import { BlogsQueryResult, HomepageQueryResult } from "@/sanity.types";
 import { DateHourFormat, MyCustomPortableText } from "../components/ui";
 import { BlogDesktopSidebar } from "../components/blog";
 
+type SingleImage = {
+  imageUrl: string | null;
+  alt: string | null;
+  credits?: string; // Add credits property
+};
+
+
 export default async function Page() {
   const currentYear = new Date().getFullYear().toString();
   const minYear = (new Date().getFullYear() - 4).toString(); // 5 years of blogs

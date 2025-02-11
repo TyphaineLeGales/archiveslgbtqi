@@ -359,6 +359,7 @@ export type Blogs = {
           _type: "image";
         };
         alt?: string;
+        credits?: string;
         _type: "singleImage";
         _key: string;
       }
@@ -1208,7 +1209,6 @@ export type BlogsQueryResult = Array<{
       }
     | {
         singleImage: {
-          credits: ReactI18NextChildren | Iterable<ReactI18NextChildren>;
           imageUrl: string | null;
           alt: string | null;
         };
