@@ -23,6 +23,9 @@ export default function EventsMap({
   status,
   entry,
 }: FutureEventProps) {
+  if(status === "future") {
+    eventsMap.reverse()
+  }
   return (
     <div id={id} className="flex flex-col gap-[1rem]">
       <h1 className="pageTitle">{id === "future" ? "À venir" : "Passés"}</h1>
