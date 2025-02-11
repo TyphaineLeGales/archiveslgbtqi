@@ -83,6 +83,12 @@ export default defineType({
               type: "string",
               validation: (rule) => rule.required(),
             }),
+            defineField({
+              name: "credits",
+              title: "Légende",
+              type: "string",
+              description: "Légende de l'image",
+            }),
           ],
           preview: {
             select: {

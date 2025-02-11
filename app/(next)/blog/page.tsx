@@ -65,14 +65,19 @@ export default async function Page() {
               }
               if ("singleImage" in block) {
                 return (
-                  <Image
-                    key={index}
-                    src={block.singleImage.imageUrl || ""}
-                    alt={block.singleImage.alt || ""}
-                    width={1000}
-                    height={1000}
-                    className="py-[1rem]"
-                  />
+                  <>
+                    <Image
+                      key={index}
+                      src={block.singleImage.imageUrl || ""}
+                      alt={block.singleImage.alt || ""}
+                      width={1000}
+                      height={1000}
+                      className="py-[1rem]"
+                    />
+                    <p className="mt-[.4rem] pr-[3rem] font-jetbrains text-[.65rem] font-light leading-[.7rem]">
+                      {block.singleImage.credits}
+                    </p>
+                  </>
                 );
               }
               return null;

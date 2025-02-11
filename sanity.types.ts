@@ -1208,6 +1208,7 @@ export type BlogsQueryResult = Array<{
       }
     | {
         singleImage: {
+          credits: ReactI18NextChildren | Iterable<ReactI18NextChildren>;
           imageUrl: string | null;
           alt: string | null;
         };
