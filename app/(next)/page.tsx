@@ -12,24 +12,6 @@ import {
   Homepage,
 } from "./components/homepage";
 
-export async function generateMetadata() {
-  const [settings] = await Promise.all([
-    sanityFetch<SettingsQueryResult>({ query: settingsQuery, stega: false }),
-  ]);
-  return {
-    title: settings?.globalSettings.siteTitle,
-    description: settings?.globalSettings.siteDescription as any,
-    openGraph: {
-      images: [
-        {
-          url: settings?.globalSettings.ogImage || "",
-          alt: settings?.globalSettings.altText || "",
-        },
-      ],
-    },
-  } satisfies Metadata;
-}
-
 export default async function Page() {
   const [homePage] = await Promise.all([
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),

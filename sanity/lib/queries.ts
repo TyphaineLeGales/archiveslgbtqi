@@ -330,6 +330,11 @@ export const documentFileFields = /* groq */ `
   "fileName": file.asset->originalFilename,
 `;
 
+export const pagesSlugQuery = groq`*[_type == "pages" && defined(slug.current)] {
+  _updatedAt,
+  "slug": slug.current,
+}`;
+
 export const pagesContentQuery = groq`*[_type == "pages" && slug.current == $slug][0] {
   _id,
   title,

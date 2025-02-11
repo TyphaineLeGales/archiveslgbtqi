@@ -43,18 +43,21 @@ export default function FormSubmission() {
       className="relative flex h-full w-full flex-col gap-[.5rem] lg:w-[55%]"
     >
       <input
+        aria-label="Nom"
         placeholder="Nom"
         {...register("name")}
         className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"
       />
 
       <input
+        aria-label="Adresse email"
         placeholder="Adresse email"
         {...register("email")}
         className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"
       />
 
       <input
+        aria-label="Titre de votre archive"
         placeholder="Titre de votre archive"
         {...register("title")}
         className="FormSubmitInput h-[2.15rem] lg:h-[2.15rem]"

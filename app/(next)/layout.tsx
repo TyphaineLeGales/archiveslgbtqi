@@ -13,6 +13,11 @@ import Footer from "./components/footer/footer";
 import { BannerAlert, ToastProviders } from "./components/ui";
 import { IntroAnimation } from "./components/ui/IntroAnimation";
 import CookieBanner from "./components/ui/CookieBanner";
+import { Metadata } from "next";
+import { settingsQuery } from "@/sanity/lib/queries";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { client } from "@/sanity/lib/client";
+import { SettingsQueryResult } from "@/sanity.types";
 
 const cityBurn = localFont({
   src: "./fonts/cityburn/cityburn.ttf",
@@ -50,6 +55,40 @@ const tanker = localFont({
   display: "swap",
   src: "./fonts/tanker/tanker.otf",
 });
+
+export async function generateMetadata() {
+  const [settings] = await Promise.all([
+    sanityFetch<SettingsQueryResult>({ query: settingsQuery, stega: false }),
+  ]);
+  return {
+    title: settings?.globalSettings.siteTitle,
+    description: settings?.globalSettings.siteDescription as any,
+    icons: {
+      icon: [
+        {
+          url: "/favicon.ico",
+          sizes: "any",
+        },
+      ],
+    },
+    openGraph: {
+      images: [
+        {
+          url: settings?.globalSettings.ogImage || "",
+          alt: settings?.globalSettings.altText || "",
+        },
+      ],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
+  } satisfies Metadata;
+}
 
 export default function RootLayout({
   children,
