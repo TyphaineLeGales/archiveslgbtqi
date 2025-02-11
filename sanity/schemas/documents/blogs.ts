@@ -228,6 +228,7 @@ export default defineType({
         title: title,
         media: image,
         subtitle: `${formattedDate} | ${author}`,
+        credits: image.credits
       };
     },
   },
