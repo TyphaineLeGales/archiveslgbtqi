@@ -7,10 +7,71 @@ import clsx from "clsx";
 
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { blogsQuery, homepageQuery } from "@/sanity/lib/queries";
-import { BlogsQueryResult, HomepageQueryResult } from "@/sanity.types";
+import { HomepageQueryResult } from "@/sanity.types";
 
 import { DateHourFormat, MyCustomPortableText } from "../components/ui";
 import { BlogDesktopSidebar } from "../components/blog";
+// test defining type here to see if there is a cache problems on the type
+type BlogsQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  subTitle: string | null;
+  author: string | null;
+  year: string | null;
+  date: string | null;
+  contentBlock: Array<
+    | {
+        links: {
+          label: string | null;
+          type: "external" | "internal" | "mail" | null;
+          internalLink: string | null;
+          external: string | null;
+          mail: string | null;
+        };
+      }
+    | {
+        multiImagesObject: Array<{
+          imageUrl: string | null;
+          alt: string | null;
+        }> | null;
+      }
+    | {
+        richText: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?:
+            | "blockquote"
+            | "h1"
+            | "h2"
+            | "h3"
+            | "h4"
+            | "h5"
+            | "h6"
+            | "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
+      }
+    | {
+        singleImage: {
+          imageUrl: string | null;
+          alt: string | null;
+          credits: string | null;
+        };
+      }
+  > | null;
+}>;
 
 export default async function Page() {
   const currentYear = new Date().getFullYear().toString();
