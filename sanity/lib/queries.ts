@@ -227,7 +227,8 @@ export const blogsQuery = groq`*[_type == "blogs"  && year >= $minYear && year <
     _type == "singleImage" => {
       "singleImage": {
         "imageUrl": image.asset->url,
-        alt
+        alt,
+        credits
       }
     },
     _type == "multiImagesObject" => {

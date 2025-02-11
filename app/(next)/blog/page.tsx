@@ -88,7 +88,7 @@ export default async function Page() {
     sanityFetch<HomepageQueryResult>({ query: homepageQuery }),
   ]);
 
-  // console.log("Blogs:", blogs);
+ console.log("Blogs:", blogs[0].contentBlock[1]);
 
   return (
     <div className="relative mx-auto flex min-h-full w-auto max-w-[1440px] p-[1rem] lg:p-0">
@@ -138,6 +138,7 @@ export default async function Page() {
                     <p className="mt-[.4rem] pr-[3rem] font-jetbrains text-[.65rem] font-light leading-[.7rem]">
                       {block.singleImage.credits}
                     </p>
+                    
                   </>
                 );
               }
