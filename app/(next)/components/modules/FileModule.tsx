@@ -1,10 +1,12 @@
 "use client";
 
-type DocFile = {
-  fileUrl: string
+type Props = {
+  item: {
+    fileUrl: string
+  }
  
 };
-const FileModule = ({ item }: DocFile) => {
+const FileModule = ( {item} : Props) => {
 
   return item.fileUrl && <iframe src={item.fileUrl} width="100%" height="700px"></iframe>
 
