@@ -207,6 +207,26 @@ export default defineType({
       },
       fields: [
         defineField({
+          name: "partnerLogos", 
+          title: "Logos des partenaires",
+          type: "array",
+          of: [
+            defineField({
+              name: "logoImage",
+              type: "image",
+              title: "Image",
+              options: { hotspot: true },
+              fields: [
+                defineField({
+                  name: "alt",
+                  title: "Texte alternatif",
+                  type: "string",
+                }),
+              ],
+            }),
+          ]
+        }),
+        defineField({
           name: "logo",
           title: "Logo pour le footer",
           type: "object",

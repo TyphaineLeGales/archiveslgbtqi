@@ -36,6 +36,11 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
       "logoImage": logoImage.asset->url,
       alt,
     },
+    partnerLogos[] {
+      "logoImage": logoImage.asset->url,
+      alt
+    },
+    
     "addressGroup": addressGroup {
       addressTitle,
       addressContent[]{

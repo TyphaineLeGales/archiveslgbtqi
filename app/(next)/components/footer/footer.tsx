@@ -21,10 +21,36 @@ export default async function Footer() {
     query: homepageQuery,
   });
 
-  // console.log("Settings: ", settings?.footer);
+  console.log("Settings: ", settings?.footer);
+
 
   return (
     <footer id="footer" className="mt-[7rem] overflow-hidden">
+      <div>
+        <div className="w-full inset-x-0 bottom-[1rem] z-50 px-[1rem] lg:inset-x-auto lg:right-[1rem] lg:pr-[1rem]">
+          <div className="flex items-center justify-center px-[1rem] py-[.5rem] font-jetbrains text-[.8rem] ">
+            <p>Avec le soutien de : </p>
+          </div>
+          <div>
+          {(settings?.footer?.partnerLogos?.length ?? 0) > 0 && (
+            <div className="partner-logos flex flex-wrap gap-4 py-6 justify-center">
+              {settings?.footer?.partnerLogos!.map((logo, i) =>
+                logo.logoImage ? (
+                  <Image
+                    key={i}
+                    src={logo.logoImage}
+                    alt={logo.alt || "Logo partenaire"}
+                    width={150}
+                    height={80}
+                    className="object-contain"
+                  />
+                ) : null
+              )}
+            </div>
+          )}
+          </div>
+        </div>
+      </div>
       <CTAMarquee marquee={homePage} />
       <div className="bg-black">
         <div className="relative mx-auto flex min-h-full w-full max-w-[1440px] flex-col items-start justify-between gap-[3rem] overflow-hidden px-[1rem] py-[3rem] text-white lg:h-[390px] lg:flex-row lg:items-end lg:gap-0 lg:px-[3rem] lg:py-0">
