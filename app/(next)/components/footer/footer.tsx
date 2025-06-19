@@ -21,7 +21,7 @@ export default async function Footer() {
     query: homepageQuery,
   });
 
-  console.log("Settings: ", settings?.footer?.partnerLogos);
+  //console.log("Settings: ", settings);
 
 
   return (

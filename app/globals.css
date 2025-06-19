@@ -68,7 +68,7 @@
   /* 👇🏽 All page */
 
   .pageTitle {
-    @apply font-tanker text-[2rem] uppercase leading-[1.5rem] tracking-wider lg:text-[2.8rem] lg:leading-[2rem];
+    @apply font-tanker text-[2rem] uppercase leading-[1.75rem] tracking-wider lg:text-[2.8rem] lg:leading-[2rem];
   }
 
   .richText {
