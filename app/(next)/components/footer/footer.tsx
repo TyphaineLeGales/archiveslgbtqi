@@ -33,15 +33,15 @@ export default async function Footer() {
           </div>
           <div>
           {(settings?.footer?.partnerLogos?.length ?? 0) > 0 && (
-            <div className="partner-logos flex flex-wrap gap-4 py-6 justify-center">
+            <div className="partner-logos flex flex-wrap gap-10 py-6 justify-center">
               {settings?.footer?.partnerLogos!.map((logo, i) =>
                 logo.logoImage ? (
                   <Image
                     key={i}
                     src={logo.logoImage}
                     alt={logo.alt || "Logo partenaire"}
-                    width={150}
-                    height={80}
+                    width={130}
+                    height={60}
                     className="object-contain"
                   />
                 ) : null

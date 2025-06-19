@@ -37,7 +37,7 @@ export const settingsQuery = groq`*[_type == "settings"][0] {
       alt,
     },
     partnerLogos[] {
-      "logoImage": logoImage.asset->url,
+      "logoImage": asset->url,
       alt
     },
     
